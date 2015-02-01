@@ -1,0 +1,33 @@
+<md-content class="md-padding" ng-controller="IngredientsCreateCtrl">
+  <h3>Create new ingredient</h3>
+  <form name="ingredientForm">
+    <md-input-container flex>
+      <label>Name</label>
+      <input ng-model="ingredient.name" required placeholder="Ingredient name, e.g. Chicken breast">
+    </md-input-container>
+    <md-input-container flex>
+      <label>Calories</label>
+      <input type="number" ng-model="ingredient.calories" required placeholder="Amount of food calories per 100 gram">
+    </md-input-container>
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>Fat</label>
+        <input type="number" ng-model="user.fat" required placeholder="Total amount of fats">
+      </md-input-container>
+      <md-input-container flex>
+        <label>Protein</label>
+        <input type="number" ng-model="user.protein" required placeholder="Total amount of protein">
+      </md-input-container>
+      <md-input-container flex>
+        <label>Carbohydrate</label>
+        <input type="number" ng-model="user.carbohydrate" required placeholder="Total amount of carbs">
+      </md-input-container>
+    </div>
+    <br/>
+    <br/>
+    <div layout="row" layout-align="space-between">
+      <md-button href="#/ingredients" ng-click="go('/ingredients', 'slide-up')">go back</md-button>
+      <md-button class="md-raised md-primary">create</md-button>
+    </div>
+  </form>
+</md-content>
