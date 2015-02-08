@@ -1,4 +1,4 @@
-<md-content class="md-padding" ng-controller="IngredientsCreateCtrl">
+<md-content class="md-padding" ng-controller="IngredientsCreateController">
   <h3>Create new ingredient</h3>
   <form name="ingredientForm">
     <md-input-container flex>
@@ -12,22 +12,22 @@
     <div layout layout-sm="column">
       <md-input-container flex>
         <label>Fat</label>
-        <input type="number" ng-model="user.fat" required placeholder="Total amount of fats">
+        <input type="number" ng-model="ingredient.fat" required placeholder="Total amount of fats">
       </md-input-container>
       <md-input-container flex>
         <label>Protein</label>
-        <input type="number" ng-model="user.protein" required placeholder="Total amount of protein">
+        <input type="number" ng-model="ingredient.protein" required placeholder="Total amount of protein">
       </md-input-container>
       <md-input-container flex>
         <label>Carbohydrate</label>
-        <input type="number" ng-model="user.carbohydrate" required placeholder="Total amount of carbs">
+        <input type="number" ng-model="ingredient.carbohydrate" required placeholder="Total amount of carbs">
       </md-input-container>
     </div>
     <br/>
     <br/>
     <div layout="row" layout-align="space-between">
-      <md-button href="#/ingredients" ng-click="go('/ingredients', 'slide-up')">go back</md-button>
-      <md-button class="md-raised md-primary">create</md-button>
+      <md-button href="#/ingredients" ng-click="go('ingredientsList', 'slide-up')">go back</md-button>
+      <md-button class="md-raised md-primary" ng-click="createIngredient()">create</md-button>
     </div>
   </form>
 </md-content>

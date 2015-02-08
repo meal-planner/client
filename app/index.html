@@ -8,14 +8,14 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
 </head>
-<body ng-app="mealPlannerApp">
+<body ng-app="mealPlanner">
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
   your browser</a> to improve your experience.</p>
@@ -32,16 +32,16 @@
       </md-toolbar>
     </md-content>
 
-    <div class="mp-tabs" ng-controller="TabsCtrl">
+    <div class="mp-tabs" ng-controller="TabsController">
       <md-tabs md-selected="navigation.selectedIndex" class="md-primary">
         <md-tab ng-repeat="tab in tabs"
                 ng-disabled="tab.disabled"
-                md-on-select="go(tab.uri)"
+                md-on-select="go(tab.state)"
                 label="{{tab.label}}">
         </md-tab>
       </md-tabs>
       <div class="mp-animate-container">
-        <md-content ng-view class="md-padding mp-tab-content mp-animate {{ navigation.animationClass }}">
+        <md-content ui-view class="md-padding mp-tab-content mp-animate {{ navigation.animationClass }}">
         </md-content>
       </div>
     </div>
@@ -58,7 +58,8 @@
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-aria/angular-aria.js"></script>
 <script src="bower_components/angular-material/angular-material.js"></script>
@@ -67,11 +68,16 @@
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
-<script src="scripts/controllers/main.js"></script>
-<script src="scripts/controllers/tabs.js"></script>
-<script src="scripts/controllers/ingredients.js"></script>
-<script src="scripts/controllers/ingredients/create.js"></script>
-<script src="scripts/controllers/recipes.js"></script>
+<script src="modules/navigation/controllers/tabs.js"></script>
+<!-- Planner module -->
+<script src="modules/planner/routes.js"></script>
+<script src="modules/planner/controllers/main.js"></script>
+<!-- Ingredients module -->
+<script src="modules/ingredients/routes.js"></script>
+<script src="modules/ingredients/factories.js"></script>
+<script src="modules/ingredients/controllers/list.js"></script>
+<script src="modules/ingredients/controllers/create.js"></script>
+
 <!-- endbuild -->
 </body>
 </html>

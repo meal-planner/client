@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name mealPlannerApp.controller:IngredientsCtrl
+ * @name mealPlanner.controller:IngredientsListController
  * @description
- * # IngredientsCtrl
- * Controller of the mealPlannerApp
+ * # IngredientsListController
+ * Controller of the mealPlanner
  */
-angular.module('mealPlannerApp')
-  .controller('IngredientsCtrl', function ($scope) {
+angular.module('mealPlanner')
+  .controller('IngredientsListController', function ($scope) {
     $scope.ingredients = [
       //{
       //  name: 'Chicken breast',
