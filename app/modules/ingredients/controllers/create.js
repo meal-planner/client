@@ -8,10 +8,16 @@
  * Controller of the mealPlanner
  */
 angular.module('mealPlanner')
-  .controller('IngredientsCreateController', function ($scope, Ingredient) {
+  .controller('IngredientsCreateController', function ($scope, $mdToast, Ingredient) {
     $scope.createIngredient = function () {
-      Ingredient.save($scope.ingredient, function (data) {
-        console.log(data);
+      Ingredient.save($scope.ingredient, function () {
+        $scope.go('ingredientsList', 'slide-up');
+        $mdToast.show({
+          parent: angular.element(document.getElementById('content-view')),
+          template: '<md-toast>Ingredient was created!</md-toast>',
+          position: 'top left',
+          hideDelay: 3000
+        });
       });
     };
   });
