@@ -10,6 +10,7 @@
 angular.module('mealPlanner')
   .controller('IngredientsCreateController', function ($scope, $mdToast, Ingredient) {
     $scope.createIngredient = function () {
+      $scope.showProgress = true;
       Ingredient.save($scope.ingredient, function () {
         $scope.go('ingredientsList', 'slide-up');
         $mdToast.show({

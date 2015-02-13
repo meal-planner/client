@@ -12,8 +12,8 @@ angular
   .module('mealPlanner', ['ngMaterial', 'ui.router', 'ngResource'])
   .config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('default')
-      .primaryPalette('indigo')
-      .accentPalette('deep-orange');
+      .primaryPalette('teal')
+      .accentPalette('red');
   })
   .run(function ($state) {
     $state.go('planner');

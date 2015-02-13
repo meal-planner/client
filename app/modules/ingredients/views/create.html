@@ -1,4 +1,4 @@
-<md-content class="md-padding" ng-controller="IngredientsCreateController">
+<md-content class="md-padding">
   <h3>Create new ingredient</h3>
   <form name="ingredientForm" ng-submit="createIngredient()">
     <md-input-container flex>
@@ -26,8 +26,9 @@
     <br/>
     <br/>
     <div layout="row" layout-align="space-between">
-      <md-button href="#/ingredients" ng-click="go('ingredientsList', 'slide-up')">go back</md-button>
-      <md-button class="md-raised md-primary">create</md-button>
+      <md-progress-linear md-mode="indeterminate" ng-show="showProgress"></md-progress-linear>
+      <md-button class="md-button-wide" ng-hide="showProgress" ng-click="go('ingredientsList', 'slide-up')">go back</md-button>
+      <md-button class="md-raised md-primary md-button-wide" ng-hide="showProgress">create</md-button>
     </div>
   </form>
 </md-content>
