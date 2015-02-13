@@ -8,6 +8,5 @@ angular.module('mealPlanner')
     }).state('createIngredient', {
       url: '/ingredients/create',
       templateUrl: 'modules/ingredients/views/create.html',
-      controller: 'IngredientsCreateController'
     });
   });

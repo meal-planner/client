@@ -8,17 +8,23 @@
  * Controller of the mealPlanner
  */
 angular.module('mealPlanner')
-  .controller('IngredientsCreateController', function ($scope, $mdToast, Ingredient) {
-    $scope.createIngredient = function () {
-      $scope.showProgress = true;
-      Ingredient.save($scope.ingredient, function () {
-        $scope.go('ingredientsList', 'slide-up');
-        $mdToast.show({
-          parent: angular.element(document.getElementById('content-view')),
-          template: '<md-toast>Ingredient was created!</md-toast>',
-          position: 'top left',
-          hideDelay: 3000
-        });
+  .controller('IngredientsCreateController', IngredientsCreateController);
+
+/* @ngInject */
+function IngredientsCreateController($scope, $mdToast, ingredientService) {
+  var vm = this;
+  vm.isLoading = false;
+
+  vm.createIngredient = function () {
+    vm.isLoading = true;
+    ingredientService.createIngredient($scope.ingredient).then(function () {
+      $scope.go('ingredientsList', 'slide-up');
+      $mdToast.show({
+        parent: angular.element(document.getElementById('content-view')),
+        template: '<md-toast>Ingredient was created!</md-toast>',
+        position: 'top left',
+        hideDelay: 3000
       });
-    };
-  });
+    });
+  };
+}

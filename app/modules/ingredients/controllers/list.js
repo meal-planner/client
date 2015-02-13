@@ -10,27 +10,41 @@
 angular.module('mealPlanner')
   .controller('IngredientsListController', IngredientsListController);
 
-function IngredientsListController($mdDialog, Ingredient) {
+/* @ngInject */
+function IngredientsListController($mdDialog, ingredientService) {
   var vm = this;
   vm.items = [];
-  vm.isLoading = true;
-  Ingredient.query(function (response) {
-    vm.items = response;
-    vm.isLoading = false;
-    console.log(vm.items);
-  });
+  vm.deleteIngredient = deleteIngredient;
 
-  vm.deleteIngredient = function (ingredient, ev) {
+  initialize();
+
+  function initialize() {
+    vm.isLoading = true;
+    return getIngredients().then(function () {
+      vm.isLoading = false;
+    })
+  }
+
+  function getIngredients() {
+    return ingredientService.getIngredients()
+      .then(function (data) {
+        vm.items = data;
+        return vm.items;
+      });
+  }
+
+  function deleteIngredient(ingredient, ev) {
     var confirm = $mdDialog.confirm()
       .title('Do you want to delete ingredient?')
       .content('This will permanently delete ingredient "' + ingredient.name + '".')
       .ok('Yes, delete!')
       .cancel('No, keep it')
       .targetEvent(ev);
-    $mdDialog.show(confirm).then(function() {
+
+    $mdDialog.show(confirm).then(function () {
       var index = vm.items.indexOf(ingredient);
       vm.items.splice(index, 1);
-      Ingredient.delete({id: ingredient.id});
+      ingredientService.deleteIngredient(ingredient.id);
     });
   };
 
