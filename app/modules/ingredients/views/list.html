@@ -25,6 +25,9 @@
               layout-align="space-around">
     <md-progress-circular md-mode="indeterminate"></md-progress-circular>
   </md-content>
+  <md-content ng-show="ingredients.isError">
+    Could not load ingredients list. Please, check network connection.
+  </md-content>
   <md-content ng-hide="ingredients.isLoading">
     <md-list>
       <md-item ng-repeat="ingredient in ingredients.items">

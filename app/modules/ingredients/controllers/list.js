@@ -22,6 +22,9 @@ function IngredientsListController($mdDialog, ingredientService) {
     vm.isLoading = true;
     return getIngredients().then(function () {
       vm.isLoading = false;
+    }, function () {
+      vm.isLoading = false;
+      vm.isError = true;
     })
   }
 

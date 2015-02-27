@@ -10,7 +10,7 @@
 angular.module('mealPlanner')
   .controller('TabsController', function ($scope, $state, $location) {
     $scope.navigation = {
-      selectedIndRefacex: 0
+      selectedIndex: 0
     };
     $scope.tabs = [{
       label: 'Make Plan',
