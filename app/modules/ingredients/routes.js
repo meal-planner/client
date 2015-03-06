@@ -7,6 +7,6 @@ angular.module('mealPlanner')
       templateUrl: 'modules/ingredients/views/list.html'
     }).state('createIngredient', {
       url: '/ingredients/create',
-      templateUrl: 'modules/ingredients/views/create.html',
+      templateUrl: 'modules/ingredients/views/create.html'
     });
   });

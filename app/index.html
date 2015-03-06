@@ -22,19 +22,23 @@
 <![endif]-->
 
 <div layout="column">
-  <md-whiteframe class="mp-container md-whiteframe-z1">
+  <md-whiteframe class="mp-container md-whiteframe-z1" ng-controller="NavigationController as navigation">
     <md-content>
       <md-toolbar class="md-primary md-hue-2">
         <h2 class="md-toolbar-tools" layout="row" layout-align="space-between">
-          <span>Meal Planner</span>
+          <span>
+            <a href="#" ng-click="go('planner', 'slide-right')">
+              <img ng-src="images/logo.png" />
+            </a>
+          </span>
           <md-button>sign in</md-button>
         </h2>
       </md-toolbar>
     </md-content>
 
-    <div class="mp-tabs" ng-controller="TabsController">
+    <div class="mp-tabs">
       <md-tabs md-selected="navigation.selectedIndex" class="md-primary">
-        <md-tab ng-repeat="tab in tabs"
+        <md-tab ng-repeat="tab in navigation.tabs"
                 ng-disabled="tab.disabled"
                 md-on-select="go(tab.state)"
                 label="{{tab.label}}">
@@ -68,7 +72,7 @@
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
-<script src="modules/navigation/controllers/tabs.js"></script>
+<script src="modules/navigation/controllers/navigation.js"></script>
 <!-- Planner module -->
 <script src="modules/planner/routes.js"></script>
 <script src="modules/planner/controllers/main.js"></script>
@@ -77,6 +81,11 @@
 <script src="modules/ingredients/services/ingredient.js"></script>
 <script src="modules/ingredients/controllers/list.js"></script>
 <script src="modules/ingredients/controllers/create.js"></script>
+<!-- Recipes module -->
+<script src="modules/recipes/routes.js"></script>
+<script src="modules/recipes/services/recipe.js"></script>
+<script src="modules/recipes/controllers/list.js"></script>
+<script src="modules/recipes/controllers/create.js"></script>
 
 <!-- endbuild -->
 </body>

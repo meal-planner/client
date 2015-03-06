@@ -12,27 +12,30 @@ angular.module('mealPlanner')
 
 /* @ngInject */
 function IngredientsListController($mdDialog, ingredientService) {
-  var vm = this;
-  vm.items = [];
-  vm.deleteIngredient = deleteIngredient;
+  var self = this;
+  self.items = [];
+  self.deleteIngredient = deleteIngredient;
 
   initialize();
 
   function initialize() {
-    vm.isLoading = true;
-    return getIngredients().then(function () {
-      vm.isLoading = false;
-    }, function () {
-      vm.isLoading = false;
-      vm.isError = true;
-    })
+    self.isLoading = true;
+    return getIngredients().then(
+      function () {
+        self.isLoading = false;
+      },
+      function () {
+        self.isLoading = false;
+        self.isError = true;
+      }
+    );
   }
 
   function getIngredients() {
     return ingredientService.getIngredients()
       .then(function (data) {
-        vm.items = data;
-        return vm.items;
+        self.items = data;
+        return self.items;
       });
   }
 
@@ -45,8 +48,8 @@ function IngredientsListController($mdDialog, ingredientService) {
       .targetEvent(ev);
 
     $mdDialog.show(confirm).then(function () {
-      var index = vm.items.indexOf(ingredient);
-      vm.items.splice(index, 1);
+      var index = self.items.indexOf(ingredient);
+      self.items.splice(index, 1);
       ingredientService.deleteIngredient(ingredient.id);
     });
   };

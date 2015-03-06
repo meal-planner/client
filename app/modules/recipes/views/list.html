@@ -1,0 +1,55 @@
+<div ng-controller="RecipesListController as recipes">
+  <section layout="row" layout-align="space-between">
+    <span>
+      <h2>Recipes</h2>
+      Here you can manage your recipes.<br/>
+      Recipes will be used to create  your daily meal plan.
+    </span>
+    <md-button class="md-fab md-button md-accent md-default-theme md-fab-top-right"
+               aria-label="Create new"
+               ng-click="go('createRecipe', 'slide-down')">
+      <md-tooltip>Create</md-tooltip>
+      <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_create_24px.svg"
+               class="fab-icon">
+    </md-button>
+  </section>
+
+  <md-content layout="row" layout-sm="row">
+    <md-input-container flex>
+      <label>Search</label>
+      <input ng-model="recipes.searchQuery">
+    </md-input-container>
+  </md-content>
+  <md-content ng-show="recipes.isLoading"
+              layout="row"
+              layout-align="space-around">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+  </md-content>
+  <md-content ng-show="recipes.isError">
+    Could not load recipes list. Please, check network connection.
+  </md-content>
+  <md-content ng-hide="recipes.isLoading">
+    <md-list>
+      <md-item ng-repeat="recipe in recipes.items">
+        <md-item-content>
+          <div class="md-tile-left">
+            <img ng-src="images/ingredient-icon.png" class="face">
+          </div>
+          <div class="md-tile-content" layout="row" layout-align="space-between">
+            <div>
+              <h3>{{recipe.name}}</h3>
+
+              <p>
+                Time to cook: {{recipe.timeToCook}} min
+                Fat: {{recipe.fat}}g
+                Protein: {{recipe.protein}}g
+                Carbohydrate: {{recipe.carbohydrate}}g
+              </p>
+            </div>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>
+    </md-list>
+  </md-content>
+</div>

@@ -12,11 +12,11 @@ angular.module('mealPlanner')
 
 /* @ngInject */
 function IngredientsCreateController($scope, $mdToast, ingredientService) {
-  var vm = this;
-  vm.isLoading = false;
+  var self = this;
+  self.isLoading = false;
 
-  vm.createIngredient = function () {
-    vm.isLoading = true;
+  self.createIngredient = function () {
+    self.isLoading = true;
     ingredientService.createIngredient($scope.ingredient).then(function () {
       $scope.go('ingredientsList', 'slide-up');
       $mdToast.show({

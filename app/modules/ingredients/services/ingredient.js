@@ -9,10 +9,10 @@ function IngredientService($resource) {
 
   return {
     getIngredients: getIngredients,
+    searchIngredients: searchIngredients,
     createIngredient: createIngredient,
     deleteIngredient: deleteIngredient
   };
-
 
   function getIngredients() {
     return ingredient.query().$promise.then(getIngredientsComplete);
@@ -20,6 +20,10 @@ function IngredientService($resource) {
     function getIngredientsComplete(response) {
       return response;
     }
+  }
+
+  function searchIngredients(searchText) {
+    return ingredient.query({query: searchText}).$promise;
   }
 
   function createIngredient(data) {

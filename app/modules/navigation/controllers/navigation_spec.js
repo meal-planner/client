@@ -1,11 +1,11 @@
 'use strict';
 
-describe('Controller: TabsController', function () {
+describe('Controller: NavigationController', function () {
 
   // load the controller's module
   beforeEach(module('mealPlanner'));
 
-  var TabsCtrl,
+  var NavigationCtrl,
     scope,
     state,
     location;
@@ -23,7 +23,7 @@ describe('Controller: TabsController', function () {
       }
     };
 
-    TabsCtrl = $controller('TabsController', {
+    NavigationCtrl = $controller('NavigationController', {
       $scope: scope,
       $state: state,
       $location: location
@@ -31,7 +31,7 @@ describe('Controller: TabsController', function () {
   }));
 
   it('uses correct animation class', function () {
-    scope.tabs = [
+    NavigationCtrl.tabs = [
       {
         label: 'First Tab',
         state: 'first'
@@ -41,13 +41,13 @@ describe('Controller: TabsController', function () {
       }
     ];
 
-    scope.navigation.selectedIndex = 0;
+    NavigationCtrl.selectedIndex = 0;
     scope.go('second');
-    expect(scope.navigation.animationClass).toEqual('slide-left');
+    expect(NavigationCtrl.animationClass).toEqual('slide-left');
 
-    scope.navigation.selectedIndex = 1;
+    NavigationCtrl.selectedIndex = 1;
     scope.go('first');
-    expect(scope.navigation.animationClass).toEqual('slide-right');
+    expect(NavigationCtrl.animationClass).toEqual('slide-right');
   });
 
 });
