@@ -1,10 +1,16 @@
 <div ng-controller="IngredientsListController as ingredients">
-  <section layout="row" layout-align="space-between">
-    <span>
-      <h2>Ingredients</h2>
-      Here you can browse existing ingredients and create new ones.<br/>
-      Ingredients will be used as building blocks for recipes.
-    </span>
+  <md-toolbar class="md-tall md-hue-1" layout="row" layout-align="space-between">
+    <div flex>
+      <h2 class="md-toolbar-tools">
+        <span>Ingredients</span>
+      </h2>
+      <div class="md-toolbar-tools-bottom">
+        <md-input-container class="mp-spaced-both" flex>
+          <label>Search</label>
+          <input ng-model="ingredients.searchQuery">
+        </md-input-container>
+      </div>
+    </div>
     <md-button class="md-fab md-button md-accent md-default-theme md-fab-top-right"
                aria-label="Create new"
                ng-click="go('createIngredient', 'slide-down')">
@@ -12,42 +18,35 @@
       <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_create_24px.svg"
                class="fab-icon">
     </md-button>
-  </section>
+  </md-toolbar>
 
-  <md-content layout="row" layout-sm="row">
-    <md-input-container flex>
-      <label>Search</label>
-      <input ng-model="user.title">
-    </md-input-container>
-  </md-content>
-  <md-content ng-show="ingredients.isLoading"
-              layout="row"
-              layout-align="space-around">
-    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-  </md-content>
-  <md-content ng-show="ingredients.isError">
-    Could not load ingredients list. Please, check network connection.
-  </md-content>
-  <md-content ng-hide="ingredients.isLoading">
-    <md-list>
+  <md-content>
+    <div ng-show="ingredients.isLoading" layout="row" layout-align="space-around">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div ng-show="ingredients.isError">
+      Could not load ingredients list. Please, check network connection.
+    </div>
+
+    <md-list ng-hide="ingredients.isLoading">
       <md-item ng-repeat="ingredient in ingredients.items">
-        <md-item-content>
+        <md-item-content class="mp-spaced-left">
           <div class="md-tile-left">
-            <img ng-src="images/ingredient-icon.png" class="face">
+            <img ng-src="images/ingredient-icon.png" class="face" title="{{ingredient.group}}">
           </div>
           <div class="md-tile-content" layout="row" layout-align="space-between">
             <div>
               <h3>{{ingredient.name}}</h3>
-
               <p>
-                Fat: {{ingredient.fat}}g
-                Protein: {{ingredient.protein}}g
-                Carbohydrate: {{ingredient.carbohydrate}}g
+                Calories: {{ingredient.nutrients.energy.value}}{{ingredient.nutrients.energy.unit}}<br/>
+                Fat: {{ingredient.nutrients.fat.value}}{{ingredient.nutrients.fat.unit}}
+                Protein: {{ingredient.nutrients.protein.value}}{{ingredient.nutrients.protein.unit}}
+                Carbohydrate: {{ingredient.nutrients.carbohydrate.value}}{{ingredient.nutrients.carbohydrate.unit}}
               </p>
             </div>
             <div>
               <md-button ng-click="ingredients.deleteIngredient(ingredient, $event)"
-                aria-label="Delete Ingredient">
+                         aria-label="Delete Ingredient">
                 <md-icon md-svg-src="bower_components/material-design-icons/action/svg/design/ic_delete_24px.svg">
               </md-button>
             </div>
@@ -57,4 +56,5 @@
       </md-item>
     </md-list>
   </md-content>
+
 </div>

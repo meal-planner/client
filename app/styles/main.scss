@@ -36,6 +36,19 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   height: 24px;
 }
 
+.mp-spaced-left {
+  padding-left: 14px;
+}
+
+.mp-spaced-both {
+  padding: 0 14px 0 14px;
+}
+
+.mp-centered {
+  padding-top: 14px;
+  text-align: center;
+}
+
 $swift-ease-in-out-duration: 0.5s !default;
 $swift-ease-in-out-timing-function: cubic-bezier(0.35, 0, 0.25, 1) !default;
 $swift-ease-in-out: all $swift-ease-in-out-duration $swift-ease-in-out-timing-function !default;

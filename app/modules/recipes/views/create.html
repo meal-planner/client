@@ -1,6 +1,9 @@
+<md-toolbar class="md-hue-1">
+  <h2 class="md-toolbar-tools">
+    <span>Create new recipe</span>
+  </h2>
+</md-toolbar>
 <md-content class="md-padding" ng-controller="RecipeCreateController as ctrl">
-  <h3>Create new ingredient</h3>
-
   <form name="recipeForm" ng-submit="ctrl.createRecipe()">
     <md-input-container flex>
       <label>Name</label>
@@ -43,8 +46,10 @@
       </md-item>
     </md-list>
 
-    <br/>
-    <br/>
+    <md-input-container flex>
+      <label>Cooking directions</label>
+      <textarea ng-model="recipe.directions" columns="1" rows="6"></textarea>
+    </md-input-container>
 
     <div layout="row" layout-align="space-between">
       <md-progress-linear md-mode="indeterminate" ng-show="ctrl.isLoading"></md-progress-linear>
