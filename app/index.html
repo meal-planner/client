@@ -24,7 +24,7 @@
 <div layout="column">
   <md-whiteframe class="mp-container md-whiteframe-z1" ng-controller="NavigationController as navigation">
     <md-content>
-      <md-toolbar class="md-primary md-hue-2">
+      <md-toolbar class="md-primary">
         <h2 class="md-toolbar-tools" layout="row" layout-align="space-between">
           <span>
             <a href="#" ng-click="go('planner', 'slide-right')">
@@ -37,7 +37,7 @@
     </md-content>
 
     <div class="mp-tabs">
-      <md-tabs md-selected="navigation.selectedIndex" class="md-primary">
+      <md-tabs md-selected="navigation.selectedIndex" class="md-primary md-hue-1">
         <md-tab ng-repeat="tab in navigation.tabs"
                 ng-disabled="tab.disabled"
                 md-on-select="go(tab.state)"

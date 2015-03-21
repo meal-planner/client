@@ -27,7 +27,25 @@ function RecipeCreateController($scope, $mdToast, recipeService, ingredientServi
   }
 
   function addIngredient(ingredient) {
-    self.ingredients.push(ingredient);
+    self.searchText = '';
+    if (valid() && unique()) {
+      self.ingredients.push(ingredient);
+    }
+
+    function valid() {
+      return ingredient != undefined && ingredient.name != undefined;
+    }
+
+    function unique() {
+      var result = true;
+      self.ingredients.forEach(function (existing) {
+        if (existing.name == ingredient.name) {
+          result = false;
+        }
+      });
+
+      return result;
+    }
   }
 
   function createRecipe() {

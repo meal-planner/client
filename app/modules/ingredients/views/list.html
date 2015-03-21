@@ -1,11 +1,11 @@
 <div ng-controller="IngredientsListController as ingredients">
-  <md-toolbar class="md-tall md-hue-1" layout="row" layout-align="space-between">
+  <md-toolbar class="md-tall md-hue-3" layout="row" layout-align="space-between">
     <div flex>
       <h2 class="md-toolbar-tools">
         <span>Ingredients</span>
       </h2>
       <div class="md-toolbar-tools-bottom">
-        <md-input-container class="mp-spaced-both" flex>
+        <md-input-container md-theme="docs-dark" class="mp-spaced-both" flex>
           <label>Search</label>
           <input ng-model="ingredients.searchQuery">
         </md-input-container>
@@ -24,7 +24,7 @@
     <div ng-show="ingredients.isLoading" layout="row" layout-align="space-around">
       <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
-    <div ng-show="ingredients.isError">
+    <div class="mp-centered" ng-show="ingredients.isError">
       Could not load ingredients list. Please, check network connection.
     </div>
 

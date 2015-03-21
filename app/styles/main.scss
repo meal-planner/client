@@ -14,13 +14,16 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   margin: 20px auto;
 }
 
+@media only screen and (max-device-width: 480px) {
+  .mp-container {
+    width: 100%;
+    margin: 0;
+  }
+}
+
 .mp-tabs {
   .mp-tab-content {
     min-height: 400px;
-  }
-
-  md-tabs-ink-bar {
-    background-color: #FFFF8D !important;
   }
 
   .md-button-wide {
