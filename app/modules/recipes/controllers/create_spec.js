@@ -6,40 +6,93 @@ describe('Controller: RecipeCreateController', function () {
   var ctrl,
     scope;
 
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($controller, $rootScope, $filter) {
     scope = $rootScope.$new();
 
     ctrl = $controller('RecipeCreateController', {
       $scope: scope,
       $mdToast: {},
+      $filter: $filter,
       recipeService: {},
       ingredientService: {}
     });
   }));
 
-  it('resets the search input text', function () {
-    ctrl.searchText = 'foo query';
-    ctrl.addIngredient();
-    expect(ctrl.searchText).toEqual('');
+  describe('adding ingredient to list', function () {
+    it('resets the search input text', function () {
+      ctrl.searchText = 'foo query';
+      ctrl.addIngredient();
+      expect(ctrl.searchText).toEqual('');
+    });
+
+    it('ignores undefined', function () {
+      ctrl.addIngredient();
+      expect(ctrl.ingredients.length).toEqual(0);
+    });
+
+    it('ignores empty ingredient if added', function () {
+      ctrl.addIngredient({});
+      expect(ctrl.ingredients.length).toEqual(0);
+
+      ctrl.addIngredient({name: 'foo'});
+      expect(ctrl.ingredients.length).toEqual(1);
+    });
+
+    it('adds ingredient with same name only once', function () {
+      ctrl.addIngredient({name: 'baz', prop: 1});
+      ctrl.addIngredient({name: 'bar', prop: 1});
+      ctrl.addIngredient({name: 'baz', prop: 2});
+      expect(ctrl.ingredients.length).toEqual(2);
+    });
   });
 
-  it('ignores undefined', function () {
-    ctrl.addIngredient();
-    expect(ctrl.ingredients.length).toEqual(0);
-  });
+  describe('getting nutrition info', function () {
+    var ingredient;
+    beforeEach(function () {
+      ingredient = {
+        name: 'foo',
+        nutrients: {
+          energy: {
+            unit: 'kcal',
+            measures: [
+              {
+                label: 'g',
+                eqv: 100,
+                qty: 100,
+                value: 25
+              },
+              {
+                label: 'cup',
+                eqv: 300,
+                qty: 1,
+                value: 75
+              }
+            ]
+          }
+        }
+      };
+      ctrl.addIngredient(ingredient);
+    });
 
-  it('ignores empty ingredient if added', function () {
-    ctrl.addIngredient({});
-    expect(ctrl.ingredients.length).toEqual(0);
+    it('gets nutrient value from ingredient', function () {
+      // By default first measure chosen
+      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('25 kcal');
+      // When chosen amount is changed
+      ingredient.chosenAmount = 200;
+      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('50 kcal');
+      // When measure is change
+      ingredient.chosenMeasure = 1;
+      ingredient.chosenAmount = 1;
+      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('75 kcal');
+      ingredient.chosenAmount = 2;
+      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('150 kcal');
+    });
 
-    ctrl.addIngredient({name: 'foo'});
-    expect(ctrl.ingredients.length).toEqual(1);
-  });
-
-  it('adds ingredient with same name only once', function () {
-    ctrl.addIngredient({name: 'baz', prop: 1});
-    ctrl.addIngredient({name: 'bar', prop: 1});
-    ctrl.addIngredient({name: 'baz', prop: 2});
-    expect(ctrl.ingredients.length).toEqual(2);
+    it('returns value with requested precision', function () {
+      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('25 kcal');
+      expect(ctrl.getNutrientInfo(ingredient, 'energy', 0)).toEqual('25 kcal');
+      expect(ctrl.getNutrientInfo(ingredient, 'energy', 1)).toEqual('25.0 kcal');
+      expect(ctrl.getNutrientInfo(ingredient, 'energy', 2)).toEqual('25.00 kcal');
+    });
   });
 });

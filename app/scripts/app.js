@@ -19,6 +19,9 @@ angular
         'hue-3': '500'
       })
       .accentPalette('pink');
+    $mdThemingProvider.theme('dark')
+      .primaryPalette('amber')
+      .accentPalette('pink');
   })
   .run(function ($state) {
     $state.go('planner');

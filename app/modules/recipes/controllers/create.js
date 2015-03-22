@@ -11,7 +11,7 @@ angular.module('mealPlanner')
   .controller('RecipeCreateController', RecipeCreateController);
 
 /* @ngInject */
-function RecipeCreateController($scope, $mdToast, recipeService, ingredientService) {
+function RecipeCreateController($scope, $mdToast, $filter, recipeService, ingredientService) {
   var self = this;
 
   self.isLoading = false;
@@ -21,6 +21,7 @@ function RecipeCreateController($scope, $mdToast, recipeService, ingredientServi
   self.querySearch = querySearch;
   self.createRecipe = createRecipe;
   self.addIngredient = addIngredient;
+  self.getNutrientInfo = getNutrientInfo;
 
   function querySearch() {
     return ingredientService.searchIngredients(self.searchText);
@@ -29,6 +30,7 @@ function RecipeCreateController($scope, $mdToast, recipeService, ingredientServi
   function addIngredient(ingredient) {
     self.searchText = '';
     if (valid() && unique()) {
+      ingredient.chosenMeasure = 0;
       self.ingredients.push(ingredient);
     }
 
@@ -46,6 +48,17 @@ function RecipeCreateController($scope, $mdToast, recipeService, ingredientServi
 
       return result;
     }
+  }
+
+  function getNutrientInfo(ingredient, nutrientName, precision) {
+    var nutrient = ingredient.nutrients[nutrientName];
+    var measure = nutrient.measures[ingredient.chosenMeasure];
+    if (!ingredient.chosenAmount) {
+      ingredient.chosenAmount = measure.qty;
+    }
+    var value = (measure.value / measure.qty) * ingredient.chosenAmount;
+
+    return $filter('number')(value, precision || 0) + ' ' + nutrient.unit;
   }
 
   function createRecipe() {

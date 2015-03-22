@@ -5,10 +5,12 @@
 </md-toolbar>
 <md-content class="md-padding" ng-controller="RecipeCreateController as ctrl">
   <form name="recipeForm" ng-submit="ctrl.createRecipe()">
-    <md-input-container flex>
-      <label>Name</label>
-      <input type="text" ng-model="recipe.name" required placeholder="Recipe name, e.g. Pasta carbonara">
-    </md-input-container>
+    <div layout>
+      <md-input-container flex>
+        <label>Name</label>
+        <input type="text" ng-model="recipe.name" required placeholder="Recipe name, e.g. Pasta carbonara">
+      </md-input-container>
+    </div>
     <h4>Ingredients</h4>
     <md-autocomplete
       md-delay="300"
@@ -31,11 +33,23 @@
               <h3>{{ingredient.name}}</h3>
 
               <p>
-                Calories: {{ingredient.nutrients.energy.value}}{{ingredient.nutrients.energy.unit}}<br/>
-                Fat: {{ingredient.nutrients.fat.value}}{{ingredient.nutrients.fat.unit}}
-                Protein: {{ingredient.nutrients.protein.value}}{{ingredient.nutrients.protein.unit}}
-                Carbohydrate: {{ingredient.nutrients.carbohydrate.value}}{{ingredient.nutrients.carbohydrate.unit}}
+                Calories: {{ctrl.getNutrientInfo(ingredient, 'energy')}}<br/>
+                Fat: {{ctrl.getNutrientInfo(ingredient, 'fat', 1)}}
+                Protein: {{ctrl.getNutrientInfo(ingredient, 'protein', 1)}}
+                Carbohydrate: {{ctrl.getNutrientInfo(ingredient, 'carbohydrate', 1)}}
               </p>
+
+              <div layout>
+                <md-input-container style="width: 75px;">
+                  <label>Amount</label>
+                  <input type="number" ng-model="ingredient.chosenAmount" required>
+                </md-input-container>
+                <md-select ng-model="ingredient.chosenMeasure" placeholder="Measure">
+                  <md-option ng-value="$index" ng-repeat="measure in ingredient.nutrients.energy.measures">
+                    {{measure.label}}
+                  </md-option>
+                </md-select>
+              </div>
             </div>
           </div>
         </md-item-content>
@@ -54,7 +68,8 @@
 
     <div layout="row" layout-align="space-between">
       <md-progress-linear md-mode="indeterminate" ng-show="ctrl.isLoading"></md-progress-linear>
-      <md-button formnovalidate class="md-button-wide" ng-hide="ctrl.isLoading" ng-click="go('recipesList', 'slide-up');">
+      <md-button formnovalidate class="md-button-wide" ng-hide="ctrl.isLoading"
+                 ng-click="go('recipesList', 'slide-up');">
         go back
       </md-button>
       <md-button class="md-raised md-primary md-button-wide" ng-hide="ctrl.isLoading">
