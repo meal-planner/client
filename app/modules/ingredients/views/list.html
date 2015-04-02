@@ -1,9 +1,7 @@
 <div ng-controller="IngredientsListController as ingredients">
   <md-toolbar class="md-tall md-hue-3" layout="row" layout-align="space-between">
-    <div flex>
-      <h2 class="md-toolbar-tools">
-        <span>Ingredients</span>
-      </h2>
+    <div flex="90">
+      <br/>
       <div class="md-toolbar-tools-bottom">
         <md-input-container md-theme="dark" class="mp-spaced-both" flex>
           <label>Search</label>
@@ -29,30 +27,26 @@
     </div>
 
     <md-list ng-hide="ingredients.isLoading">
-      <md-item ng-repeat="ingredient in ingredients.items">
-        <md-item-content class="mp-spaced-left">
-          <div class="md-tile-left">
-            <img ng-src="images/ingredient-icon.png" class="face" title="{{ingredient.group}}">
+      <md-item class="md-3-line" ng-repeat="ingredient in ingredients.items">
+        <img ng-src="images/ingredient-icon.png" class="md-avatar" title="{{ingredient.group}}">
+        <div class="md-item-text" layout="row" layout-align="space-between">
+          <div>
+            <h3>{{ingredient.name}}</h3>
+            <p>
+              Calories: {{ingredient.nutrients.energy.measures[0].value}}{{ingredient.nutrients.energy.unit}}<br/>
+              Fat: {{ingredient.nutrients.fat.measures[0].value}}{{ingredient.nutrients.fat.unit}}
+              Protein: {{ingredient.nutrients.protein.measures[0].value}}{{ingredient.nutrients.protein.unit}}
+              Carbohydrate: {{ingredient.nutrients.carbohydrate.measures[0].value}}{{ingredient.nutrients.carbohydrate.unit}}
+            </p>
           </div>
-          <div class="md-tile-content" layout="row" layout-align="space-between">
-            <div>
-              <h3>{{ingredient.name}}</h3>
-              <p>
-                Calories: {{ingredient.nutrients.energy.value}}{{ingredient.nutrients.energy.unit}}<br/>
-                Fat: {{ingredient.nutrients.fat.value}}{{ingredient.nutrients.fat.unit}}
-                Protein: {{ingredient.nutrients.protein.value}}{{ingredient.nutrients.protein.unit}}
-                Carbohydrate: {{ingredient.nutrients.carbohydrate.value}}{{ingredient.nutrients.carbohydrate.unit}}
-              </p>
-            </div>
-            <div>
-              <md-button ng-click="ingredients.deleteIngredient(ingredient, $event)"
-                         aria-label="Delete Ingredient">
-                <md-icon md-svg-src="bower_components/material-design-icons/action/svg/design/ic_delete_24px.svg">
-              </md-button>
-            </div>
+          <div>
+            <md-button ng-click="ingredients.deleteIngredient(ingredient, $event)"
+                       aria-label="Delete Ingredient">
+              <md-icon md-svg-src="bower_components/material-design-icons/action/svg/design/ic_delete_24px.svg">
+            </md-button>
           </div>
-        </md-item-content>
-        <md-divider ng-if="!$last"></md-divider>
+        </div>
+        <!--<md-divider ng-if="!$last"></md-divider>-->
       </md-item>
     </md-list>
   </md-content>

@@ -11,7 +11,7 @@
         <input type="text" ng-model="recipe.name" required placeholder="Recipe name, e.g. Pasta carbonara">
       </md-input-container>
     </div>
-    <h4>Ingredients</h4>
+    <p class="md-subhead">Ingredients</p>
     <md-autocomplete
       md-delay="300"
       md-selected-item="ctrl.selectedItem"
@@ -23,37 +23,33 @@
       <span md-highlight-text="ctrl.searchText">{{item.name}}</span>
     </md-autocomplete>
     <md-list>
-      <md-item ng-repeat="ingredient in ctrl.ingredients track by ingredient.name">
-        <md-item-content>
-          <div class="md-tile-left">
-            <img ng-src="images/ingredient-icon.png" class="face">
-          </div>
-          <div class="md-tile-content" layout="row" layout-align="space-between">
-            <div>
-              <h3>{{ingredient.name}}</h3>
+      <md-item class="md-3-line" ng-repeat="ingredient in ctrl.ingredients track by ingredient.name">
+        <img ng-src="images/ingredient-icon.png" class="md-avatar">
+        <div class="md-item-text" layout="row" layout-align="space-between">
+          <div>
+            <h3>{{ingredient.name}}</h3>
 
-              <p>
-                Calories: {{ctrl.getNutrientInfo(ingredient, 'energy')}}<br/>
-                Fat: {{ctrl.getNutrientInfo(ingredient, 'fat', 1)}}
-                Protein: {{ctrl.getNutrientInfo(ingredient, 'protein', 1)}}
-                Carbohydrate: {{ctrl.getNutrientInfo(ingredient, 'carbohydrate', 1)}}
-              </p>
+            <p>
+              Calories: {{ctrl.getNutrientInfo(ingredient, 'energy')}}<br/>
+              Fat: {{ctrl.getNutrientInfo(ingredient, 'fat', 1)}}
+              Protein: {{ctrl.getNutrientInfo(ingredient, 'protein', 1)}}
+              Carbohydrate: {{ctrl.getNutrientInfo(ingredient, 'carbohydrate', 1)}}
+            </p>
 
-              <div layout>
-                <md-input-container style="width: 75px;">
-                  <label>Amount</label>
-                  <input type="number" ng-model="ingredient.chosenAmount" required>
-                </md-input-container>
-                <md-select ng-model="ingredient.chosenMeasure" placeholder="Measure">
-                  <md-option ng-value="$index" ng-repeat="measure in ingredient.nutrients.energy.measures">
-                    {{measure.label}}
-                  </md-option>
-                </md-select>
-              </div>
+            <div layout>
+              <md-input-container style="width: 75px;">
+                <label>Amount</label>
+                <input type="number" ng-model="ingredient.chosenAmount" required>
+              </md-input-container>
+              <md-select ng-model="ingredient.chosenMeasure" placeholder="Measure">
+                <md-option ng-value="$index" ng-repeat="measure in ingredient.nutrients.energy.measures">
+                  {{measure.label}}
+                </md-option>
+              </md-select>
             </div>
           </div>
-        </md-item-content>
-        <md-divider ng-if="!$last"></md-divider>
+        </div>
+        <!--<md-divider ng-if="!$last"></md-divider>-->
       </md-item>
     </md-list>
 

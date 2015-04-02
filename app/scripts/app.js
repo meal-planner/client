@@ -20,7 +20,7 @@ angular
       })
       .accentPalette('pink');
     $mdThemingProvider.theme('dark')
-      .primaryPalette('amber')
+      .primaryPalette('lime')
       .accentPalette('pink');
   })
   .run(function ($state) {

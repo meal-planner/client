@@ -1,10 +1,7 @@
 <div ng-controller="RecipesListController as recipes">
   <md-toolbar class="md-tall md-hue-3" layout="row" layout-align="space-between">
-    <div flex>
-      <h2 class="md-toolbar-tools">
-        <span>Recipes</span>
-      </h2>
-
+    <div flex="90">
+      <br/>
       <div class="md-toolbar-tools-bottom">
         <md-input-container md-theme="dark" class="mp-spaced-both" flex>
           <label>Search</label>
@@ -29,12 +26,9 @@
     </div>
 
     <md-list ng-hide="recipes.isLoading">
-      <md-item ng-repeat="recipe in recipes.items">
-        <md-item-content>
-          <div class="md-tile-left">
-            <img ng-src="images/ingredient-icon.png" class="face">
-          </div>
-          <div class="md-tile-content" layout="row" layout-align="space-between">
+      <md-item class="md-3-line" ng-repeat="recipe in recipes.items">
+          <img ng-src="images/ingredient-icon.png" class="md-avatar">
+          <div class="md-item-text" layout="row" layout-align="space-between">
             <div>
               <h3>{{recipe.name}}</h3>
 
@@ -46,8 +40,7 @@
               </p>
             </div>
           </div>
-        </md-item-content>
-        <md-divider ng-if="!$last"></md-divider>
+        <!--<md-divider ng-if="!$last"></md-divider>-->
       </md-item>
     </md-list>
   </md-content>

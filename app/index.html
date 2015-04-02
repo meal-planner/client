@@ -27,26 +27,22 @@
       <md-toolbar class="md-primary">
         <h2 class="md-toolbar-tools" layout="row" layout-align="space-between">
           <span>
-            <a href="#" ng-click="go('planner', 'slide-right')">
+            <a href="#" ng-click="go('planner')">
               <img ng-src="images/logo.png" />
             </a>
           </span>
           <md-button>sign in</md-button>
         </h2>
       </md-toolbar>
+      <md-toolbar class="mp-navigation md-primary md-hue-1" layout="row" layout-align="start center">
+        <mp-link ng-repeat="link in navigation.links" class="{{link.activeClass}}" ng-click="go(link.state)">
+          <span>{{link.label}}</span>
+        </mp-link>
+      </md-toolbar>
     </md-content>
 
-    <div class="mp-tabs">
-      <md-tabs md-selected="navigation.selectedIndex" class="md-primary md-hue-1">
-        <md-tab ng-repeat="tab in navigation.tabs"
-                ng-disabled="tab.disabled"
-                md-on-select="go(tab.state)"
-                label="{{tab.label}}">
-        </md-tab>
-      </md-tabs>
-      <div class="mp-animate-container" id="content-view">
-        <div ui-view class="mp-tab-content mp-animate {{ navigation.animationClass }}">
-        </div>
+    <div class="mp-animate-container" id="content-view">
+      <div ui-view class="mp-content mp-animate {{ navigation.animationClass }}">
       </div>
     </div>
   </md-whiteframe>
@@ -73,6 +69,7 @@
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
 <script src="modules/navigation/controllers/navigation.js"></script>
+<script src="modules/navigation/directives/link.js"></script>
 <!-- Planner module -->
 <script src="modules/planner/routes.js"></script>
 <script src="modules/planner/controllers/main.js"></script>

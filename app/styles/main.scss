@@ -21,17 +21,40 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   }
 }
 
-.mp-tabs {
-  .mp-tab-content {
-    min-height: 400px;
+.mp-container {
+  a {
+    outline: none;
   }
+}
 
-  .md-button-wide {
-    min-width: 10em;
-    display: block;
-    margin: 1em;
-    line-height: 25px;
+.mp-navigation {
+  width: 100%;
+  min-height: 48px;
+  .mp-navigation-link {
+    margin-top: 0;
+    font-size: 14px;
+    text-align: center;
+    line-height: 24px;
+    padding: 12px 24px;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+    text-transform: uppercase;
+    float: left;
+    font-weight: 500;
+    color: #ffffff;
+    min-width: 8.8rem;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    box-sizing: border-box;
+    &.active {
+      background-color: #607D8B;
+    }
   }
+}
+
+.mp-content {
+  min-height: 400px;
 }
 
 .fab-icon {
@@ -50,10 +73,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 .mp-centered {
   padding-top: 14px;
   text-align: center;
-}
-
-md-select {
-  margin-top: 1.25em;
 }
 
 $swift-ease-in-out-duration: 0.5s !default;

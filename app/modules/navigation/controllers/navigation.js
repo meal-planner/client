@@ -5,15 +5,15 @@
  * @name mealPlanner.controller:NavigationController
  * @description
  * # NavigationController
- * Controller for tabs
+ * Controller for links
  */
 angular.module('mealPlanner')
   .controller('NavigationController', function ($scope, $state, $location) {
     var self = this;
 
-    self.selectedIndex = 0;
+    self.selectedLink = 0;
     self.animationClass = '';
-    self.tabs = [{
+    self.links = [{
       label: 'Make Plan',
       state: 'planner'
     }, {
@@ -32,25 +32,28 @@ angular.module('mealPlanner')
 
     function defaultAnimation(to) {
       var animationClass;
-      var clickedTabIndex = 0;
-      self.tabs.forEach(function (tab, index) {
-        if (to === tab.state) {
-          clickedTabIndex = index;
+      var clickedLinkIndex = 0;
+      self.links.forEach(function (link, index) {
+        link.activeClass = '';
+        if (to === link.state) {
+          clickedLinkIndex = index;
+          link.activeClass = 'active';
         }
       });
-      if (clickedTabIndex === self.selectedIndex) {
+      if (clickedLinkIndex === self.selectedLink) {
         animationClass = '';
       } else {
-        animationClass = clickedTabIndex > self.selectedIndex ? 'slide-left' : 'slide-right';
+        animationClass = clickedLinkIndex > self.selectedLink ? 'slide-left' : 'slide-right';
       }
 
       return animationClass;
     }
 
     $scope.$on('$stateChangeSuccess', function (event, toState) {
-      self.tabs.forEach(function (tab, index) {
-        if (toState.name === tab.state) {
-          self.selectedIndex = index;
+      self.links.forEach(function (link, index) {
+        if (toState.name === link.state) {
+          self.selectedLink = index;
+          link.activeClass = 'active';
         }
       });
     });

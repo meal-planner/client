@@ -31,7 +31,7 @@ describe('Controller: NavigationController', function () {
   }));
 
   it('uses correct animation class', function () {
-    NavigationCtrl.tabs = [
+    NavigationCtrl.links = [
       {
         label: 'First Tab',
         state: 'first'
@@ -41,11 +41,11 @@ describe('Controller: NavigationController', function () {
       }
     ];
 
-    NavigationCtrl.selectedIndex = 0;
+    NavigationCtrl.selectedLinks = 0;
     scope.go('second');
     expect(NavigationCtrl.animationClass).toEqual('slide-left');
 
-    NavigationCtrl.selectedIndex = 1;
+    NavigationCtrl.selectedLink = 1;
     scope.go('first');
     expect(NavigationCtrl.animationClass).toEqual('slide-right');
   });
