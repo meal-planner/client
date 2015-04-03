@@ -29,13 +29,12 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 .mp-navigation {
   width: 100%;
-  min-height: 48px;
   .mp-navigation-link {
     margin-top: 0;
     font-size: 14px;
     text-align: center;
     line-height: 24px;
-    padding: 12px 24px;
+    padding: 20px 24px;
     cursor: pointer;
     white-space: nowrap;
     position: relative;
@@ -55,6 +54,25 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 .mp-content {
   min-height: 400px;
+  .mp-action-button {
+    min-width: 38px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .mp-ingredient-measure {
+    background-color: #F5F5F5;
+    &:nth-child(odd) {
+      background-color: transparent;
+    }
+  }
+
+  .mp-no-margins {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }
 
 .fab-icon {

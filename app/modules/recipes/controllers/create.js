@@ -22,6 +22,12 @@ function RecipeCreateController($scope, $mdToast, $filter, recipeService, ingred
   self.createRecipe = createRecipe;
   self.addIngredient = addIngredient;
   self.getNutrientInfo = getNutrientInfo;
+  self.ingredientMeasureSelected = ingredientMeasureSelected;
+
+  function ingredientMeasureSelected(ingredient)
+  {
+    ingredient.chosenAmount = ingredient.nutrients['energy'].measures[ingredient.chosenMeasure].qty;
+  }
 
   function querySearch() {
     return ingredientService.searchIngredients(self.searchText);

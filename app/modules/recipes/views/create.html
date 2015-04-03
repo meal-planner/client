@@ -41,7 +41,9 @@
                 <label>Amount</label>
                 <input type="number" ng-model="ingredient.chosenAmount" required>
               </md-input-container>
-              <md-select ng-model="ingredient.chosenMeasure" placeholder="Measure">
+              <md-select ng-model="ingredient.chosenMeasure"
+                         ng-change="ctrl.ingredientMeasureSelected(ingredient)"
+                         placeholder="Measure">
                 <md-option ng-value="$index" ng-repeat="measure in ingredient.nutrients.energy.measures">
                   {{measure.label}}
                 </md-option>
