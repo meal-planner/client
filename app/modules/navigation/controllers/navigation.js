@@ -11,7 +11,7 @@ angular.module('mealPlanner')
   .controller('NavigationController', NavigationController);
 
 /* @ngInject */
-function NavigationController($scope, $state, $location) {
+function NavigationController($scope, $state) {
   var self = this;
 
   self.selectedLink = 0;
@@ -29,6 +29,7 @@ function NavigationController($scope, $state, $location) {
 
   $scope.$on('$stateChangeSuccess', function (event, toState) {
     self.links.forEach(function (link, index) {
+      link.activeClass = '';
       if (toState.name === link.state) {
         self.selectedLink = index;
         link.activeClass = 'active';
@@ -36,28 +37,7 @@ function NavigationController($scope, $state, $location) {
     });
   });
 
-  $scope.go = function (to, animation) {
-    animation = animation || defaultAnimation(to);
-    self.animationClass = animation;
-    $location.path($state.href(to).substring(2));
-  };
-
-  function defaultAnimation(to) {
-    var animationClass;
-    var clickedLinkIndex = 0;
-    self.links.forEach(function (link, index) {
-      link.activeClass = '';
-      if (to === link.state) {
-        clickedLinkIndex = index;
-        link.activeClass = 'active';
-      }
-    });
-    if (clickedLinkIndex === self.selectedLink) {
-      animationClass = '';
-    } else {
-      animationClass = clickedLinkIndex > self.selectedLink ? 'slide-left' : 'slide-right';
-    }
-
-    return animationClass;
+  $scope.go = function (to, params) {
+    $state.go(to, params);
   }
 }

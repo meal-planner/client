@@ -5,14 +5,19 @@ angular.module('mealPlanner')
 
 /* @ngInject */
 function IngredientService($resource) {
-  var ingredient = $resource('/api/ingredients/:id');
+  var ingredient = $resource('/api/ingredients/:id', null, {'update': {method: 'PUT'}});
 
   return {
+    getIngredient: getIngredient,
     getIngredients: getIngredients,
     searchIngredients: searchIngredients,
-    createIngredient: createIngredient,
+    saveIngredient: saveIngredient,
     deleteIngredient: deleteIngredient
   };
+
+  function getIngredient(ingredientId) {
+    return ingredient.get({id: ingredientId}).$promise;
+  }
 
   function getIngredients() {
     return ingredient.query().$promise.then(getIngredientsComplete);
@@ -26,8 +31,10 @@ function IngredientService($resource) {
     return ingredient.query({query: searchText}).$promise;
   }
 
-  function createIngredient(data) {
-    return ingredient.save(data).$promise;
+  function saveIngredient(ingredientId, data) {
+    return ingredientId
+      ? ingredient.update({id: ingredientId}, data).$promise
+      : ingredient.save(data).$promise;
   }
 
   function deleteIngredient(ingredientId) {

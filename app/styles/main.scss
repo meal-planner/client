@@ -93,71 +93,27 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   text-align: center;
 }
 
-$swift-ease-in-out-duration: 0.5s !default;
-$swift-ease-in-out-timing-function: cubic-bezier(0.35, 0, 0.25, 1) !default;
-$swift-ease-in-out: all $swift-ease-in-out-duration $swift-ease-in-out-timing-function !default;
-
 .mp-animate-container {
   position: relative;
   overflow: hidden;
 }
 
-.mp-animate {
-  &.ng-enter, &.ng-leave {
-    background: #ffffff;
-    z-index: 2;
-    transition: transform $swift-ease-in-out-duration $swift-ease-in-out-timing-function;
-  }
-  &.ng-leave {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-  }
-  &.slide-left {
-    &.ng-enter {
-      transform: translateX(100%);
-    }
-    &.ng-enter-active, .ng-leave {
-      transform: translateX(0);
-    }
-    &.ng-leave-active {
-      transform: translateX(-100%);
-    }
-  }
-  &.slide-right {
-    &.ng-enter {
-      transform: translateX(-100%);
-    }
-    &.ng-enter-active, &.ng-leave {
-      transform: translateX(0);
-    }
-    &.ng-leave-active {
-      transform: translateX(100%);
-    }
-  }
-  &.slide-up {
-    &.ng-enter {
-      transform: translateY(100%);
-    }
-    &.ng-enter-active, &.ng-leave {
-      transform: translateY(0);
-    }
-    &.ng-leave-active {
-      transform: translateY(-100%);
-    }
-  }
-  &.slide-down {
-    &.ng-enter {
-      transform: translateY(-100%);
-    }
-    &.ng-enter-active, &.ng-leave {
-      transform: translateY(0);
-    }
-    &.ng-leave-active {
-      transform: translateY(100%);
-    }
-  }
+[ui-view].ng-enter, [ui-view].ng-leave {
+  transition:all .25s ease-in-out;
+}
+
+[ui-view].ng-enter {
+  opacity: 0;
+}
+
+[ui-view].ng-enter-active {
+  opacity: 1;
+}
+
+[ui-view].ng-leave {
+  display: none;
+}
+
+[ui-view].ng-leave-active {
+  display: none;
 }

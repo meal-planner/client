@@ -27,7 +27,7 @@
       <md-toolbar class="md-primary">
         <h2 class="md-toolbar-tools" layout="row" layout-align="space-between">
           <span>
-            <a href="#" ng-click="go('planner')">
+            <a href="#" ui-sref="planner">
               <img ng-src="images/logo.png" />
             </a>
           </span>
@@ -35,14 +35,14 @@
         </h2>
       </md-toolbar>
       <md-toolbar class="mp-navigation md-primary md-hue-1" layout="row" layout-align="start center">
-        <mp-link ng-repeat="link in navigation.links" class="{{link.activeClass}}" ng-click="go(link.state)">
+        <mp-link ng-repeat="link in navigation.links" class="{{link.activeClass}}" ui-sref="{{link.state}}">
           <span>{{link.label}}</span>
         </mp-link>
       </md-toolbar>
     </md-content>
 
     <div class="mp-animate-container" id="content-view">
-      <div ui-view class="mp-content mp-animate {{ navigation.animationClass }}">
+      <div ui-view class="mp-content mp-animate-container">
       </div>
     </div>
   </md-whiteframe>
@@ -77,7 +77,7 @@
 <script src="modules/ingredients/routes.js"></script>
 <script src="modules/ingredients/services/ingredient.js"></script>
 <script src="modules/ingredients/controllers/list.js"></script>
-<script src="modules/ingredients/controllers/create.js"></script>
+<script src="modules/ingredients/controllers/edit.js"></script>
 <!-- Recipes module -->
 <script src="modules/recipes/routes.js"></script>
 <script src="modules/recipes/services/recipe.js"></script>

@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc function
- * @name mealPlanner.controller:IngredientsCreateController
+ * @name mealPlanner.controller:IngredientsEditController
  * @description
- * # IngredientsCreateController
+ * # IngredientsEditController
  * Controller of the mealPlanner
  */
 angular.module('mealPlanner')
-  .controller('IngredientsCreateController', IngredientsCreateController);
+  .controller('IngredientsEditController', IngredientsEditController);
 
 /* @ngInject */
-function IngredientsCreateController($scope, $mdToast, $filter, ingredientService) {
+function IngredientsEditController($scope, $stateParams, $mdToast, $filter, ingredientService) {
   var self = this;
 
   self.availableNutrients = [
@@ -23,8 +23,8 @@ function IngredientsCreateController($scope, $mdToast, $filter, ingredientServic
     {label: 'Sugar', code: 'sugar', unit: 'g', group: 'Proximates'},
     {label: 'Fat', code: 'fat', unit: 'g', group: 'Proximates'},
     {label: 'Saturated fat', code: 'fat_saturated', unit: 'g', group: 'Lipids'},
-    {label: 'Monounsaturated fat', code: 'fat_monounsaturated', unit: 'g', group: 'Lipids'},
-    {label: 'Polyunsaturated fat', code: 'fat_polyunsaturated', unit: 'g', group: 'Lipids'},
+    {label: 'Monounsat. fat', code: 'fat_monounsaturated', unit: 'g', group: 'Lipids'},
+    {label: 'Polyunsat. fat', code: 'fat_polyunsaturated', unit: 'g', group: 'Lipids'},
     {label: 'Trans fat', code: 'fat_trans', unit: 'g', group: 'Lipids'},
     {label: 'Cholesterol', code: 'cholesterol', unit: 'mg', group: 'Lipids'},
     {label: 'Calcium, Ca', code: 'calcium', unit: 'mg', group: 'Minerals'},
@@ -44,7 +44,7 @@ function IngredientsCreateController($scope, $mdToast, $filter, ingredientServic
     {label: 'Vitamin B-12', code: 'vitamin_b12', unit: 'µg', group: 'Vitamins'},
     {label: 'Folate, DFE', code: 'folate_dfe', unit: 'µg', group: 'Vitamins'},
     {label: 'Vitamin E', code: 'vitamin_e', unit: 'mg', group: 'Vitamins'},
-    {label: 'Vitamin D (D2 + D3)', code: 'vitamin_d2_d3', unit: 'µg', group: 'Vitamins'},
+    {label: 'Vitamin D', code: 'vitamin_d2_d3', unit: 'µg', group: 'Vitamins'},
     {label: 'Vitamin D', code: 'vitamin_d', unit: 'IU', group: 'Vitamins'},
     {label: 'Vitamin K', code: 'vitamin_k', unit: 'µg', group: 'Vitamins'},
     {label: 'Caffeine', code: 'caffeine', unit: 'mg', group: 'Other'}
@@ -62,22 +62,36 @@ function IngredientsCreateController($scope, $mdToast, $filter, ingredientServic
   ];
   self.ingredient = {nutrients: {}};
   self.isLoading = false;
+  self.isEdit = false;
   self.isNutrientSelectorShown = false;
   self.selectedNutrient = null;
 
   self.addMeasure = addMeasure;
   self.addNutrient = addNutrient;
   self.removeMeasure = removeMeasure;
-  self.createIngredient = createIngredient;
+  self.saveIngredient = saveIngredient;
 
   initialize();
 
   function initialize() {
-    addNutrient('energy');
-    addNutrient('carbohydrate');
-    addNutrient('protein');
-    addNutrient('fat');
-    addMeasure(100, 'g');
+    var ingredientId = $stateParams.ingredientId;
+    if (ingredientId) {
+      self.isEdit = true;
+      ingredientService.getIngredient(ingredientId).then(function (data) {
+        self.ingredient = data;
+        for (var nutrient in data.nutrients) {
+          if (data.nutrients.hasOwnProperty(nutrient)) {
+            addNutrient(nutrient);
+          }
+        }
+      });
+    } else {
+      addNutrient('energy');
+      addNutrient('carbohydrate');
+      addNutrient('protein');
+      addNutrient('fat');
+      addMeasure(100, 'g');
+    }
   }
 
   function addNutrient(code) {
@@ -89,7 +103,11 @@ function IngredientsCreateController($scope, $mdToast, $filter, ingredientServic
           self.availableNutrients.splice(index, 1);
         }
         nutrient.measures = [];
-        self.ingredient.nutrients[code] = nutrient;
+        if (self.ingredient.nutrients[code]) {
+          self.ingredient.nutrients[code].label = nutrient['label'];
+        } else {
+          self.ingredient.nutrients[code] = nutrient;
+        }
       }
     }
   }
@@ -112,14 +130,13 @@ function IngredientsCreateController($scope, $mdToast, $filter, ingredientServic
     }
   }
 
-  function createIngredient() {
+  function saveIngredient() {
     self.isLoading = true;
-    ingredientService.createIngredient(self.ingredient).then(function () {
+    ingredientService.saveIngredient(self.ingredient.id, self.ingredient).then(function () {
       $scope.go('ingredientsList', 'slide-up');
       $mdToast.show({
-        parent: angular.element(document.getElementById('content-view')),
-        template: '<md-toast>Ingredient was created!</md-toast>',
-        position: 'top left',
+        template: '<md-toast>Ingredient was saved!</md-toast>',
+        position: 'bottom left',
         hideDelay: 3000
       });
     });

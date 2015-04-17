@@ -1,24 +1,28 @@
 <div ng-controller="RecipesListController as recipes">
-  <md-toolbar class="md-tall md-hue-3" layout="row" layout-align="space-between">
-    <div flex="90">
-      <br/>
-      <div class="md-toolbar-tools-bottom">
-        <md-input-container md-theme="dark" class="mp-spaced-both" flex>
-          <label>Search</label>
-          <input ng-model="recipes.searchQuery">
-        </md-input-container>
-      </div>
+  <md-toolbar class="md-hue-3">
+    <div class="md-toolbar-tools">
+      <md-input-container md-theme="dark" class="mp-spaced-both" flex>
+        <label>Search</label>
+        <input ng-model="ingredients.searchQuery">
+      </md-input-container>
+      <md-button class="md-icon-button" aria-label="Search">
+        <md-icon style="color: white;"
+                 md-svg-icon="bower_components/material-design-icons/action/svg/design/ic_search_24px.svg">
+      </md-button>
     </div>
-    <md-button class="md-fab md-button md-accent md-default-theme md-fab-top-right"
-               aria-label="Create new"
-               ng-click="go('createRecipe', 'slide-down')">
-      <md-tooltip>Create</md-tooltip>
-      <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_create_24px.svg"
-               class="fab-icon">
-    </md-button>
   </md-toolbar>
-  <md-content>
-    <div ng-show="recipes.isLoading" layout="row" layout-align="space-around">
+
+  <md-button class="md-fab md-button md-accent md-default-theme md-fab-bottom-right"
+             aria-label="Create new"
+             ui-sref="createRecipe">
+    <md-tooltip>Create new</md-tooltip>
+    <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_create_24px.svg"
+             class="fab-icon">
+  </md-button>
+
+  <md-content style="height: 570px;">
+
+    <div ng-show="recipes.isLoading" style="height: 100%;" layout="row" layout-align="center center">
       <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
     <div class="mp-centered" ng-show="recipes.isError">
@@ -26,22 +30,23 @@
     </div>
 
     <md-list ng-hide="recipes.isLoading">
-      <md-item class="md-3-line" ng-repeat="recipe in recipes.items">
-          <img ng-src="images/ingredient-icon.png" class="md-avatar">
-          <div class="md-item-text" layout="row" layout-align="space-between">
-            <div>
-              <h3>{{recipe.name}}</h3>
+      <md-list-item class="md-3-line" ng-repeat="recipe in recipes.items">
+        <img ng-src="images/ingredient-icon.png" class="md-avatar">
 
-              <p>
-                Time to cook: {{recipe.timeToCook}} min
-                Fat: {{recipe.fat}}g
-                Protein: {{recipe.protein}}g
-                Carbohydrate: {{recipe.carbohydrate}}g
-              </p>
-            </div>
+        <div class="md-list-item-text" layout="row" layout-align="space-between">
+          <div>
+            <h3>{{recipe.name}}</h3>
+
+            <p>
+              Time to cook: {{recipe.timeToCook}} min
+              Fat: {{recipe.fat}}g
+              Protein: {{recipe.protein}}g
+              Carbohydrate: {{recipe.carbohydrate}}g
+            </p>
           </div>
-        <!--<md-divider ng-if="!$last"></md-divider>-->
-      </md-item>
+        </div>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-list-item>
     </md-list>
   </md-content>
 </div>

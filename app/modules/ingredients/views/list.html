@@ -1,25 +1,28 @@
 <div ng-controller="IngredientsListController as ingredients">
-  <md-toolbar class="md-tall md-hue-3" layout="row" layout-align="space-between">
-    <div flex="90">
-      <br/>
-      <div class="md-toolbar-tools-bottom">
-        <md-input-container md-theme="dark" class="mp-spaced-both" flex>
-          <label>Search</label>
-          <input ng-model="ingredients.searchQuery">
-        </md-input-container>
-      </div>
+  <md-toolbar class="md-hue-3">
+    <div class="md-toolbar-tools">
+      <md-input-container ng-show="ctrl.isSearchShown" md-theme="dark" class="mp-spaced-both" flex>
+        <label>Search</label>
+        <input ng-model="ingredients.searchQuery">
+      </md-input-container>
+      <span ng-hide="ctrl.isSearchShown" flex></span>
+      <md-button ng-click="ctrl.isSearchShown = true;" class="md-icon-button" aria-label="Search">
+        <md-icon style="color: white;"
+                 md-svg-icon="bower_components/material-design-icons/action/svg/design/ic_search_24px.svg">
+      </md-button>
     </div>
-    <md-button class="md-fab md-button md-accent md-default-theme md-fab-top-right"
-               aria-label="Create new"
-               ng-click="go('createIngredient', 'slide-down')">
-      <md-tooltip>Create</md-tooltip>
-      <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_create_24px.svg"
-               class="fab-icon">
-    </md-button>
   </md-toolbar>
 
-  <md-content>
-    <div ng-show="ingredients.isLoading" layout="row" layout-align="space-around">
+  <md-button class="md-fab md-button md-accent md-default-theme md-fab-bottom-right"
+             aria-label="Create new"
+             ui-sref="createIngredient">
+    <md-tooltip>Create new</md-tooltip>
+    <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_create_24px.svg"
+             class="fab-icon">
+  </md-button>
+
+  <md-content style="height: 570px;">
+    <div ng-show="ingredients.isLoading" style="height: 100%" layout="row" layout-align="center center">
       <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
     <div class="mp-centered" ng-show="ingredients.isError">
@@ -27,27 +30,26 @@
     </div>
 
     <md-list ng-hide="ingredients.isLoading">
-      <md-item class="md-3-line" ng-repeat="ingredient in ingredients.items">
+      <md-list-item class="md-3-line"
+                    ng-click="go('editIngredient', {ingredientId: ingredient.id})"
+                    ng-repeat="ingredient in ingredients.items">
         <img ng-src="images/ingredient-icon.png" class="md-avatar" title="{{ingredient.group}}">
-        <div class="md-item-text" layout="row" layout-align="space-between">
+
+        <div class="md-list-item-text" layout="row" layout-align="space-between">
           <div>
             <h3>{{ingredient.name}}</h3>
+
             <p>
               Calories: {{ingredient.nutrients.energy.measures[0].value}}{{ingredient.nutrients.energy.unit}}<br/>
               Fat: {{ingredient.nutrients.fat.measures[0].value}}{{ingredient.nutrients.fat.unit}}
               Protein: {{ingredient.nutrients.protein.measures[0].value}}{{ingredient.nutrients.protein.unit}}
-              Carbohydrate: {{ingredient.nutrients.carbohydrate.measures[0].value}}{{ingredient.nutrients.carbohydrate.unit}}
+              Carbohydrate:
+              {{ingredient.nutrients.carbohydrate.measures[0].value}}{{ingredient.nutrients.carbohydrate.unit}}
             </p>
           </div>
-          <div>
-            <md-button md-no-ink class="mp-action-button" ng-click="ingredients.deleteIngredient(ingredient, $event)"
-                       aria-label="Delete Ingredient">
-              <md-icon md-svg-src="bower_components/material-design-icons/action/svg/design/ic_delete_24px.svg">
-            </md-button>
-          </div>
         </div>
-        <!--<md-divider ng-if="!$last"></md-divider>-->
-      </md-item>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-list-item>
     </md-list>
   </md-content>
 

@@ -15,6 +15,7 @@ function IngredientsListController($mdDialog, ingredientService) {
   var self = this;
   self.items = [];
   self.deleteIngredient = deleteIngredient;
+  self.isSearchShown = false;
 
   initialize();
 
