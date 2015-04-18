@@ -34,14 +34,9 @@
           <md-button>sign in</md-button>
         </h2>
       </md-toolbar>
-      <md-toolbar class="mp-navigation md-primary md-hue-1" layout="row" layout-align="start center">
-        <mp-link ng-repeat="link in navigation.links" class="{{link.activeClass}}" ui-sref="{{link.state}}">
-          <span>{{link.label}}</span>
-        </mp-link>
-      </md-toolbar>
     </md-content>
 
-    <div class="mp-animate-container" id="content-view">
+    <div id="content-view">
       <div ui-view class="mp-content mp-animate-container">
       </div>
     </div>
@@ -68,8 +63,9 @@
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
+<!-- Navigation module -->
 <script src="modules/navigation/controllers/navigation.js"></script>
-<script src="modules/navigation/directives/link.js"></script>
+<script src="modules/navigation/directives/navbar.js"></script>
 <!-- Planner module -->
 <script src="modules/planner/routes.js"></script>
 <script src="modules/planner/controllers/main.js"></script>

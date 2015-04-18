@@ -1,9 +1,16 @@
 <form name="ingredientForm" ng-controller="IngredientsEditController as ctrl" ng-submit="ctrl.saveIngredient()">
-  <md-toolbar class="md-hue-3">
-    <h2 class="md-toolbar-tools">
-      <span ng-if="ctrl.isEdit == true">Edit Ingredient</span>
-      <span ng-if="ctrl.isEdit == false">Create New Ingredient</span>
-    </h2>
+  <md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+      <md-button ui-sref="ingredientsList"
+                 class="md-icon-button" aria-label="Close">
+        <md-icon style="color: white;"
+                 md-svg-icon="bower_components/material-design-icons/navigation/svg/design/ic_arrow_back_24px.svg">
+      </md-button>
+      <h2>
+        <span ng-if="ctrl.isEdit == true">Edit Ingredient</span>
+        <span ng-if="ctrl.isEdit == false">Create New Ingredient</span>
+      </h2>
+    </div>
   </md-toolbar>
   <md-content class="md-padding">
     <div layout="row" layout-align="space-between">

@@ -21,7 +21,6 @@ describe('Controller: IngredientsListController', function () {
     };
 
     ListCtrl = $controller('IngredientsListController', {
-      $mdDialog: {},
       ingredientService: ingredientServiceMock
     });
   }));

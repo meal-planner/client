@@ -5,7 +5,7 @@ angular.module('mealPlanner')
     $stateProvider.state('ingredientsList', {
       url: '/ingredients/',
       templateUrl: 'modules/ingredients/views/list.html'
-    }).state('saveIngredient', {
+    }).state('createIngredient', {
       url: '/ingredients/create',
       templateUrl: 'modules/ingredients/views/edit.html'
     }).state('editIngredient', {

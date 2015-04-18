@@ -15,11 +15,11 @@ function RecipesListController(recipeService) {
   var self = this;
   self.items = [];
 
-  initialize();
+  return init();
 
-  function initialize() {
+  function init() {
     self.isLoading = true;
-    return getRecipes().then(
+    getRecipes().then(
       function () {
         self.isLoading = false;
       },
