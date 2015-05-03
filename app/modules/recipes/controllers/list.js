@@ -37,4 +37,21 @@ function RecipesListController(recipeService) {
         return self.items;
       });
   }
+
+  function aggregateNutrients(recipe) {
+    var recipeNutrients = {};
+    recipe.ingredients.forEach(function (ingredient) {
+      var nutrients = ingredient.nutrients;
+      for (var nutrient in  nutrients) {
+        if (nutrients.hasOwnProperty(nutrient)) {
+          if (!recipeNutrients[nutrient]) {
+            recipeNutrients[nutrient] = {value: 0};
+          }
+          recipeNutrients[nutrient].value += nutrients[nutrient].measures[ingredient.chosenMeasure].value;
+        }
+      }
+    });
+
+    return recipeNutrients;
+  }
 }

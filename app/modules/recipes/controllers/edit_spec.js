@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: RecipeCreateController', function () {
+describe('Controller: RecipeEditController', function () {
   beforeEach(module('mealPlanner'));
 
   var ctrl,
@@ -9,9 +9,10 @@ describe('Controller: RecipeCreateController', function () {
   beforeEach(inject(function ($controller, $rootScope, $filter) {
     scope = $rootScope.$new();
 
-    ctrl = $controller('RecipeCreateController', {
+    ctrl = $controller('RecipeEditController', {
       $scope: scope,
       $mdToast: {},
+      $mdDialog: {},
       $filter: $filter,
       recipeService: {},
       ingredientService: {}
@@ -27,22 +28,22 @@ describe('Controller: RecipeCreateController', function () {
 
     it('ignores undefined', function () {
       ctrl.addIngredient();
-      expect(ctrl.ingredients.length).toEqual(0);
+      expect(ctrl.recipe.ingredients.length).toEqual(0);
     });
 
     it('ignores empty ingredient if added', function () {
       ctrl.addIngredient({});
-      expect(ctrl.ingredients.length).toEqual(0);
+      expect(ctrl.recipe.ingredients.length).toEqual(0);
 
-      ctrl.addIngredient({name: 'foo'});
-      expect(ctrl.ingredients.length).toEqual(1);
+      ctrl.addIngredient({id: 'foo'});
+      expect(ctrl.recipe.ingredients.length).toEqual(1);
     });
 
-    it('adds ingredient with same name only once', function () {
-      ctrl.addIngredient({name: 'baz', prop: 1});
-      ctrl.addIngredient({name: 'bar', prop: 1});
-      ctrl.addIngredient({name: 'baz', prop: 2});
-      expect(ctrl.ingredients.length).toEqual(2);
+    it('adds ingredient with same id only once', function () {
+      ctrl.addIngredient({id: 'baz', prop: 1});
+      ctrl.addIngredient({id: 'bar', prop: 1});
+      ctrl.addIngredient({id: 'baz', prop: 2});
+      expect(ctrl.recipe.ingredients.length).toEqual(2);
     });
   });
 
@@ -50,7 +51,7 @@ describe('Controller: RecipeCreateController', function () {
     var ingredient;
     beforeEach(function () {
       ingredient = {
-        name: 'foo',
+        id: 'foo',
         nutrients: {
           energy: {
             unit: 'kcal',
@@ -95,4 +96,5 @@ describe('Controller: RecipeCreateController', function () {
       expect(ctrl.getNutrientInfo(ingredient, 'energy', 2)).toEqual('25.00 kcal');
     });
   });
+
 });

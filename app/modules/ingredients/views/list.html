@@ -21,13 +21,13 @@
 
     <md-list ng-hide="ingredients.isLoading">
       <md-list-item class="md-3-line"
-                    ng-click="go('editIngredient', {ingredientId: ingredient.id})"
-                    ng-repeat="ingredient in ingredients.items">
+                    ng-repeat="ingredient in ingredients.items"
+                    ng-click="go('editIngredient', {ingredientId: ingredient.id})">
         <img ng-src="images/ingredient-icon.png" class="md-avatar" title="{{ingredient.group}}">
 
         <div class="md-list-item-text" layout="row" layout-align="space-between">
           <div>
-            <h3>{{ingredient.name}}</h3>
+            <h3>{{ingredient.short_name ? ingredient.short_name : ingredient.name}}</h3>
 
             <p>
               Calories: {{ingredient.nutrients.energy.measures[0].value}}{{ingredient.nutrients.energy.unit}}<br/>

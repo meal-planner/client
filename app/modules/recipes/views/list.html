@@ -15,7 +15,9 @@
     </div>
 
     <md-list ng-hide="recipes.isLoading">
-      <md-list-item class="md-3-line" ng-repeat="recipe in recipes.items">
+      <md-list-item class="md-3-line"
+                    ng-repeat="recipe in recipes.items"
+                    ng-click="go('editRecipe', {recipeId: recipe.id})">
         <img ng-src="images/ingredient-icon.png" class="md-avatar">
 
         <div class="md-list-item-text" layout="row" layout-align="space-between">

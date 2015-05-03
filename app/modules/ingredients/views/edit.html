@@ -13,24 +13,29 @@
     </div>
   </md-toolbar>
   <md-content class="md-padding">
-    <div layout="row" layout-align="space-between">
-      <md-select required flex="20" ng-model="ctrl.ingredient.group" placeholder="Food Group">
+    <div>
+      <label>Food group</label>
+      <md-select required ng-model="ctrl.ingredient.group" placeholder="Please, select">
         <md-option ng-value="group" ng-repeat="group in ctrl.foodGroups">
           {{group}}
         </md-option>
       </md-select>
-      <md-input-container flex="80">
-        <label>Name</label>
-        <input ng-model="ctrl.ingredient.name" required placeholder="Ingredient name, e.g. Chicken breast">
-      </md-input-container>
     </div>
+    <md-input-container>
+      <label>Short Name</label>
+      <input ng-model="ctrl.ingredient.short_name" placeholder="Shorter, common name (optional)">
+    </md-input-container>
+    <md-input-container>
+      <label>Full Name</label>
+      <input ng-model="ctrl.ingredient.name" required placeholder="Ingredient name, e.g. Chicken breast">
+    </md-input-container>
   </md-content>
 
   <md-content class="md-padding mp-ingredient-measure" layout="column"
               ng-repeat="(measureIndex, measure) in ctrl.ingredient.nutrients.energy.measures">
     <p class="md-subhead">
       <md-button type="button" ng-click="ctrl.removeMeasure(measureIndex)"
-                 ng-hide="ctrl.ingredient.nutrients.energy.measures.length == 1"
+                 ng-show="ctrl.ingredient.nutrients.energy.measures.length > 1"
                  md-no-ink class="mp-action-button"
                  aria-label="Remove Measure">
         <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_remove_circle_24px.svg">

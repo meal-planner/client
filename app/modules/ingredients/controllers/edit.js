@@ -133,7 +133,7 @@ function IngredientsEditController($scope, $stateParams, $mdToast, $filter, ingr
   function saveIngredient() {
     self.isLoading = true;
     ingredientService.saveIngredient(self.ingredient.id, self.ingredient).then(function () {
-      $scope.go('ingredientsList', 'slide-up');
+      $scope.go('ingredientsList');
       $mdToast.show({
         template: '<md-toast>Ingredient was saved!</md-toast>',
         position: 'bottom left',
