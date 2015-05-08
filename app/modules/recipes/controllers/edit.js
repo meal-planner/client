@@ -11,14 +11,15 @@ angular.module('mealPlanner')
   .controller('RecipeEditController', RecipeEditController);
 
 /* @ngInject */
-function RecipeEditController($scope, $mdToast, $mdDialog, $filter, $stateParams, recipeService, ingredientService) {
+function RecipeEditController($scope, $mdToast, $mdDialog, $stateParams, recipeService, ingredientService, nutrientService) {
   var self = this;
 
   self.isLoading = false;
   self.isEdit = false;
   self.selectedItem = null;
   self.searchText = null;
-  self.recipe = {ingredients: [], steps: ['']};
+  self.recipe = {steps: ['']};
+  self.ingredients = [];
   self.querySearch = querySearch;
   self.saveRecipe = saveRecipe;
   self.addIngredient = addIngredient;
@@ -34,8 +35,22 @@ function RecipeEditController($scope, $mdToast, $mdDialog, $filter, $stateParams
     var recipeId = $stateParams.recipeId;
     if (recipeId) {
       self.isEdit = true;
-      recipeService.getRecipe(recipeId).then(function (data) {
-        self.recipe = data;
+      recipeService.getRecipe(recipeId).then(function (apiResponse) {
+        self.recipe = apiResponse;
+        apiResponse.ingredients.forEach(function (recipeIngredient) {
+          ingredientService.getIngredient(recipeIngredient.id).then(function (ingredient) {
+            var chosenMeasure = 0, index = 0;
+            ingredient.nutrients.energy.measures.forEach(function (measure) {
+              if (measure.label == recipeIngredient.measure) {
+                chosenMeasure = index;
+              }
+              index++;
+            });
+            ingredient.chosenMeasure = chosenMeasure;
+            ingredient.chosenAmount = recipeIngredient.measure_amount;
+            self.ingredients.push(ingredient);
+          });
+        });
       });
     }
   }
@@ -52,7 +67,7 @@ function RecipeEditController($scope, $mdToast, $mdDialog, $filter, $stateParams
     self.searchText = '';
     if (valid() && unique()) {
       ingredient.chosenMeasure = 0;
-      self.recipe.ingredients.push(ingredient);
+      self.ingredients.push(ingredient);
     }
 
     function valid() {
@@ -61,7 +76,7 @@ function RecipeEditController($scope, $mdToast, $mdDialog, $filter, $stateParams
 
     function unique() {
       var result = true;
-      self.recipe.ingredients.forEach(function (existing) {
+      self.ingredients.forEach(function (existing) {
         if (existing.id == ingredient.id) {
           result = false;
         }
@@ -72,10 +87,10 @@ function RecipeEditController($scope, $mdToast, $mdDialog, $filter, $stateParams
   }
 
   function removeIngredient(ingredientIndex) {
-    self.recipe.ingredients.splice(ingredientIndex, 1);
+    self.ingredients.splice(ingredientIndex, 1);
   }
 
-  function getNutrientInfo(ingredient, nutrientName, precision) {
+  function getNutrientInfo(ingredient, nutrientName) {
     var nutrient = ingredient.nutrients[nutrientName];
     var measure = nutrient.measures[ingredient.chosenMeasure];
     if (!ingredient.chosenAmount) {
@@ -83,7 +98,8 @@ function RecipeEditController($scope, $mdToast, $mdDialog, $filter, $stateParams
     }
     var value = (measure.value / measure.qty) * ingredient.chosenAmount;
 
-    return $filter('number')(value, precision || 0) + ' ' + nutrient.unit;
+    var nutrientInfo = nutrientService.getNutrientInfo(nutrientName, value);
+    return nutrientInfo.label + ': ' + nutrientInfo.value + ' ' + nutrientInfo.unit;
   }
 
   function addCookingStep() {
@@ -95,7 +111,7 @@ function RecipeEditController($scope, $mdToast, $mdDialog, $filter, $stateParams
   }
 
   function saveRecipe() {
-    if (self.recipe.ingredients.length == 0) {
+    if (self.ingredients.length == 0) {
       $mdDialog.show(
         $mdDialog.alert()
           .parent(angular.element(document.body))
@@ -108,6 +124,7 @@ function RecipeEditController($scope, $mdToast, $mdDialog, $filter, $stateParams
     }
 
     self.isLoading = true;
+    convertIngredients();
     recipeService.saveRecipe(self.recipe.id, self.recipe).then(function () {
       $scope.go('recipesList');
       $mdToast.show({
@@ -116,5 +133,35 @@ function RecipeEditController($scope, $mdToast, $mdDialog, $filter, $stateParams
         hideDelay: 3000
       });
     });
+
+    /**
+     * Convert ingredients for recipe storage:
+     * - store selected measure label and amount
+     * - calculate each nutrient value based on chosen measure amount
+     */
+    function convertIngredients() {
+      self.recipe.ingredients = [];
+      self.recipe.nutrients = {};
+      self.ingredients.forEach(function (ingredient) {
+        for (var nutrient in ingredient.nutrients) {
+          if (ingredient.nutrients.hasOwnProperty(nutrient)) {
+            if (!self.recipe.nutrients[nutrient]) {
+              self.recipe.nutrients[nutrient] = 0;
+            }
+            var measure = ingredient.nutrients[nutrient].measures[ingredient.chosenMeasure];
+            self.recipe.nutrients[nutrient] += (measure.value / measure.qty) * ingredient.chosenAmount || 0;
+          }
+        }
+        var recipeIngredient = {
+          id: ingredient.id,
+          name: ingredient.name,
+          short_name: ingredient.short_name,
+          group: ingredient.group,
+          measure: ingredient.nutrients.energy.measures[ingredient.chosenMeasure].label,
+          measure_amount: ingredient.chosenAmount
+        };
+        self.recipe.ingredients.push(recipeIngredient);
+      });
+    }
   }
 }

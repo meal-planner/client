@@ -11,5 +11,8 @@ angular.module('mealPlanner')
     }).state('editRecipe', {
       url: '/recipes/edit/:recipeId',
       templateUrl: 'modules/recipes/views/edit.html'
+    }).state('viewRecipe', {
+      url: '/recipes/view/:recipeId',
+      templateUrl: 'modules/recipes/views/view.html'
     });
   });

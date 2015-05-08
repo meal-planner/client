@@ -1,0 +1,43 @@
+<div ng-controller="RecipeViewController as ctrl">
+  <md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+      <md-button ui-sref="recipesList"
+                 class="md-icon-button" aria-label="Close">
+        <md-icon style="color: white;"
+                 md-svg-icon="bower_components/material-design-icons/navigation/svg/design/ic_arrow_back_24px.svg">
+      </md-button>
+      <h2>
+        <span>Recipe Details</span>
+      </h2>
+    </div>
+  </md-toolbar>
+  <md-content class="md-padding">
+    <h2>{{ ctrl.recipe.name }}</h2>
+    Time to cook: {{ ctrl.recipe.time_to_cook}} min.<br/>
+    <h4>Ingredients:</h4>
+    <md-list>
+      <md-list-item ng-repeat="ingredient in ctrl.recipe.ingredients">
+        <img ng-src="images/ingredient-icon.png" class="md-avatar">
+
+        <div class="md-list-item-text" layout="row" layout-align="space-between">
+          <h4>{{ingredient.name}} ({{ingredient.measure_amount}} {{ingredient.measure}})</h4>
+        </div>
+      </md-list-item>
+    </md-list>
+
+    <h4>Nutrition Info:</h4>
+    <md-list>
+      <md-list-item ng-repeat="(nutrientCode, nutrientValue) in ctrl.recipe.nutrients">
+        <div class="md-list-item-text">
+          <h4>{{ ctrl.displayNutrient(nutrientCode, nutrientValue) }}</h4>
+        </div>
+      </md-list-item>
+    </md-list>
+
+    <div layout="row" layout-align="space-between">
+      <md-button class="md-button-wide" ng-click="go('editRecipe', {recipeId: ctrl.recipe.id})">
+        edit
+      </md-button>
+    </div>
+  </md-content>
+</div>
