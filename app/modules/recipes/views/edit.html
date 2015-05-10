@@ -22,8 +22,16 @@
         <label>Time to cook (minutes)</label>
         <input type="text" ng-model="ctrl.recipe.time_to_cook" required>
       </md-input-container>
+      <div>
+        <label>Yields servings</label>
+        <md-select ng-model="ctrl.recipe.servings" placeholder="Please, select">
+          <md-option ng-value="servings" ng-repeat="servings in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+            {{servings}}
+          </md-option>
+        </md-select>
+      </div>
     </div>
-    <p class="md-subhead">Ingredients</p>
+    <h4>Ingredients</h4>
     <md-autocomplete
       md-delay="300"
       md-selected-item="ctrl.selectedItem"
@@ -76,7 +84,7 @@
       </md-list-item>
     </md-list>
 
-    <p class="md-subhead">Cooking steps</p>
+    <h4>Cooking steps</h4>
 
     <div ng-repeat="step in ctrl.recipe.steps track by $index" layout="row">
       <md-input-container flex>

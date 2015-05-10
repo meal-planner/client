@@ -32,9 +32,15 @@
             </div>
           </md-list-item>
         </md-list>
+        <h4>Cooking Steps:</h4>
+        <ol>
+          <li ng-repeat="step in ctrl.recipe.steps">
+            {{step}}
+          </li>
+        </ol>
       </div>
       <div ng-if="ctrl.recipe.nutrients">
-        <mp-nutrition-label nutrients="ctrl.recipe.nutrients"></mp-nutrition-label>
+        <mp-nutrition-label servings="{{ctrl.recipe.servings}}" nutrients="ctrl.recipe.nutrients"></mp-nutrition-label>
       </div>
     </div>
 

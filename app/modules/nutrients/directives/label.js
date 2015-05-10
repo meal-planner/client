@@ -11,6 +11,7 @@ function MpNutritionLabelDirective() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
+      servings: '@',
       nutrients: '='
     }
   };

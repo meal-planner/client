@@ -22,7 +22,7 @@ function NutritionLabelController(nutrientService) {
   function initialize() {
     for (var nutrient in self.nutrients) {
       if (self.nutrients.hasOwnProperty(nutrient)) {
-        var nutrientInfo = nutrientService.getNutrientInfo(nutrient, self.nutrients[nutrient]);
+        var nutrientInfo = nutrientService.getNutrientInfo(nutrient, self.nutrients[nutrient] / self.servings);
         switch (nutrientInfo.group) {
           case 'Main Nutrients':
             self.mainNutrients.push(nutrientInfo);

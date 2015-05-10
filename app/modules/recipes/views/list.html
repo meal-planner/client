@@ -1,5 +1,10 @@
 <div ng-controller="RecipesListController as recipes">
-  <mp-navbar mp-title="Recipes"></mp-navbar>
+  <mp-navbar mp-title="Recipes"
+             mp-search="recipes.searchRecipes"
+             mp-search-query="recipes.searchText"
+             mp-search-delay="500"
+             mp-is-loading="recipes.isLoading">
+  </mp-navbar>
 
   <md-content class="mp-content">
     <md-button class="md-fab md-button md-accent md-default-theme md-fab-top-right"
@@ -25,10 +30,9 @@
             <h3>{{recipe.name}}</h3>
 
             <p>
-              Time to cook: {{recipe.timeToCook}} min
-              Fat: {{recipe.fat}}g
-              Protein: {{recipe.protein}}g
-              Carbohydrate: {{recipe.carbohydrate}}g
+              Time to cook: {{recipe.time_to_cook}} min<br/>
+              Calories: <strong>{{recipe.nutrients.energy | number : 0}}</strong>
+              ({{recipe.servings || 1}} serving{{recipe.servings > 1 ? 's' : ''}})
             </p>
           </div>
         </div>

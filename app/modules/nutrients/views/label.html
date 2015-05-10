@@ -1,7 +1,7 @@
 <div class="nutrition-label">
   <h1>Nutrition Facts</h1>
   <hr size="3"/>
-  <h3>1 serving</h3>
+  <h3>Recipe yields {{ctrl.servings}} serving{{ctrl.servings > 1 ? 's' : ''}}</h3>
   <hr size="12"/>
   <div layout="row" layout-align="space-between end">
     <div>
@@ -9,7 +9,7 @@
       <h2>Calories</h2>
     </div>
     <div>
-      <span class="calories">{{ctrl.nutrients.energy | number : 0}}</span>
+      <span class="calories">{{ctrl.nutrients.energy / ctrl.servings | number : 0}}</span>
     </div>
   </div>
   <hr size="8"/>

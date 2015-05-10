@@ -14,6 +14,8 @@ angular.module('mealPlanner')
 function RecipesListController(recipeService) {
   var self = this;
   self.items = [];
+  self.serchText = null;
+  self.searchRecipes = searchRecipes;
 
   return init();
 
@@ -38,20 +40,15 @@ function RecipesListController(recipeService) {
       });
   }
 
-  function aggregateNutrients(recipe) {
-    var recipeNutrients = {};
-    recipe.ingredients.forEach(function (ingredient) {
-      var nutrients = ingredient.nutrients;
-      for (var nutrient in  nutrients) {
-        if (nutrients.hasOwnProperty(nutrient)) {
-          if (!recipeNutrients[nutrient]) {
-            recipeNutrients[nutrient] = {value: 0};
-          }
-          recipeNutrients[nutrient].value += nutrients[nutrient].measures[ingredient.chosenMeasure].value;
-        }
-      }
-    });
+  function searchRecipes() {
+    self.isLoading = true;
 
-    return recipeNutrients;
+    return recipeService.searchRecipes(self.searchText)
+      .then(function (data) {
+        self.isLoading = false;
+        self.items = data;
+        return self.items;
+      }
+    );
   }
 }
