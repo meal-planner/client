@@ -1,0 +1,79 @@
+mp-nutrition-label {
+  font-family: "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnBold', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif;
+  font-stretch: condensed;
+  display: block;
+  border: solid 2px #000000;
+  width: 325px;
+  min-height: 400px;
+  padding: 0 6px;
+
+  h1, h2 {
+    margin: 0;
+  }
+
+  h3 {
+    margin: 4px 0;
+  }
+
+  hr {
+    clear: both;
+    border: none;
+    background-color: #000000;
+    margin: 2px 0 4px 0;
+    &.no-margin {
+      margin: 0;
+    }
+  }
+
+  .calories {
+    font-weight: bold;
+    font-size: 38px;
+  }
+
+  .nutrient-table {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    margin-top: 4px;
+    padding-bottom: 24px;
+    &.no-margin {
+      margin: 0;
+    }
+    .row {
+      clear: both;
+      border-top: solid 1px #000000;
+      .percent {
+        display: block;
+        float: left;
+        width: 50px;
+        min-height: 19px;
+        border-right: solid 1px #000000;
+        text-align: right;
+        padding: 2px 4px 4px 0;
+      }
+      .label {
+        display: block;
+        float: left;
+        padding: 2px 0 4px 4px;
+        &.tabbed {
+          padding-left: 18px;
+        }
+
+        .bold {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .foot-note {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    .asterisk {
+      padding-right: 6px;
+      font-weight: bold;
+    }
+  }
+}

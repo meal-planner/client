@@ -1,0 +1,32 @@
+<div class="nutrition-label">
+  <h1>Nutrition Facts</h1>
+  <hr size="3"/>
+  <h3>1 serving</h3>
+  <hr size="12"/>
+  <div layout="row" layout-align="space-between end">
+    <div>
+      <strong>Amount Per Serving</strong>
+      <h2>Calories</h2>
+    </div>
+    <div>
+      <span class="calories">{{ctrl.nutrients.energy | number : 0}}</span>
+    </div>
+  </div>
+  <hr size="8"/>
+  <strong>% DV*</strong>
+
+  <mp-nutrient-table nutrients="ctrl.mainNutrients"></mp-nutrient-table>
+  <hr size="12" class="no-margin"/>
+  <mp-nutrient-table nutrients="ctrl.vitamins" no-margin="true"></mp-nutrient-table>
+  <mp-nutrient-table nutrients="ctrl.minerals" no-margin="true"></mp-nutrient-table>
+  <hr size="8" class="no-margin"/>
+
+  <div class="foot-note" layout="row" layout-align="start">
+    <span class="asterisk">*</span>
+    <span>
+      Daily values are calculated according to U.S. Food and Drug Administration
+      <a href="http://www.fda.gov/Food/GuidanceRegulation/GuidanceDocumentsRegulatoryInformation/LabelingNutrition/ucm064928.htm"
+        target="_blank">recommendations</a>.
+    </span>
+  </div>
+</div>

@@ -17,9 +17,9 @@
       <input aria-label="Search query" flex
              placeholder="What would you like to find?"
              ng-show="ctrl.isSearchInputVisible"
-             ng-model="mpSearchQuery"
+             ng-model="ctrl.mpSearchQuery"
              class="search-input"/>
-      <span ng-hide="ctrl.isSearchInputVisible" flex>{{mpTitle}}</span>
+      <span ng-hide="ctrl.isSearchInputVisible" flex>{{ctrl.mpTitle}}</span>
       <md-button aria-label="Search"
                  ng-click="ctrl.openSearch()"
                  ng-show="ctrl.isSearchButtonVisible"
@@ -27,7 +27,7 @@
         <md-icon md-svg-icon="bower_components/material-design-icons/action/svg/design/ic_search_24px.svg"></md-icon>
       </md-button>
     </div>
-    <md-progress-linear ng-show="mpIsLoading" md-mode="indeterminate"></md-progress-linear>
+    <md-progress-linear ng-show="ctrl.mpIsLoading" md-mode="indeterminate"></md-progress-linear>
   </md-toolbar>
 
   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="menu">

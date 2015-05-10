@@ -9,6 +9,7 @@ function MpNavbarDirective() {
     templateUrl: 'modules/navigation/views/navbar.html',
     controller: 'NavigationController',
     controllerAs: 'ctrl',
+    bindToController: true,
     scope: {
       mpTitle: '@',
       mpIsLoading: '=',

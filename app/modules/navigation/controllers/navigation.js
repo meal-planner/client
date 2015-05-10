@@ -40,20 +40,19 @@ function NavigationController($scope, $state, $mdSidenav, $mdUtil) {
   return init();
 
   function init() {
-    if ($scope.mpSearch != undefined) {
+    if (self.mpSearch != undefined) {
       self.isSearchButtonVisible = true;
 
-      var wait = parseInt($scope.mpSearchDelay, 10) || 0;
-      $scope.$watch('mpSearchQuery', wait
+      var wait = parseInt(self.mpSearchDelay, 10) || 0;
+      $scope.$watch('ctrl.mpSearchQuery', wait
         ? $mdUtil.debounce(handleSearchText, wait)
         : handleSearchText);
     }
   }
 
-  function handleSearchText(searchText, previousSearchText) {
-    if (!searchText && searchText === previousSearchText) return;
-
-    $scope.$parent.$eval($scope.mpSearch);
+  function handleSearchText(searchQuery, previousSearchText) {
+    if (!searchQuery && searchQuery === previousSearchText) return;
+    $scope.$parent.$eval(self.mpSearch);
   }
 
   function openMenu() {

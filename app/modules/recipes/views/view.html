@@ -12,27 +12,31 @@
     </div>
   </md-toolbar>
   <md-content class="md-padding">
-    <h2>{{ ctrl.recipe.name }}</h2>
-    Time to cook: {{ ctrl.recipe.time_to_cook}} min.<br/>
-    <h4>Ingredients:</h4>
-    <md-list>
-      <md-list-item ng-repeat="ingredient in ctrl.recipe.ingredients">
-        <img ng-src="images/ingredient-icon.png" class="md-avatar">
+    <div layout="row" layout-align="space-between">
+      <div>
+        <h2>{{ ctrl.recipe.name }}</h2>
+        Time to cook: {{ ctrl.recipe.time_to_cook}} min.<br/>
+        <h4>Ingredients:</h4>
+        <md-list>
+          <md-list-item class="md-2-line" ng-repeat="ingredient in ctrl.recipe.ingredients">
+            <img ng-src="images/ingredient-icon.png" class="md-avatar">
 
-        <div class="md-list-item-text" layout="row" layout-align="space-between">
-          <h4>{{ingredient.name}} ({{ingredient.measure_amount}} {{ingredient.measure}})</h4>
-        </div>
-      </md-list-item>
-    </md-list>
+            <div class="md-list-item-text" layout="row" layout-align="space-between">
+              <div>
+                <h3>{{ingredient.name}}</h3>
 
-    <h4>Nutrition Info:</h4>
-    <md-list>
-      <md-list-item ng-repeat="(nutrientCode, nutrientValue) in ctrl.recipe.nutrients">
-        <div class="md-list-item-text">
-          <h4>{{ ctrl.displayNutrient(nutrientCode, nutrientValue) }}</h4>
-        </div>
-      </md-list-item>
-    </md-list>
+                <p>
+                  {{ingredient.measure_amount}} {{ingredient.measure}}
+                </p>
+              </div>
+            </div>
+          </md-list-item>
+        </md-list>
+      </div>
+      <div ng-if="ctrl.recipe.nutrients">
+        <mp-nutrition-label nutrients="ctrl.recipe.nutrients"></mp-nutrition-label>
+      </div>
+    </div>
 
     <div layout="row" layout-align="space-between">
       <md-button class="md-button-wide" ng-click="go('editRecipe', {recipeId: ctrl.recipe.id})">

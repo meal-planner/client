@@ -15,10 +15,8 @@ function RecipeViewController($state, $stateParams, recipeService, nutrientServi
   var self = this;
 
   self.recipe = {};
-  self.nutrients = [];
-  self.displayNutrient = displayNutrient;
 
-  initialize();
+  return initialize();
 
   function initialize() {
     var recipeId = $stateParams.recipeId;
@@ -29,10 +27,5 @@ function RecipeViewController($state, $stateParams, recipeService, nutrientServi
     } else {
       $state.go('recipesList');
     }
-  }
-
-  function displayNutrient(code, value) {
-    var nutrientInfo = nutrientService.getNutrientInfo(code, value);
-    return nutrientInfo.label + ': ' + nutrientInfo.value + ' ' + nutrientInfo.unit;
   }
 }
