@@ -13,7 +13,7 @@ function MpNavbarDirective() {
     scope: {
       mpTitle: '@',
       mpIsLoading: '=',
-      mpSearch: '=',
+      mpSearch: '&',
       mpSearchQuery: '=',
       mpSearchDelay: '=',
       mpSearchResult: '='

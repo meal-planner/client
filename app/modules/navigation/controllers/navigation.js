@@ -52,7 +52,7 @@ function NavigationController($scope, $state, $mdSidenav, $mdUtil) {
 
   function handleSearchText(searchQuery, previousSearchText) {
     if (!searchQuery && searchQuery === previousSearchText) return;
-    $scope.$parent.$eval(self.mpSearch);
+    self.mpSearch();
   }
 
   function openMenu() {

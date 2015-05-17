@@ -1,6 +1,6 @@
 <div ng-controller="IngredientsListController as ingredients">
   <mp-navbar mp-title="Ingredients"
-             mp-search="ingredients.searchIngredients"
+             mp-search="ingredients.searchIngredients()"
              mp-search-query="ingredients.searchText"
              mp-search-delay="500"
              mp-is-loading="ingredients.isLoading">
