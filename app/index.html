@@ -21,24 +21,9 @@
   your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div>
-  <md-content class="mp-container" ng-controller="NavigationController as navigation">
-    <md-content>
-      <md-toolbar class="md-primary">
-        <h2 class="md-toolbar-tools" layout="row" layout-align="space-between">
-        <span>
-          <a href="#" ui-sref="planner">
-            <img ng-src="images/logo.png"/>
-          </a>
-        </span>
-          <md-button>sign in</md-button>
-        </h2>
-      </md-toolbar>
-    </md-content>
-
-    <div ui-view class="mp-animate-container ui-content">
-    </div>
-  </md-content>
+<div class="mp-container" ng-controller="NavigationController as navigation">
+  <div ui-view class="mp-animate-container ui-content">
+  </div>
 </div>
 
 <!-- build:js(.) scripts/oldieshim.js -->

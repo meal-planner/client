@@ -25,8 +25,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 .mp-content {
   width: 924px;
-  margin: 20px auto;
-  min-height: 400px;
+  margin: 90px auto;
+  min-height: 500px;
   background: #ffffff;
   .mp-action-button {
     min-width: 38px;
@@ -78,6 +78,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 .mp-animate-container {
   position: relative;
   overflow: hidden;
+  min-height: 100%;
 }
 
 [ui-view].ng-enter, [ui-view].ng-leave {
@@ -98,6 +99,11 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 [ui-view].ng-leave-active {
   display: none;
+}
+
+.mp-fixed-top {
+  position: fixed;
+  top: 0;
 }
 
 mp-navbar {

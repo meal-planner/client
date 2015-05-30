@@ -1,5 +1,5 @@
 <div>
-  <md-toolbar class="md-hue-2 md-whiteframe-z1">
+  <md-toolbar class="md-hue-2 md-whiteframe-z2 mp-fixed-top">
     <div class="md-toolbar-tools">
       <md-button aria-label="Open menu"
                  ng-click="ctrl.openMenu()"
@@ -30,7 +30,7 @@
     <md-progress-linear ng-show="ctrl.mpIsLoading" md-mode="indeterminate"></md-progress-linear>
   </md-toolbar>
 
-  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="menu">
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2 mp-fixed-top" md-component-id="menu">
     <md-toolbar class="md-hue-1">
       <div class="md-toolbar-tools">
         <md-button aria-label="Close menu"
@@ -39,7 +39,11 @@
           <md-icon md-svg-icon="bower_components/material-design-icons/navigation/svg/design/ic_arrow_back_24px.svg">
           </md-icon>
         </md-button>
-        <h2>Menu</h2>
+        <h2>
+          <a href="#" ui-sref="planner">
+            <img ng-src="images/logo.png"/>
+          </a>
+        </h2>
       </div>
     </md-toolbar>
     <md-content layout-padding>

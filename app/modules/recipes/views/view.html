@@ -1,5 +1,5 @@
 <div ng-controller="RecipeViewController as ctrl">
-  <md-toolbar class="md-hue-2">
+  <md-toolbar class="md-hue-2 md-whiteframe-z2 mp-fixed-top">
     <div class="md-toolbar-tools">
       <md-button ui-sref="recipesList"
                  class="md-icon-button" aria-label="Close">
@@ -7,7 +7,7 @@
                  md-svg-icon="bower_components/material-design-icons/navigation/svg/design/ic_arrow_back_24px.svg">
       </md-button>
       <h2>
-        <span>Recipe Details</span>
+        <span>{{ ctrl.recipe.name }}</span>
       </h2>
     </div>
   </md-toolbar>
@@ -16,8 +16,7 @@
     <md-content class="md-padding">
       <div layout="row" layout-align="space-between">
         <div>
-          <h2>{{ ctrl.recipe.name }}</h2>
-          Time to cook: {{ ctrl.recipe.time_to_cook}} min.<br/>
+          <h4>Time to cook: {{ ctrl.recipe.time_to_cook}} min.</h4>
           <h4>Ingredients:</h4>
           <md-list>
             <md-list-item class="md-2-line" ng-repeat="ingredient in ctrl.recipe.ingredients">
