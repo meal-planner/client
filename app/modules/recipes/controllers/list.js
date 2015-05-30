@@ -14,7 +14,7 @@ angular.module('mealPlanner')
 function RecipesListController(recipeService) {
   var self = this;
   self.items = [];
-  self.serchText = null;
+  self.searchText = null;
   self.searchRecipes = searchRecipes;
 
   return init();

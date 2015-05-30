@@ -40,7 +40,7 @@ function NavigationController($scope, $state, $mdSidenav, $mdUtil) {
   return init();
 
   function init() {
-    if (self.mpSearch != undefined) {
+    if (self.mpSearchQuery !== undefined) {
       self.isSearchButtonVisible = true;
 
       var wait = parseInt(self.mpSearchDelay, 10) || 0;

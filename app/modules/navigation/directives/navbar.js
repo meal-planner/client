@@ -15,8 +15,7 @@ function MpNavbarDirective() {
       mpIsLoading: '=',
       mpSearch: '&',
       mpSearchQuery: '=',
-      mpSearchDelay: '=',
-      mpSearchResult: '='
+      mpSearchDelay: '='
     }
   };
 }

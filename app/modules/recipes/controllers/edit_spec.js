@@ -85,16 +85,16 @@ describe('Controller: RecipeEditController', function () {
 
     it('gets nutrient value from ingredient', function () {
       // By default first measure chosen
-      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('Energy: 25 kcal');
+      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('Calories: 25 kcal');
       // When chosen amount is changed
       ingredient.chosenAmount = 200;
-      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('Energy: 50 kcal');
+      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('Calories: 50 kcal');
       // When measure is change
       ingredient.chosenMeasure = 1;
       ingredient.chosenAmount = 1;
-      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('Energy: 75 kcal');
+      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('Calories: 75 kcal');
       ingredient.chosenAmount = 2;
-      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('Energy: 150 kcal');
+      expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('Calories: 150 kcal');
     });
 
   });
