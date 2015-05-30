@@ -11,51 +11,23 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   padding: 0.2em 0;
 }
 
-.mp-container {
-  width: 924px;
-  margin: 20px auto;
-}
-
-@media only screen and (max-device-width: 480px) {
-  .mp-container {
-    width: 100%;
-    margin: 0;
-  }
+.ui-content, body {
+  background: #ECEFF1;
 }
 
 .mp-container {
+  width: 100%;
+  height: 100%;
   a {
     outline: none;
   }
 }
 
-.mp-navigation {
-  width: 100%;
-  .mp-navigation-link {
-    margin-top: 0;
-    font-size: 14px;
-    text-align: center;
-    line-height: 24px;
-    padding: 20px 24px;
-    cursor: pointer;
-    white-space: nowrap;
-    position: relative;
-    text-transform: uppercase;
-    float: left;
-    font-weight: 500;
-    color: #ffffff;
-    min-width: 8.8rem;
-    letter-spacing: 0.01em;
-    text-decoration: none;
-    box-sizing: border-box;
-    &.active {
-      background-color: #607D8B;
-    }
-  }
-}
-
 .mp-content {
+  width: 924px;
+  margin: 20px auto;
   min-height: 400px;
+  background: #ffffff;
   .mp-action-button {
     min-width: 38px;
     margin-left: 0;
@@ -65,9 +37,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   }
 
   .mp-ingredient-measure {
-    background-color: #F5F5F5;
+    background-color: #f4f7f9;
     &:nth-child(odd) {
-      background-color: transparent;
+      background-color: #FFFFFF;
     }
   }
 
@@ -75,6 +47,14 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
     margin-top: 0;
     margin-bottom: 0;
   }
+}
+
+.mp-fab-bottom-right {
+  top: auto;
+  right: 25px;
+  bottom: 25px;
+  left: auto;
+  position: fixed;
 }
 
 .fab-icon {

@@ -11,43 +11,46 @@
       </h2>
     </div>
   </md-toolbar>
-  <md-content class="md-padding">
-    <div layout="row" layout-align="space-between">
-      <div>
-        <h2>{{ ctrl.recipe.name }}</h2>
-        Time to cook: {{ ctrl.recipe.time_to_cook}} min.<br/>
-        <h4>Ingredients:</h4>
-        <md-list>
-          <md-list-item class="md-2-line" ng-repeat="ingredient in ctrl.recipe.ingredients">
-            <img ng-src="images/ingredient-icon.png" class="md-avatar">
 
-            <div class="md-list-item-text" layout="row" layout-align="space-between">
-              <div>
-                <h3>{{ingredient.name}}</h3>
+  <div class="mp-content md-whiteframe-z1">
+    <md-content class="md-padding">
+      <div layout="row" layout-align="space-between">
+        <div>
+          <h2>{{ ctrl.recipe.name }}</h2>
+          Time to cook: {{ ctrl.recipe.time_to_cook}} min.<br/>
+          <h4>Ingredients:</h4>
+          <md-list>
+            <md-list-item class="md-2-line" ng-repeat="ingredient in ctrl.recipe.ingredients">
+              <img ng-src="images/ingredient-icon.png" class="md-avatar">
 
-                <p>
-                  {{ingredient.measure_amount}} {{ingredient.measure}}
-                </p>
+              <div class="md-list-item-text" layout="row" layout-align="space-between">
+                <div>
+                  <h3>{{ingredient.name}}</h3>
+
+                  <p>
+                    {{ingredient.measure_amount}} {{ingredient.measure}}
+                  </p>
+                </div>
               </div>
-            </div>
-          </md-list-item>
-        </md-list>
-        <h4>Cooking Steps:</h4>
-        <ol>
-          <li ng-repeat="step in ctrl.recipe.steps">
-            {{step}}
-          </li>
-        </ol>
+            </md-list-item>
+          </md-list>
+          <h4>Cooking Steps:</h4>
+          <ol>
+            <li ng-repeat="step in ctrl.recipe.steps">
+              {{step}}
+            </li>
+          </ol>
+        </div>
+        <div ng-if="ctrl.recipe.nutrients">
+          <mp-nutrition-label servings="{{ctrl.recipe.servings}}" nutrients="ctrl.recipe.nutrients"></mp-nutrition-label>
+        </div>
       </div>
-      <div ng-if="ctrl.recipe.nutrients">
-        <mp-nutrition-label servings="{{ctrl.recipe.servings}}" nutrients="ctrl.recipe.nutrients"></mp-nutrition-label>
-      </div>
-    </div>
 
-    <div layout="row" layout-align="space-between">
-      <md-button class="md-button-wide" ng-click="go('editRecipe', {recipeId: ctrl.recipe.id})">
-        edit
-      </md-button>
-    </div>
-  </md-content>
+      <div layout="row" layout-align="space-between">
+        <md-button class="md-button-wide" ng-click="go('editRecipe', {recipeId: ctrl.recipe.id})">
+          edit
+        </md-button>
+      </div>
+    </md-content>
+  </div>
 </div>
