@@ -1,4 +1,8 @@
 @import 'nutrition-label';
+@import 'responsive';
+@import 'animations';
+@import 'navbar';
+@import 'meal-selector';
 
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
@@ -18,15 +22,12 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 .mp-container {
   width: 100%;
   height: 100%;
-  a {
-    outline: none;
-  }
 }
 
 .mp-content {
-  width: 924px;
-  margin: 90px auto;
-  min-height: 500px;
+  max-width: 70%;
+  min-width: 840px;
+  margin: 90px auto 20px;
   background: #ffffff;
   .mp-action-button {
     min-width: 38px;
@@ -49,17 +50,16 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   }
 }
 
+.no-top-margin {
+  margin-top: 0;
+}
+
 .mp-fab-bottom-right {
   top: auto;
   right: 25px;
   bottom: 25px;
   left: auto;
   position: fixed;
-}
-
-.fab-icon {
-  width: 24px;
-  height: 24px;
 }
 
 .mp-spaced-left {
@@ -73,60 +73,4 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 .mp-centered {
   padding-top: 14px;
   text-align: center;
-}
-
-.mp-animate-container {
-  position: relative;
-  overflow: hidden;
-  min-height: 100%;
-}
-
-[ui-view].ng-enter, [ui-view].ng-leave {
-  transition:all .25s ease-in-out;
-}
-
-[ui-view].ng-enter {
-  opacity: 0;
-}
-
-[ui-view].ng-enter-active {
-  opacity: 1;
-}
-
-[ui-view].ng-leave {
-  display: none;
-}
-
-[ui-view].ng-leave-active {
-  display: none;
-}
-
-.mp-fixed-top {
-  position: fixed;
-  top: 0;
-}
-
-mp-navbar {
-  md-icon.md-default-theme {
-    color: #FFFFFF;
-  }
-  md-sidenav {
-    md-list {
-      md-icon.md-default-theme {
-        color: #000000;
-      }
-    }
-  }
-
-  .search-input {
-    box-sizing: border-box;
-    border: none;
-    padding: 0 15px;
-    font-size: 14px;
-    line-height: 40px;
-    height: 40px;
-    outline: none;
-    background: rgb(250,250,250);
-    border-radius: 2px;
-  }
 }

@@ -27,8 +27,8 @@ function RecipeService($resource) {
     }
   }
 
-  function searchRecipes(searchText) {
-    return recipe.query({query: searchText}).$promise;
+  function searchRecipes(searchText, limit) {
+    return recipe.query({query: searchText, limit: limit}).$promise;
   }
 
   function saveRecipe(recipeId, data) {

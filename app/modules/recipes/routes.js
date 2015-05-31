@@ -12,7 +12,7 @@ angular.module('mealPlanner')
       url: '/recipes/edit/:recipeId',
       templateUrl: 'modules/recipes/views/edit.html'
     }).state('viewRecipe', {
-      url: '/recipes/view/:recipeId',
+      url: '/recipes/:recipeId',
       templateUrl: 'modules/recipes/views/view.html'
     });
   });

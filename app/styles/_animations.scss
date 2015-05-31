@@ -1,0 +1,25 @@
+.mp-animate-container {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+[ui-view].ng-enter, [ui-view].ng-leave {
+  transition:all .5s ease-in-out;
+}
+
+[ui-view].ng-enter {
+  opacity: 0;
+}
+
+[ui-view].ng-enter-active {
+  opacity: 1;
+}
+
+[ui-view].ng-leave {
+  display: none;
+}
+
+[ui-view].ng-leave-active {
+  display: none;
+}

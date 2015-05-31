@@ -1,9 +1,37 @@
-<div ng-controller="PlannerController as ctrl">
+<div ng-controller="PlannerController as planner">
   <mp-navbar mp-title="Make Plan"></mp-navbar>
 
   <div class="mp-content md-whiteframe-z1">
     <md-content class="md-padding">
-
+      <p>
+        Plan your meals! Choose the dishes you want to eat for each day and see how well it fits your nutrients
+        requirements.
+      </p>
     </md-content>
+  </div>
+
+  <div ng-repeat="day in planner.plannedDays"
+       class="mp-content no-top-margin md-whiteframe-z1">
+    <md-content class="md-padding">
+      <p class="md-title no-top-margin">
+        {{day.name}}
+        <md-button type="button" ng-click="planner.showMealSelector($event, day)"
+                   md-no-ink class="mp-action-button"
+                   aria-label="Add Meal">
+          <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_add_circle_24px.svg">
+        </md-button>
+      </p>
+      <ul>
+        <li ng-repeat="recipe in day.recipes">{{recipe.name}}</li>
+      </ul>
+    </md-content>
+  </div>
+
+  <div layout="row" layout-align="center">
+    <md-button type="button" class="md-raised md-primary md-hue-3"
+               ng-click="planner.addNextDay()"
+               ng-show="planner.daysOfWeek.length > 0">
+      next day
+    </md-button>
   </div>
 </div>

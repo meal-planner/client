@@ -37,9 +37,9 @@ function NavigationController($scope, $state, $mdSidenav, $mdUtil) {
     $state.go(to, params);
   };
 
-  return init();
+  return initialize();
 
-  function init() {
+  function initialize() {
     if (self.mpSearchQuery !== undefined) {
       self.isSearchButtonVisible = true;
 

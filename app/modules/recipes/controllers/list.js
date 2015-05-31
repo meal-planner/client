@@ -17,9 +17,9 @@ function RecipesListController(recipeService) {
   self.searchText = null;
   self.searchRecipes = searchRecipes;
 
-  return init();
+  return initialize();
 
-  function init() {
+  function initialize() {
     self.isLoading = true;
     getRecipes().then(
       function () {

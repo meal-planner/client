@@ -12,13 +12,15 @@ angular
   .module('mealPlanner', ['ngMaterial', 'ui.router', 'ngResource'])
   .config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('default')
-      .primaryPalette('blue-grey', {
+      .primaryPalette('green', {
         'default': '800',
         'hue-1': '700',
         'hue-2': '600',
         'hue-3': '500'
       })
-      .accentPalette('pink');
+      .accentPalette('red', {
+        'default': '600'
+      });
     $mdThemingProvider.theme('dark')
       .primaryPalette('lime')
       .accentPalette('pink');

@@ -1,0 +1,42 @@
+<md-dialog class="meal-selector" aria-label="Meal Selector">
+  <md-dialog-content class="sticky-container">
+    <md-subheader class="md-sticky-no-effect">Meal Selector</md-subheader>
+    <md-content class="mp-spaced-both" layout="row">
+      <md-select ng-model="ctrl.meal.type" placeholder="Meal type">
+        <md-option ng-value="mealType" ng-repeat="mealType in ctrl.mealTypes">
+          {{mealType}}
+        </md-option>
+      </md-select>
+      <input aria-label="Search query" flex
+             placeholder="Search"
+             ng-model="ctrl.searchText"
+             class="search-input"/>
+    </md-content>
+    <md-list class="recipes">
+      <md-list-item class="md-3-line"
+                    ng-repeat="recipe in ctrl.recipes"
+                    ng-click="ctrl.addRecipe(recipe)">
+        <img ng-src="images/ingredient-icon.png" class="md-avatar">
+
+        <div class="md-list-item-text" layout="row" layout-align="space-between">
+          <div>
+            <h3>{{recipe.name}}</h3>
+
+            <p>
+              Time to cook: {{recipe.time_to_cook}} min<br/>
+              Calories: <strong>{{recipe.nutrients.energy | number : 0}}</strong>
+              ({{recipe.servings || 1}} serving{{recipe.servings > 1 ? 's' : ''}})
+            </p>
+          </div>
+        </div>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-list-item>
+    </md-list>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <md-button ng-click="ctrl.cancelDialog()" class="md-primary">
+      Close
+    </md-button>
+  </div>
+  <md-progress-linear ng-show="ctrl.isLoading" md-mode="indeterminate"></md-progress-linear>
+</md-dialog>
