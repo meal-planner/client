@@ -11,27 +11,52 @@
   </div>
 
   <div ng-repeat="day in planner.plannedDays"
-       class="mp-content no-top-margin md-whiteframe-z1">
+       class="mp-content mp-no-top-margin md-whiteframe-z1">
     <md-content class="md-padding">
-      <p class="md-title no-top-margin">
-        {{day.name}}
-        <md-button type="button" ng-click="planner.showMealSelector($event, day)"
-                   md-no-ink class="mp-action-button"
-                   aria-label="Add Meal">
-          <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_add_circle_24px.svg">
-        </md-button>
-      </p>
-      <ul>
-        <li ng-repeat="recipe in day.recipes">{{recipe.name}}</li>
-      </ul>
+
+
+      <div layout="row" layout-align="space-between">
+        <div flex>
+          <p class="md-title mp-no-margins">
+            {{day.name}}
+            <md-button type="button" ng-click="planner.showMealSelector($event, day)"
+                       md-no-ink class="mp-action-button mp-no-top-margin"
+                       aria-label="Add Meal">
+              <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_add_circle_24px.svg">
+            </md-button>
+          </p>
+          <p class="md-body-1 mp-no-margins" ng-show="day.recipes.length == 0">
+            You have not selected any meals for this day yet.<br/>
+            Click "Add" button above and select your meal.
+          </p>
+          <div ng-repeat="mealType in planner.mealTypes"
+               ng-show="(day.recipes | filter: {mealType: mealType}).length > 0">
+            <h4>{{mealType}}</h4>
+
+            <div ng-repeat="recipe in day.recipes | filter: {mealType: mealType}">
+              <md-button type="button" ng-click="planner.removeRecipeFromDayPlan(day, mealType, recipe.id)"
+                         md-no-ink class="mp-action-button"
+                         aria-label="Remove Step">
+                <md-icon
+                  md-svg-src="bower_components/material-design-icons/content/svg/design/ic_remove_circle_24px.svg">
+              </md-button>
+              {{recipe.name}}
+            </div>
+          </div>
+        </div>
+        <div class="calories-pie-chart" ng-show="day.recipes.length > 0">
+          <span class="total-value"><strong>{{day.totalCalories | number : 0 }}</strong><br/>kcal</span>
+          <canvas tc-chartjs-pie chart-options="planner.chartOptions" chart-data="day.chartData"></canvas>
+        </div>
+      </div>
     </md-content>
   </div>
 
   <div layout="row" layout-align="center">
     <md-button type="button" class="md-raised md-primary md-hue-3"
-               ng-click="planner.addNextDay()"
-               ng-show="planner.daysOfWeek.length > 0">
-      next day
+               ng-click="planner.planNextDay()"
+               ng-show="planner.unplannedDays.length > 0">
+      Plan next day
     </md-button>
   </div>
 </div>

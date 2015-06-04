@@ -11,10 +11,16 @@ angular.module('mealPlanner')
   .controller('PlannerController', PlannerController);
 
 /* @ngInject */
-function PlannerController($mdDialog) {
+function PlannerController($mdDialog, localStorageService) {
   var self = this;
 
-  self.daysOfWeek = [
+  self.mealTypes = [
+    'Breakfast',
+    'Lunch',
+    'Dinner',
+    'Snack'
+  ];
+  self.unplannedDays = [
     'Monday',
     'Tuesday',
     'Wednesday',
@@ -24,18 +30,37 @@ function PlannerController($mdDialog) {
     'Sunday'
   ];
   self.plannedDays = [];
-  self.addNextDay = addNextDay;
+  self.chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    segmentShowStroke: true,
+    segmentStrokeColor: '#fff',
+    segmentStrokeWidth: 2,
+    percentageInnerCutout: 60,
+    animateRotate: false,
+    tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%"
+  };
+
+  self.planNextDay = planNextDay;
   self.showMealSelector = showMealSelector;
+  self.addRecipeToDayPlan = addRecipeToDayPlan;
+  self.removeRecipeFromDayPlan = removeRecipeFromDayPlan;
 
   return initialize();
 
   function initialize() {
-    addNextDay();
+    var plannedDays = localStorageService.get('planned_days');
+    if (plannedDays) {
+      self.plannedDays = plannedDays;
+      self.unplannedDays.splice(0, plannedDays.length);
+    } else {
+      planNextDay();
+    }
   }
 
-  function addNextDay() {
+  function planNextDay() {
     var day = {
-      name: self.daysOfWeek.shift(),
+      name: self.unplannedDays.shift(),
       recipes: []
     };
     self.plannedDays.push(day);
@@ -46,10 +71,59 @@ function PlannerController($mdDialog) {
       controller: 'MealSelectorController',
       controllerAs: 'ctrl',
       bindToController: true,
+      locals: {mealTypes: self.mealTypes},
       templateUrl: 'modules/planner/views/meal_selector.html',
       targetEvent: event
     }).then(function (recipe) {
-      day.recipes.push(recipe);
+      addRecipeToDayPlan(day, recipe);
     });
+  }
+
+  function addRecipeToDayPlan(day, recipe) {
+    day.recipes.push(recipe);
+    calculateDailyMacros(day);
+    savePlanInLocalStorage();
+  }
+
+  function removeRecipeFromDayPlan(day, mealType, recipeId) {
+    var recipePosition = null;
+    day.recipes.forEach(function (recipe, index) {
+      if (recipe.id == recipeId && recipe.mealType == mealType) {
+        return recipePosition = index;
+      }
+    });
+
+    if (recipePosition !== null) {
+      day.recipes.splice(recipePosition, 1);
+      calculateDailyMacros(day);
+      savePlanInLocalStorage();
+    }
+  }
+
+  function calculateDailyMacros(day) {
+    var totalCalories = 0,
+      totalProtein = 0,
+      totalCarbs = 0,
+      totalFat = 0;
+    day.recipes.forEach(function (recipe) {
+      var servings = recipe.servings || 1;
+      totalCalories += recipe.nutrients.energy / servings;
+      totalProtein += recipe.nutrients.protein / servings;
+      totalCarbs += recipe.nutrients.carbohydrate / servings;
+      totalFat += recipe.nutrients.fat / servings;
+    });
+    day.totalCalories = totalCalories;
+    var energyFromFat = Math.round(totalFat * 9 / totalCalories * 100);
+    var energyFromProtein = Math.round(totalProtein * 4 / totalCalories * 100);
+    var energyFromCarbs = 100 - energyFromFat - energyFromProtein;
+    day.chartData = [
+      {label: "Protein", value: energyFromProtein, color: "#1E88E5"},
+      {label: "Carbs", value: energyFromCarbs, color: "#FB8C00"},
+      {label: "Fat", value: energyFromFat, color: "#43A047"}
+    ];
+  }
+
+  function savePlanInLocalStorage() {
+    localStorageService.set('planned_days', self.plannedDays);
   }
 }

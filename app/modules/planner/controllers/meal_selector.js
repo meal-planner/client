@@ -11,16 +11,9 @@ angular.module('mealPlanner')
   .controller('MealSelectorController', MealSelectorController);
 
 /* @ngInject */
-function MealSelectorController($scope, $mdDialog, $mdUtil, recipeService) {
+function MealSelectorController($scope, $mdDialog, $mdUtil, recipeService, mealTypes) {
   var self = this;
 
-  self.meal = {};
-  self.mealTypes = [
-    'Breakfast',
-    'Lunch',
-    'Dinner',
-    'Snack'
-  ];
   self.searchText = null;
   self.recipes = [];
   self.searchRecipes = searchRecipes;
@@ -31,6 +24,8 @@ function MealSelectorController($scope, $mdDialog, $mdUtil, recipeService) {
 
   function initialize() {
     $scope.$watch('ctrl.searchText', $mdUtil.debounce(searchRecipes, 300));
+    self.mealTypes = mealTypes;
+    self.mealType = mealTypes[0];
 
     recipeService.getRecipes()
       .then(function (data) {
@@ -53,6 +48,7 @@ function MealSelectorController($scope, $mdDialog, $mdUtil, recipeService) {
   }
 
   function addRecipe(recipe) {
+    recipe.mealType = self.mealType;
     $mdDialog.hide(recipe);
   }
 

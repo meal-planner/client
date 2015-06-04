@@ -26,6 +26,9 @@ module.exports = function(config) {
       'bower_components/angular-material/angular-material.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-resource/angular-resource.js',
+      'bower_components/angular-local-storage/dist/angular-local-storage.js',
+      'bower_components/Chart.js/Chart.min.js',
+      'bower_components/tc-angular-chartjs/dist/tc-angular-chartjs.min.js',
       'app/scripts/**/*.js',
       'app/modules/**/*.js',
       'test/mocks/**/*.js'

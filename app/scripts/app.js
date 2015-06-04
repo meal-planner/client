@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('mealPlanner', ['ngMaterial', 'ui.router', 'ngResource'])
+  .module('mealPlanner', ['ngMaterial', 'ui.router', 'ngResource', 'LocalStorageModule', 'tc.chartjs'])
   .config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('default')
       .primaryPalette('green', {
