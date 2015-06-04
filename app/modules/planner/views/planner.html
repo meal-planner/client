@@ -17,12 +17,13 @@
 
       <div layout="row" layout-align="space-between">
         <div flex>
-          <p class="md-title mp-no-margins">
+          <p class="md-headline mp-no-margins">
             {{day.name}}
             <md-button type="button" ng-click="planner.showMealSelector($event, day)"
                        md-no-ink class="mp-action-button mp-no-top-margin"
                        aria-label="Add Meal">
-              <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_add_circle_24px.svg">
+              <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_add_circle_24px.svg"></md-icon>
+              <md-tooltip>Add meal</md-tooltip>
             </md-button>
           </p>
           <p class="md-body-1 mp-no-margins" ng-show="day.recipes.length == 0">
@@ -36,16 +37,19 @@
             <div ng-repeat="recipe in day.recipes | filter: {mealType: mealType}">
               <md-button type="button" ng-click="planner.removeRecipeFromDayPlan(day, mealType, recipe.id)"
                          md-no-ink class="mp-action-button"
-                         aria-label="Remove Step">
+                         aria-label="Remove this recipe">
                 <md-icon
-                  md-svg-src="bower_components/material-design-icons/content/svg/design/ic_remove_circle_24px.svg">
+                  md-svg-src="bower_components/material-design-icons/content/svg/design/ic_remove_circle_24px.svg"></md-icon>
+                <md-tooltip>Remove from plan</md-tooltip>
               </md-button>
               {{recipe.name}}
             </div>
           </div>
         </div>
-        <div class="calories-pie-chart" ng-show="day.recipes.length > 0">
-          <span class="total-value"><strong>{{day.totalCalories | number : 0 }}</strong><br/>kcal</span>
+        <div class="calories-pie-chart">
+          <span class="total-value" ng-show="day.recipes.length > 0">
+            <strong>{{day.totalCalories | number : 0 }}</strong><br/>kcal
+          </span>
           <canvas tc-chartjs-pie chart-options="planner.chartOptions" chart-data="day.chartData"></canvas>
         </div>
       </div>
