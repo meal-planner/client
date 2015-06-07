@@ -46,12 +46,20 @@
             </div>
           </div>
         </div>
-        <div class="calories-pie-chart">
+        <div>
+          <div class="calories-pie-chart">
           <span class="total-value" ng-show="day.recipes.length > 0">
             <strong>{{day.totalCalories | number : 0 }}</strong><br/>kcal
           </span>
-          <canvas tc-chartjs-pie chart-options="planner.chartOptions" chart-data="day.chartData"></canvas>
+            <canvas tc-chartjs-pie chart-options="planner.chartOptions" chart-data="day.chartData"></canvas>
+          </div>
+          <div class="total-macros" ng-show="day.recipes.length > 0">
+            Protein: {{day.totalProtein | number : 0}}g<br/>
+            Carbohydrate: {{day.totalCarbs | number : 0}}g<br/>
+            Fat: {{day.totalFat | number : 0}}g<br/>
+          </div>
         </div>
+
       </div>
     </md-content>
   </div>

@@ -101,20 +101,19 @@ function PlannerController($mdDialog, localStorageService) {
   }
 
   function calculateDailyMacros(day) {
-    var totalCalories = 0,
-      totalProtein = 0,
-      totalCarbs = 0,
-      totalFat = 0;
+    day.totalCalories = 0;
+    day.totalProtein = 0;
+    day.totalFat = 0;
+    day.totalCarbs = 0;
     day.recipes.forEach(function (recipe) {
       var servings = recipe.servings || 1;
-      totalCalories += recipe.nutrients.energy / servings;
-      totalProtein += recipe.nutrients.protein / servings;
-      totalCarbs += recipe.nutrients.carbohydrate / servings;
-      totalFat += recipe.nutrients.fat / servings;
+      day.totalCalories += recipe.nutrients.energy / servings;
+      day.totalProtein += recipe.nutrients.protein / servings;
+      day.totalCarbs += recipe.nutrients.carbohydrate / servings;
+      day.totalFat += recipe.nutrients.fat / servings;
     });
-    day.totalCalories = totalCalories;
-    var energyFromFat = Math.round(totalFat * 9 / totalCalories * 100);
-    var energyFromProtein = Math.round(totalProtein * 4 / totalCalories * 100);
+    var energyFromFat = Math.round(day.totalFat * 9 / day.totalCalories * 100);
+    var energyFromProtein = Math.round(day.totalProtein * 4 / day.totalCalories * 100);
     var energyFromCarbs = 100 - energyFromFat - energyFromProtein;
     day.chartData = [
       {label: "Protein", value: energyFromProtein, color: "#1E88E5"},
