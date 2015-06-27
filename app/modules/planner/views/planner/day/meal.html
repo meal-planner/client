@@ -1,0 +1,10 @@
+<div>
+  <md-button type="button" ng-click="ctrl.removeMeal(ctrl.meal)"
+             md-no-ink class="mp-action-button"
+             aria-label="Remove this meal">
+    <md-icon
+      md-svg-src="bower_components/material-design-icons/content/svg/design/ic_remove_circle_24px.svg"></md-icon>
+    <md-tooltip>Remove from plan</md-tooltip>
+  </md-button>
+  {{ctrl.meal.name}} ({{ctrl.meal.servings}} servings)
+</div>

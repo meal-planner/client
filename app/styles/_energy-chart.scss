@@ -1,0 +1,55 @@
+.calories-pie-chart {
+  position: relative;
+  width: 175px;
+  height: 175px;
+  margin-top: 12px;
+  margin-right: 12px;
+  .total-value {
+    position: absolute;
+    display: block;
+    width: 175px;
+    top: 67px;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  canvas {
+    width: 175px;
+    height: 175px;
+  }
+}
+
+.total-macros {
+  margin-top: 12px;
+  line-height: 24px;
+  .macro {
+    display: block;
+    clear: both;
+    .legend {
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      margin-top: 4px;
+      &.fat {
+        background-color: #43A047;
+      }
+      &.protein {
+        background-color: #1E88E5;
+      }
+      &.carbohydrate {
+        background-color: #FB8C00;
+      }
+    }
+    .label {
+      display: block;
+      float: left;
+      margin-left: 5px;
+    }
+    .value {
+      display: block;
+      float: right;
+      font-style: italic;
+    }
+  }
+}

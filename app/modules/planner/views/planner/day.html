@@ -1,0 +1,31 @@
+<div class="mp-content mp-no-top-margin md-whiteframe-z1">
+  <md-content class="md-padding">
+    <div layout="row" layout-align="space-between">
+      <div flex>
+        <p class="md-headline mp-no-margins">
+          {{ctrl.day.name}}
+          <md-button type="button" ng-click="ctrl.showRecipeSelector($event, ctrl.day)"
+                     md-no-ink class="mp-action-button mp-no-top-margin"
+                     aria-label="Add Meal">
+            <md-icon
+              md-svg-src="bower_components/material-design-icons/content/svg/design/ic_add_circle_24px.svg"></md-icon>
+            <md-tooltip>Add meal</md-tooltip>
+          </md-button>
+        </p>
+        <p class="md-body-1 mp-no-margins" ng-show="ctrl.day.meals.length == 0">
+          You have not selected any meals for this day yet.<br/>
+          Click "Add" button above to find recipes you would like to have in your plan.
+        </p>
+
+        <div ng-repeat="mealType in ctrl.mealTypes"
+             ng-show="(ctrl.day.meals | filter: {mealType: mealType}).length > 0">
+          <h4>{{mealType}}</h4>
+          <mp-plan-day-meal ng-repeat="meal in ctrl.day.meals | filter: {mealType: mealType} track by meal.id"
+                            meal="meal"/>
+        </div>
+      </div>
+
+      <mp-plan-day-energy-chart day="ctrl.day"/>
+    </div>
+  </md-content>
+</div>

@@ -2,7 +2,8 @@
 @import 'responsive';
 @import 'animations';
 @import 'navbar';
-@import 'meal-selector';
+@import 'recipe-selector';
+@import 'energy-chart';
 
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
@@ -74,30 +75,4 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 .mp-centered {
   padding-top: 14px;
   text-align: center;
-}
-
-.calories-pie-chart {
-  position: relative;
-  width: 175px;
-  height: 175px;
-  margin-top: 12px;
-  margin-right: 12px;
-  .total-value {
-    position: absolute;
-    display: block;
-    width: 175px;
-    top: 67px;
-    text-align: center;
-    font-size: 18px;
-  }
-
-  canvas {
-    width: 175px;
-    height: 175px;
-  }
-}
-
-.total-macros {
-  margin-top: 12px;
-  line-height: 24px;
 }

@@ -2,16 +2,17 @@
 
 /**
  * @ngdoc function
- * @name mealPlanner.controller:MealSelectorController
+ * @name mealPlanner.controller:RecipeSelectorController
  * @description
- * # MealSelectorController
- * Meal selector controller
+ * # RecipeSelectorController
+ * Recipe selector controller
  */
 angular.module('mealPlanner')
-  .controller('MealSelectorController', MealSelectorController);
+  .controller('RecipeSelectorController', RecipeSelectorController);
 
 /* @ngInject */
-function MealSelectorController($scope, $mdDialog, $mdUtil, recipeService, mealTypes) {
+function RecipeSelectorController($scope, $mdDialog, $mdUtil, recipeService, planService) {
+  var RECIPE_SEARCH_LIMIT = 4;
   var self = this;
 
   self.searchText = null;
@@ -20,12 +21,15 @@ function MealSelectorController($scope, $mdDialog, $mdUtil, recipeService, mealT
   self.cancelDialog = cancelDialog;
   self.addRecipe = addRecipe;
 
+  /**
+   * Set initial state.
+   */
   return initialize();
 
   function initialize() {
     $scope.$watch('ctrl.searchText', $mdUtil.debounce(searchRecipes, 300));
-    self.mealTypes = mealTypes;
-    self.mealType = mealTypes[0];
+    self.mealTypes = planService.mealTypes;
+    self.mealType = planService.mealTypes[0];
 
     recipeService.getRecipes()
       .then(function (data) {
@@ -34,11 +38,18 @@ function MealSelectorController($scope, $mdDialog, $mdUtil, recipeService, mealT
       });
   }
 
+  /**
+   * Search recipes with given query.
+   *
+   * @param searchQuery
+   * @param previousSearchText
+   * @returns {*}
+   */
   function searchRecipes(searchQuery, previousSearchText) {
     if (!searchQuery && searchQuery === previousSearchText) return;
     self.isLoading = true;
 
-    return recipeService.searchRecipes(self.searchText, 4)
+    return recipeService.searchRecipes(self.searchText, RECIPE_SEARCH_LIMIT)
       .then(function (data) {
         self.isLoading = false;
         self.recipes = data;
@@ -47,11 +58,19 @@ function MealSelectorController($scope, $mdDialog, $mdUtil, recipeService, mealT
     );
   }
 
+  /**
+   * Send selected recipe to day controller.
+   *
+   * @param recipe
+   */
   function addRecipe(recipe) {
     recipe.mealType = self.mealType;
     $mdDialog.hide(recipe);
   }
 
+  /**
+   * Close popup.
+   */
   function cancelDialog() {
     $mdDialog.cancel();
   }
