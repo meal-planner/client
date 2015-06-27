@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name mealPlanner.controller:RecipeSelectorController
+ * @name mealPlanner.planner.controller:RecipeSelectorController
  * @description
  * # RecipeSelectorController
  * Recipe selector controller
  */
-angular.module('mealPlanner')
+angular.module('mealPlanner.planner')
   .controller('RecipeSelectorController', RecipeSelectorController);
 
 /* @ngInject */

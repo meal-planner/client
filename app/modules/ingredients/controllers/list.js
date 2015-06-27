@@ -1,56 +1,83 @@
-'use strict';
+(function () {
+  'use strict';
 
-/**
- * @ngdoc function
- * @name mealPlanner.controller:IngredientsListController
- * @description
- * # IngredientsListController
- * Controller of the mealPlanner
- */
-angular.module('mealPlanner')
-  .controller('IngredientsListController', IngredientsListController);
+  /**
+   * @ngdoc function
+   * @name mealPlanner.ingredients.controller:IngredientsListController
+   * @description
+   * # IngredientsListController
+   *
+   * Controller of the mealPlanner
+   */
+  angular.module('mealPlanner.ingredients')
+    .controller('IngredientsListController', IngredientsListController);
 
-/* @ngInject */
-function IngredientsListController(ingredientService) {
-  var self = this;
+  /* @ngInject */
+  function IngredientsListController($state, ingredientService) {
+    var self = this;
 
-  self.items = [];
-  self.searchText = null;
-  self.searchIngredients = searchIngredients;
+    self.items = [];
+    self.searchText = null;
+    self.searchIngredients = searchIngredients;
+    self.editIngredient = editIngredient;
 
-  return init();
+    /**
+     * Set initial state.
+     * Pre-load list of latest ingredients.
+     */
+    return initialize();
 
-  function init() {
-    self.isLoading = true;
+    function initialize() {
+      self.isLoading = true;
 
-    getIngredients().then(
-      function () {
-        self.isLoading = false;
-      },
-      function () {
-        self.isLoading = false;
-        self.isError = true;
-      }
-    );
+      getIngredients().then(
+        function () {
+          self.isLoading = false;
+        },
+        function () {
+          self.isLoading = false;
+          self.isError = true;
+        }
+      );
+    }
+
+    /**
+     * Load ingredients from service.
+     *
+     * @returns {*}
+     */
+    function getIngredients() {
+      return ingredientService.getIngredients()
+        .then(function (data) {
+          self.items = data;
+          return self.items;
+        });
+    }
+
+    /**
+     * Search ingredients by given text query.
+     *
+     * @returns {*}
+     */
+    function searchIngredients() {
+      self.isLoading = true;
+
+      return ingredientService.searchIngredients(self.searchText)
+        .then(function (data) {
+          self.isLoading = false;
+          self.items = data;
+          return self.items;
+        }
+      );
+    }
+
+    /**
+     * Go to ingredient edit form.
+     *
+     * @param ingredientId
+     */
+    function editIngredient(ingredientId) {
+      $state.go('editIngredient', {ingredientId: ingredientId});
+    }
   }
-
-  function getIngredients() {
-    return ingredientService.getIngredients()
-      .then(function (data) {
-        self.items = data;
-        return self.items;
-      });
-  }
-
-  function searchIngredients() {
-    self.isLoading = true;
-
-    return ingredientService.searchIngredients(self.searchText)
-      .then(function (data) {
-        self.isLoading = false;
-        self.items = data;
-        return self.items;
-      }
-    );
-  }
-}
+})();

@@ -1,9 +1,9 @@
-<div ng-controller="RecipesListController as recipes">
+<div ng-controller="RecipesListController as ctrl">
   <mp-navbar mp-title="Recipes"
-             mp-search="recipes.searchRecipes()"
-             mp-search-query="recipes.searchText"
+             mp-search="ctrl.searchRecipes()"
+             mp-search-query="ctrl.searchText"
              mp-search-delay="500"
-             mp-is-loading="recipes.isLoading">
+             mp-is-loading="ctrl.isLoading">
   </mp-navbar>
 
   <md-button class="md-fab md-button md-accent md-default-theme mp-fab-bottom-right"
@@ -15,14 +15,14 @@
   </md-button>
 
   <md-content class="mp-content md-whiteframe-z1">
-    <div class="mp-centered" ng-show="recipes.isError">
+    <div class="mp-centered" ng-show="ctrl.isError">
       Could not load recipes list. Please, check network connection.
     </div>
 
-    <md-list ng-hide="recipes.isLoading">
+    <md-list ng-hide="ctrl.isLoading">
       <md-list-item class="md-3-line"
-                    ng-repeat="recipe in recipes.items"
-                    ng-click="go('viewRecipe', {recipeId: recipe.id})">
+                    ng-repeat="recipe in ctrl.items"
+                    ng-click="ctrl.openRecipe(recipe.id)">
         <img ng-src="images/ingredient-icon.png" class="md-avatar">
 
         <div class="md-list-item-text" layout="row" layout-align="space-between">

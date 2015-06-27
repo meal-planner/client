@@ -1,5 +1,5 @@
-<div class="nutrient-table" ng-class="{'no-margin': ctrl.noMargin}">
-  <div class="row" ng-repeat="nutrient in ctrl.nutrients | orderBy:'-sort':true">
+<div class="nutrient-table" ng-class="{'no-margin': noMargin}">
+  <div class="row" ng-repeat="nutrient in nutrients | orderBy:'-sort':true">
       <span class="percent">
         <span ng-if="nutrient.dailyValue">
           <strong>{{nutrient.dailyValue}}</strong>%

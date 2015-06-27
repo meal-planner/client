@@ -1,9 +1,9 @@
-<div ng-controller="IngredientsListController as ingredients">
+<div ng-controller="IngredientsListController as ctrl">
   <mp-navbar mp-title="Ingredients"
-             mp-search="ingredients.searchIngredients()"
-             mp-search-query="ingredients.searchText"
+             mp-search="ctrl.searchIngredients()"
+             mp-search-query="ctrl.searchText"
              mp-search-delay="500"
-             mp-is-loading="ingredients.isLoading">
+             mp-is-loading="ctrl.isLoading">
   </mp-navbar>
 
   <md-button class="md-fab md-button md-accent md-default-theme mp-fab-bottom-right"
@@ -15,14 +15,14 @@
   </md-button>
 
   <md-content class="mp-content md-whiteframe-z1">
-    <div class="mp-centered" ng-show="ingredients.isError">
+    <div class="mp-centered" ng-show="ctrl.isError">
       Could not load ingredients list. Please, check network connection.
     </div>
 
-    <md-list ng-hide="ingredients.isLoading">
+    <md-list ng-hide="ctrl.isLoading">
       <md-list-item class="md-3-line"
-                    ng-repeat="ingredient in ingredients.items"
-                    ng-click="go('editIngredient', {ingredientId: ingredient.id})">
+                    ng-repeat="ingredient in ctrl.items"
+                    ng-click="ctrl.editIngredient(ingredient.id)">
         <img ng-src="images/ingredient-icon.png" class="md-avatar" title="{{ingredient.group}}">
 
         <div class="md-list-item-text" layout="row" layout-align="space-between">

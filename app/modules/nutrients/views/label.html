@@ -1,7 +1,7 @@
 <div class="nutrition-label">
   <h1>Nutrition Facts</h1>
   <hr size="3"/>
-  <h3>Recipe yields {{ctrl.servings}} serving{{ctrl.servings > 1 ? 's' : ''}}</h3>
+  <h3>Recipe yields {{servings}} serving{{servings > 1 ? 's' : ''}}</h3>
   <hr size="12"/>
   <div layout="row" layout-align="space-between end">
     <div>
@@ -9,16 +9,16 @@
       <h2>Calories</h2>
     </div>
     <div>
-      <span class="calories">{{ctrl.nutrients.energy / ctrl.servings | number : 0}}</span>
+      <span class="calories">{{nutrients.energy / servings | number : 0}}</span>
     </div>
   </div>
   <hr size="8"/>
   <strong>% DV*</strong>
 
-  <mp-nutrient-table nutrients="ctrl.mainNutrients"></mp-nutrient-table>
+  <mp-nutrient-table nutrients="mainNutrients"></mp-nutrient-table>
   <hr size="12" class="no-margin"/>
-  <mp-nutrient-table nutrients="ctrl.vitamins" no-margin="true"></mp-nutrient-table>
-  <mp-nutrient-table nutrients="ctrl.minerals" no-margin="true"></mp-nutrient-table>
+  <mp-nutrient-table nutrients="vitamins" no-margin="true"></mp-nutrient-table>
+  <mp-nutrient-table nutrients="minerals" no-margin="true"></mp-nutrient-table>
   <hr size="8" class="no-margin"/>
 
   <div class="foot-note" layout="row" layout-align="start">

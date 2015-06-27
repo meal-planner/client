@@ -3,8 +3,8 @@
     <div layout="row" layout-align="space-between">
       <div flex>
         <p class="md-headline mp-no-margins">
-          {{ctrl.day.name}}
-          <md-button type="button" ng-click="ctrl.showRecipeSelector($event, ctrl.day)"
+          {{day.name}}
+          <md-button type="button" ng-click="showRecipeSelector($event, day)"
                      md-no-ink class="mp-action-button mp-no-top-margin"
                      aria-label="Add Meal">
             <md-icon
@@ -12,20 +12,20 @@
             <md-tooltip>Add meal</md-tooltip>
           </md-button>
         </p>
-        <p class="md-body-1 mp-no-margins" ng-show="ctrl.day.meals.length == 0">
+        <p class="md-body-1 mp-no-margins" ng-show="day.meals.length == 0">
           You have not selected any meals for this day yet.<br/>
           Click "Add" button above to find recipes you would like to have in your plan.
         </p>
 
-        <div ng-repeat="mealType in ctrl.mealTypes"
-             ng-show="(ctrl.day.meals | filter: {mealType: mealType}).length > 0">
+        <div ng-repeat="mealType in mealTypes"
+             ng-show="(day.meals | filter: {mealType: mealType}).length > 0">
           <h4>{{mealType}}</h4>
-          <mp-plan-day-meal ng-repeat="meal in ctrl.day.meals | filter: {mealType: mealType} track by meal.id"
+          <mp-plan-day-meal ng-repeat="meal in day.meals | filter: {mealType: mealType} track by meal.id"
                             meal="meal"/>
         </div>
       </div>
 
-      <mp-plan-day-energy-chart day="ctrl.day"/>
+      <mp-plan-day-energy-chart day="day"/>
     </div>
   </md-content>
 </div>

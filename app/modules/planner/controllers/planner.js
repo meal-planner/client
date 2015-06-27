@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name mealPlanner.controller:PlannerController
+ * @name mealPlanner.planner.controller:PlannerController
  * @description
  * # PlannerController
  * Planner controller
  */
-angular.module('mealPlanner')
+angular.module('mealPlanner.planner')
   .controller('PlannerController', PlannerController);
 
 /* @ngInject */

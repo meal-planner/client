@@ -30,6 +30,7 @@ module.exports = function(config) {
       'bower_components/Chart.js/Chart.min.js',
       'bower_components/tc-angular-chartjs/dist/tc-angular-chartjs.min.js',
       'app/scripts/**/*.js',
+      'app/modules/**/module.js',
       'app/modules/**/*.js',
       'test/mocks/**/*.js'
     ],

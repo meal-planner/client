@@ -1,25 +1,25 @@
 <div>
   <div class="calories-pie-chart">
-    <span class="total-value" ng-show="ctrl.day.meals.length > 0">
-      <strong>{{ctrl.nutrients.energy | number : 0 }}</strong><br/>kcal
+    <span class="total-value" ng-show="day.meals.length > 0">
+      <strong>{{nutrients.energy | number : 0 }}</strong><br/>kcal
     </span>
-    <canvas tc-chartjs-pie chart-options="ctrl.chartOptions" chart-data="ctrl.chartData"></canvas>
+    <canvas tc-chartjs-pie chart-options="chartOptions" chart-data="chartData"></canvas>
   </div>
-  <div class="total-macros" ng-show="ctrl.day.meals.length > 0">
+  <div class="total-macros" ng-show="day.meals.length > 0">
     <div class="macro">
       <span class="legend fat"></span>
       <span class="label">Fat</span>
-      <span class="value">{{ctrl.nutrients.fat | number : 0}}g</span>
+      <span class="value">{{nutrients.fat | number : 0}}g</span>
     </div>
     <div class="macro">
       <span class="legend protein"></span>
       <span class="label">Protein</span>
-      <span class="value">{{ctrl.nutrients.protein | number : 0}}g</span>
+      <span class="value">{{nutrients.protein | number : 0}}g</span>
     </div>
     <div class="macro">
       <span class="legend carbohydrate"></span>
       <span class="label">Carbohydrate</span>
-      <span class="value">{{ctrl.nutrients.carbohydrate | number : 0}}g</span>
+      <span class="value">{{nutrients.carbohydrate | number : 0}}g</span>
     </div>
   </div>
 </div>

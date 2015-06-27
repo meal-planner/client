@@ -21,7 +21,7 @@
   your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div class="mp-container" ng-controller="NavigationController as navigation">
+<div class="mp-container">
   <div ui-view class="mp-animate-container ui-content">
   </div>
 </div>
@@ -50,30 +50,30 @@
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
 <!-- Navigation module -->
-<script src="modules/navigation/controllers/navigation.js"></script>
+<script src="modules/navigation/module.js"></script>
 <script src="modules/navigation/directives/navbar.js"></script>
 <!-- Planner module -->
+<script src="modules/planner/module.js"></script>
 <script src="modules/planner/routes.js"></script>
-<script src="modules/planner/controllers/planner.js"></script>
-<script src="modules/planner/controllers/planner/day.js"></script>
-<script src="modules/planner/controllers/planner/day/meal.js"></script>
-<script src="modules/planner/controllers/planner/day/energy_chart.js"></script>
-<script src="modules/planner/controllers/recipe_selector.js"></script>
 <script src="modules/planner/services/plan.js"></script>
+<script src="modules/planner/controllers/planner.js"></script>
+<script src="modules/planner/controllers/recipe_selector.js"></script>
 <script src="modules/planner/directives/planner/day.js"></script>
 <script src="modules/planner/directives/planner/day/meal.js"></script>
 <script src="modules/planner/directives/planner/day/energy_chart.js"></script>
 <!-- Nutrient module -->
+<script src="modules/nutrients/module.js"></script>
 <script src="modules/nutrients/services/nutrient.js"></script>
-<script src="modules/nutrients/controllers/label.js"></script>
 <script src="modules/nutrients/directives/label.js"></script>
 <script src="modules/nutrients/directives/label/nutrient_table.js"></script>
 <!-- Ingredients module -->
+<script src="modules/ingredients/module.js"></script>
 <script src="modules/ingredients/routes.js"></script>
 <script src="modules/ingredients/services/ingredient.js"></script>
 <script src="modules/ingredients/controllers/list.js"></script>
 <script src="modules/ingredients/controllers/edit.js"></script>
 <!-- Recipes module -->
+<script src="modules/recipes/module.js"></script>
 <script src="modules/recipes/routes.js"></script>
 <script src="modules/recipes/services/recipe.js"></script>
 <script src="modules/recipes/controllers/list.js"></script>
