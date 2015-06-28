@@ -1,13 +1,14 @@
 (function () {
   'use strict';
 
-  angular.module('mealPlanner.planner')
-    .directive('mpPlanDay', PlanDayDirective);
+  angular
+    .module('mealPlanner.planner')
+    .directive('mpPlanDay', mpPlanDay);
 
   /* @ngInject */
-  function PlanDayDirective($mdDialog, planService) {
+  function mpPlanDay($mdDialog, planService) {
     return {
-      templateUrl: 'modules/planner/views/planner/day.html',
+      templateUrl: 'modules/planner/views/directive.plan-day.html',
       link: planDayLink,
       scope: {
         day: '='
@@ -30,7 +31,7 @@
           controller: 'RecipeSelectorController',
           controllerAs: 'ctrl',
           bindToController: true,
-          templateUrl: 'modules/planner/views/planner/recipe_selector.html',
+          templateUrl: 'modules/planner/views/recipe-selector.html',
           targetEvent: event
         }).then(function (recipe) {
           /**

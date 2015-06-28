@@ -1,8 +1,9 @@
 (function () {
   'use strict';
 
-  angular.module('mealPlanner.planner')
-    .service('planService', PlanService);
+  angular
+    .module('mealPlanner.planner')
+    .factory('planService', PlanService);
 
   /* @ngInject */
   function PlanService(localStorageService) {

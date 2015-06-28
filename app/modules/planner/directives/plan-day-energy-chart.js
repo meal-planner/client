@@ -1,13 +1,14 @@
 (function () {
   'use strict';
 
-  angular.module('mealPlanner.planner')
-    .directive('mpPlanDayEnergyChart', PlanDayEnergyChartDirective);
+  angular
+    .module('mealPlanner.planner')
+    .directive('mpPlanDayEnergyChart', mpPlanDayEnergyChart);
 
   /* @ngInject */
-  function PlanDayEnergyChartDirective(planService) {
+  function mpPlanDayEnergyChart(planService) {
     return {
-      templateUrl: 'modules/planner/views/planner/day/energy_chart.html',
+      templateUrl: 'modules/planner/views/directive.plan-day-energy-chart.html',
       link: planDayEnergyChartLink,
       scope: {
         day: '='

@@ -8,7 +8,8 @@
    * # PlannerController
    * Planner controller
    */
-  angular.module('mealPlanner.planner')
+  angular
+    .module('mealPlanner.planner')
     .controller('PlannerController', PlannerController);
 
   /* @ngInject */

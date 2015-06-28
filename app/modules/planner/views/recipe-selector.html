@@ -2,11 +2,14 @@
   <md-dialog-content class="sticky-container">
     <md-subheader class="md-sticky-no-effect">Meal Selector</md-subheader>
     <md-content class="mp-spaced-both" layout="row">
-      <md-select ng-model="ctrl.mealType" placeholder="Meal type">
-        <md-option ng-value="mealType" ng-repeat="mealType in ctrl.mealTypes">
-          {{mealType}}
-        </md-option>
-      </md-select>
+      <md-input-container>
+        <label>Meal type</label>
+        <md-select ng-model="ctrl.mealType">
+          <md-option ng-value="mealType" ng-repeat="mealType in ctrl.mealTypes">
+            {{mealType}}
+          </md-option>
+        </md-select>
+      </md-input-container>
       <input aria-label="Search query" flex
              placeholder="Search"
              ng-model="ctrl.searchText"

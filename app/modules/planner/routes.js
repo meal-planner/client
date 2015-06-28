@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-  angular.module('mealPlanner.planner')
+  angular
+    .module('mealPlanner.planner')
     .config(function ($stateProvider) {
       $stateProvider.state('planner', {
         url: '/',
