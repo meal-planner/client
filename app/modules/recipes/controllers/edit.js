@@ -12,13 +12,7 @@
     .controller('RecipeEditController', RecipeEditController);
 
   /* @ngInject */
-  function RecipeEditController($state,
-                                $mdToast,
-                                $mdDialog,
-                                $stateParams,
-                                recipeService,
-                                nutrientService,
-                                ingredientService) {
+  function RecipeEditController($state, $mdToast, $mdDialog, $stateParams, recipeService, ingredientService) {
     var self = this;
 
     self.isLoading = false;
@@ -33,8 +27,6 @@
     self.removeIngredient = removeIngredient;
     self.addCookingStep = addCookingStep;
     self.removeCookingStep = removeCookingStep;
-    self.getNutrientInfo = getNutrientInfo;
-    self.ingredientMeasureSelected = ingredientMeasureSelected;
 
     /**
      * Set initial state.
@@ -64,15 +56,6 @@
           });
         });
       }
-    }
-
-    /**
-     * Callback for ingredient measure drop-down.
-     *
-     * @param ingredient
-     */
-    function ingredientMeasureSelected(ingredient) {
-      ingredient.chosenAmount = ingredient.nutrients['energy'].measures[ingredient.chosenMeasure].qty;
     }
 
     /**
@@ -120,25 +103,6 @@
      */
     function removeIngredient(ingredientIndex) {
       self.ingredients.splice(ingredientIndex, 1);
-    }
-
-    /**
-     * Collect nutrition info for given nutrient in the ingredient.
-     *
-     * @param ingredient
-     * @param nutrientName
-     * @returns {string}
-     */
-    function getNutrientInfo(ingredient, nutrientName) {
-      var nutrient = ingredient.nutrients[nutrientName];
-      var measure = nutrient.measures[ingredient.chosenMeasure];
-      if (!ingredient.chosenAmount) {
-        ingredient.chosenAmount = measure.qty;
-      }
-      var value = (measure.value / measure.qty) * ingredient.chosenAmount;
-
-      var nutrientInfo = nutrientService.getNutrientInfo(nutrientName, value);
-      return nutrientInfo.label + ': ' + nutrientInfo.value + ' ' + nutrientInfo.unit;
     }
 
     /**

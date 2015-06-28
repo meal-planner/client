@@ -13,13 +13,12 @@
     .controller('IngredientsListController', IngredientsListController);
 
   /* @ngInject */
-  function IngredientsListController($state, ingredientService) {
+  function IngredientsListController(ingredientService) {
     var self = this;
 
     self.items = [];
     self.searchText = null;
     self.searchIngredients = searchIngredients;
-    self.editIngredient = editIngredient;
 
     /**
      * Set initial state.
@@ -69,15 +68,6 @@
           return self.items;
         }
       );
-    }
-
-    /**
-     * Go to ingredient edit form.
-     *
-     * @param ingredientId
-     */
-    function editIngredient(ingredientId) {
-      $state.go('editIngredient', {ingredientId: ingredientId});
     }
   }
 })();

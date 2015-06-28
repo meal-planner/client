@@ -19,27 +19,9 @@
       Could not load ingredients list. Please, check network connection.
     </div>
 
-    <md-list ng-hide="ctrl.isLoading">
-      <md-list-item class="md-3-line"
-                    ng-repeat="ingredient in ctrl.items"
-                    ng-click="ctrl.editIngredient(ingredient.id)">
-        <img ng-src="images/ingredient-icon.png" class="md-avatar" title="{{ingredient.group}}">
-
-        <div class="md-list-item-text" layout="row" layout-align="space-between">
-          <div>
-            <h3>{{ingredient.short_name ? ingredient.short_name : ingredient.name}}</h3>
-
-            <p>
-              Calories: {{ingredient.nutrients.energy.measures[0].value}}{{ingredient.nutrients.energy.unit}}<br/>
-              Fat: {{ingredient.nutrients.fat.measures[0].value}}{{ingredient.nutrients.fat.unit}}
-              Protein: {{ingredient.nutrients.protein.measures[0].value}}{{ingredient.nutrients.protein.unit}}
-              Carbohydrate:
-              {{ingredient.nutrients.carbohydrate.measures[0].value}}{{ingredient.nutrients.carbohydrate.unit}}
-            </p>
-          </div>
-        </div>
-        <md-divider ng-if="!$last"></md-divider>
-      </md-list-item>
+    <md-list ng-hide="ctrl.isLoading" class="ingredients">
+      <mp-ingredient-item ingredient="ingredient" last="$last" ng-repeat="ingredient in ctrl.items">
+      </mp-ingredient-item>
     </md-list>
   </md-content>
 </div>

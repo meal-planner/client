@@ -32,6 +32,7 @@ module.exports = function(config) {
       'app/scripts/**/*.js',
       'app/modules/**/module.js',
       'app/modules/**/*.js',
+      'app/modules/**/*.html',
       'test/mocks/**/*.js'
     ],
 
@@ -56,8 +57,18 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-ng-html2js-preprocessor'
     ],
+
+    preprocessors: {
+      'app/modules/**/*.html': 'ng-html2js'
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'app/',
+      moduleName: 'mealPlanner.templates'
+    },
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit

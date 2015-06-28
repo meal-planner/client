@@ -1,0 +1,17 @@
+<md-list-item class="md-3-line" ng-click="editIngredient(ingredient.id)">
+  <img ng-src="images/ingredient-icon.png" class="md-avatar" title="{{ingredient.group}}">
+
+  <div class="md-list-item-text" layout="row" layout-align="space-between">
+    <div>
+      <h3>{{ingredient.short_name ? ingredient.short_name : ingredient.name}}</h3>
+
+      <p>
+        <mp-ingredient-nutrient ingredient="ingredient" nutrient="energy"></mp-ingredient-nutrient>
+        <mp-ingredient-nutrient ingredient="ingredient" nutrient="fat"></mp-ingredient-nutrient>
+        <mp-ingredient-nutrient ingredient="ingredient" nutrient="protein"></mp-ingredient-nutrient>
+        <mp-ingredient-nutrient ingredient="ingredient" nutrient="carbohydrate"></mp-ingredient-nutrient>
+      </p>
+    </div>
+  </div>
+  <md-divider ng-if="!last"></md-divider>
+</md-list-item>

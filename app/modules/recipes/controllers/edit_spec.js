@@ -56,50 +56,6 @@
       });
     });
 
-    describe('getting nutrition info', function () {
-      var ingredient;
-      beforeEach(function () {
-        ingredient = {
-          id: 'foo',
-          nutrients: {
-            energy: {
-              unit: 'kcal',
-              measures: [
-                {
-                  label: 'g',
-                  eqv: 100,
-                  qty: 100,
-                  value: 25
-                },
-                {
-                  label: 'cup',
-                  eqv: 300,
-                  qty: 1,
-                  value: 75
-                }
-              ]
-            }
-          }
-        };
-        ctrl.addIngredient(ingredient);
-      });
-
-      it('gets nutrient value from ingredient', function () {
-        // By default first measure chosen
-        expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('Calories: 25 kcal');
-        // When chosen amount is changed
-        ingredient.chosenAmount = 200;
-        expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('Calories: 50 kcal');
-        // When measure is change
-        ingredient.chosenMeasure = 1;
-        ingredient.chosenAmount = 1;
-        expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('Calories: 75 kcal');
-        ingredient.chosenAmount = 2;
-        expect(ctrl.getNutrientInfo(ingredient, 'energy')).toEqual('Calories: 150 kcal');
-      });
-
-    });
-
     describe('saving recipe', function () {
       it('converts ingredients to recipe format', function () {
         var ingredientA = {
