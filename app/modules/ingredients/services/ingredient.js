@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-  angular.module('mealPlanner.ingredients')
+  angular
+    .module('mealPlanner.ingredients')
     .factory('ingredientService', IngredientService);
 
   /* @ngInject */

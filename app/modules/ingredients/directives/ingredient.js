@@ -1,11 +1,12 @@
 (function () {
   'use strict';
 
-  angular.module('mealPlanner.ingredients')
-    .directive('mpIngredientItem', IngredientItemDirective);
+  angular
+    .module('mealPlanner.ingredients')
+    .directive('mpIngredientItem', mpIngredientItem);
 
   /* @ngInject */
-  function IngredientItemDirective($state) {
+  function mpIngredientItem($state) {
     return {
       templateUrl: 'modules/ingredients/views/ingredient.html',
       link: ingredientItemLink,

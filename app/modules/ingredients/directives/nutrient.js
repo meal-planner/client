@@ -1,14 +1,15 @@
 (function () {
   'use strict';
 
-  angular.module('mealPlanner.ingredients')
-    .directive('mpIngredientNutrient', IngredientNutrientDirective);
+  angular
+    .module('mealPlanner.ingredients')
+    .directive('mpIngredientNutrient', mpIngredientNutrient);
 
   /* @ngInject */
-  function IngredientNutrientDirective(nutrientService) {
+  function mpIngredientNutrient(nutrientService) {
     return {
       replace: true,
-      templateUrl: 'modules/ingredients/views/ingredient/nutrient.html',
+      templateUrl: 'modules/ingredients/views/nutrient.html',
       link: ingredientNutrientLink,
       scope: {
         ingredient: '=',

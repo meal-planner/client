@@ -1,11 +1,12 @@
 (function () {
   'use strict';
 
-  angular.module('mealPlanner.nutrients')
-    .directive('mpNutritionLabel', NutritionLabelDirective);
+  angular
+    .module('mealPlanner.nutrients')
+    .directive('mpNutritionLabel', mpNutritionLabel);
 
   /* @ngInject */
-  function NutritionLabelDirective(nutrientService) {
+  function mpNutritionLabel(nutrientService) {
     return {
       templateUrl: 'modules/nutrients/views/label.html',
       link: nutritionLabelLink,

@@ -1,11 +1,12 @@
 (function () {
   'use strict';
 
-  angular.module('mealPlanner.navigation')
-    .directive('mpNavbar', NavbarDirective);
+  angular
+    .module('mealPlanner.navigation')
+    .directive('mpNavbar', mpNavbar);
 
   /* @ngInject */
-  function NavbarDirective($state, $mdSidenav, $mdUtil) {
+  function mpNavbar($state, $mdSidenav, $mdUtil) {
     return {
       restrict: 'E',
       templateUrl: 'modules/navigation/views/navbar.html',
