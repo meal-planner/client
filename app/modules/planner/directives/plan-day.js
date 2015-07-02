@@ -19,6 +19,16 @@
       scope.mealTypes = planService.mealTypes;
       scope.showRecipeSelector = showRecipeSelector;
       scope.removeMeal = removeMeal;
+      scope.isFullNutrientInfoShown = false;
+
+      /**
+       * Update nutrients.
+       */
+      scope.$watch(function () {
+        return scope.day
+      }, function () {
+        scope.nutrients = planService.getDayNutrients(scope.day);
+      }, true);
 
       /**
        * Show recipe selector popup.

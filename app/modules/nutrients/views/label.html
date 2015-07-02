@@ -1,15 +1,17 @@
 <div class="nutrition-label">
   <h1>Nutrition Facts</h1>
-  <hr size="3"/>
-  <h3>Recipe yields {{servings}} serving{{servings > 1 ? 's' : ''}}</h3>
+  <div ng-show="servings > 0">
+    <hr size="3"/>
+    <h3>Recipe yields {{servings}} serving{{servings > 1 ? 's' : ''}}</h3>
+  </div>
   <hr size="12"/>
   <div layout="row" layout-align="space-between end">
     <div>
-      <strong>Amount Per Serving</strong>
+      <strong ng-show="servings > 0">Amount Per Serving</strong>
       <h2>Calories</h2>
     </div>
     <div>
-      <span class="calories">{{nutrients.energy / servings | number : 0}}</span>
+      <span class="calories">{{nutrients.energy / (servings || 1) | number : 0}}</span>
     </div>
   </div>
   <hr size="8"/>

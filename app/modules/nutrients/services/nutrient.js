@@ -114,13 +114,6 @@
         sort: 100
       },
       {
-        label: 'Vitamin A, RAE',
-        code: 'vitamin_a_rae',
-        unit: 'µg',
-        group: 'Vitamins',
-        sort: 101
-      },
-      {
         label: 'Vitamin B-6',
         code: 'vitamin_b6',
         unit: 'mg',

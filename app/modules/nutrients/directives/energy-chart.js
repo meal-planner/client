@@ -3,20 +3,19 @@
 
   angular
     .module('mealPlanner.planner')
-    .directive('mpPlanDayEnergyChart', mpPlanDayEnergyChart);
+    .directive('mpEnergyChart', mpEnergyChart);
 
   /* @ngInject */
-  function mpPlanDayEnergyChart(planService) {
+  function mpEnergyChart() {
     return {
-      templateUrl: 'modules/planner/views/directive.plan-day-energy-chart.html',
-      link: planDayEnergyChartLink,
+      templateUrl: 'modules/nutrients/views/energy-chart.html',
+      link: energyChartLink,
       scope: {
-        day: '='
+        nutrients: '='
       }
     };
 
-    function planDayEnergyChartLink(scope) {
-      scope.nutrients = planService.getDayNutrients(scope.day);
+    function energyChartLink(scope) {
       scope.chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -27,15 +26,13 @@
         animateRotate: false,
         tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%"
       };
-      scope.chartData = getChartData();
 
       /**
        * Update nutrients and recalculate chart data.
        */
       scope.$watch(function () {
-        return scope.day
+        return scope.nutrients
       }, function () {
-        scope.nutrients = planService.getDayNutrients(scope.day);
         scope.chartData = getChartData();
       }, true);
 
