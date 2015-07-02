@@ -1,8 +1,9 @@
 (function () {
   'use strict';
 
-  angular.module('mealPlanner.recipes')
-    .service('recipeService', RecipeService);
+  angular
+    .module('mealPlanner.recipes')
+    .factory('recipeService', RecipeService);
 
   /* @ngInject */
   function RecipeService($resource) {

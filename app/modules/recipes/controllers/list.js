@@ -9,7 +9,8 @@
    *
    * List of recipes controller
    */
-  angular.module('mealPlanner.recipes')
+  angular
+    .module('mealPlanner.recipes')
     .controller('RecipesListController', RecipesListController);
 
   /* @ngInject */

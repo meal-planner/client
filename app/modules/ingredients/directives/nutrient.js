@@ -27,9 +27,13 @@
        */
       scope.$watch(function () {
         return ingredient.chosenAmount
-      }, function () {
+      }, watchAmountChange, true);
+
+      function watchAmountChange(newAmount, previousAmount) {
+        if (newAmount === previousAmount) return;
+
         scope.nutrientInfo = getNutrientInfo();
-      }, true);
+      }
 
       /**
        * Update nutrient values when measure is changed.
@@ -37,10 +41,13 @@
        */
       scope.$watch(function () {
         return ingredient.chosenMeasure
-      }, function () {
+      }, watchMeasureChange, true);
+
+      function watchMeasureChange(newMeasure, previousMeasure) {
+        if (newMeasure == previousMeasure) return;
         ingredient.chosenAmount = ingredient.nutrients[nutrientName].measures[ingredient.chosenMeasure].qty;
         scope.nutrientInfo = getNutrientInfo();
-      }, true);
+      }
 
       /**
        * Get nutrient info for selected measure/amount.

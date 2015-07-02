@@ -8,7 +8,8 @@
    * # RecipeViewController
    * View recipe controller
    */
-  angular.module('mealPlanner.recipes')
+  angular
+    .module('mealPlanner.recipes')
     .controller('RecipeViewController', RecipeViewController);
 
   /* @ngInject */

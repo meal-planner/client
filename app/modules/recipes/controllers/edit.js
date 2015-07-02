@@ -8,11 +8,12 @@
    * # RecipeEditController
    * Create recipe controller
    */
-  angular.module('mealPlanner.recipes')
+  angular
+    .module('mealPlanner.recipes')
     .controller('RecipeEditController', RecipeEditController);
 
   /* @ngInject */
-  function RecipeEditController($state, $mdToast, $mdDialog, $stateParams, recipeService, ingredientService) {
+  function RecipeEditController($state, $stateParams, $mdToast, $mdDialog, recipeService, ingredientService) {
     var self = this;
 
     self.isLoading = false;
@@ -40,22 +41,24 @@
         self.isEdit = true;
         recipeService.getRecipe(recipeId).then(function (apiResponse) {
           self.recipe = apiResponse;
-          apiResponse.ingredients.forEach(function (recipeIngredient) {
-            ingredientService.getIngredient(recipeIngredient.id).then(function (ingredient) {
-              var chosenMeasure = 0, index = 0;
-              ingredient.nutrients.energy.measures.forEach(function (measure) {
-                if (measure.label == recipeIngredient.measure) {
-                  chosenMeasure = index;
-                }
-                index++;
-              });
-              ingredient.chosenMeasure = chosenMeasure;
-              ingredient.chosenAmount = recipeIngredient.measure_amount;
-              self.ingredients.push(ingredient);
-            });
-          });
+          apiResponse.ingredients.forEach(loadIngredient);
         });
       }
+    }
+
+    function loadIngredient(recipeIngredient) {
+      ingredientService.getIngredient(recipeIngredient.id).then(function (ingredient) {
+        var chosenMeasure = 0, index = 0;
+        ingredient.nutrients.energy.measures.forEach(function (measure) {
+          if (measure.label == recipeIngredient.measure) {
+            chosenMeasure = index;
+          }
+          index++;
+        });
+        ingredient.chosenMeasure = chosenMeasure;
+        ingredient.chosenAmount = recipeIngredient.measure_amount;
+        self.ingredients.push(ingredient);
+      });
     }
 
     /**
