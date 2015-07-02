@@ -18,9 +18,11 @@
   <strong>% DV*</strong>
 
   <mp-nutrient-table nutrients="mainNutrients"></mp-nutrient-table>
-  <hr size="12" class="no-margin"/>
-  <mp-nutrient-table nutrients="vitamins" no-margin="true"></mp-nutrient-table>
-  <mp-nutrient-table nutrients="minerals" no-margin="true"></mp-nutrient-table>
+  <div ng-if="showMicroNutrients == true">
+    <hr size="12" class="no-margin"/>
+    <mp-nutrient-table nutrients="vitamins" no-margin="true"></mp-nutrient-table>
+    <mp-nutrient-table nutrients="minerals" no-margin="true"></mp-nutrient-table>
+  </div>
   <hr size="8" class="no-margin"/>
 
   <div class="foot-note" layout="row" layout-align="start">
@@ -30,5 +32,15 @@
       <a href="http://www.fda.gov/Food/GuidanceRegulation/GuidanceDocumentsRegulatoryInformation/LabelingNutrition/ucm064928.htm"
         target="_blank">recommendations</a>.
     </span>
+  </div>
+
+  <div ng-hide="showMicroNutrients" flex layout="row" layout-align="center">
+    <md-button type="button" ng-click="showMicroNutrients = true"
+               md-no-ink class="mp-action-button mp-no-top-margin"
+               aria-label="Show vitamins & minerals">
+      <md-icon
+        md-svg-src="bower_components/material-design-icons/navigation/svg/design/ic_expand_more_24px.svg"></md-icon>
+      <md-tooltip>Show vitamins & minerals</md-tooltip>
+    </md-button>
   </div>
 </div>

@@ -22,6 +22,8 @@
      * @param scope
      */
     function nutritionLabelLink(scope) {
+      scope.showMicroNutrients = false;
+
       /**
        * Update nutrients.
        */
