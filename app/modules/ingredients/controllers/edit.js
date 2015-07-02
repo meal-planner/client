@@ -27,7 +27,7 @@
       'Legumes',
       'Beverages'
     ];
-    self.availableNutrients = nutrientService.nutrients;
+    self.availableNutrients = angular.copy(nutrientService.nutrients);
     self.ingredient = {nutrients: {}};
     self.isLoading = false;
     self.isEdit = false;

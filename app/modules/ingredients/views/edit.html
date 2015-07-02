@@ -17,7 +17,7 @@
     <md-content class="md-padding">
       <div>
         <label>Food group</label>
-        <md-select required ng-model="ctrl.ingredient.group" placeholder="Please, select">
+        <md-select required ng-model="ctrl.ingredient.group" aria-label="Food group">
           <md-option ng-value="group" ng-repeat="group in ctrl.foodGroups">
             {{group}}
           </md-option>
@@ -25,11 +25,11 @@
       </div>
       <md-input-container>
         <label>Short Name</label>
-        <input ng-model="ctrl.ingredient.short_name" placeholder="Shorter, common name (optional)">
+        <input ng-model="ctrl.ingredient.short_name">
       </md-input-container>
       <md-input-container>
         <label>Full Name</label>
-        <input ng-model="ctrl.ingredient.name" required placeholder="Ingredient name, e.g. Chicken breast">
+        <input ng-model="ctrl.ingredient.name" required>
       </md-input-container>
     </md-content>
 
