@@ -3,8 +3,7 @@
     <div class="md-toolbar-tools">
       <md-button ui-sref="recipesList"
                  class="md-icon-button" aria-label="Close">
-        <md-icon style="color: white;"
-                 md-svg-icon="bower_components/material-design-icons/navigation/svg/design/ic_arrow_back_24px.svg">
+        <md-icon>arrow_back</md-icon>
       </md-button>
       <h2>
         <span>{{ ctrl.recipe.name }}</span>
@@ -20,7 +19,7 @@
           <h4>Ingredients:</h4>
           <md-list>
             <md-list-item class="md-2-line" ng-repeat="ingredient in ctrl.recipe.ingredients">
-              <img ng-src="images/ingredient-icon.png" class="md-avatar">
+              <img src="images/ingredient-icon.png" class="md-avatar">
 
               <div class="md-list-item-text" layout="row" layout-align="space-between">
                 <div>

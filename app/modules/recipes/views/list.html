@@ -9,9 +9,8 @@
   <md-button class="md-fab md-button md-accent md-default-theme mp-fab-bottom-right"
              aria-label="Create new"
              ui-sref="createRecipe">
+    <md-icon>create</md-icon>
     <md-tooltip>Create new</md-tooltip>
-    <md-icon md-svg-src="bower_components/material-design-icons/content/svg/design/ic_create_24px.svg"
-             class="fab-icon">
   </md-button>
 
   <md-content class="mp-content md-whiteframe-z1">
@@ -23,7 +22,7 @@
       <md-list-item class="md-3-line"
                     ng-repeat="recipe in ctrl.items"
                     ng-click="ctrl.openRecipe(recipe.id)">
-        <img ng-src="images/ingredient-icon.png" class="md-avatar">
+        <img src="images/ingredient-icon.png" class="md-avatar">
 
         <div class="md-list-item-text" layout="row" layout-align="space-between">
           <div>

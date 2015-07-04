@@ -5,14 +5,13 @@
                  ng-click="openMenu()"
                  ng-show="isMenuButtonVisible"
                  class="md-icon-button">
-        <md-icon md-svg-icon="bower_components/material-design-icons/navigation/svg/design/ic_menu_24px.svg"></md-icon>
+        <md-icon>menu</md-icon>
       </md-button>
       <md-button aria-label="Hide search"
                  ng-click="closeSearch()"
                  ng-show="isSearchInputVisible"
                  class="md-icon-button">
-        <md-icon md-svg-icon="bower_components/material-design-icons/navigation/svg/design/ic_arrow_back_24px.svg">
-        </md-icon>
+        <md-icon>arrow_back</md-icon>
       </md-button>
       <input aria-label="Search query" flex
              placeholder="Search"
@@ -24,7 +23,7 @@
                  ng-click="openSearch()"
                  ng-show="isSearchButtonVisible"
                  class="md-icon-button">
-        <md-icon md-svg-icon="bower_components/material-design-icons/action/svg/design/ic_search_24px.svg"></md-icon>
+        <md-icon>search</md-icon>
       </md-button>
     </div>
     <md-progress-linear ng-show="mpIsLoading" md-mode="indeterminate"></md-progress-linear>
@@ -36,12 +35,11 @@
         <md-button aria-label="Close menu"
                    ng-click="closeMenu()"
                    class="md-icon-button">
-          <md-icon md-svg-icon="bower_components/material-design-icons/navigation/svg/design/ic_arrow_back_24px.svg">
-          </md-icon>
+          <md-icon>arrow_back</md-icon>
         </md-button>
         <h2>
           <a href="#" ui-sref="planner">
-            <img ng-src="images/logo.png"/>
+            <img src="images/logo.png"/>
           </a>
         </h2>
       </div>
@@ -49,8 +47,7 @@
     <md-content layout-padding>
       <md-list>
         <md-list-item ng-repeat="link in links" ng-click="open(link.state)">
-          <md-icon md-svg-icon="bower_components/material-design-icons/navigation/svg/design/ic_chevron_right_24px.svg">
-          </md-icon>
+          <md-icon>chevron_right</md-icon>
           <p>{{link.label}}</p>
         </md-list-item>
       </md-list>
