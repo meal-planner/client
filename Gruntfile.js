@@ -384,6 +384,20 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    favicons: {
+      production: {
+        options: {
+          html: 'dist/index.html',
+          windowsTile: true,
+          trueColor: true,
+          tileBlackWhite: true,
+          tileColor: "#FFFFFF" // none, auto, #color
+        },
+        src: 'dist/images/icon.png',
+        dest: 'dist/'
+      }
     }
   });
 
@@ -428,6 +442,7 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
+    'favicons',
     'filerev',
     'usemin',
     'htmlmin'
