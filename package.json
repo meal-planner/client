@@ -1,5 +1,7 @@
 {
   "name": "mealplanner",
+  "repository": "git@github.com:meal-planner/client.git",
+  "license": "GPL",
   "version": "0.0.1",
   "dependencies": {},
   "devDependencies": {
