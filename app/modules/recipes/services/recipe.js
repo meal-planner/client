@@ -6,8 +6,8 @@
     .factory('recipeService', RecipeService);
 
   /* @ngInject */
-  function RecipeService($resource) {
-    var recipe = $resource('/api/recipes/:id', null, {'update': {method: 'PUT'}});
+  function RecipeService($resource, ENV) {
+    var recipe = $resource(ENV.apiEndpoint + 'recipes/:id', null, {'update': {method: 'PUT'}});
 
     return {
       getRecipe: getRecipe,

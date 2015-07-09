@@ -419,6 +419,35 @@ module.exports = function (grunt) {
           branch: 'build'
         }
       }
+    },
+
+    ngconstant: {
+      options: {
+        space: '  ',
+        wrap: '(function ()\n{"use strict";\n\n {%= __ngModule %}\n})();',
+        name: 'mealPlanner.environment',
+      },
+      // Environment targets
+      development: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/app.env.js'
+        },
+        constants: {
+          ENV: {
+            apiEndpoint: 'http://localhost/api/'
+          }
+        }
+      },
+      production: {
+        options: {
+          dest: '<%= yeoman.dist %>/scripts/app.env.js'
+        },
+        constants: {
+          ENV: {
+            apiEndpoint: 'http://api.meal-planner.org/'
+          }
+        }
+      }
     }
   });
 
@@ -430,6 +459,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:development',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -453,6 +483,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:production',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
