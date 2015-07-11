@@ -9,7 +9,6 @@
     "angular-local-storage": "latest",
     "json3": "^3.3.0",
     "es5-shim": "^4.0.0",
-    "material-design-icons": "^1.0.0",
     "tc-angular-chartjs": "latest"
   },
   "devDependencies": {
