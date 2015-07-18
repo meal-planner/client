@@ -49,30 +49,17 @@
           <div class="md-list-item-text" layout="row" layout-align="space-between start">
             <div flex>
               <h3 layout="row" layout-align="space-between">
-                {{ingredient.short_name ? ingredient.short_name : ingredient.name}}
+                {{ingredient.name}}
               </h3>
 
               <p class="ingredients">
-                <mp-ingredient-nutrient ingredient="ingredient" nutrient="energy"></mp-ingredient-nutrient>
-                <mp-ingredient-nutrient ingredient="ingredient" nutrient="fat"></mp-ingredient-nutrient>
-                <mp-ingredient-nutrient ingredient="ingredient" nutrient="protein"></mp-ingredient-nutrient>
-                <mp-ingredient-nutrient ingredient="ingredient" nutrient="carbohydrate"></mp-ingredient-nutrient>
+                <mp-ingredient-nutrient ingredient="ingredient" code="energy"></mp-ingredient-nutrient>
+                <mp-ingredient-nutrient ingredient="ingredient" code="fat"></mp-ingredient-nutrient>
+                <mp-ingredient-nutrient ingredient="ingredient" code="protein"></mp-ingredient-nutrient>
+                <mp-ingredient-nutrient ingredient="ingredient" code="carbohydrate"></mp-ingredient-nutrient>
               </p>
 
-              <div layout>
-                <md-input-container style="width: 75px;">
-                  <label>Amount</label>
-                  <input type="number" ng-model="ingredient.chosenAmount" required>
-                </md-input-container>
-                <md-input-container>
-                  <label>Measure</label>
-                  <md-select has-backdrop="false" ng-model="ingredient.chosenMeasure">
-                    <md-option ng-value="$index" ng-repeat="measure in ingredient.nutrients.energy.measures">
-                      {{measure.label}}
-                    </md-option>
-                  </md-select>
-                </md-input-container>
-              </div>
+              <mp-measure-selector ingredient="ingredient"></mp-measure-selector>
             </div>
             <md-button type="button" ng-click="ctrl.removeIngredient($index)"
                        md-no-ink class="mp-action-button"

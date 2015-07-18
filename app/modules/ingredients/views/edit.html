@@ -33,10 +33,10 @@
     </md-content>
 
     <md-content class="md-padding mp-ingredient-measure" layout="column"
-                ng-repeat="(measureIndex, measure) in ctrl.ingredient.nutrients.energy.measures">
+                ng-repeat="(measureIndex, measure) in ctrl.ingredient.measures">
       <p class="md-subhead">
         <md-button type="button" ng-click="ctrl.removeMeasure(measureIndex)"
-                   ng-show="ctrl.ingredient.nutrients.energy.measures.length > 1"
+                   ng-show="ctrl.ingredient.measures.length > 1"
                    md-no-ink class="mp-action-button"
                    aria-label="Remove Measure">
           <md-icon>remove_circle</md-icon>
@@ -61,9 +61,9 @@
             <input type="float" ng-model="measure.eqv" required>
           </md-input-container>
         </div>
-        <md-input-container flex="20" ng-repeat="(nutrientName, nutrient) in ctrl.ingredient.nutrients">
+        <md-input-container flex="20" ng-repeat="nutrient in measure.nutrients.items">
           <label>{{nutrient.label}} ({{nutrient.unit}})</label>
-          <input type="float" ng-model="ctrl.ingredient.nutrients[nutrientName].measures[measureIndex].value" required>
+          <input type="float" ng-model="nutrient.value" required>
         </md-input-container>
       </div>
     </md-content>
@@ -74,15 +74,9 @@
       </md-button>
       <div ng-show="ctrl.isNutrientSelectorShown">
         <md-select class="mp-no-margins" flex ng-model="selectedNutrient" placeholder="Select a nutrient">
-          <md-optgroup label="Proximates">
+          <md-optgroup label="Main Nutrients">
             <md-option ng-value="nutrient.code"
-                       ng-repeat="nutrient in ctrl.availableNutrients | filter: {group: 'Proximates'}">
-              {{nutrient.label}}
-            </md-option>
-          </md-optgroup>
-          <md-optgroup label="Lipids">
-            <md-option ng-value="nutrient.code"
-                       ng-repeat="nutrient in ctrl.availableNutrients | filter: {group: 'Lipids'}">
+                       ng-repeat="nutrient in ctrl.availableNutrients | filter: {group: 'Main Nutrients'}">
               {{nutrient.label}}
             </md-option>
           </md-optgroup>

@@ -60,35 +60,43 @@
 <!-- Navigation module -->
 <script src="modules/navigation/module.js"></script>
 <script src="modules/navigation/directives/navbar.js"></script>
-<!-- Planner module -->
-<script src="modules/planner/module.js"></script>
-<script src="modules/planner/routes.js"></script>
-<script src="modules/planner/services/plan.js"></script>
-<script src="modules/planner/controllers/planner.js"></script>
-<script src="modules/planner/controllers/recipe_selector.js"></script>
-<script src="modules/planner/directives/plan-day.js"></script>
-<script src="modules/planner/directives/plan-day-meal.js"></script>
 <!-- Nutrient module -->
 <script src="modules/nutrients/module.js"></script>
-<script src="modules/nutrients/services/nutrient.js"></script>
+<script src="modules/nutrients/factories/nutrient.js"></script>
+<script src="modules/nutrients/factories/nutrient-collection.js"></script>
 <script src="modules/nutrients/directives/label.js"></script>
 <script src="modules/nutrients/directives/nutrient-table.js"></script>
 <script src="modules/nutrients/directives/energy-chart.js"></script>
 <!-- Ingredients module -->
 <script src="modules/ingredients/module.js"></script>
 <script src="modules/ingredients/routes.js"></script>
+<script src="modules/ingredients/factories/ingredient.js"></script>
 <script src="modules/ingredients/services/ingredient.js"></script>
 <script src="modules/ingredients/controllers/list.js"></script>
 <script src="modules/ingredients/controllers/edit.js"></script>
+<script src="modules/ingredients/controllers/view.js"></script>
 <script src="modules/ingredients/directives/ingredient.js"></script>
 <script src="modules/ingredients/directives/nutrient.js"></script>
+<script src="modules/ingredients/directives/measure-selector.js"></script>
 <!-- Recipes module -->
 <script src="modules/recipes/module.js"></script>
 <script src="modules/recipes/routes.js"></script>
+<script src="modules/recipes/factories/recipe.js"></script>
 <script src="modules/recipes/services/recipe.js"></script>
 <script src="modules/recipes/controllers/list.js"></script>
 <script src="modules/recipes/controllers/edit.js"></script>
 <script src="modules/recipes/controllers/view.js"></script>
+<!-- Planner module -->
+<script src="modules/planner/module.js"></script>
+<script src="modules/planner/routes.js"></script>
+<script src="modules/planner/factories/meal.js"></script>
+<script src="modules/planner/factories/plan-day.js"></script>
+<script src="modules/planner/factories/plan.js"></script>
+<script src="modules/planner/services/plan.js"></script>
+<script src="modules/planner/controllers/planner.js"></script>
+<script src="modules/planner/controllers/recipe_selector.js"></script>
+<script src="modules/planner/directives/plan-day.js"></script>
+<script src="modules/planner/directives/plan-day-meal.js"></script>
 <!-- endbuild -->
 <!-- Google Analytics -->
 <script>
@@ -100,5 +108,6 @@
   ga('create', 'UA-65033662-1', 'auto');
   ga('send', 'pageview');
 </script>
+<!-- end analytics -->
 </body>
 </html>

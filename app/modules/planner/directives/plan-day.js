@@ -1,6 +1,13 @@
 (function () {
   'use strict';
 
+  /**
+   * @ngdoc function
+   * @name mealPlanner.planner.directive:mpPlanDay
+   * @description
+   * # mpPlanDay
+   * Plan day directive, used to display single day of the plan.
+   */
   angular
     .module('mealPlanner.planner')
     .directive('mpPlanDay', mpPlanDay);
@@ -22,33 +29,26 @@
       scope.isFullNutrientInfoShown = false;
 
       /**
-       * Update nutrients.
-       */
-      scope.$watch(function () {
-        return scope.day
-      }, function () {
-        scope.nutrients = planService.getDayNutrients(scope.day);
-      }, true);
-
-      /**
        * Show recipe selector popup.
        *
        * @param event
        * @param day
        */
-      function showRecipeSelector(event, day) {
+      function showRecipeSelector(event) {
         $mdDialog.show({
           controller: 'RecipeSelectorController',
           controllerAs: 'ctrl',
           bindToController: true,
           templateUrl: 'modules/planner/views/recipe-selector.html',
           targetEvent: event
-        }).then(function (recipe) {
-          /**
-           * Receive recipe from selector and add it to the plan.
-           */
-          planService.addMealToPlanDay(day, recipe);
-        });
+        }).then(receiveRecipeFromSelector);
+      }
+
+      function receiveRecipeFromSelector(meal) {
+        /**
+         * Receive recipe from selector and add it to the plan as a meal.
+         */
+        scope.day.addMeal(meal.recipe, meal.type);
       }
 
       /**
@@ -58,7 +58,7 @@
        * @param meal
        */
       function removeMeal(meal) {
-        planService.removeMealFromPlan(meal);
+        scope.day.removeMeal(meal);
       }
     }
   }

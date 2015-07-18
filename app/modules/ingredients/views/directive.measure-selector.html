@@ -1,0 +1,14 @@
+<div layout="row">
+  <md-input-container style="width: 75px;">
+    <label>Amount</label>
+    <input type="number" ng-model="ingredient.selectedAmount">
+  </md-input-container>
+  <md-input-container>
+    <label>Measure</label>
+    <md-select has-backdrop="false" ng-model="ingredient.selectedMeasure">
+      <md-option ng-value="$index" ng-repeat="measure in ingredient.measures">
+        {{measure.label}}
+      </md-option>
+    </md-select>
+  </md-input-container>
+</div>

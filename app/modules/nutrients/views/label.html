@@ -11,17 +11,17 @@
       <h2>Calories</h2>
     </div>
     <div>
-      <span class="calories">{{nutrients.energy / (servings || 1) | number : 0}}</span>
+      <span class="calories">{{nutrients.find('energy').formattedValue}}</span>
     </div>
   </div>
   <hr size="8"/>
   <strong>% DV*</strong>
 
-  <mp-nutrient-table nutrients="mainNutrients"></mp-nutrient-table>
+  <mp-nutrient-table nutrients="nutrients" filter-group="Main Nutrients"></mp-nutrient-table>
   <div ng-if="showMicroNutrients == true">
     <hr size="12" class="no-margin"/>
-    <mp-nutrient-table nutrients="vitamins" no-margin="true"></mp-nutrient-table>
-    <mp-nutrient-table nutrients="minerals" no-margin="true"></mp-nutrient-table>
+    <mp-nutrient-table nutrients="nutrients" filter-group="Vitamins" no-margin="true"></mp-nutrient-table>
+    <mp-nutrient-table nutrients="nutrients" filter-group="Minerals" no-margin="true"></mp-nutrient-table>
   </div>
   <hr size="8" class="no-margin"/>
 

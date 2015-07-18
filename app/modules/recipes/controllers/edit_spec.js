@@ -2,15 +2,16 @@
   'use strict';
 
   describe('Controller: RecipeEditController', function () {
-    beforeEach(module('mealPlanner'));
-
     var ctrl,
       scope,
-      deferred;
+      deferred,
+      ingredientFactory;
 
-    beforeEach(inject(function ($controller, $rootScope, $q) {
-      scope = $rootScope.$new();
+    beforeEach(module('mealPlanner', 'mealPlanner.templates'));
+    beforeEach(inject(function ($controller, $rootScope, $q, IngredientFactory) {
+      scope = $rootScope;
       deferred = $q.defer();
+      ingredientFactory = IngredientFactory;
 
       var recipeServiceMock = {
         saveRecipe: function () {
@@ -58,53 +59,50 @@
 
     describe('saving recipe', function () {
       it('converts ingredients to recipe format', function () {
-        var ingredientA = {
+        var ingredientA = ingredientFactory.build({
             id: 'foo_a',
             name: 'baz',
-            nutrients: {
-              energy: {
-                unit: 'kcal',
-                measures: [
-                  {
-                    label: 'g',
-                    eqv: 100,
-                    qty: 100,
-                    value: 25
-                  },
-                  {
-                    label: 'cup',
-                    eqv: 300,
-                    qty: 1,
-                    value: 75
-                  }
-                ]
+            measures: [
+              {
+                label: 'g',
+                eqv: 100,
+                qty: 100,
+                nutrients: {
+                  energy: 25
+                }
+              },
+              {
+                label: 'cup',
+                eqv: 300,
+                qty: 1,
+                nutrients: {
+                  energy: 75
+                }
               }
-            }
-          },
-          ingredientB = {
+            ]
+          }),
+          ingredientB = ingredientFactory.build({
             id: 'foo_b',
             name: 'bar',
-            nutrients: {
-              energy: {
-                unit: 'kcal',
-                measures: [
-                  {
-                    label: 'g',
-                    eqv: 100,
-                    qty: 100,
-                    value: 25
-                  }
-                ]
+            measures: [
+              {
+                label: 'g',
+                eqv: 100,
+                qty: 100,
+                nutrients: {
+                  energy: 25
+                }
               }
-            }
-          };
+            ]
+          });
         ctrl.addIngredient(ingredientA);
         ctrl.addIngredient(ingredientB);
-        ingredientA.chosenMeasure = 1;
-        ingredientA.chosenAmount = 2;
-        ingredientB.chosenMeasure = 0;
-        ingredientB.chosenAmount = 200;
-
+        ingredientA.selectedMeasure = 1;
+        ingredientA.selectedAmount = 2;
+        ingredientA.updateNutritionValues();
+        ingredientB.selectedMeasure = 0;
+        ingredientB.selectedAmount = 200;
+        ingredientB.updateNutritionValues();
         ctrl.saveRecipe();
 
         expect(ctrl.recipe.ingredients[0].id).toEqual(ingredientA.id);

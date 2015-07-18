@@ -10,13 +10,16 @@
     </md-content>
   </div>
 
-  <mp-plan-day ng-repeat="day in ctrl.plan track by day.id" day="day"></mp-plan-day>
-
-  <div layout="row" layout-align="center">
-    <md-button type="button" class="md-raised md-primary md-hue-3"
-               ng-click="ctrl.planNextDay()"
-               ng-show="ctrl.schedule.length > 0">
-      Plan next day
-    </md-button>
+  <div class="mp-content mp-no-top-margin md-whiteframe-z1 mp-planner-tabs">
+    <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect md-dynamic-height>
+      <md-tab ng-repeat="day in ctrl.plan.days" label="{{day.name}}">
+        <mp-plan-day day="day"></mp-plan-day>
+      </md-tab>
+      <md-tab label="Weekly Summary">
+        <md-content class="md-padding">
+          Your weekly meals summary
+        </md-content>
+      </md-tab>
+    </md-tabs>
   </div>
 </div>

@@ -25,17 +25,18 @@
 
     /**
      * Set initial state.
+     * Load list of recipes.
      */
-    return initialize();
+    return activate();
 
-    function initialize() {
+    function activate() {
       $scope.$watch('ctrl.searchText', $mdUtil.debounce(searchRecipes, 300));
       self.mealTypes = planService.mealTypes;
       self.mealType = planService.mealTypes[0];
 
       recipeService.getRecipes()
-        .then(function (data) {
-          self.recipes = data;
+        .then(function (recipes) {
+          self.recipes = recipes;
           return self.recipes;
         });
     }
@@ -52,22 +53,21 @@
       self.isLoading = true;
 
       return recipeService.searchRecipes(self.searchText, RECIPE_SEARCH_LIMIT)
-        .then(function (data) {
+        .then(function (recipes) {
           self.isLoading = false;
-          self.recipes = data;
+          self.recipes = recipes;
           return self.recipes;
         }
       );
     }
 
     /**
-     * Send selected recipe to day controller.
+     * Send selected recipe to the day directive.
      *
      * @param recipe
      */
     function addRecipe(recipe) {
-      recipe.mealType = self.mealType;
-      $mdDialog.hide(recipe);
+      $mdDialog.hide({recipe: recipe, type: self.mealType});
     }
 
     /**

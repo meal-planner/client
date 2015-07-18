@@ -19,7 +19,9 @@
     </div>
 
     <md-list ng-hide="ctrl.isLoading" class="ingredients">
-      <mp-ingredient-item ingredient="ingredient" last="$last" ng-repeat="ingredient in ctrl.items">
+      <mp-ingredient-item ingredient="ingredient"
+                          last="$last"
+                          ng-repeat="ingredient in ctrl.items track by ingredient.id">
       </mp-ingredient-item>
     </md-list>
   </md-content>

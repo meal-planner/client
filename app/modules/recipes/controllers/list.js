@@ -25,9 +25,9 @@
      * Set initial state.
      * Pre-load list of latest recipes.
      */
-    return initialize();
+    return activate();
 
-    function initialize() {
+    function activate() {
       self.isLoading = true;
       getRecipes().then(
         function () {

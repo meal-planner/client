@@ -30,7 +30,6 @@
       if (recipeId) {
         recipeService.getRecipe(recipeId).then(function (data) {
           self.recipe = data;
-          self.recipe.servings = self.recipe.servings || 1;
         });
       } else {
         $state.go('recipesList');

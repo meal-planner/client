@@ -1,12 +1,19 @@
 (function () {
   'use strict';
 
+  /**
+   * @ngdoc function
+   * @name mealPlanner.nutrients.factory:NutrientFactory
+   * @description
+   * # NutrientFactory
+   * Nutrient factory builds nutrient instances.
+   */
   angular
     .module('mealPlanner.nutrients')
-    .factory('nutrientService', NutrientService);
+    .factory('NutrientFactory', NutrientFactory);
 
   /* @ngInject */
-  function NutrientService($filter) {
+  function NutrientFactory($filter) {
     var nutrients = [
       {
         label: 'Calories',
@@ -54,6 +61,7 @@
         label: 'Trans fat',
         code: 'fat_trans',
         unit: 'g',
+        precision: 2,
         group: 'Main Nutrients',
         subNutrient: true,
         sort: 25
@@ -145,6 +153,7 @@
         label: 'Vitamin E',
         code: 'vitamin_e',
         unit: 'mg',
+        precision: 2,
         group: 'Vitamins',
         sort: 125
       },
@@ -291,6 +300,7 @@
     ];
 
     var defaultDailyValues = {
+      energy: 2000,
       fat: 65,
       fat_saturated: 20,
       cholesterol: 300,
@@ -324,34 +334,100 @@
       pantothenic_acid: 10
     };
 
-    return {
-      nutrients: nutrients,
-      getNutrientInfo: getNutrientInfo
-    };
+    /**
+     * Nutrient constructor.
+     *
+     * @param {string} code
+     * @param {number} precision
+     * @param {string} group
+     * @param {string} label
+     * @param {string} unit
+     * @param {boolean} subNutrient
+     * @param {number} sortOrder
+     * @constructor
+     */
+    function Nutrient(code, precision, group, label, unit, subNutrient, sortOrder) {
+      var self = this;
+
+      self.code = code;
+      self.precision = precision;
+      self.value = 0;
+      self.formattedValue = 0;
+      self.dailyValue = 0;
+      self.group = group;
+      self.label = label;
+      self.unit = unit;
+      self.subNutrient = subNutrient;
+      self.sortOrder = sortOrder;
+    }
+
+
+    Nutrient.prototype.setValue = setValue;
+    Nutrient.build = build;
+    Nutrient.isValidCode = isValidCode;
+    Nutrient.getAvailableNutrients = getAvailableNutrients;
+
+    return Nutrient;
 
     /**
-     * Get nutrient info for given code and value.
+     * Format value and recalculate daily value percentage.
      *
-     * @param code
-     * @param value
-     * @returns {{}}
+     * @param {number} value
      */
-    function getNutrientInfo(code, value) {
-      var nutrient = $filter('filter')(nutrients, {code: code})[0],
-        info = {};
-      if (nutrient) {
-        info = {
-          group: nutrient.group,
-          value: $filter('number')(value, nutrient.precision || 0),
-          dailyValue: $filter('number')(value / defaultDailyValues[code] * 100, 0),
-          label: nutrient.label,
-          unit: nutrient.unit,
-          subNutrient: nutrient.subNutrient || false,
-          sort: nutrient.sort || 9999
-        };
-      }
+    function setValue(value) {
+      this.value = value;
+      this.formattedValue = $filter('number')(value, this.precision);
+      this.dailyValue = $filter('number')(value / defaultDailyValues[this.code] * 100, 0)
+    }
 
-      return info;
+    /**
+     * Build nutrient object from given code.
+     * Value and formatting precision are optional.
+     *
+     * @param {string} code
+     * @param {number} value
+     * @param {integer} precision
+     * @returns {Nutrient|boolean}
+     */
+    function build(code, value, precision) {
+      var info = $filter('filter')(nutrients, {code: code})[0];
+      if (info) {
+        var nutrient = new Nutrient(
+          code,
+          precision || info.precision || 0,
+          info.group,
+          info.label,
+          info.unit,
+          info.subNutrient || false,
+          info.sort || 9999
+        );
+        if (value > 0) {
+          nutrient.setValue(value);
+        }
+
+        return nutrient;
+      } else {
+        return false;
+      }
+    }
+
+    /**
+     * Check if given code is valid nutrient.
+     *
+     * @param {string} code
+     * @returns {boolean}
+     */
+    function isValidCode(code) {
+      return $filter('filter')(nutrients, {code: code}).length > 0;
+    }
+
+    /**
+     * Get copy of all available nutrients.
+     *
+     * @returns [{}]
+     */
+    function getAvailableNutrients() {
+      return angular.copy(nutrients);
     }
   }
 })();

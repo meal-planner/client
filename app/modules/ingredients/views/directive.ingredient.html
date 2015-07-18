@@ -1,0 +1,17 @@
+<md-list-item class="md-3-line" ng-click="viewIngredient(ingredient.id)">
+  <img src="images/ingredient-icon.png" class="md-avatar" title="{{ingredient.group}}">
+
+  <div class="md-list-item-text" layout="row" layout-align="space-between">
+    <div>
+      <h3>{{ingredient.name}}</h3>
+
+      <p>
+        <mp-ingredient-nutrient ingredient="ingredient" code="energy"></mp-ingredient-nutrient>
+        <mp-ingredient-nutrient ingredient="ingredient" code="fat"></mp-ingredient-nutrient>
+        <mp-ingredient-nutrient ingredient="ingredient" code="protein"></mp-ingredient-nutrient>
+        <mp-ingredient-nutrient ingredient="ingredient" code="carbohydrate"></mp-ingredient-nutrient>
+      </p>
+    </div>
+  </div>
+  <md-divider ng-if="!last"></md-divider>
+</md-list-item>

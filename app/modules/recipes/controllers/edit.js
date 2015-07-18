@@ -13,7 +13,15 @@
     .controller('RecipeEditController', RecipeEditController);
 
   /* @ngInject */
-  function RecipeEditController($state, $stateParams, $mdToast, $mdDialog, recipeService, ingredientService) {
+  function RecipeEditController(
+    $state,
+    $mdToast,
+    $mdDialog,
+    $stateParams,
+    recipeService,
+    ingredientService,
+    NutrientCollectionFactory
+  ) {
     var self = this;
 
     self.isLoading = false;
@@ -22,6 +30,7 @@
     self.searchText = null;
     self.recipe = {steps: ['']};
     self.ingredients = [];
+
     self.querySearch = querySearch;
     self.saveRecipe = saveRecipe;
     self.addIngredient = addIngredient;
@@ -33,9 +42,9 @@
      * Set initial state.
      * If recipe id is given in request - load the recipe and populate the form.
      */
-    return initialize();
+    return activate();
 
-    function initialize() {
+    function activate() {
       var recipeId = $stateParams.recipeId;
       if (recipeId) {
         self.isEdit = true;
@@ -46,17 +55,23 @@
       }
     }
 
+    /**
+     * Load ingredient from backend and set selected measure/amount according to recipe.
+     *
+     * @param recipeIngredient
+     */
     function loadIngredient(recipeIngredient) {
       ingredientService.getIngredient(recipeIngredient.id).then(function (ingredient) {
-        var chosenMeasure = 0, index = 0;
-        ingredient.nutrients.energy.measures.forEach(function (measure) {
+        var selectedMeasure = 0;
+        ingredient.measures.some(function (measure, index) {
           if (measure.label == recipeIngredient.measure) {
-            chosenMeasure = index;
+            selectedMeasure = index;
+            return true;
           }
-          index++;
         });
-        ingredient.chosenMeasure = chosenMeasure;
-        ingredient.chosenAmount = recipeIngredient.measure_amount;
+        ingredient.selectedMeasure = selectedMeasure;
+        ingredient.selectedAmount = recipeIngredient.measure_amount;
+        ingredient.updateNutritionValues();
         self.ingredients.push(ingredient);
       });
     }
@@ -64,7 +79,7 @@
     /**
      * Perform ingredients search.
      *
-     * @returns {*}
+     * @returns [{Ingredient}]
      */
     function querySearch() {
       return ingredientService.searchIngredients(self.searchText);
@@ -74,12 +89,11 @@
      * Add ingredient to the recipe.
      * Validate and check if this ingredient is not already in the recipe.
      *
-     * @param ingredient
+     * @param {Ingredient} ingredient
      */
     function addIngredient(ingredient) {
       self.searchText = '';
       if (valid() && unique()) {
-        ingredient.chosenMeasure = 0;
         self.ingredients.push(ingredient);
       }
 
@@ -117,10 +131,10 @@
 
     /**
      * Remove cooking step from the recipe by index.
-     * @param step
+     * @param stepIndex
      */
-    function removeCookingStep(step) {
-      self.recipe.steps.splice(step, 1);
+    function removeCookingStep(stepIndex) {
+      self.recipe.steps.splice(stepIndex, 1);
     }
 
     /**
@@ -155,31 +169,23 @@
       /**
        * Convert ingredients for recipe storage:
        * - store selected measure label and amount
-       * - calculate each nutrient value based on chosen measure amount
+       * - sum up all nutrients from all ingredients
        */
       function convertIngredients() {
         self.recipe.ingredients = [];
-        self.recipe.nutrients = {};
+        var nutrients = NutrientCollectionFactory.build();
         self.ingredients.forEach(function (ingredient) {
-          for (var nutrient in ingredient.nutrients) {
-            if (ingredient.nutrients.hasOwnProperty(nutrient)) {
-              if (!self.recipe.nutrients[nutrient]) {
-                self.recipe.nutrients[nutrient] = 0;
-              }
-              var measure = ingredient.nutrients[nutrient].measures[ingredient.chosenMeasure];
-              self.recipe.nutrients[nutrient] += (measure.value / measure.qty) * ingredient.chosenAmount || 0;
-            }
-          }
+          nutrients.sum(ingredient.nutrients);
           var recipeIngredient = {
             id: ingredient.id,
             name: ingredient.name,
-            short_name: ingredient.short_name,
             group: ingredient.group,
-            measure: ingredient.nutrients.energy.measures[ingredient.chosenMeasure].label,
-            measure_amount: ingredient.chosenAmount
+            measure: ingredient.measures[ingredient.selectedMeasure].label,
+            measure_amount: ingredient.selectedAmount
           };
           self.recipe.ingredients.push(recipeIngredient);
         });
+        self.recipe.nutrients = nutrients.toObject();
       }
     }
   }

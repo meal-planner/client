@@ -1,12 +1,19 @@
 (function () {
   'use strict';
 
+  /**
+   * @ngdoc function
+   * @name mealPlanner.ingredients.service:ingredientService
+   * @description
+   * # ingredientService
+   * Ingredient service, performs communication with ingredient backend API.
+   */
   angular
     .module('mealPlanner.ingredients')
-    .factory('ingredientService', IngredientService);
+    .service('ingredientService', IngredientService);
 
   /* @ngInject */
-  function IngredientService($resource, ENV) {
+  function IngredientService($resource, IngredientFactory, ENV) {
     var ingredient = $resource(ENV.apiEndpoint + 'ingredients/:id', null, {'update': {method: 'PUT'}});
 
     return {
@@ -19,35 +26,51 @@
 
     /**
      * Load single ingredient by ElasticSearch document id.
+     * Build and return Ingredient object when complete.
      *
      * @param ingredientId
-     * @returns {*|Function|promise|F|n}
+     * @returns {Ingredient}
      */
     function getIngredient(ingredientId) {
-      return ingredient.get({id: ingredientId}).$promise;
+      return ingredient.get({id: ingredientId}).$promise.then(getIngredientComplete);
+
+      function getIngredientComplete(apiResponse) {
+        return IngredientFactory.build(apiResponse);
+      }
     }
 
     /**
      * Load list of ingredients from REST backend.
      *
-     * @returns {*}
+     * @returns [{Ingredient}]
      */
     function getIngredients() {
-      return ingredient.query().$promise.then(getIngredientsComplete);
-
-      function getIngredientsComplete(response) {
-        return response;
-      }
+      return ingredient.query().$promise.then(getIngredientsListComplete);
     }
 
     /**
      * Search ingredients by given query text.
      *
      * @param searchText
-     * @returns {*|Function|promise|F|n}
+     * @returns [{Ingredient}]
      */
     function searchIngredients(searchText) {
-      return ingredient.query({query: searchText}).$promise;
+      return ingredient.query({query: searchText}).$promise.then(getIngredientsListComplete);
+    }
+
+    /**
+     * Walk through the list of ingredients and build Ingredient instances.
+     *
+     * @param response
+     * @returns [{Ingredient}]
+     */
+    function getIngredientsListComplete(response) {
+      var ingredients = [];
+      response.forEach(function (apiResponse) {
+        ingredients.push(IngredientFactory.build(apiResponse));
+      });
+
+      return ingredients;
     }
 
     /**

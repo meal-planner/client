@@ -1,6 +1,13 @@
 (function () {
   'use strict';
 
+  /**
+   * @ngdoc function
+   * @name mealPlanner.ingredients.directive:mpIngredientItem
+   * @description
+   * # mpIngredientItem
+   * Ingredient item directive, used to display one ingredient in a list.
+   */
   angular
     .module('mealPlanner.ingredients')
     .directive('mpIngredientItem', mpIngredientItem);
@@ -8,7 +15,7 @@
   /* @ngInject */
   function mpIngredientItem($state) {
     return {
-      templateUrl: 'modules/ingredients/views/ingredient.html',
+      templateUrl: 'modules/ingredients/views/directive.ingredient.html',
       link: ingredientItemLink,
       scope: {
         ingredient: '=',
@@ -17,15 +24,15 @@
     };
 
     function ingredientItemLink(scope) {
-      scope.editIngredient = editIngredient;
+      scope.viewIngredient = viewIngredient;
 
       /**
        * Go to ingredient edit form.
        *
        * @param ingredientId
        */
-      function editIngredient(ingredientId) {
-        $state.go('editIngredient', {ingredientId: ingredientId});
+      function viewIngredient(ingredientId) {
+        $state.go('viewIngredient', {ingredientId: ingredientId});
       }
     }
   }

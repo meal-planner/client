@@ -25,9 +25,9 @@
      * Set initial state.
      * Pre-load list of latest ingredients.
      */
-    return initialize();
+    return activate();
 
-    function initialize() {
+    function activate() {
       self.isLoading = true;
 
       getIngredients().then(

@@ -1,0 +1,21 @@
+<div ng-controller="IngredientViewController as ctrl">
+  <md-toolbar class="md-hue-2 md-whiteframe-z2 mp-fixed-top">
+    <div class="md-toolbar-tools">
+      <md-button ui-sref="ingredientsList"
+                 class="md-icon-button" aria-label="Close">
+        <md-icon>arrow_back</md-icon>
+      </md-button>
+      <h2>
+        <span>{{ ctrl.ingredient.name }}</span>
+      </h2>
+    </div>
+  </md-toolbar>
+
+  <div class="mp-content md-whiteframe-z1">
+    <md-content class="md-padding">
+      <mp-measure-selector ingredient="ctrl.ingredient"></mp-measure-selector>
+
+      <mp-nutrition-label nutrients="ctrl.ingredient.nutrients"></mp-nutrition-label>
+    </md-content>
+  </div>
+</div>

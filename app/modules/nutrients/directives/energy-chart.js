@@ -1,8 +1,15 @@
 (function () {
   'use strict';
 
+  /**
+   * @ngdoc function
+   * @name mealPlanner.nutrients.directive:mpEnergyChart
+   * @description
+   * # mpEnergyChart
+   * Energy pie-chart directive, shows pie diagram with information about energy sources.
+   */
   angular
-    .module('mealPlanner.planner')
+    .module('mealPlanner.nutrients')
     .directive('mpEnergyChart', mpEnergyChart);
 
   /* @ngInject */
@@ -27,14 +34,14 @@
         tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%"
       };
 
+      scope.$watch('nutrients.items', updateChartData, true);
+
       /**
-       * Update nutrients and recalculate chart data.
+       * Recalculate chart data.
        */
-      scope.$watch(function () {
-        return scope.nutrients
-      }, function () {
+      function updateChartData() {
         scope.chartData = getChartData();
-      }, true);
+      }
 
       /**
        * Calculate macro nutrients shares in total energy.
@@ -42,8 +49,12 @@
        * @returns {*[]}
        */
       function getChartData() {
-        var energyFromFat = Math.round(scope.nutrients.fat * 9 / scope.nutrients.energy * 100);
-        var energyFromProtein = Math.round(scope.nutrients.protein * 4 / scope.nutrients.energy * 100);
+        scope.energy = scope.nutrients.find('energy');
+        scope.fat = scope.nutrients.find('fat');
+        scope.protein = scope.nutrients.find('protein');
+        scope.carbohydrate = scope.nutrients.find('carbohydrate');
+        var energyFromFat = Math.round(scope.fat.value * 9 / scope.energy.value * 100);
+        var energyFromProtein = Math.round(scope.protein.value * 4 / scope.energy.value * 100);
         var energyFromCarbs = 100 - energyFromFat - energyFromProtein;
 
         return [

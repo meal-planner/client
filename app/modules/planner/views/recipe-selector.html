@@ -27,7 +27,7 @@
 
             <p>
               Time to cook: {{recipe.time_to_cook}} min<br/>
-              Calories: <strong>{{recipe.nutrients.energy | number : 0}}</strong>
+              Calories: <strong>{{recipe.nutrients.find('energy').formattedValue}}</strong>
               ({{recipe.servings || 1}} serving{{recipe.servings > 1 ? 's' : ''}})
             </p>
           </div>

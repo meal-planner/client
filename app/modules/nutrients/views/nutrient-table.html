@@ -1,5 +1,5 @@
 <div class="nutrient-table" ng-class="{'no-margin': noMargin}">
-  <div class="row" ng-repeat="nutrient in nutrients | orderBy:'-sort':true">
+  <div class="row" ng-repeat="nutrient in nutrients.items | filter: {group: filterGroup} | filter: {code:'!energy'} | orderBy:'-sortOrder':true">
       <span class="percent">
         <span ng-if="nutrient.dailyValue">
           <strong>{{nutrient.dailyValue}}</strong>%
@@ -7,7 +7,7 @@
       </span>
       <span class="label" ng-class="{tabbed: nutrient.subNutrient}">
         <span ng-class="{bold: !nutrient.subNutrient}">{{nutrient.label}}</span>
-        {{nutrient.value}} {{nutrient.unit}}
+        {{nutrient.formattedValue}} {{nutrient.unit}}
       </span>
   </div>
 </div>

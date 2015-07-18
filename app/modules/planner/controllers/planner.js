@@ -15,46 +15,20 @@
   /* @ngInject */
   function PlannerController($scope, planService) {
     var self = this;
+    self.plan = planService.getPlan();
 
-    self.plan = planService.days;
-    self.schedule = [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday'
-    ];
-    self.planNextDay = planNextDay;
+    $scope.$watch('ctrl.plan.days', saveLocalPlan, true);
 
     /**
-     * Persist plan if it's updated.
+     * Persist plan in local storage.
+     *
+     * @param oldValue
+     * @param newValue
      */
-    $scope.$watch(function () {
-      return planService.days
-    }, function () {
-      planService.persist()
-    }, true);
-
-    /**
-     * Set initial state.
-     */
-    return initialize();
-
-    function initialize() {
-      if (self.plan.length > 0) {
-        self.schedule.splice(0, self.plan.length);
-      } else {
-        planNextDay();
+    function saveLocalPlan(oldValue, newValue) {
+      if (oldValue != newValue) {
+        planService.saveLocalPlan(self.plan);
       }
-    }
-
-    /**
-     * Add new day to the plan.
-     */
-    function planNextDay() {
-      planService.addDayToPlan(self.schedule.shift());
     }
   }
 })();
