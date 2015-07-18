@@ -50,6 +50,7 @@
      * Calculate sum of nutrients values from all days.
      */
     function updateNutritionValues() {
+      /*jshint validthis:true */
       var self = this;
 
       self.nutrients = NutrientCollectionFactory.build();
@@ -94,13 +95,13 @@
      * @returns {{name: *, days: [PlanDay]}}
      */
     function toObject() {
+      /*jshint validthis:true */
       var object = {
         name: this.name,
-        days: []
+        days: this.days.map(function (day) {
+          return day.toObject();
+        })
       };
-      this.days.forEach(function (day) {
-        object.days.push(day.toObject());
-      });
 
       return object;
     }

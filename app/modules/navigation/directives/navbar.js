@@ -35,7 +35,7 @@
       scope.isMenuButtonVisible = true;
       scope.isSearchButtonVisible = false;
       scope.isSearchInputVisible = false;
-      scope.open = open;
+      scope.go = go;
       scope.openMenu = openMenu;
       scope.closeMenu = closeMenu;
       scope.openSearch = openSearch;
@@ -45,9 +45,7 @@
         scope.isSearchButtonVisible = true;
 
         var wait = parseInt(scope.mpSearchDelay, 10) || 0;
-        scope.$watch('mpSearchQuery', wait
-          ? $mdUtil.debounce(handleSearchText, wait)
-          : handleSearchText);
+        scope.$watch('mpSearchQuery', wait ? $mdUtil.debounce(handleSearchText, wait) : handleSearchText);
       }
 
       /**
@@ -55,7 +53,7 @@
        *
        * @param link
        */
-      function open(link) {
+      function go(link) {
         $state.go(link);
       }
 
@@ -66,8 +64,9 @@
        * @param previousSearchText
        */
       function handleSearchText(searchQuery, previousSearchText) {
-        if (!searchQuery && searchQuery === previousSearchText) return;
-        scope.mpSearch();
+        if (searchQuery && searchQuery !== previousSearchText) {
+          scope.mpSearch();
+        }
       }
 
       /**

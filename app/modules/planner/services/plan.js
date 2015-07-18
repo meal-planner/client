@@ -34,11 +34,8 @@
      */
     function getPlan() {
       var localPlan = localStorageService.get('plan');
-      var plan = localPlan
-        ? PlanFactory.fromObject(localPlan)
-        : PlanFactory.build();
 
-      return plan;
+      return localPlan ? PlanFactory.fromObject(localPlan) : PlanFactory.build();
     }
 
     /**

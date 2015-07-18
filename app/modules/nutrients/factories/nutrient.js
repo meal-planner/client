@@ -375,9 +375,10 @@
      * @param {number} value
      */
     function setValue(value) {
+      /*jshint validthis:true */
       this.value = value;
       this.formattedValue = $filter('number')(value, this.precision);
-      this.dailyValue = $filter('number')(value / defaultDailyValues[this.code] * 100, 0)
+      this.dailyValue = $filter('number')(value / defaultDailyValues[this.code] * 100, 0);
     }
 
     /**

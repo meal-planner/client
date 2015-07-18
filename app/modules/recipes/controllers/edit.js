@@ -64,7 +64,7 @@
       ingredientService.getIngredient(recipeIngredient.id).then(function (ingredient) {
         var selectedMeasure = 0;
         ingredient.measures.some(function (measure, index) {
-          if (measure.label == recipeIngredient.measure) {
+          if (measure.label === recipeIngredient.measure) {
             selectedMeasure = index;
             return true;
           }
@@ -98,13 +98,13 @@
       }
 
       function valid() {
-        return ingredient != undefined && ingredient.id != undefined;
+        return ingredient !== undefined && ingredient.id !== undefined;
       }
 
       function unique() {
         var result = true;
         self.ingredients.forEach(function (existing) {
-          if (existing.id == ingredient.id) {
+          if (existing.id === ingredient.id) {
             result = false;
           }
         });
@@ -143,7 +143,7 @@
      * @returns {boolean}
      */
     function saveRecipe() {
-      if (self.ingredients.length == 0) {
+      if (self.ingredients.length === 0) {
         $mdDialog.show(
           $mdDialog.alert()
             .parent(angular.element(document.body))

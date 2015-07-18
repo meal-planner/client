@@ -13,7 +13,7 @@
 
     describe('building empty collection', function () {
       var nutrient,
-        collection
+        collection;
       beforeEach(function () {
         nutrient = nutrientFactory.build('energy', 100);
         collection = nutrientCollectionFactory.build();

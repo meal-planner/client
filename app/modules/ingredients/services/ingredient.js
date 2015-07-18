@@ -81,8 +81,7 @@
      * @returns {*|Function|promise|F|n}
      */
     function saveIngredient(ingredientId, data) {
-      return ingredientId
-        ? ingredient.update({id: ingredientId}, data).$promise
+      return ingredientId ? ingredient.update({id: ingredientId}, data).$promise
         : ingredient.save(data).$promise;
     }
 

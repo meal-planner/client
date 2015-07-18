@@ -49,16 +49,17 @@
      * @returns {*}
      */
     function searchRecipes(searchQuery, previousSearchText) {
-      if (!searchQuery && searchQuery === previousSearchText) return;
-      self.isLoading = true;
+      if (searchQuery && searchQuery !== previousSearchText) {
+        self.isLoading = true;
 
-      return recipeService.searchRecipes(self.searchText, RECIPE_SEARCH_LIMIT)
-        .then(function (recipes) {
-          self.isLoading = false;
-          self.recipes = recipes;
-          return self.recipes;
-        }
-      );
+        return recipeService.searchRecipes(self.searchText, RECIPE_SEARCH_LIMIT)
+          .then(function (recipes) {
+            self.isLoading = false;
+            self.recipes = recipes;
+            return self.recipes;
+          }
+        );
+      }
     }
 
     /**

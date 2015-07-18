@@ -31,7 +31,7 @@
         segmentStrokeWidth: 2,
         percentageInnerCutout: 60,
         animateRotate: false,
-        tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%"
+        tooltipTemplate: '<%if (label){%><%=label%>: <%}%><%= value %>%'
       };
 
       scope.$watch('nutrients.items', updateChartData, true);
@@ -58,9 +58,9 @@
         var energyFromCarbs = 100 - energyFromFat - energyFromProtein;
 
         return [
-          {label: "Protein", value: energyFromProtein, color: "#1E88E5"},
-          {label: "Carbs", value: energyFromCarbs, color: "#FB8C00"},
-          {label: "Fat", value: energyFromFat, color: "#43A047"}
+          {label: 'Protein', value: energyFromProtein, color: '#1E88E5'},
+          {label: 'Carbs', value: energyFromCarbs, color: '#FB8C00'},
+          {label: 'Fat', value: energyFromFat, color: '#43A047'}
         ];
       }
     }

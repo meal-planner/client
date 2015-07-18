@@ -44,6 +44,7 @@
      * Update nutrition values for currently selected measure/amount.
      */
     function updateNutritionValues() {
+      /*jshint validthis:true */
       var measure = this.measures[this.selectedMeasure];
       var selectedAmount = this.selectedAmount;
       this.nutrients.items.forEach(function (nutrient) {

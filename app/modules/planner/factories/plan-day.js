@@ -41,6 +41,7 @@
      * @param {string} type
      */
     function addMeal(recipe, type) {
+      /*jshint validthis:true */
       var meal = MealFactory.fromRecipe(recipe, type);
 
       this.meals.push(meal);
@@ -53,6 +54,7 @@
      * @param {Meal} meal
      */
     function removeMeal(meal) {
+      /*jshint validthis:true */
       var index = this.meals.indexOf(meal);
       if (index !== -1) {
         this.nutrients.subtract(meal.nutrients);
@@ -93,13 +95,13 @@
      * @returns {{name: *, meals: [Meal]}}
      */
     function toObject() {
+      /*jshint validthis:true */
       var object = {
         name: this.name,
-        meals: []
+        meals: this.meals.map(function (meal) {
+          return meal.toObject();
+        })
       };
-      this.meals.forEach(function (meal) {
-        object.meals.push(meal.toObject())
-      });
 
       return object;
     }

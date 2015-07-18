@@ -41,6 +41,7 @@
      * @param {Nutrient} item
      */
     function push(item) {
+      /*jshint validthis:true */
       this.items.push(item);
     }
 
@@ -51,17 +52,16 @@
      * @returns {Nutrient|boolean}
      */
     function find(code) {
+      /*jshint validthis:true */
       var index = -1;
       this.items.some(function (nutrient, position) {
-        if (nutrient.code == code) {
+        if (nutrient.code === code) {
           index = position;
           return true;
         }
       });
 
-      return index !== -1
-        ? this.items[index]
-        : false;
+      return index !== -1 ? this.items[index] : false;
     }
 
     /**
@@ -70,6 +70,7 @@
      * @param {Nutrient} item
      */
     function remove(item) {
+      /*jshint validthis:true */
       var index = this.items.indexOf(item);
       if (index !== -1) {
         this.items.splice(index, 1);
@@ -82,6 +83,7 @@
      * @param {NutrientCollection} other collection
      */
     function sum(other) {
+      /*jshint validthis:true */
       var self = this;
 
       other.items.forEach(function (otherNutrient) {
@@ -101,6 +103,7 @@
      * @param {NutrientCollection} other collection
      */
     function subtract(other) {
+      /*jshint validthis:true */
       this.items.forEach(function (nutrient) {
         var otherNutrient = other.find(nutrient.code);
         if (otherNutrient) {
@@ -154,6 +157,7 @@
      * @returns {{}}
      */
     function toObject() {
+      /*jshint validthis:true */
       var object = {};
       this.items.forEach(function (nutrient) {
         object[nutrient.code] = nutrient.value;

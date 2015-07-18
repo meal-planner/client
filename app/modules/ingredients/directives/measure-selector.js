@@ -34,7 +34,7 @@
        * @param newValue
        */
       function updateSelectedMeasure(oldValue, newValue) {
-        if (oldValue != newValue) {
+        if (oldValue !== newValue) {
           scope.ingredient.selectedAmount = scope.ingredient.measures[scope.ingredient.selectedMeasure].qty;
           scope.ingredient.updateNutritionValues();
         }
@@ -47,7 +47,7 @@
        * @param newValue
        */
       function updateSelectedAmount(oldValue, newValue) {
-        if (oldValue != newValue) {
+        if (oldValue !== newValue) {
           scope.ingredient.updateNutritionValues();
         }
       }

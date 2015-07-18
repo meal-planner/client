@@ -38,7 +38,7 @@
     it('returns false when building with invalid code', function () {
       var bad_nutrient = nutrientFactory.build('foo_nutrient', 10);
       expect(bad_nutrient).toBeFalsy();
-    })
+    });
 
     it('check if nutrient code is valid', function () {
       expect(nutrientFactory.isValidCode('energy')).toBeTruthy();

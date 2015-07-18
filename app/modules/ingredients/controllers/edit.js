@@ -107,12 +107,12 @@
     function removeNutrientFromAvailable(code) {
       var index = -1;
       self.availableNutrients.some(function (availableNutrient, position) {
-        if (availableNutrient.code == code) {
+        if (availableNutrient.code === code) {
           index = position;
           return true;
         }
       });
-      if (index != -1) {
+      if (index !== -1) {
         self.availableNutrients.splice(index, 1);
       }
     }

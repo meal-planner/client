@@ -58,7 +58,7 @@
     function fromRecipe(recipe, type) {
       var meal = build(recipe.name, type);
       meal.servings = recipe.servings;
-      meal.nutrients = recipe.nutrients
+      meal.nutrients = recipe.nutrients;
 
       return meal;
     }
@@ -94,6 +94,7 @@
      * @returns {{name: *, type: *, servings: *, nutrients: {}}}
      */
     function toObject() {
+      /*jshint validthis:true */
       var object = {
         name: this.name,
         type: this.type,

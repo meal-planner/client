@@ -26,7 +26,7 @@
      * @param newValue
      */
     function saveLocalPlan(oldValue, newValue) {
-      if (oldValue != newValue) {
+      if (oldValue !== newValue) {
         planService.saveLocalPlan(self.plan);
       }
     }

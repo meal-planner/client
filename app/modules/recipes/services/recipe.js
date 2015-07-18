@@ -82,8 +82,7 @@
      * @returns {*|Function|promise|F|n}
      */
     function saveRecipe(recipeId, data) {
-      return recipeId
-        ? recipe.update({id: recipeId}, data).$promise
+      return recipeId ? recipe.update({id: recipeId}, data).$promise
         : recipe.save(data).$promise;
     }
 
