@@ -2,7 +2,7 @@
   "name": "meal-planner",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "^1.3.0",
+    "angular": "^1.4.0",
     "angular-ui-router": "latest",
     "angular-resource": "^1.3.0",
     "angular-material": "master",
@@ -12,11 +12,11 @@
     "tc-angular-chartjs": "latest"
   },
   "devDependencies": {
-    "angular-mocks": "~1.3.0",
+    "angular-mocks": "^1.4.0",
     "angular-scenario": "~1.3.0"
   },
   "appPath": "app",
   "resolutions": {
-    "angular": "1.4.1"
+    "angular": "1.4.3"
   }
 }
