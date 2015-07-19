@@ -23,17 +23,7 @@
   ) {
     var self = this;
 
-    self.foodGroups = [
-      'Meat',
-      'Poultry',
-      'Fish',
-      'Dairy & Eggs',
-      'Grains',
-      'Vegetables',
-      'Fruits',
-      'Legumes',
-      'Beverages'
-    ];
+    self.foodGroups = ingredientService.foodGroups;
     self.availableNutrients = NutrientFactory.getAvailableNutrients();
     self.ingredient = {measures: []};
     self.selectedNutrients = {};

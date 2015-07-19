@@ -7,8 +7,12 @@
 
   /* @ngInject */
   function ingredientRoutesConfig($stateProvider) {
-    $stateProvider.state('ingredientsList', {
+    $stateProvider.state('ingredientsGroups', {
       url: '/ingredients/',
+      templateUrl: 'modules/ingredients/views/groups.html'
+    })
+      .state('ingredientsList', {
+      url: '/ingredients/:group',
       templateUrl: 'modules/ingredients/views/list.html'
     }).state('createIngredient', {
       url: '/ingredients/create',
@@ -17,7 +21,7 @@
       url: '/ingredients/edit/:ingredientId',
       templateUrl: 'modules/ingredients/views/edit.html'
     }).state('viewIngredient', {
-      url: '/ingredients/:ingredientId',
+      url: '/ingredients/view/:ingredientId',
       templateUrl: 'modules/ingredients/views/view.html'
     });
   }

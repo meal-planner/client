@@ -14,7 +14,7 @@
     .controller('IngredientsListController', IngredientsListController);
 
   /* @ngInject */
-  function IngredientsListController(ingredientService) {
+  function IngredientsListController($stateParams, ingredientService) {
     var self = this;
 
     self.items = [];
@@ -47,7 +47,7 @@
      * @returns {*}
      */
     function getIngredients() {
-      return ingredientService.getIngredients()
+      return ingredientService.getIngredients($stateParams.group)
         .then(function (data) {
           self.items = data;
           return self.items;

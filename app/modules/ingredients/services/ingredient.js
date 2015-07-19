@@ -15,13 +15,28 @@
   /* @ngInject */
   function IngredientService($resource, IngredientFactory, ENV) {
     var ingredient = $resource(ENV.apiEndpoint + 'ingredients/:id', null, {'update': {method: 'PUT'}});
+    var foodGroups = [
+      'Meat',
+      'Poultry',
+      'Fish & Seafood',
+      'Dairy & Eggs',
+      'Grains',
+      'Vegetables',
+      'Fruits',
+      'Legumes',
+      'Nuts & Seeds',
+      'Beverages',
+      'Sweets & Deserts',
+      'Other'
+    ];
 
     return {
       getIngredient: getIngredient,
       getIngredients: getIngredients,
       searchIngredients: searchIngredients,
       saveIngredient: saveIngredient,
-      deleteIngredient: deleteIngredient
+      deleteIngredient: deleteIngredient,
+      foodGroups: foodGroups
     };
 
     /**
@@ -44,8 +59,8 @@
      *
      * @returns [{Ingredient}]
      */
-    function getIngredients() {
-      return ingredient.query().$promise.then(getIngredientsListComplete);
+    function getIngredients(group) {
+      return ingredient.query({group: group}).$promise.then(getIngredientsListComplete);
     }
 
     /**
