@@ -1,16 +1,15 @@
 <md-content class="md-padding">
   <div layout="row" layout-align="space-between">
     <div flex>
-      <p class="md-body-1 mp-no-margins" ng-show="day.meals.length == 0">
-        You have not selected any meals for {{day.name}} yet.<br/>
+      <p class="md-body-1 mp-no-margins" ng-if="day.meals.length == 0">
+        You have not selected any meals for {{::day.name}} yet.<br/>
         Click "Add" button above to find recipes you would like to have in your plan.
       </p>
 
       <div ng-repeat="mealType in mealTypes"
-           ng-show="(day.meals | filter: {type: mealType}).length > 0">
-        <h4>{{mealType}}</h4>
-        <mp-plan-day-meal ng-repeat="meal in day.meals | filter: {type: mealType}"
-                          meal="meal" day="day"/>
+           ng-if="(day.meals | filter: {type: mealType}).length > 0">
+        <h4>{{::mealType}}</h4>
+        <mp-plan-day-meal meal="meal" day="day" ng-repeat="meal in day.meals | filter: {type: mealType}"/>
       </div>
     </div>
 

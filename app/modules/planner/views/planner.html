@@ -1,4 +1,4 @@
-<div ng-controller="PlannerController as ctrl">
+<div>
   <mp-navbar mp-title="Make Plan"></mp-navbar>
 
   <div class="mp-content md-whiteframe-z1">
@@ -12,7 +12,7 @@
 
   <div class="mp-content mp-no-top-margin md-whiteframe-z1 mp-planner-tabs">
     <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect md-dynamic-height>
-      <md-tab ng-repeat="day in ctrl.plan.days" label="{{day.name}}">
+      <md-tab ng-repeat="day in ctrl.plan.days" label="{{::day.name}}">
         <mp-plan-day day="day"></mp-plan-day>
       </md-tab>
       <md-tab label="Weekly Summary">

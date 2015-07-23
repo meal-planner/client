@@ -35,14 +35,14 @@
     function getPlan() {
       var localPlan = localStorageService.get('plan');
 
-      return localPlan ? PlanFactory.fromObject(localPlan) : PlanFactory.build();
+      return localPlan ? PlanFactory.fromJson(localPlan) : PlanFactory.build();
     }
 
     /**
      * Persist planned days in local storage.
      */
     function saveLocalPlan(plan) {
-      localStorageService.set('plan', plan.toObject());
+      localStorageService.set('plan', plan.toJson());
     }
   }
 })();

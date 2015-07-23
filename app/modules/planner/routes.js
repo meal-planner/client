@@ -6,7 +6,9 @@
     .config(function ($stateProvider) {
       $stateProvider.state('planner', {
         url: '/',
-        templateUrl: 'modules/planner/views/planner.html'
+        templateUrl: 'modules/planner/views/planner.html',
+        controller: 'PlannerController',
+        controllerAs: 'ctrl'
       });
     });
 })();

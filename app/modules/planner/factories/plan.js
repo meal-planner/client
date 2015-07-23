@@ -28,7 +28,7 @@
     /**
      * Plan constructor.
      *
-     * @param {string} name
+     * @param {String} name
      * @constructor
      */
     function Plan(name) {
@@ -40,9 +40,9 @@
     }
 
     Plan.prototype.updateNutritionValues = updateNutritionValues;
-    Plan.prototype.toObject = toObject;
+    Plan.prototype.toJson = toJson;
     Plan.build = build;
-    Plan.fromObject = fromObject;
+    Plan.fromJson = fromJson;
 
     return Plan;
 
@@ -75,31 +75,31 @@
     }
 
     /**
-     * Create plan from given object.
+     * Create plan from given JSON.
      *
      * @param {} object
      * @returns {Plan}
      */
-    function fromObject(object) {
+    function fromJson(object) {
       var plan = build(object.name);
       object.days.forEach(function (day, index) {
-        plan.days[index] = PlanDayFactory.fromObject(day);
+        plan.days[index] = PlanDayFactory.fromJson(day);
       });
 
       return plan;
     }
 
     /**
-     * Convert plan to object.
+     * Convert plan to JSON.
      *
      * @returns {{name: *, days: [PlanDay]}}
      */
-    function toObject() {
+    function toJson() {
       /*jshint validthis:true */
       var object = {
         name: this.name,
         days: this.days.map(function (day) {
-          return day.toObject();
+          return day.toJson();
         })
       };
 

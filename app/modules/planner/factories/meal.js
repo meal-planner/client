@@ -17,8 +17,8 @@
     /**
      * Meal constructor.
      *
-     * @param {string} name
-     * @param {string} type
+     * @param {String} name
+     * @param {String} type
      * @constructor
      */
     function Meal(name, type) {
@@ -30,18 +30,18 @@
       self.nutrients = {};
     }
 
-    Meal.prototype.toObject = toObject;
+    Meal.prototype.toJson = toJson;
     Meal.build = build;
     Meal.fromRecipe = fromRecipe;
-    Meal.fromObject = fromObject;
+    Meal.fromJson = fromJson;
 
     return Meal;
 
     /**
      * Build empty meal.
      *
-     * @param name
-     * @param type
+     * @param {String} name
+     * @param {String} type
      * @returns {Meal}
      */
     function build(name, type) {
@@ -51,8 +51,8 @@
     /**
      * Create meal from recipe.
      *
-     * @param recipe
-     * @param type
+     * @param {Recipe} recipe
+     * @param {String} type
      * @returns {Meal}
      */
     function fromRecipe(recipe, type) {
@@ -80,10 +80,10 @@
      * @param object
      * @returns {Meal}
      */
-    function fromObject(object) {
+    function fromJson(object) {
       var meal = build(object.name, object.type);
       meal.servings = object.servings;
-      meal.nutrients = NutrientCollectionFactory.fromObject(object.nutrients);
+      meal.nutrients = NutrientCollectionFactory.fromJson(object.nutrients);
 
       return meal;
     }
@@ -93,13 +93,13 @@
      *
      * @returns {{name: *, type: *, servings: *, nutrients: {}}}
      */
-    function toObject() {
+    function toJson() {
       /*jshint validthis:true */
       var object = {
         name: this.name,
         type: this.type,
         servings: this.servings,
-        nutrients: this.nutrients.toObject()
+        nutrients: this.nutrients.toJson()
       };
 
       return object;

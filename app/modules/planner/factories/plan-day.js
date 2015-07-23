@@ -28,9 +28,9 @@
 
     PlanDay.prototype.addMeal = addMeal;
     PlanDay.prototype.removeMeal = removeMeal;
-    PlanDay.prototype.toObject = toObject;
+    PlanDay.prototype.toJson = toJson;
     PlanDay.build = build;
-    PlanDay.fromObject = fromObject;
+    PlanDay.fromJson = fromJson;
 
     return PlanDay;
 
@@ -73,15 +73,15 @@
     }
 
     /**
-     * Create day from object.
+     * Create day from JSON.
      *
      * @param object
      * @returns {PlanDay}
      */
-    function fromObject(object) {
+    function fromJson(object) {
       var day = build(object.name);
       object.meals.forEach(function (mealObject) {
-        var meal = MealFactory.fromObject(mealObject);
+        var meal = MealFactory.fromJson(mealObject);
         day.meals.push(meal);
         day.nutrients.sum(meal.nutrients);
       });
@@ -90,16 +90,16 @@
     }
 
     /**
-     * Convert day to object.
+     * Convert day to JSON.
      *
      * @returns {{name: *, meals: [Meal]}}
      */
-    function toObject() {
+    function toJson() {
       /*jshint validthis:true */
       var object = {
         name: this.name,
         meals: this.meals.map(function (meal) {
-          return meal.toObject();
+          return meal.toJson();
         })
       };
 

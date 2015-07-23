@@ -25,7 +25,7 @@
         var monday = plan.days[0];
         var tuesday = plan.days[1];
 
-        var recipeA = recipeFactory.build({
+        var recipeA = recipeFactory.fromJson({
           id: 'foo_recipe',
           name: 'Foo Recipe',
           time_to_cook: 10,
@@ -36,7 +36,7 @@
             carbohydrate: 50
           }
         });
-        var recipeB = recipeFactory.build({
+        var recipeB = recipeFactory.fromJson({
           id: 'bar_recipe',
           name: 'Bar Recipe',
           time_to_cook: 10,
@@ -63,7 +63,7 @@
           var plan = planFactory.build();
           var monday = plan.days[0];
           var tuesday = plan.days[1];
-          var recipeA = recipeFactory.build({
+          var recipeA = recipeFactory.fromJson({
             id: 'foo_recipe',
             name: 'Foo Recipe',
             time_to_cook: 10,
@@ -74,7 +74,7 @@
               carbohydrate: 50
             }
           });
-          var recipeB = recipeFactory.build({
+          var recipeB = recipeFactory.fromJson({
             id: 'bar_recipe',
             name: 'Bar Recipe',
             time_to_cook: 10,
@@ -87,10 +87,10 @@
           });
           monday.addMeal(recipeA, 'Breakfast');
           tuesday.addMeal(recipeB, 'Lunch');
-          var object = plan.toObject();
+          var json = plan.toJson();
 
-          expect(object.name).toEqual('default');
-          var mondayObject = object.days[0];
+          expect(json.name).toEqual('default');
+          var mondayObject = json.days[0];
           expect(mondayObject.name).toEqual(monday.name);
           expect(mondayObject.meals.length).toEqual(1);
           var mondayObjectMeal = mondayObject.meals[0];
@@ -98,8 +98,8 @@
           expect(mondayObjectMeal.nutrients.energy).toEqual(200);
         });
 
-        it('creates a plan from plain object', function () {
-          var object = {
+        it('creates a plan from JSON', function () {
+          var json = {
             name: 'Stored Plan',
             days: [
               {
@@ -143,7 +143,7 @@
             ]
           };
 
-          var plan = planFactory.fromObject(object);
+          var plan = planFactory.fromJson(json);
 
           expect(plan.name).toEqual('Stored Plan');
 

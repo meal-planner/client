@@ -6,7 +6,7 @@
         <label>Meal type</label>
         <md-select ng-model="ctrl.mealType">
           <md-option ng-value="mealType" ng-repeat="mealType in ctrl.mealTypes">
-            {{mealType}}
+            {{::mealType}}
           </md-option>
         </md-select>
       </md-input-container>
@@ -23,19 +23,19 @@
 
         <div class="md-list-item-text" layout="row" layout-align="space-between">
           <div>
-            <h3>{{recipe.name}}</h3>
+            <h3>{{::recipe.name}}</h3>
 
             <p>
-              Time to cook: {{recipe.time_to_cook}} min<br/>
-              Calories: <strong>{{recipe.nutrients.find('energy').formattedValue}}</strong>
-              ({{recipe.servings || 1}} serving{{recipe.servings > 1 ? 's' : ''}})
+              Time to cook: {{::recipe.time_to_cook}} min<br/>
+              Calories: <strong>{{::recipe.nutrients.find('energy').formattedValue}}</strong>
+              ({{::recipe.servings || 1}} serving{{::recipe.servings > 1 ? 's' : ''}})
             </p>
           </div>
         </div>
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
     </md-list>
-    <md-content class="mp-spaced-both" ng-show="ctrl.recipes.length == 0">
+    <md-content class="mp-spaced-both" ng-if="ctrl.recipes.length == 0">
       <p class="md-body-1 mp-no-top-margin">
         Sorry, no recipes were found matching your search query. Please, try another query.<br/>
         If you can't find the recipe you're looking for - you can add it in <a ui-sref="recipesList">Recipes</a>.

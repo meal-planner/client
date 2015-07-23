@@ -14,7 +14,7 @@
     describe('adding meal to the plan', function () {
       it('adds nutrients from recipe to the day', function () {
         var day = planDayFactory.build('Monday');
-        var recipeA = recipeFactory.build({
+        var recipeA = recipeFactory.fromJson({
           id: 'foo',
           name: 'Foo Recipe',
           nutrients: {
@@ -28,7 +28,7 @@
         expect(day.meals.length).toEqual(1);
         expect(day.nutrients.find('energy').value).toEqual(100);
 
-        var recipeB = recipeFactory.build({
+        var recipeB = recipeFactory.fromJson({
           id: 'baz',
           name: 'Baz Recipe',
           nutrients: {
@@ -48,7 +48,7 @@
 
       it('removes meal from the day', function () {
         var day = planDayFactory.build('Monday');
-        var recipeA = recipeFactory.build({
+        var recipeA = recipeFactory.fromJson({
           id: 'foo',
           name: 'Foo Recipe',
           nutrients: {
