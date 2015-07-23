@@ -26,10 +26,10 @@
         state: 'planner'
       }, {
         label: 'Recipes',
-        state: 'recipesList'
+        state: 'recipesGroups'
       }, {
         label: 'Ingredients',
-        state: 'ingredientsList'
+        state: 'ingredientsGroups'
       }];
 
       scope.isMenuButtonVisible = true;

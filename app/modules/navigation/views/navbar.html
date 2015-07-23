@@ -18,7 +18,7 @@
              ng-show="isSearchInputVisible"
              ng-model="mpSearchQuery"
              class="search-input"/>
-      <span ng-hide="isSearchInputVisible" flex>{{mpTitle}}</span>
+      <span ng-hide="isSearchInputVisible" flex>{{::mpTitle}}</span>
       <md-button aria-label="Search"
                  ng-click="openSearch()"
                  ng-show="isSearchButtonVisible"
@@ -48,7 +48,7 @@
       <md-list>
         <md-list-item ng-repeat="link in links" ng-click="go(link.state)">
           <md-icon>chevron_right</md-icon>
-          <p>{{link.label}}</p>
+          <p>{{::link.label}}</p>
         </md-list-item>
       </md-list>
     </md-content>
