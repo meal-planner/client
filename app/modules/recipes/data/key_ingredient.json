@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Beef",
+    "background": "recipe/group/ingredient/beef.jpg",
+    "span": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Pork",
+    "background": "recipe/group/ingredient/pork.jpg",
+    "span": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Lamb",
+    "background": "recipe/group/ingredient/lamb.jpg",
+    "span": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Fish",
+    "background": "recipe/group/ingredient/fish.jpg",
+    "span": {
+      "row": 2,
+      "col": 3
+    }
+  },
+  {
+    "title": "Seafood",
+    "background": "recipe/group/ingredient/seafood.jpg",
+    "span": {
+      "row": 2,
+      "col": 3
+    }
+  },
+  {
+    "title": "Pasta",
+    "background": "recipe/group/ingredient/pasta.jpg",
+    "span": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Eggs",
+    "background": "recipe/group/ingredient/eggs.jpg",
+    "span": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Rice",
+    "background": "recipe/group/ingredient/rice.jpg",
+    "span": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Vegetables",
+    "background": "recipe/group/ingredient/vegetables.jpg",
+    "span": {
+      "row": 2,
+      "col": 3
+    }
+  },
+  {
+    "title": "Fruits",
+    "background": "recipe/group/ingredient/fruits.jpg",
+    "span": {
+      "row": 2,
+      "col": 3
+    }
+  },
+  {
+    "title": "Chicken",
+    "background": "recipe/group/ingredient/chicken.jpg",
+    "span": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Duck",
+    "background": "recipe/group/ingredient/duck.jpg",
+    "span": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Turkey",
+    "background": "recipe/group/ingredient/turkey.jpg",
+    "span": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Bread",
+    "background": "recipe/group/ingredient/bread.jpg",
+    "span": {
+      "row": 2,
+      "col": 3
+    }
+  },
+  {
+    "title": "Chocolate",
+    "background": "recipe/group/ingredient/chocolate.jpg",
+    "span": {
+      "row": 2,
+      "col": 3
+    }
+  }
+]

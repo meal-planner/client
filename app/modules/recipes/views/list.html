@@ -1,8 +1,7 @@
-<div ng-controller="RecipesListController as ctrl">
-  <mp-navbar mp-title="Recipes"
-             mp-search="ctrl.searchRecipes()"
+<div>
+  <mp-navbar mp-title="Recipes › {{::ctrl.filterValue}}"
+             mp-search="ctrl.searchRecipes"
              mp-search-query="ctrl.searchText"
-             mp-search-delay="500"
              mp-is-loading="ctrl.isLoading">
   </mp-navbar>
 
@@ -14,10 +13,14 @@
   </md-button>
 
   <md-content class="mp-content md-whiteframe-z1">
-    <div class="mp-centered" ng-show="ctrl.isError">
+    <div class="mp-centered" ng-if="ctrl.isError">
       Could not load recipes list. Please, check network connection.
     </div>
 
+    <div class="md-padding" ng-if="!ctrl.isLoading && ctrl.items.length == 0">
+      <h3>No recipes found in this category.</h3>
+      Be the first one to contribute, <a ui-sref="createRecipe">create recipe!</a>
+    </div>
     <md-list ng-hide="ctrl.isLoading">
       <md-list-item class="md-3-line"
                     ng-repeat="recipe in ctrl.items track by recipe.id"
@@ -26,12 +29,12 @@
 
         <div class="md-list-item-text" layout="row" layout-align="space-between">
           <div>
-            <h3>{{recipe.name}}</h3>
+            <h3>{{::recipe.name}}</h3>
 
             <p>
-              Time to cook: {{recipe.time_to_cook}} min<br/>
-              Calories: <strong>{{recipe.nutrients.find('energy').formattedValue}}</strong>
-              ({{recipe.servings || 1}} serving{{recipe.servings > 1 ? 's' : ''}})
+              Time to cook: {{::recipe.time_to_cook}} min<br/>
+              Calories: <strong>{{::recipe.nutrients.find('energy').formattedValue}}</strong>
+              ({{::recipe.servings || 1}} serving{{::recipe.servings > 1 ? 's' : ''}})
             </p>
           </div>
         </div>

@@ -13,37 +13,9 @@
     .controller('RecipeViewController', RecipeViewController);
 
   /* @ngInject */
-  function RecipeViewController($state, $stateParams, recipeService) {
+  function RecipeViewController(recipe) {
     var self = this;
 
-    self.recipe = {};
-    self.editRecipe = editRecipe;
-
-    /**
-     * Set initial state.
-     * Load recipe by given id, redirect to list if no id provided.
-     */
-    return initialize();
-
-    function initialize() {
-      var recipeId = $stateParams.recipeId;
-      if (recipeId) {
-        recipeService.getRecipe(recipeId).then(function (data) {
-          self.recipe = data;
-        });
-      } else {
-        $state.go('recipesList');
-      }
-    }
-
-    /**
-     * Go to edit recipe form.
-     */
-    function editRecipe() {
-      var recipeId = $stateParams.recipeId;
-      if (recipeId) {
-        $state.go('editRecipe', {recipeId: recipeId});
-      }
-    }
+    self.recipe = recipe;
   }
 })();

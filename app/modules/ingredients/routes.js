@@ -60,7 +60,7 @@
 
     function resolveNutrients(NutrientFactory) {
       return NutrientFactory.getAvailableNutrients();
-    };
+    }
 
     function resolveFoodGroups(IngredientGroupService) {
       return IngredientGroupService.getGroups();

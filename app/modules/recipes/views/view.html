@@ -1,12 +1,12 @@
-<div ng-controller="RecipeViewController as ctrl">
+<div>
   <md-toolbar class="md-hue-2 md-whiteframe-z2 mp-fixed-top">
     <div class="md-toolbar-tools">
-      <md-button ui-sref="recipesList"
+      <md-button ui-sref="recipesGroups"
                  class="md-icon-button" aria-label="Close">
         <md-icon>arrow_back</md-icon>
       </md-button>
       <h2>
-        <span>{{ ctrl.recipe.name }}</span>
+        <span>{{::ctrl.recipe.name}}</span>
       </h2>
     </div>
   </md-toolbar>
@@ -15,7 +15,7 @@
     <md-content class="md-padding">
       <div layout="row" layout-align="space-between start">
         <div>
-          <h4>Time to cook: {{ ctrl.recipe.time_to_cook}} min.</h4>
+          <h4>Time to cook: {{::ctrl.recipe.time_to_cook}} min.</h4>
           <h4>Ingredients:</h4>
           <md-list>
             <md-list-item class="md-2-line" ng-repeat="ingredient in ctrl.recipe.ingredients">
@@ -23,10 +23,10 @@
 
               <div class="md-list-item-text" layout="row" layout-align="space-between">
                 <div>
-                  <h3>{{ingredient.name}}</h3>
+                  <h3>{{::ingredient.name}}</h3>
 
                   <p>
-                    {{ingredient.measure_amount}} {{ingredient.measure}}
+                    {{::ingredient.measure_amount}} {{::ingredient.measure}}
                   </p>
                 </div>
               </div>
@@ -35,15 +35,15 @@
           <h4>Cooking Steps:</h4>
           <ol>
             <li ng-repeat="step in ctrl.recipe.steps">
-              {{step}}
+              {{::step}}
             </li>
           </ol>
         </div>
-        <mp-nutrition-label servings="{{ctrl.recipe.servings}}" nutrients="ctrl.recipe.nutrients"></mp-nutrition-label>
+        <mp-nutrition-label servings="{{::ctrl.recipe.servings}}" nutrients="ctrl.recipe.nutrients"></mp-nutrition-label>
       </div>
 
       <div layout="row" layout-align="space-between">
-        <md-button class="md-button-wide" ng-click="ctrl.editRecipe();">
+        <md-button class="md-button-wide" ui-sref="editRecipe({recipeId:ctrl.recipe.id})">
           edit
         </md-button>
       </div>

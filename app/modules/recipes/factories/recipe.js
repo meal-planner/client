@@ -13,36 +13,40 @@
     .factory('RecipeFactory', RecipeFactory);
 
   /* @ngInject */
-  function RecipeFactory(NutrientCollectionFactory) {
+  function RecipeFactory(NutrientCollectionFactory, IngredientService) {
     /**
      * Recipe constructor.
      *
-     * @param {string} id
-     * @param {string} name
-     * @param {number} timeToCook
-     * @param {number} servings
-     * @param {array} ingredients
-     * @param {} nutrients
-     * @param {array} steps
      * @constructor
      */
-    function Recipe(id, name, timeToCook, servings, ingredients, nutrients, steps) {
+    function Recipe() {
       var self = this;
 
-      self.id = id;
-      self.name = name;
-      self.time_to_cook = timeToCook;
-      self.servings = servings;
-      self.ingredients = ingredients;
-      self.nutrients = NutrientCollectionFactory.fromObject(nutrients);
-      self.setServings(1);
-      self.steps = steps;
+      self.cuisine = {};
+      self.key_ingredient = {};
+      self.diet = {};
+      self.ingredients = [];
+      self.steps = [''];
+      self.nutrients = NutrientCollectionFactory.build();
     }
 
+    Recipe.prototype.loadIngredients = loadIngredients;
+    Recipe.prototype.addIngredient = addIngredient;
     Recipe.prototype.setServings = setServings;
+    Recipe.prototype.toJson = toJson;
     Recipe.build = build;
+    Recipe.fromJson = fromJson;
 
     return Recipe;
+
+    /**
+     * Build empty recipe.
+     *
+     * @returns {Recipe}
+     */
+    function build() {
+      return new Recipe();
+    }
 
     /**
      * Build recipe from backend API response.
@@ -74,22 +78,148 @@
      * @param data
      * @returns {Recipe}
      */
-    function build(data) {
-      return new Recipe(
-        data.id,
-        data.name,
-        data.time_to_cook,
-        data.servings || 1,
-        data.ingredients,
-        data.nutrients,
-        data.steps
-      );
+    function fromJson(object) {
+      var recipe = build();
+
+      recipe.id = object.id;
+      recipe.name = object.name;
+      recipe.time_to_cook = object.time_to_cook;
+      recipe.dish_type = object.dish_type;
+      recipe.cuisine = arrayToObject(object.cuisine);
+      recipe.key_ingredient = arrayToObject(object.key_ingredient);
+      recipe.diet = arrayToObject(object.diet);
+      recipe.servings = object.servings || 1;
+      recipe.ingredients = object.ingredients;
+      recipe.nutrients = NutrientCollectionFactory.fromJson(object.nutrients);
+      recipe.setServings(1);
+      recipe.steps = object.steps;
+
+      return recipe;
+
+      /**
+       * Create an object from array with array values as object keys, e.g.
+       * ['American', 'Mexican'] converts to {American: true, Mexican: true}
+       *
+       * @param array
+       * @returns {*}
+       */
+      function arrayToObject(array) {
+        if (array !== undefined && array.constructor === Array) {
+          return array.reduce(function (obj, key) {obj[key] = true; return obj;}, {});
+        } else {
+          return {};
+        }
+      }
+    }
+
+    /**
+     * Convert recipe model to JSON for storage in backend.
+     *
+     * @returns {}
+     */
+    function toJson() {
+      /*jshint validthis:true */
+      var self = this;
+      var json = {
+        id: self.id,
+        name: self.name,
+        time_to_cook: self.time_to_cook,
+        dish_type: self.dish_type,
+        cuisine: Object.keys(self.cuisine),
+        key_ingredient: Object.keys(self.key_ingredient),
+        diet: Object.keys(self.diet),
+        servings: self.servings,
+        steps: self.steps,
+        ingredients: []
+      };
+
+      self.nutrients = NutrientCollectionFactory.build();
+      self.ingredients.forEach(function (ingredient) {
+        self.nutrients.sum(ingredient.nutrients);
+        var recipeIngredient = {
+          id: ingredient.id,
+          name: ingredient.name,
+          measure: ingredient.measures[ingredient.selectedMeasure].label,
+          measure_amount: ingredient.selectedAmount
+        };
+        json.ingredients.push(recipeIngredient);
+      });
+      json.nutrients = self.nutrients.toJson();
+
+      return json;
+    }
+
+    /**
+     * This method loads full ingredients models from ingredient backend API.
+     * Ingredients are stored in recipe in following format:
+     * Recipe {
+     *   ingredients: [
+     *     {
+     *       id: 'string',
+     *       name: 'string',
+     *       measure: 'string', <- selected measure of the ingredient for this recipe
+     *       measure_amount: 'number' <- selected amount of the ingredient for this recipe
+     *     }
+     *   ]
+     * }
+     */
+    function loadIngredients() {
+      /*jshint validthis:true */
+      var ingredients = [];
+      this.ingredients.forEach(function (recipeIngredient) {
+        IngredientService.getIngredient(recipeIngredient.id).then(function (ingredient) {
+          var selectedMeasure = 0;
+          ingredient.measures.some(function (measure, index) {
+            if (measure.label === recipeIngredient.measure) {
+              selectedMeasure = index;
+              return true;
+            }
+          });
+          ingredient.selectedMeasure = selectedMeasure;
+          ingredient.selectedAmount = recipeIngredient.measure_amount;
+          ingredient.updateNutritionValues();
+          ingredients.push(ingredient);
+        });
+      });
+
+      this.ingredients = ingredients;
+    }
+
+    /**
+     * Add new ingredient to the recipe.
+     * Ingredient must be unique.
+     *
+     * @param {Ingredient} ingredient
+     */
+    function addIngredient(ingredient) {
+      /*jshint validthis:true */
+      var self = this;
+
+      if (valid() && unique()) {
+        self.ingredients.push(ingredient);
+      }
+
+      function valid() {
+        return ingredient !== undefined && ingredient.id !== undefined;
+      }
+
+      function unique() {
+        var isUnique = true;
+        self.ingredients.some(function (existing) {
+          if (existing.id === ingredient.id) {
+            isUnique = false;
+            return true;
+          }
+        });
+
+        return isUnique;
+      }
     }
 
     /**
      * Set selected servings.
      *
-     * @param servings
+     * @param {Number} servings
      */
     function setServings(servings) {
       /*jshint validthis:true */

@@ -17,7 +17,7 @@
       <div>
         <label>Food group</label>
         <md-select required ng-model="ctrl.ingredient.group" aria-label="Food group">
-          <md-option ng-value="group.title" ng-repeat="group in ctrl.foodGroups">
+          <md-option ng-value="group.title" ng-repeat="group in ctrl.foodGroups | orderBy:'title'">
             {{::group.title}}
           </md-option>
         </md-select>

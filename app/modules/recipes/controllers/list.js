@@ -14,7 +14,7 @@
     .controller('RecipesListController', RecipesListController);
 
   /* @ngInject */
-  function RecipesListController($state, recipeService) {
+  function RecipesListController($state, $stateParams, RecipeService) {
     var self = this;
     self.items = [];
     self.searchText = null;
@@ -29,6 +29,7 @@
 
     function activate() {
       self.isLoading = true;
+      self.filterValue = $stateParams.filterValue;
       getRecipes().then(
         function () {
           self.isLoading = false;
@@ -38,19 +39,14 @@
           self.isError = true;
         }
       );
-    }
 
-    /**
-     * Load recipes from backend.
-     *
-     * @returns {*}
-     */
-    function getRecipes() {
-      return recipeService.getRecipes()
-        .then(function (data) {
-          self.items = data;
-          return self.items;
-        });
+      function getRecipes() {
+        return RecipeService.getRecipes($stateParams.filterName, $stateParams.filterValue)
+          .then(function (data) {
+            self.items = data;
+            return self.items;
+          });
+      }
     }
 
     /**
@@ -58,14 +54,13 @@
      *
      * @returns {*}
      */
-    function searchRecipes() {
+    function searchRecipes(query) {
       self.isLoading = true;
 
-      return recipeService.searchRecipes(self.searchText)
+      RecipeService.searchRecipes(query)
         .then(function (data) {
           self.isLoading = false;
           self.items = data;
-          return self.items;
         }
       );
     }

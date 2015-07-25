@@ -3,14 +3,14 @@
 
   /**
    * @ngdoc function
-   * @name mealPlanner.recipes.service:recipeService
+   * @name mealPlanner.recipes.service:RecipeService
    * @description
-   * # recipeService
+   * # RecipeService
    * Recipe service, performs communication with recipe backend API.
    */
   angular
     .module('mealPlanner.recipes')
-    .service('recipeService', RecipeService);
+    .service('RecipeService', RecipeService);
 
   /* @ngInject */
   function RecipeService($resource, RecipeFactory, ENV) {
@@ -28,14 +28,14 @@
      * Load single recipe by ElasticSearch document id.
      * Build and return Recipe object when complete.
      *
-     * @param recipeId
+     * @param {Number} recipeId
      * @returns {Recipe}
      */
     function getRecipe(recipeId) {
       return recipe.get({id: recipeId}).$promise.then(getRecipeComplete);
 
       function getRecipeComplete(apiResponse) {
-        return RecipeFactory.build(apiResponse);
+        return RecipeFactory.fromJson(apiResponse);
       }
     }
 
@@ -44,8 +44,8 @@
      *
      * @returns [{Recipe}]
      */
-    function getRecipes() {
-      return recipe.query().$promise.then(getRecipesListComplete);
+    function getRecipes(filterName, filterValue) {
+      return recipe.query({filter_by: filterName, filter_value: filterValue}).$promise.then(getRecipesListComplete);
     }
 
     /**
@@ -68,7 +68,7 @@
     function getRecipesListComplete(response) {
       var recipes = [];
       response.forEach(function (apiResponse) {
-        recipes.push(RecipeFactory.build(apiResponse));
+        recipes.push(RecipeFactory.fromJson(apiResponse));
       });
 
       return recipes;

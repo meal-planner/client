@@ -1,11 +1,11 @@
-<form name="recipeForm" ng-controller="RecipeEditController as ctrl" ng-submit="ctrl.saveRecipe()">
+<form name="recipeForm" ng-submit="ctrl.saveRecipe()">
   <md-toolbar class="md-hue-2 md-whiteframe-z2 mp-fixed-top">
     <div class="md-toolbar-tools">
-      <md-button ui-sref="recipesList" class="md-icon-button" aria-label="Close">
+      <md-button ui-sref="recipesGroups" class="md-icon-button" aria-label="Close">
         <md-icon>arrow_back</md-icon>
       </md-button>
       <h2>
-        <span ng-if="ctrl.isEdit == true">Edit Recipe &laquo;{{ctrl.recipe.name}}&raquo;</span>
+        <span ng-if="ctrl.isEdit == true">Edit Recipe &laquo;{{::ctrl.recipe.name}}&raquo;</span>
         <span ng-if="ctrl.isEdit == false">Create New Recipe</span>
       </h2>
     </div>
@@ -19,19 +19,75 @@
           <label>Name</label>
           <input type="text" ng-model="ctrl.recipe.name" required>
         </md-input-container>
+
         <md-input-container flex>
           <label>Time to cook (minutes)</label>
           <input type="text" ng-model="ctrl.recipe.time_to_cook" required>
         </md-input-container>
+
         <div>
-          <label>Yields servings</label>
-          <md-select ng-model="ctrl.recipe.servings" placeholder="Please, select">
-            <md-option ng-value="servings" ng-repeat="servings in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
-              {{servings}}
+          <label>Dish Type</label>
+          <md-select ng-model="ctrl.recipe.dish_type" placeholder="Please, select">
+            <md-option value="{{::dishType.title}}" ng-repeat="dishType in ctrl.dishTypes | orderBy:'title'">
+              {{::dishType.title}}
             </md-option>
           </md-select>
         </div>
+
+        <div>
+          <fieldset class="standard">
+            <legend>Cuisine</legend>
+            <div layout="row" layout-wrap>
+              <div ng-repeat="cuisine in ctrl.cuisines | orderBy:'title'" flex="25">
+                <md-checkbox ng-model="ctrl.recipe.cuisine[cuisine.title]"
+                             aria-label="{{::cuisine.title}} Cuisine">
+                  {{::cuisine.title}}
+                </md-checkbox>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <p>
+          <fieldset class="standard">
+            <legend>Key Ingredient</legend>
+            <div layout="row" layout-wrap>
+              <div ng-repeat="keyIngredient in ctrl.keyIngredients | orderBy:'title'" flex="25">
+                <md-checkbox ng-model="ctrl.recipe.key_ingredient[keyIngredient.title]"
+                             aria-label="Key Ingredient: {{::keyIngredient.title}}">
+                  {{::keyIngredient.title}}
+                </md-checkbox>
+              </div>
+            </div>
+          </fieldset>
+        </p>
+
+        <div>
+          <fieldset class="standard">
+            <legend>Diet</legend>
+            <div layout="row" layout-wrap>
+              <div ng-repeat="diet in ctrl.diets | orderBy:'title'" flex="25">
+                <md-checkbox ng-model="ctrl.recipe.diet[diet.title]"
+                             aria-label="{{::diet.title}} Diet">
+                  {{::diet.title}}
+                </md-checkbox>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <p>
+          <div>
+            <label>Yields servings</label>
+            <md-select ng-model="ctrl.recipe.servings" placeholder="Please, select">
+              <md-option ng-value="servings" ng-repeat="servings in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+                {{::servings}}
+              </md-option>
+            </md-select>
+          </div>
+        </p>
       </div>
+
       <h4>Ingredients</h4>
       <md-autocomplete
         md-delay="300"
@@ -41,15 +97,16 @@
         md-items="item in ctrl.querySearch(ctrl.searchText)"
         md-item-text="item.name"
         placeholder="Type in the name of ingredient you want to add to this recipe">
-        <span md-highlight-text="ctrl.searchText">{{item.name}}</span>
+        <span md-highlight-text="ctrl.searchText">{{::item.name}}</span>
       </md-autocomplete>
       <md-list>
-        <md-list-item class="md-3-line" ng-repeat="ingredient in ctrl.ingredients track by $index">
+        <md-list-item class="md-3-line" ng-repeat="ingredient in ctrl.recipe.ingredients track by $index">
           <img src="images/ingredient-icon.png" class="md-avatar">
+
           <div class="md-list-item-text" layout="row" layout-align="space-between start">
             <div flex>
               <h3 layout="row" layout-align="space-between">
-                {{ingredient.name}}
+                {{::ingredient.name}}
               </h3>
 
               <p class="ingredients">
@@ -94,7 +151,7 @@
 
       <div layout="row" layout-align="space-between">
         <md-button type="button" class="md-button-wide" ng-hide="ctrl.isLoading"
-                   ui-sref="recipesList">
+                   ui-sref="recipesGroups">
           go back
         </md-button>
         <md-button class="md-raised md-primary md-button-wide" ng-hide="ctrl.isLoading">

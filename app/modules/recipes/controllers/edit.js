@@ -18,9 +18,13 @@
     $mdToast,
     $mdDialog,
     $stateParams,
-    recipeService,
-    ingredientService,
-    NutrientCollectionFactory
+    RecipeService,
+    IngredientService,
+    recipe,
+    dishTypes,
+    cuisines,
+    keyIngredients,
+    diets
   ) {
     var self = this;
 
@@ -28,8 +32,11 @@
     self.isEdit = false;
     self.selectedItem = null;
     self.searchText = null;
-    self.recipe = {steps: ['']};
-    self.ingredients = [];
+    self.recipe = recipe;
+    self.dishTypes = dishTypes;
+    self.cuisines = cuisines;
+    self.keyIngredients = keyIngredients;
+    self.diets = diets;
 
     self.querySearch = querySearch;
     self.saveRecipe = saveRecipe;
@@ -48,32 +55,8 @@
       var recipeId = $stateParams.recipeId;
       if (recipeId) {
         self.isEdit = true;
-        recipeService.getRecipe(recipeId).then(function (apiResponse) {
-          self.recipe = apiResponse;
-          apiResponse.ingredients.forEach(loadIngredient);
-        });
+        recipe.loadIngredients();
       }
-    }
-
-    /**
-     * Load ingredient from backend and set selected measure/amount according to recipe.
-     *
-     * @param recipeIngredient
-     */
-    function loadIngredient(recipeIngredient) {
-      ingredientService.getIngredient(recipeIngredient.id).then(function (ingredient) {
-        var selectedMeasure = 0;
-        ingredient.measures.some(function (measure, index) {
-          if (measure.label === recipeIngredient.measure) {
-            selectedMeasure = index;
-            return true;
-          }
-        });
-        ingredient.selectedMeasure = selectedMeasure;
-        ingredient.selectedAmount = recipeIngredient.measure_amount;
-        ingredient.updateNutritionValues();
-        self.ingredients.push(ingredient);
-      });
     }
 
     /**
@@ -82,35 +65,17 @@
      * @returns [{Ingredient}]
      */
     function querySearch() {
-      return ingredientService.searchIngredients(self.searchText);
+      return IngredientService.searchIngredients(self.searchText);
     }
 
     /**
      * Add ingredient to the recipe.
-     * Validate and check if this ingredient is not already in the recipe.
      *
      * @param {Ingredient} ingredient
      */
     function addIngredient(ingredient) {
       self.searchText = '';
-      if (valid() && unique()) {
-        self.ingredients.push(ingredient);
-      }
-
-      function valid() {
-        return ingredient !== undefined && ingredient.id !== undefined;
-      }
-
-      function unique() {
-        var result = true;
-        self.ingredients.forEach(function (existing) {
-          if (existing.id === ingredient.id) {
-            result = false;
-          }
-        });
-
-        return result;
-      }
+      self.recipe.addIngredient(ingredient);
     }
 
     /**
@@ -119,7 +84,7 @@
      * @param ingredientIndex
      */
     function removeIngredient(ingredientIndex) {
-      self.ingredients.splice(ingredientIndex, 1);
+      self.recipe.ingredients.splice(ingredientIndex, 1);
     }
 
     /**
@@ -139,11 +104,9 @@
 
     /**
      * Persist recipe in the backend.
-     *
-     * @returns {boolean}
      */
     function saveRecipe() {
-      if (self.ingredients.length === 0) {
+      if (self.recipe.ingredients.length === 0) {
         $mdDialog.show(
           $mdDialog.alert()
             .parent(angular.element(document.body))
@@ -152,40 +115,16 @@
             .ariaLabel('No ingredients alert')
             .ok('OK')
         );
-        return false;
-      }
-
-      self.isLoading = true;
-      convertIngredients();
-      recipeService.saveRecipe(self.recipe.id, self.recipe).then(function () {
-        $state.go('recipesList');
-        $mdToast.show({
-          template: '<md-toast>Recipe was saved!</md-toast>',
-          position: 'bottom left',
-          hideDelay: 3000
+      } else {
+        self.isLoading = true;
+        RecipeService.saveRecipe(self.recipe.id, self.recipe.toJson()).then(function () {
+          $state.go('recipesGroups');
+          $mdToast.show({
+            template: '<md-toast>Recipe was saved!</md-toast>',
+            position: 'bottom left',
+            hideDelay: 3000
+          });
         });
-      });
-
-      /**
-       * Convert ingredients for recipe storage:
-       * - store selected measure label and amount
-       * - sum up all nutrients from all ingredients
-       */
-      function convertIngredients() {
-        self.recipe.ingredients = [];
-        var nutrients = NutrientCollectionFactory.build();
-        self.ingredients.forEach(function (ingredient) {
-          nutrients.sum(ingredient.nutrients);
-          var recipeIngredient = {
-            id: ingredient.id,
-            name: ingredient.name,
-            group: ingredient.group,
-            measure: ingredient.measures[ingredient.selectedMeasure].label,
-            measure_amount: ingredient.selectedAmount
-          };
-          self.recipe.ingredients.push(recipeIngredient);
-        });
-        self.recipe.nutrients = nutrients.toObject();
       }
     }
   }
