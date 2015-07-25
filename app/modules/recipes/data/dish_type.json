@@ -1,7 +1,7 @@
 [
   {
     "title": "Main Dishes",
-    "background": "/recipe/group/dish-type/main-dishes.jpg",
+    "background": "recipe/group/dish-type/main-dishes.jpg",
     "span": {
       "row": 2,
       "col": 3
@@ -9,7 +9,7 @@
   },
   {
     "title": "Side Dishes",
-    "background": "/recipe/group/dish-type/side-dishes.jpg",
+    "background": "recipe/group/dish-type/side-dishes.jpg",
     "span": {
       "row": 2,
       "col": 3
@@ -17,7 +17,7 @@
   },
   {
     "title": "Breakfast & Brunch",
-    "background": "/recipe/group/dish-type/breakfast.jpg",
+    "background": "recipe/group/dish-type/breakfast.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -25,7 +25,7 @@
   },
   {
     "title": "Sandwiches",
-    "background": "/recipe/group/dish-type/sandwiches.jpg",
+    "background": "recipe/group/dish-type/sandwiches.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -33,7 +33,7 @@
   },
   {
     "title": "Appetizers",
-    "background": "/recipe/group/dish-type/appetizers.jpg",
+    "background": "recipe/group/dish-type/appetizers.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -41,7 +41,7 @@
   },
   {
     "title": "Casseroles",
-    "background": "/recipe/group/dish-type/casseroles.jpg",
+    "background": "recipe/group/dish-type/casseroles.jpg",
     "span": {
       "row": 2,
       "col": 3
@@ -49,7 +49,7 @@
   },
   {
     "title": "Roasts",
-    "background": "/recipe/group/dish-type/casseroles.jpg",
+    "background": "recipe/group/dish-type/casseroles.jpg",
     "span": {
       "row": 2,
       "col": 3
@@ -57,7 +57,7 @@
   },
   {
     "title": "Pasta & Risotto",
-    "background": "/recipe/group/dish-type/pasta.jpg",
+    "background": "recipe/group/dish-type/pasta.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -65,7 +65,7 @@
   },
   {
     "title": "Salads",
-    "background": "/recipe/group/dish-type/salads.jpg",
+    "background": "recipe/group/dish-type/salads.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -73,7 +73,7 @@
   },
   {
     "title": "Pizzas",
-    "background": "/recipe/group/dish-type/pizzas.jpg",
+    "background": "recipe/group/dish-type/pizzas.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -81,7 +81,7 @@
   },
   {
     "title": "Cakes & Pastry",
-    "background": "/recipe/group/dish-type/cakes.jpg",
+    "background": "recipe/group/dish-type/cakes.jpg",
     "span": {
       "row": 2,
       "col": 3
@@ -89,7 +89,7 @@
   },
   {
     "title": "Snacks",
-    "background": "/recipe/group/dish-type/snacks.jpg",
+    "background": "recipe/group/dish-type/snacks.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -97,7 +97,7 @@
   },
   {
     "title": "Drinks",
-    "background": "/recipe/group/dish-type/drinks.jpg",
+    "background": "recipe/group/dish-type/drinks.jpg",
     "span": {
       "row": 1,
       "col": 1
@@ -105,7 +105,7 @@
   },
   {
     "title": "Soups & Stews",
-    "background": "/recipe/group/dish-type/soups.jpg",
+    "background": "recipe/group/dish-type/soups.jpg",
     "span": {
       "row": 1,
       "col": 1

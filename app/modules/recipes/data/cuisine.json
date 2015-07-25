@@ -1,7 +1,7 @@
 [
   {
     "title": "American",
-    "background": "/recipe/group/cuisine/american.jpg",
+    "background": "recipe/group/cuisine/american.jpg",
     "span": {
       "row": 2,
       "col": 3
@@ -9,7 +9,7 @@
   },
   {
     "title": "British",
-    "background": "/recipe/group/cuisine/british.jpg",
+    "background": "recipe/group/cuisine/british.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -17,7 +17,7 @@
   },
   {
     "title": "African",
-    "background": "/recipe/group/cuisine/african.jpg",
+    "background": "recipe/group/cuisine/african.jpg",
     "span": {
       "row": 1,
       "col": 1
@@ -25,7 +25,7 @@
   },
   {
     "title": "East European",
-    "background": "/recipe/group/cuisine/east-european.jpg",
+    "background": "recipe/group/cuisine/east-european.jpg",
     "span": {
       "row": 1,
       "col": 1
@@ -33,7 +33,7 @@
   },
   {
     "title": "Chinese",
-    "background": "/recipe/group/cuisine/chinese.jpg",
+    "background": "recipe/group/cuisine/chinese.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -41,7 +41,7 @@
   },
   {
     "title": "Indian",
-    "background": "/recipe/group/cuisine/indian.jpg",
+    "background": "recipe/group/cuisine/indian.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -49,7 +49,7 @@
   },
   {
     "title": "Japanese",
-    "background": "/recipe/group/cuisine/japanese.jpg",
+    "background": "recipe/group/cuisine/japanese.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -57,7 +57,7 @@
   },
   {
     "title": "Italian",
-    "background": "/recipe/group/cuisine/italian.jpg",
+    "background": "recipe/group/cuisine/italian.jpg",
     "span": {
       "row": 2,
       "col": 3
@@ -65,7 +65,7 @@
   },
   {
     "title": "Mediterranean",
-    "background": "/recipe/group/cuisine/mediterranean.jpg",
+    "background": "recipe/group/cuisine/mediterranean.jpg",
     "span": {
       "row": 2,
       "col": 3
@@ -73,7 +73,7 @@
   },
   {
     "title": "Irish",
-    "background": "/recipe/group/cuisine/irish.jpg",
+    "background": "recipe/group/cuisine/irish.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -81,7 +81,7 @@
   },
   {
     "title": "Mexican",
-    "background": "/recipe/group/cuisine/mexican.jpg",
+    "background": "recipe/group/cuisine/mexican.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -89,7 +89,7 @@
   },
   {
     "title": "Russian",
-    "background": "/recipe/group/cuisine/russian.jpg",
+    "background": "recipe/group/cuisine/russian.jpg",
     "span": {
       "row": 2,
       "col": 2
@@ -97,7 +97,7 @@
   },
   {
     "title": "Thai & South-Asian",
-    "background": "/recipe/group/cuisine/south-asian.jpg",
+    "background": "recipe/group/cuisine/south-asian.jpg",
     "span": {
       "row": 2,
       "col": 3
@@ -105,7 +105,7 @@
   },
   {
     "title": "Western",
-    "background": "/recipe/group/cuisine/western.jpg",
+    "background": "recipe/group/cuisine/western.jpg",
     "span": {
       "row": 2,
       "col": 3
