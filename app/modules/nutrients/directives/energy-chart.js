@@ -34,7 +34,7 @@
         tooltipTemplate: '<%if (label){%><%=label%>: <%}%><%= value %>%'
       };
 
-      scope.$watch('nutrients.items', updateChartData, true);
+      scope.$watch('nutrients.items', updateChartData);
 
       /**
        * Recalculate chart data.

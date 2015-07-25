@@ -1,25 +1,25 @@
 <div>
   <div class="calories-pie-chart">
     <span class="total-value">
-      <strong>{{energy.formattedValue}}</strong><br/>{{energy.label}}
+      <strong>{{energy.formattedValue}}</strong><br/>{{::energy.label}}
     </span>
     <canvas tc-chartjs-pie chart-options="chartOptions" chart-data="chartData"></canvas>
   </div>
   <div class="total-macros">
     <div class="macro">
       <span class="legend fat"></span>
-      <span class="label">{{fat.label}}</span>
-      <span class="value">{{fat.formattedValue}}{{fat.unit}}</span>
+      <span class="label">{{::fat.label}}</span>
+      <span class="value">{{fat.formattedValue}}{{::fat.unit}}</span>
     </div>
     <div class="macro">
       <span class="legend protein"></span>
-      <span class="label">{{protein.label}}</span>
-      <span class="value">{{protein.formattedValue}}{{protein.unit}}</span>
+      <span class="label">{{::protein.label}}</span>
+      <span class="value">{{protein.formattedValue}}{{::protein.unit}}</span>
     </div>
     <div class="macro">
       <span class="legend carbohydrate"></span>
-      <span class="label">{{carbohydrate.label}}</span>
-      <span class="value">{{carbohydrate.formattedValue}}{{carbohydrate.unit}}</span>
+      <span class="label">{{::carbohydrate.label}}</span>
+      <span class="value">{{carbohydrate.formattedValue}}{{::carbohydrate.unit}}</span>
     </div>
   </div>
 </div>

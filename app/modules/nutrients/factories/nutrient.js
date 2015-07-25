@@ -337,13 +337,13 @@
     /**
      * Nutrient constructor.
      *
-     * @param {string} code
-     * @param {number} precision
-     * @param {string} group
-     * @param {string} label
-     * @param {string} unit
-     * @param {boolean} subNutrient
-     * @param {number} sortOrder
+     * @param {String} code
+     * @param {Number} precision
+     * @param {String} group
+     * @param {String} label
+     * @param {String} unit
+     * @param {Boolean} subNutrient
+     * @param {Number} sortOrder
      * @constructor
      */
     function Nutrient(code, precision, group, label, unit, subNutrient, sortOrder) {
@@ -385,10 +385,10 @@
      * Build nutrient object from given code.
      * Value and formatting precision are optional.
      *
-     * @param {string} code
-     * @param {number} value
-     * @param {integer} precision
-     * @returns {Nutrient|boolean}
+     * @param {String} code
+     * @param {Number} value
+     * @param {Integer} precision
+     * @returns {Nutrient|Boolean}
      */
     function build(code, value, precision) {
       var info = $filter('filter')(nutrients, {code: code})[0];
@@ -415,8 +415,8 @@
     /**
      * Check if given code is valid nutrient.
      *
-     * @param {string} code
-     * @returns {boolean}
+     * @param {String} code
+     * @returns {Boolean}
      */
     function isValidCode(code) {
       return $filter('filter')(nutrients, {code: code}).length > 0;

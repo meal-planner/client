@@ -16,7 +16,7 @@
   /* @ngInject */
   function NutrientCollectionFactory(NutrientFactory) {
     /**
-     * Construct empty collection.
+     * Collection constructor, store items in local array.
      *
      * @constructor
      */
@@ -29,9 +29,9 @@
     NutrientCollection.prototype.remove = remove;
     NutrientCollection.prototype.sum = sum;
     NutrientCollection.prototype.subtract = subtract;
-    NutrientCollection.prototype.toObject = toObject;
+    NutrientCollection.prototype.toJson = toJson;
     NutrientCollection.build = build;
-    NutrientCollection.fromObject = fromObject;
+    NutrientCollection.fromJson = fromJson;
 
     return NutrientCollection;
 
@@ -48,8 +48,8 @@
     /**
      * Find nutrient in collection by code.
      *
-     * @param {string} code
-     * @returns {Nutrient|boolean}
+     * @param {String} code
+     * @returns {Nutrient|Boolean}
      */
     function find(code) {
       /*jshint validthis:true */
@@ -122,7 +122,7 @@
     }
 
     /**
-     * Build new collection and fill it with given object values.
+     * Build new collection and fill it with given JSON values.
      * Object is expected to have properties with codes of nutrients and nutrient values, e.g:
      * {
      *   energy: 1000,
@@ -132,13 +132,13 @@
      * }
      * Invalid codes will be ignored.
      *
-     * @param object
+     * @param json
      */
-    function fromObject(object) {
+    function fromJson(json) {
       var collection = build();
-      for (var nutrient in object) {
-        if (object.hasOwnProperty(nutrient) && NutrientFactory.isValidCode(nutrient)) {
-          collection.push(NutrientFactory.build(nutrient, object[nutrient]));
+      for (var nutrient in json) {
+        if (json.hasOwnProperty(nutrient) && NutrientFactory.isValidCode(nutrient)) {
+          collection.push(NutrientFactory.build(nutrient, json[nutrient]));
         }
       }
 
@@ -146,7 +146,7 @@
     }
 
     /**
-     * Convert collection into plain object in following format:
+     * Convert collection into JSON with following format:
      * {
      *   energy: 1000,
      *   protein: 25,
@@ -156,14 +156,14 @@
      *
      * @returns {{}}
      */
-    function toObject() {
+    function toJson() {
       /*jshint validthis:true */
-      var object = {};
+      var json = {};
       this.items.forEach(function (nutrient) {
-        object[nutrient.code] = nutrient.value;
+        json[nutrient.code] = nutrient.value;
       });
 
-      return object;
+      return json;
     }
   }
 })();

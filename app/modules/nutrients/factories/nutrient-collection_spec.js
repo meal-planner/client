@@ -48,7 +48,7 @@
 
     describe('building collection from hash-object', function () {
       it('builds collection', function () {
-        var collection = nutrientCollectionFactory.fromObject({
+        var collection = nutrientCollectionFactory.fromJson({
           energy: 100,
           carbohydrate: 10
         });
@@ -58,7 +58,7 @@
       });
 
       it('ignores invalid nutrients', function () {
-        var collection = nutrientCollectionFactory.fromObject({
+        var collection = nutrientCollectionFactory.fromJson({
           energy: 100,
           bad_nutrient: 1
         });
@@ -69,12 +69,12 @@
 
     describe('adding two collections', function () {
       it('merges collections and sums up all nutrients', function () {
-        var collectionA = nutrientCollectionFactory.fromObject({
+        var collectionA = nutrientCollectionFactory.fromJson({
           energy: 100,
           carbohydrate: 20.2,
           protein: 10.21
         });
-        var collectionB = nutrientCollectionFactory.fromObject({
+        var collectionB = nutrientCollectionFactory.fromJson({
           energy: 50.01,
           protein: 5.7,
           fat: 20
@@ -89,12 +89,12 @@
 
       it('creates a copy of nutrient if it is missing in left collection', function () {
         var collectionA = nutrientCollectionFactory.build();
-        var collectionB = nutrientCollectionFactory.fromObject({
+        var collectionB = nutrientCollectionFactory.fromJson({
           energy: 100,
           carbohydrate: 20.2,
           protein: 10.21
         });
-        var collectionC = nutrientCollectionFactory.fromObject({
+        var collectionC = nutrientCollectionFactory.fromJson({
           energy: 50,
           carbohydrate: 9.8,
         });
@@ -111,11 +111,11 @@
 
     describe('subtracting one collection from another', function () {
       it('subtracts only those nutrients, which are present in left collection', function () {
-        var collectionA = nutrientCollectionFactory.fromObject({
+        var collectionA = nutrientCollectionFactory.fromJson({
           energy: 100,
           carbohydrate: 20.2,
         });
-        var collectionB = nutrientCollectionFactory.fromObject({
+        var collectionB = nutrientCollectionFactory.fromJson({
           energy: 50.01,
           fat: 20
         });
@@ -127,17 +127,17 @@
       });
     });
 
-    describe('converting collection to object', function () {
+    describe('converting collection to JSON', function () {
       it('creates object from collection', function () {
         var collection = nutrientCollectionFactory.build();
         var energy = nutrientFactory.build('energy', 100.01);
         var protein = nutrientFactory.build('protein', 15.5);
         collection.push(energy);
         collection.push(protein);
-        var object = collection.toObject();
+        var json = collection.toJson();
 
-        expect(object.energy).toEqual(100.01);
-        expect(object.protein).toEqual(15.5);
+        expect(json.energy).toEqual(100.01);
+        expect(json.protein).toEqual(15.5);
       });
     });
   });

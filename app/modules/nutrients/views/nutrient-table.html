@@ -6,8 +6,8 @@
         </span>
       </span>
       <span class="label" ng-class="{tabbed: nutrient.subNutrient}">
-        <span ng-class="{bold: !nutrient.subNutrient}">{{nutrient.label}}</span>
-        {{nutrient.formattedValue}} {{nutrient.unit}}
+        <span ng-class="{bold: !nutrient.subNutrient}">{{::nutrient.label}}</span>
+        {{nutrient.formattedValue}} {{::nutrient.unit}}
       </span>
   </div>
 </div>
