@@ -6,7 +6,7 @@
     .directive('mpNavbar', mpNavbar);
 
   /* @ngInject */
-  function mpNavbar($state, $mdSidenav, $mdUtil) {
+  function mpNavbar($state, $mdSidenav) {
     return {
       restrict: 'E',
       templateUrl: 'modules/navigation/views/navbar.html',
@@ -14,9 +14,8 @@
       scope: {
         mpTitle: '@',
         mpIsLoading: '=',
-        mpSearch: '&',
+        mpSearch: '=',
         mpSearchQuery: '=',
-        mpSearchDelay: '='
       }
     };
 
@@ -33,20 +32,13 @@
       }];
 
       scope.isMenuButtonVisible = true;
-      scope.isSearchButtonVisible = false;
+      scope.isSearchButtonVisible = scope.mpSearchQuery !== undefined;
       scope.isSearchInputVisible = false;
       scope.go = go;
       scope.openMenu = openMenu;
       scope.closeMenu = closeMenu;
       scope.openSearch = openSearch;
       scope.closeSearch = closeSearch;
-
-      if (scope.mpSearchQuery !== undefined) {
-        scope.isSearchButtonVisible = true;
-
-        var wait = parseInt(scope.mpSearchDelay, 10) || 0;
-        scope.$watch('mpSearchQuery', wait ? $mdUtil.debounce(handleSearchText, wait) : handleSearchText);
-      }
 
       /**
        * Open provided link.
@@ -55,18 +47,6 @@
        */
       function go(link) {
         $state.go(link);
-      }
-
-      /**
-       * Perform search with given callback.
-       *
-       * @param searchQuery
-       * @param previousSearchText
-       */
-      function handleSearchText(searchQuery, previousSearchText) {
-        if (searchQuery && searchQuery !== previousSearchText) {
-          scope.mpSearch();
-        }
       }
 
       /**

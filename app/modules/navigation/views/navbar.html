@@ -17,6 +17,8 @@
              placeholder="Search"
              ng-show="isSearchInputVisible"
              ng-model="mpSearchQuery"
+             ng-change="mpSearch(mpSearchQuery)"
+             ng-model-options="{debounce: 500}"
              class="search-input"/>
       <span ng-hide="isSearchInputVisible" flex>{{::mpTitle}}</span>
       <md-button aria-label="Search"
