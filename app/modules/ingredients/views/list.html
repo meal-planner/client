@@ -1,8 +1,7 @@
-<div ng-controller="IngredientsListController as ctrl">
+<div>
   <mp-navbar mp-title="Ingredients"
-             mp-search="ctrl.searchIngredients()"
+             mp-search="ctrl.searchIngredients"
              mp-search-query="ctrl.searchText"
-             mp-search-delay="500"
              mp-is-loading="ctrl.isLoading">
   </mp-navbar>
 
@@ -14,7 +13,7 @@
   </md-button>
 
   <md-content class="mp-content md-whiteframe-z1">
-    <div class="mp-centered" ng-show="ctrl.isError">
+    <div class="mp-centered" ng-if="ctrl.isError">
       Could not load ingredients list. Please, check network connection.
     </div>
 

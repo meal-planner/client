@@ -16,26 +16,18 @@
   function IngredientFactory(NutrientCollectionFactory) {
     /**
      * Ingredient constructor.
-     * Select first measure by default and watch for measure/amount changes.
      *
-     * @param {string} name
-     * @param {string} group
-     * @param {array} measures
      * @constructor
      */
-    function Ingredient(id, name, group, measures) {
+    function Ingredient() {
       var self = this;
 
-      self.id = id;
-      self.name = name;
-      self.group = group;
-      self.measures = measures;
-      self.selectedMeasure = 0;
-      self.selectedAmount = self.measures[self.selectedMeasure].qty;
-      self.nutrients = NutrientCollectionFactory.fromObject(self.measures[self.selectedMeasure].nutrients);
+      self.measures = [];
     }
 
     Ingredient.prototype.updateNutritionValues = updateNutritionValues;
+    Ingredient.prototype.toJson = toJson;
+    Ingredient.fromJson = fromJson;
     Ingredient.build = build;
 
     return Ingredient;
@@ -51,6 +43,15 @@
         var value = (measure.nutrients[nutrient.code] / measure.qty) * selectedAmount;
         nutrient.setValue(value);
       });
+    }
+
+    /**
+     * Build new ingredient model.
+     *
+     * @returns {Ingredient}
+     */
+    function build() {
+      return new Ingredient();
     }
 
     /**
@@ -78,13 +79,44 @@
      * @param data
      * @returns {Ingredient}
      */
-    function build(data) {
-      return new Ingredient(
-        data.id,
-        data.short_name ? data.short_name : data.name,
-        data.group,
-        data.measures
-      );
+    function fromJson(data) {
+      var ingredient = build();
+      ingredient.id = data.id;
+      ingredient.name = data.name;
+      ingredient.short_name = data.short_name;
+      ingredient.group = data.group;
+      ingredient.measures = data.measures;
+      ingredient.selectedMeasure = 0;
+      var measure = ingredient.measures[ingredient.selectedMeasure];
+      ingredient.selectedAmount = measure.qty;
+      ingredient.nutrients = NutrientCollectionFactory.fromJson(measure.nutrients);
+
+      return ingredient;
+    }
+
+    /**
+     * Convert ingredient to JSON.
+     *
+     * @returns {{id: *, name: *, short_name: *, group: *, measures: *}}
+     */
+    function toJson() {
+      /*jshint validthis:true */
+      var json = {
+        id: this.id,
+        name: this.name,
+        short_name: this.short_name,
+        group: this.group,
+        measures: this.measures.map(function (measure) {
+          return {
+            label: measure.label,
+            eqv: measure.eqv,
+            qty: measure.qty,
+            nutrients: measure.nutrients.toJson()
+          };
+        })
+      };
+
+      return json;
     }
   }
 })();

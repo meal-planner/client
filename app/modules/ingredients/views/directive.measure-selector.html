@@ -1,13 +1,13 @@
 <div layout="row">
   <md-input-container style="width: 75px;">
     <label>Amount</label>
-    <input type="number" ng-model="ingredient.selectedAmount">
+    <input type="number" ng-model="ingredient.selectedAmount" ng-change="ingredient.updateNutritionValues()">
   </md-input-container>
   <md-input-container>
     <label>Measure</label>
-    <md-select has-backdrop="false" ng-model="ingredient.selectedMeasure">
+    <md-select has-backdrop="false" ng-model="ingredient.selectedMeasure" ng-change="updateSelectedMeasure()">
       <md-option ng-value="$index" ng-repeat="measure in ingredient.measures">
-        {{measure.label}}
+        {{::measure.label}}
       </md-option>
     </md-select>
   </md-input-container>

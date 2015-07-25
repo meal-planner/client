@@ -3,32 +3,18 @@
 
   /**
    * @ngdoc function
-   * @name mealPlanner.ingredients.service:ingredientService
+   * @name mealPlanner.ingredients.service:IngredientService
    * @description
-   * # ingredientService
+   * # IngredientService
    * Ingredient service, performs communication with ingredient backend API.
    */
   angular
     .module('mealPlanner.ingredients')
-    .service('ingredientService', IngredientService);
+    .service('IngredientService', IngredientService);
 
   /* @ngInject */
   function IngredientService($resource, IngredientFactory, ENV) {
     var ingredient = $resource(ENV.apiEndpoint + 'ingredients/:id', null, {'update': {method: 'PUT'}});
-    var foodGroups = [
-      'Meat',
-      'Poultry',
-      'Fish & Seafood',
-      'Dairy & Eggs',
-      'Grains',
-      'Vegetables',
-      'Fruits',
-      'Legumes',
-      'Nuts & Seeds',
-      'Beverages',
-      'Sweets & Deserts',
-      'Other'
-    ];
 
     return {
       getIngredient: getIngredient,
@@ -36,21 +22,20 @@
       searchIngredients: searchIngredients,
       saveIngredient: saveIngredient,
       deleteIngredient: deleteIngredient,
-      foodGroups: foodGroups
     };
 
     /**
      * Load single ingredient by ElasticSearch document id.
      * Build and return Ingredient object when complete.
      *
-     * @param ingredientId
+     * @param {Number} ingredientId
      * @returns {Ingredient}
      */
     function getIngredient(ingredientId) {
       return ingredient.get({id: ingredientId}).$promise.then(getIngredientComplete);
 
       function getIngredientComplete(apiResponse) {
-        return IngredientFactory.build(apiResponse);
+        return IngredientFactory.fromJson(apiResponse);
       }
     }
 
@@ -82,7 +67,7 @@
     function getIngredientsListComplete(response) {
       var ingredients = [];
       response.forEach(function (apiResponse) {
-        ingredients.push(IngredientFactory.build(apiResponse));
+        ingredients.push(IngredientFactory.fromJson(apiResponse));
       });
 
       return ingredients;

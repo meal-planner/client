@@ -1,20 +1,19 @@
-<div ng-controller="IngredientsGroupsController as ctrl">
-  <mp-navbar mp-title="Ingredients">
-  </mp-navbar>
+<div>
+  <mp-navbar mp-title="Ingredients"></mp-navbar>
 
   <md-content class="mp-content md-whiteframe-z1">
-    <md-grid-list class="mp-ingredient-groups"
-      md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
-      md-row-height-gt-md="1:1" md-row-height="4:3"
-      md-gutter="8px" md-gutter-gt-sm="10px" >
-      <md-grid-tile ng-repeat="tile in ctrl.tiles"
-                    md-rowspan="{{tile.span.row}}"
-                    md-colspan="{{tile.span.col}}"
+    <md-grid-list class="mp-tiles"
+                  md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
+                  md-row-height-gt-md="1:1" md-row-height="4:3"
+                  md-gutter="8px" md-gutter-gt-sm="10px">
+      <md-grid-tile ng-repeat="group in ctrl.groups"
+                    md-rowspan="{{::group.tile.row}}"
+                    md-colspan="{{::group.tile.col}}"
                     md-colspan-sm="1"
                     md-ink-ripple
-                    ng-class="tile.background"
-                    ng-click="ctrl.goToGroup(tile.title)">
-        <md-grid-tile-footer><h3>{{tile.title}}</h3></md-grid-tile-footer>
+                    ui-sref="ingredientsList({group: group.title})">
+        <img ng-src="{{::group.background}}" alt="{{::group.title}}"/>
+        <md-grid-tile-footer><h3>{{::group.title}}</h3></md-grid-tile-footer>
       </md-grid-tile>
     </md-grid-list>
   </md-content>

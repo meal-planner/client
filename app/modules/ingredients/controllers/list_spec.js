@@ -15,14 +15,14 @@
       scope = $rootScope.$new();
       deferred = $q.defer();
 
-      var ingredientServiceMock = {
+      var IngredientServiceMock = {
         getIngredients: function () {
           return deferred.promise;
         }
       };
 
       ListCtrl = $controller('IngredientsListController', {
-        ingredientService: ingredientServiceMock
+        IngredientService: IngredientServiceMock
       });
     }));
 

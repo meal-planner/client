@@ -14,11 +14,11 @@
     .controller('IngredientsListController', IngredientsListController);
 
   /* @ngInject */
-  function IngredientsListController($stateParams, ingredientService) {
+  function IngredientsListController($stateParams, IngredientService) {
     var self = this;
 
     self.items = [];
-    self.searchText = null;
+    self.searchText = '';
     self.searchIngredients = searchIngredients;
 
     /**
@@ -39,36 +39,35 @@
           self.isError = true;
         }
       );
-    }
 
-    /**
-     * Load ingredients from service.
-     *
-     * @returns {*}
-     */
-    function getIngredients() {
-      return ingredientService.getIngredients($stateParams.group)
-        .then(function (data) {
-          self.items = data;
-          return self.items;
-        });
+      /**
+       * Load ingredients from service.
+       *
+       * @returns {*}
+       */
+      function getIngredients() {
+        return IngredientService.getIngredients($stateParams.group)
+          .then(function (data) {
+            self.items = data;
+            return self.items;
+          });
+      }
     }
 
     /**
      * Search ingredients by given text query.
      *
+     * @param {String} query
      * @returns {*}
      */
-    function searchIngredients() {
+    function searchIngredients(query) {
       self.isLoading = true;
 
-      return ingredientService.searchIngredients(self.searchText)
+      IngredientService.searchIngredients(query)
         .then(function (data) {
           self.isLoading = false;
           self.items = data;
-          return self.items;
-        }
-      );
+        });
     }
   }
 })();

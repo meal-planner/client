@@ -1,4 +1,4 @@
-<form name="ingredientForm" ng-controller="IngredientsEditController as ctrl" ng-submit="ctrl.saveIngredient()">
+<form name="ingredientForm" ng-submit="ctrl.saveIngredient()">
   <md-toolbar class="md-hue-2 md-whiteframe-z2 mp-fixed-top">
     <div class="md-toolbar-tools">
       <md-button ui-sref="ingredientsList"
@@ -17,8 +17,8 @@
       <div>
         <label>Food group</label>
         <md-select required ng-model="ctrl.ingredient.group" aria-label="Food group">
-          <md-option ng-value="group" ng-repeat="group in ctrl.foodGroups">
-            {{group}}
+          <md-option ng-value="group.title" ng-repeat="group in ctrl.foodGroups">
+            {{::group.title}}
           </md-option>
         </md-select>
       </div>
@@ -62,7 +62,7 @@
           </md-input-container>
         </div>
         <md-input-container flex="20" ng-repeat="nutrient in measure.nutrients.items">
-          <label>{{nutrient.label}} ({{nutrient.unit}})</label>
+          <label>{{::nutrient.label}} ({{::nutrient.unit}})</label>
           <input type="float" ng-model="nutrient.value" required>
         </md-input-container>
       </div>
@@ -74,28 +74,10 @@
       </md-button>
       <div ng-show="ctrl.isNutrientSelectorShown">
         <md-select class="mp-no-margins" flex ng-model="selectedNutrient" placeholder="Select a nutrient">
-          <md-optgroup label="Main Nutrients">
+          <md-optgroup label="{{::group}}" ng-repeat="group in ['Main Nutrients', 'Minerals', 'Vitamins', 'Other']">
             <md-option ng-value="nutrient.code"
-                       ng-repeat="nutrient in ctrl.availableNutrients | filter: {group: 'Main Nutrients'}">
-              {{nutrient.label}}
-            </md-option>
-          </md-optgroup>
-          <md-optgroup label="Minerals">
-            <md-option ng-value="nutrient.code"
-                       ng-repeat="nutrient in ctrl.availableNutrients | filter: {group: 'Minerals'}">
-              {{nutrient.label}}
-            </md-option>
-          </md-optgroup>
-          <md-optgroup label="Vitamins">
-            <md-option ng-value="nutrient.code"
-                       ng-repeat="nutrient in ctrl.availableNutrients | filter: {group: 'Vitamins'}">
-              {{nutrient.label}}
-            </md-option>
-          </md-optgroup>
-          <md-optgroup label="Other">
-            <md-option ng-value="nutrient.code"
-                       ng-repeat="nutrient in ctrl.availableNutrients | filter: {group: 'Other'}">
-              {{nutrient.label}}
+                       ng-repeat="nutrient in ctrl.availableNutrients | filter: {group: group}">
+              {{::nutrient.label}}
             </md-option>
           </md-optgroup>
         </md-select>

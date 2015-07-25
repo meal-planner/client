@@ -24,32 +24,14 @@
     };
 
     function measureSelectorLink(scope) {
-      scope.$watch('ingredient.selectedMeasure', updateSelectedMeasure, true);
-      scope.$watch('ingredient.selectedAmount', updateSelectedAmount, true);
+      scope.updateSelectedMeasure = updateSelectedMeasure;
 
       /**
        * Set the selected amount from chosen measure and recalculate nutrition values.
-       *
-       * @param oldValue
-       * @param newValue
        */
-      function updateSelectedMeasure(oldValue, newValue) {
-        if (oldValue !== newValue) {
-          scope.ingredient.selectedAmount = scope.ingredient.measures[scope.ingredient.selectedMeasure].qty;
-          scope.ingredient.updateNutritionValues();
-        }
-      }
-
-      /**
-       * Recalculate nutrition values.
-       *
-       * @param oldValue
-       * @param newValue
-       */
-      function updateSelectedAmount(oldValue, newValue) {
-        if (oldValue !== newValue) {
-          scope.ingredient.updateNutritionValues();
-        }
+      function updateSelectedMeasure() {
+        scope.ingredient.selectedAmount = scope.ingredient.measures[scope.ingredient.selectedMeasure].qty;
+        scope.ingredient.updateNutritionValues();
       }
     }
   }

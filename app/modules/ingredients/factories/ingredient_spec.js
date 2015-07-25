@@ -40,7 +40,7 @@
         ]
       };
 
-      var ingredient = ingredientFactory.build(apiResponse);
+      var ingredient = ingredientFactory.fromJson(apiResponse);
 
       expect(ingredient.name).toEqual('Foo Ingredient');
       expect(ingredient.group).toEqual('Fruits');
@@ -73,7 +73,7 @@
         ]
       };
 
-      var ingredient = ingredientFactory.build(apiResponse);
+      var ingredient = ingredientFactory.fromJson(apiResponse);
       expect(ingredient.nutrients.bad_nutrient).toEqual(undefined);
     });
   });
