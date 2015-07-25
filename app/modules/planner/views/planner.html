@@ -1,16 +1,7 @@
 <div>
-  <mp-navbar mp-title="Make Plan"></mp-navbar>
+  <mp-navbar mp-title="Meal Plan"></mp-navbar>
 
-  <div class="mp-content md-whiteframe-z1">
-    <md-content class="md-padding">
-      <p>
-        Plan your meals! Choose the dishes you want to eat for each day and see how well it fits your nutrition
-        requirements.
-      </p>
-    </md-content>
-  </div>
-
-  <div class="mp-content mp-no-top-margin md-whiteframe-z1 mp-planner-tabs">
+  <div class="mp-content md-whiteframe-z1 mp-planner-tabs">
     <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect md-dynamic-height>
       <md-tab ng-repeat="day in ctrl.plan.days" label="{{::day.name}}">
         <mp-plan-day day="day"></mp-plan-day>

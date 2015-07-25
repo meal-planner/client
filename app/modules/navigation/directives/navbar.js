@@ -21,7 +21,7 @@
 
     function navbarLink(scope) {
       scope.links = [{
-        label: 'Make Plan',
+        label: 'Meal Plan',
         state: 'planner'
       }, {
         label: 'Recipes',
