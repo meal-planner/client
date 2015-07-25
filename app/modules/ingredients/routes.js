@@ -58,8 +58,8 @@
       return IngredientService.getIngredient($stateParams.ingredientId);
     }
 
-    function resolveNutrients(NutrientFactory) {
-      return NutrientFactory.getAvailableNutrients();
+    function resolveNutrients(NutrientService) {
+      return NutrientService.getAvailableNutrients();
     }
 
     function resolveFoodGroups(IngredientGroupService) {

@@ -3,6 +3,6 @@
     {{::nutrient.label}}:
   </span>
   <span class="value">
-    {{nutrient.formattedValue}} {{::nutrient.unit}}
+    {{nutrient.value | number: nutrient.precision}} {{::nutrient.unit}}
   </span>
 </div>

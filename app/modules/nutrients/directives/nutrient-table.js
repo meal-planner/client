@@ -12,14 +12,27 @@
     .module('mealPlanner.nutrients')
     .directive('mpNutrientTable', mpNutrientTable);
 
-  function mpNutrientTable() {
+  /* @ngInject */
+  function mpNutrientTable(NutrientService) {
     return {
       templateUrl: 'modules/nutrients/views/nutrient-table.html',
+      link: nutrientTableLink,
       scope: {
         nutrients: '=',
         filterGroup: '@',
         noMargin: '@'
       }
     };
+
+    /**
+     * Fetch nutrients daily values.
+     *
+     * @param scope
+     */
+    function nutrientTableLink(scope) {
+      NutrientService.getDailyValues().then(function (dailyValues) {
+        scope.dailyValues = dailyValues;
+      });
+    }
   }
 })();

@@ -225,7 +225,7 @@
       /*jshint validthis:true */
       var totalServings = this.servings;
       this.nutrients.items.forEach(function (nutrient) {
-        nutrient.setValue(nutrient.value * servings / totalServings);
+        nutrient.value *= servings / totalServings;
       });
     }
   }

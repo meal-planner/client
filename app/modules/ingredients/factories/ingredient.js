@@ -40,8 +40,7 @@
       var measure = this.measures[this.selectedMeasure];
       var selectedAmount = this.selectedAmount;
       this.nutrients.items.forEach(function (nutrient) {
-        var value = (measure.nutrients[nutrient.code] / measure.qty) * selectedAmount;
-        nutrient.setValue(value);
+        nutrient.value = (measure.nutrients[nutrient.code] / measure.qty) * selectedAmount;
       });
     }
 

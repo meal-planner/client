@@ -11,7 +11,7 @@
       <h2>Calories</h2>
     </div>
     <div>
-      <span class="calories">{{nutrients.find('energy').formattedValue}}</span>
+      <span class="calories">{{nutrients.find('energy').value | number: 0}}</span>
     </div>
   </div>
   <hr size="8"/>

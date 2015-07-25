@@ -89,7 +89,7 @@
       other.items.forEach(function (otherNutrient) {
         var thisNutrient = self.find(otherNutrient.code);
         if (thisNutrient) {
-          thisNutrient.setValue(thisNutrient.value + otherNutrient.value);
+          thisNutrient.value += otherNutrient.value;
         } else {
           self.push(angular.copy(otherNutrient));
         }
@@ -107,7 +107,7 @@
       this.items.forEach(function (nutrient) {
         var otherNutrient = other.find(nutrient.code);
         if (otherNutrient) {
-          nutrient.setValue(nutrient.value - otherNutrient.value);
+          nutrient.value -= otherNutrient.value;
         }
       });
     }
@@ -136,9 +136,12 @@
      */
     function fromJson(json) {
       var collection = build();
-      for (var nutrient in json) {
-        if (json.hasOwnProperty(nutrient) && NutrientFactory.isValidCode(nutrient)) {
-          collection.push(NutrientFactory.build(nutrient, json[nutrient]));
+      for (var nutrientCode in json) {
+        if (json.hasOwnProperty(nutrientCode)) {
+          var nutrient = NutrientFactory.build(nutrientCode, json[nutrientCode]);
+          if (nutrient) {
+            collection.push(nutrient);
+          }
         }
       }
 
