@@ -1,10 +1,10 @@
-@import 'nutrition-label';
-@import 'responsive';
 @import 'animations';
-@import 'navbar';
-@import 'recipe-selector';
 @import 'energy-chart';
-@import 'ingredients';
+@import 'navbar';
+@import 'nutrition-label';
+@import 'recipe-selector';
+@import 'responsive';
+@import 'tiles';
 
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
