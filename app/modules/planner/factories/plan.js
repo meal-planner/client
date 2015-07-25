@@ -77,12 +77,12 @@
     /**
      * Create plan from given JSON.
      *
-     * @param {} object
+     * @param {} json
      * @returns {Plan}
      */
-    function fromJson(object) {
-      var plan = build(object.name);
-      object.days.forEach(function (day, index) {
+    function fromJson(json) {
+      var plan = build(json.name);
+      json.days.forEach(function (day, index) {
         plan.days[index] = PlanDayFactory.fromJson(day);
       });
 
@@ -96,14 +96,14 @@
      */
     function toJson() {
       /*jshint validthis:true */
-      var object = {
+      var json = {
         name: this.name,
         days: this.days.map(function (day) {
           return day.toJson();
         })
       };
 
-      return object;
+      return json;
     }
   }
 })();

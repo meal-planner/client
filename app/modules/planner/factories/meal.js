@@ -64,7 +64,7 @@
     }
 
     /**
-     * Create meal from object.
+     * Create meal from JSON.
      * Expected object format is following:
      * {
      *   name: 'string',
@@ -77,32 +77,32 @@
      *   }
      * }
      *
-     * @param object
+     * @param json
      * @returns {Meal}
      */
-    function fromJson(object) {
-      var meal = build(object.name, object.type);
-      meal.servings = object.servings;
-      meal.nutrients = NutrientCollectionFactory.fromJson(object.nutrients);
+    function fromJson(json) {
+      var meal = build(json.name, json.type);
+      meal.servings = json.servings;
+      meal.nutrients = NutrientCollectionFactory.fromJson(json.nutrients);
 
       return meal;
     }
 
     /**
-     * Convert meal to object.
+     * Convert meal to JSON.
      *
      * @returns {{name: *, type: *, servings: *, nutrients: {}}}
      */
     function toJson() {
       /*jshint validthis:true */
-      var object = {
+      var json = {
         name: this.name,
         type: this.type,
         servings: this.servings,
         nutrients: this.nutrients.toJson()
       };
 
-      return object;
+      return json;
     }
   }
 

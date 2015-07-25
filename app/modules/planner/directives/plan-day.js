@@ -13,7 +13,7 @@
     .directive('mpPlanDay', mpPlanDay);
 
   /* @ngInject */
-  function mpPlanDay($mdDialog, planService) {
+  function mpPlanDay($mdDialog, PlanService) {
     return {
       templateUrl: 'modules/planner/views/directive.plan-day.html',
       link: planDayLink,
@@ -23,7 +23,7 @@
     };
 
     function planDayLink(scope) {
-      scope.mealTypes = planService.mealTypes;
+      scope.mealTypes = PlanService.mealTypes;
       scope.showRecipeSelector = showRecipeSelector;
       scope.removeMeal = removeMeal;
       scope.isFullNutrientInfoShown = false;

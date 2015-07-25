@@ -3,14 +3,14 @@
 
   /**
    * @ngdoc function
-   * @name mealPlanner.planner.service:planService
+   * @name mealPlanner.planner.service:PlanService
    * @description
-   * # planService
+   * # PlanService
    * Plan services used to load and save current plan to local storage.
    */
   angular
     .module('mealPlanner.planner')
-    .service('planService', PlanService);
+    .service('PlanService', PlanService);
 
   /* @ngInject */
   function PlanService(localStorageService, PlanFactory) {

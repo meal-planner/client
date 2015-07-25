@@ -13,9 +13,9 @@
     .controller('PlannerController', PlannerController);
 
   /* @ngInject */
-  function PlannerController($scope, planService) {
+  function PlannerController($scope, PlanService) {
     var self = this;
-    self.plan = planService.getPlan();
+    self.plan = PlanService.getPlan();
 
     $scope.$watch('ctrl.plan.days', saveLocalPlan, true);
 
@@ -27,7 +27,7 @@
      */
     function saveLocalPlan(oldValue, newValue) {
       if (oldValue !== newValue) {
-        planService.saveLocalPlan(self.plan);
+        PlanService.saveLocalPlan(self.plan);
       }
     }
   }

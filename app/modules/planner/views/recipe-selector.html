@@ -13,6 +13,8 @@
       <input aria-label="Search query" flex
              placeholder="Search"
              ng-model="ctrl.searchText"
+             ng-change="ctrl.searchRecipes()"
+             ng-model-options="{debounce: 500}"
              class="search-input"/>
     </md-content>
     <md-list class="recipes">

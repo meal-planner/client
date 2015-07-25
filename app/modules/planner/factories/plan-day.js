@@ -75,12 +75,12 @@
     /**
      * Create day from JSON.
      *
-     * @param object
+     * @param json
      * @returns {PlanDay}
      */
-    function fromJson(object) {
-      var day = build(object.name);
-      object.meals.forEach(function (mealObject) {
+    function fromJson(json) {
+      var day = build(json.name);
+      json.meals.forEach(function (mealObject) {
         var meal = MealFactory.fromJson(mealObject);
         day.meals.push(meal);
         day.nutrients.sum(meal.nutrients);
@@ -96,14 +96,14 @@
      */
     function toJson() {
       /*jshint validthis:true */
-      var object = {
+      var json = {
         name: this.name,
         meals: this.meals.map(function (meal) {
           return meal.toJson();
         })
       };
 
-      return object;
+      return json;
     }
   }
 

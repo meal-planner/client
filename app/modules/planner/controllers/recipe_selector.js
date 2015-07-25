@@ -13,7 +13,7 @@
     .controller('RecipeSelectorController', RecipeSelectorController);
 
   /* @ngInject */
-  function RecipeSelectorController($scope, $mdDialog, $mdUtil, recipeService, planService) {
+  function RecipeSelectorController($mdDialog, RecipeService, PlanService) {
     var RECIPE_SEARCH_LIMIT = 4;
     var self = this;
 
@@ -30,15 +30,12 @@
     return activate();
 
     function activate() {
-      $scope.$watch('ctrl.searchText', $mdUtil.debounce(searchRecipes, 300));
-      self.mealTypes = planService.mealTypes;
-      self.mealType = planService.mealTypes[0];
+      self.mealTypes = PlanService.mealTypes;
+      self.mealType = PlanService.mealTypes[0];
 
-      recipeService.getRecipes()
-        .then(function (recipes) {
-          self.recipes = recipes;
-          return self.recipes;
-        });
+      RecipeService.getRecipes().then(function (recipes) {
+        self.recipes = recipes;
+      });
     }
 
     /**
@@ -48,18 +45,14 @@
      * @param previousSearchText
      * @returns {*}
      */
-    function searchRecipes(searchQuery, previousSearchText) {
-      if (searchQuery && searchQuery !== previousSearchText) {
-        self.isLoading = true;
+    function searchRecipes() {
+      self.isLoading = true;
 
-        return recipeService.searchRecipes(self.searchText, RECIPE_SEARCH_LIMIT)
-          .then(function (recipes) {
-            self.isLoading = false;
-            self.recipes = recipes;
-            return self.recipes;
-          }
-        );
-      }
+      RecipeService.searchRecipes(self.searchText, RECIPE_SEARCH_LIMIT)
+        .then(function (recipes) {
+          self.isLoading = false;
+          self.recipes = recipes;
+        });
     }
 
     /**
