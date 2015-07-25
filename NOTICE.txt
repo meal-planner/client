@@ -1,0 +1,6 @@
+
+                                ************ DISCLAIMER ************
+
+Only the source code (*.html, *.js, *.json, *.scss files) of this application is subject to GPL v3 License.
+
+All media content files, such as icons (*.ico), images (*.jpg, *.png) and videos (*.mp4, *.mpg) are copyrighted.
