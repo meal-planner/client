@@ -34,8 +34,8 @@
     Recipe.prototype.addIngredient = addIngredient;
     Recipe.prototype.setServings = setServings;
     Recipe.prototype.toJson = toJson;
-    Recipe.build = build;
     Recipe.fromJson = fromJson;
+    Recipe.build = build;
 
     return Recipe;
 

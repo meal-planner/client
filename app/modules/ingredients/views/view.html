@@ -21,6 +21,10 @@
         <md-button class="md-button-wide" ui-sref="editIngredient({ingredientId:ctrl.ingredient.id})">
           edit
         </md-button>
+        <md-button ng-if="::ctrl.ingredient.ndbno" class="md-button-wide"
+                   href="http://ndb.nal.usda.gov/ndb/search/list?qlookup={{::ctrl.ingredient.ndbno}}" target="_blank">
+          Source: USDA
+        </md-button>
       </div>
     </md-content>
   </div>

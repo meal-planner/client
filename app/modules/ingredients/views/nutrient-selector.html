@@ -1,0 +1,27 @@
+<md-dialog class="recipe-selector" aria-label="Nutrient Selector">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Add Nutrients to Ingredient</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="ctrl.cancelDialog()">
+        <md-icon aria-label="Close dialog">close</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content class="sticky-container">
+    <md-content class="md-padding" layout="row" layout-wrap>
+      <div ng-repeat="(nutrientCode, nutrientLabel) in ctrl.availableNutrients" flex="25">
+        <md-checkbox aria-label="{{::nutrientLabel}}" ng-model="ctrl.selectedNutrients[nutrientCode]">
+          {{::nutrientLabel}}
+        </md-checkbox>
+      </div>
+    </md-content>
+  </md-dialog-content>
+
+  <div class="md-actions" layout="row">
+    <md-button ng-click="ctrl.addNutrients()" class="md-primary">
+      Add Selected
+    </md-button>
+  </div>
+</md-dialog>

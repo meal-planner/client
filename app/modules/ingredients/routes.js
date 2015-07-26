@@ -26,7 +26,6 @@
       controller: 'IngredientsEditController as ctrl',
       controllerAs: 'ctrl',
       resolve: {
-        nutrients: resolveNutrients,
         foodGroups: resolveFoodGroups,
         ingredient: resolveEmptyIngredient
       }
@@ -36,9 +35,8 @@
       controller: 'IngredientsEditController',
       controllerAs: 'ctrl',
       resolve: {
-        nutrients: resolveNutrients,
         foodGroups: resolveFoodGroups,
-        ingredient: resolveIngredient
+        ingredient: resolveIngredientWithMeasures
       }
     }).state('viewIngredient', {
       url: '/ingredients/view/:ingredientId',
@@ -50,18 +48,66 @@
       }
     });
 
-    function resolveEmptyIngredient(IngredientFactory) {
-      return IngredientFactory.build();
+    /**
+     * Create empty ingredient model and set default measure (100 g) with default nutrients.
+     *
+     * @param IngredientFactory
+     * @param NutrientCollectionFactory
+     * @returns {Ingredient}
+     */
+    function resolveEmptyIngredient(IngredientFactory, NutrientCollectionFactory) {
+      var ingredient = IngredientFactory.build();
+      ingredient.measures.push({
+        qty: 100,
+        label: 'g',
+        eqv: 100,
+        nutrients: NutrientCollectionFactory.fromJson({
+          energy: 0,
+          fat: 0,
+          carbohydrate: 0,
+          protein: 0
+        })
+      });
+
+      return ingredient;
     }
 
+    /**
+     * Load ingredient and then convert all measures nutrients to NutrientCollection
+     *
+     * @param $stateParams
+     * @param IngredientService
+     * @param NutrientCollectionFactory
+     * @returns {Ingredient|*}
+     */
+    function resolveIngredientWithMeasures($stateParams, IngredientService, NutrientCollectionFactory) {
+      return IngredientService.getIngredient($stateParams.ingredientId)
+        .then(function (ingredient) {
+          ingredient.measures.forEach(function (measure, index) {
+            ingredient.measures[index].nutrients = NutrientCollectionFactory.fromJson(measure.nutrients);
+          });
+
+          return ingredient;
+        });
+    }
+
+    /**
+     * Load ingredient model.
+     *
+     * @param $stateParams
+     * @param IngredientService
+     * @returns {Ingredient|*}
+     */
     function resolveIngredient($stateParams, IngredientService) {
       return IngredientService.getIngredient($stateParams.ingredientId);
     }
 
-    function resolveNutrients(NutrientService) {
-      return NutrientService.getAvailableNutrients();
-    }
-
+    /**
+     * Fetch food groups.
+     *
+     * @param IngredientGroupService
+     * @returns {*}
+     */
     function resolveFoodGroups(IngredientGroupService) {
       return IngredientGroupService.getGroups();
     }

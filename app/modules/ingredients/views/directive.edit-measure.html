@@ -1,0 +1,31 @@
+<md-tabs md-selected="selectedIndex" md-border-bottom md-dynamic-height md-autoselect>
+  <md-tab ng-repeat="(measureIndex, measure) in ingredient.measures"
+          label="{{::measure.qty}} {{::measure.label}}">
+    <md-content class="md-padding">
+      <h5 class="mp-no-top-margin" ng-if="measureIndex > 0">Equivalent to {{::measure.eqv}} g</h5>
+      <div layout="row" layout-wrap>
+        <md-input-container flex="20" ng-repeat="nutrient in measure.nutrients.items | orderBy:'sortOrder'">
+          <label>{{::nutrient.label}} ({{::nutrient.unit}})</label>
+          <input type="number" ng-model="nutrient.value" required>
+        </md-input-container>
+      </div>
+      <div layout="row" layout-align="space-between center">
+        <md-button type="button"
+                   class="md-raised md-primary md-hue-3"
+                   ng-click="showNutrientSelector($event)"
+                   ng-show="measure.nutrients.items.length < totalAvailableNutrients"
+                   aria-label="Add Nutrient">
+          Add Nutrient
+        </md-button>
+        <span flex></span>
+        <md-button type="button"
+                   ng-click="removeMeasure(measureIndex)"
+                   ng-if="measureIndex > 0"
+                   md-no-ink
+                   aria-label="Remove measure">
+          Remove measure
+        </md-button>
+      </div>
+    </md-content>
+  </md-tab>
+</md-tabs>

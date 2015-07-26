@@ -1,11 +1,16 @@
 <md-list-item class="md-3-line" ng-click="viewIngredient(ingredient.id)">
   <img src="images/ingredient-icon.png" class="md-avatar" title="{{::ingredient.group}}">
 
-  <div class="md-list-item-text" layout="row" layout-align="space-between">
+  <div class="md-list-item-text">
     <div>
-      <h3>{{::ingredient.name}}</h3>
+      <div class="mp-ingredient-item-name">
+        {{::ingredient.name}}
+        <span class="mp-ingredient-item-description">
+          {{::ingredient.description}}
+        </span>
+      </div>
 
-      <p>
+      <p class="mp-ingredient-item-nutrients" layout="row" layout-align="space-between">
         <mp-ingredient-nutrient ingredient="ingredient" code="energy"></mp-ingredient-nutrient>
         <mp-ingredient-nutrient ingredient="ingredient" code="fat"></mp-ingredient-nutrient>
         <mp-ingredient-nutrient ingredient="ingredient" code="protein"></mp-ingredient-nutrient>

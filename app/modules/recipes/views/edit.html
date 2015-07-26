@@ -5,33 +5,46 @@
         <md-icon>arrow_back</md-icon>
       </md-button>
       <h2>
-        <span ng-if="ctrl.isEdit == true">Edit Recipe &laquo;{{::ctrl.recipe.name}}&raquo;</span>
-        <span ng-if="ctrl.isEdit == false">Create New Recipe</span>
+        <span ng-if="::ctrl.isEdit == true">Edit Recipe &laquo;{{::ctrl.recipe.name}}&raquo;</span>
+        <span ng-if="::ctrl.isEdit == false">Create New Recipe</span>
       </h2>
     </div>
     <md-progress-linear md-mode="indeterminate" ng-show="ctrl.isLoading"></md-progress-linear>
   </md-toolbar>
 
-  <div class="mp-content md-whiteframe-z1">
+  <div class="mp-content md-whiteframe-z1 mp-recipe-edit-form">
     <md-content class="md-padding">
       <div layout="column">
-        <md-input-container flex>
-          <label>Name</label>
-          <input type="text" ng-model="ctrl.recipe.name" required>
-        </md-input-container>
 
-        <md-input-container flex>
-          <label>Time to cook (minutes)</label>
-          <input type="text" ng-model="ctrl.recipe.time_to_cook" required>
-        </md-input-container>
+        <div layout="row">
+          <md-input-container flex="20">
+            <label>Dish Type</label>
+            <md-select ng-model="ctrl.recipe.dish_type" placeholder="Please, select">
+              <md-option value="{{::dishType.title}}" ng-repeat="dishType in ctrl.dishTypes | orderBy:'title'">
+                {{::dishType.title}}
+              </md-option>
+            </md-select>
+          </md-input-container>
 
-        <div>
-          <label>Dish Type</label>
-          <md-select ng-model="ctrl.recipe.dish_type" placeholder="Please, select">
-            <md-option value="{{::dishType.title}}" ng-repeat="dishType in ctrl.dishTypes | orderBy:'title'">
-              {{::dishType.title}}
-            </md-option>
-          </md-select>
+          <md-input-container flex="80">
+            <label>Name</label>
+            <input type="text" ng-model="ctrl.recipe.name" required>
+          </md-input-container>
+        </div>
+
+        <div layout="row">
+          <md-input-container flex="20">
+            <label>Yields servings</label>
+            <md-select ng-model="ctrl.recipe.servings" placeholder="Please, select">
+              <md-option ng-value="servings" ng-repeat="servings in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+                {{::servings}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container flex="20">
+            <label>Time to cook (minutes)</label>
+            <input type="text" ng-model="ctrl.recipe.time_to_cook" required>
+          </md-input-container>
         </div>
 
         <div>
@@ -75,17 +88,6 @@
             </div>
           </fieldset>
         </div>
-
-        <p>
-          <div>
-            <label>Yields servings</label>
-            <md-select ng-model="ctrl.recipe.servings" placeholder="Please, select">
-              <md-option ng-value="servings" ng-repeat="servings in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
-                {{::servings}}
-              </md-option>
-            </md-select>
-          </div>
-        </p>
       </div>
 
       <h4>Ingredients</h4>

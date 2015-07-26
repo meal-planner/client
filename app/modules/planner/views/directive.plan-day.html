@@ -14,8 +14,8 @@
     </div>
 
     <div layout="column" layout-align="start center" ng-if="day.meals.length > 0">
-      <mp-energy-chart ng-if="isFullNutrientInfoShown == false" nutrients="day.nutrients"></mp-energy-chart>
-      <mp-nutrition-label ng-if="isFullNutrientInfoShown == true" nutrients="day.nutrients"></mp-nutrition-label>
+      <mp-energy-chart ng-hide="isFullNutrientInfoShown" nutrients="day.nutrients"></mp-energy-chart>
+      <mp-nutrition-label ng-show="isFullNutrientInfoShown" nutrients="day.nutrients"></mp-nutrition-label>
       <md-button type="button" ng-click="isFullNutrientInfoShown = !isFullNutrientInfoShown">
         <span ng-hide="isFullNutrientInfoShown">show nutrition</span>
         <span ng-show="isFullNutrientInfoShown">show energy chart</span>

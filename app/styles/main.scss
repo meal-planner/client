@@ -1,9 +1,11 @@
 @import 'animations';
 @import 'energy-chart';
+@import 'ingredients';
 @import 'navbar';
 @import 'nutrition-label';
 @import 'recipe-selector';
 @import 'responsive';
+@import 'recipes';
 @import 'tiles';
 
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
@@ -27,6 +29,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 }
 
 .mp-footer {
+  background: #ECEFF1;
   margin: 10px auto 25px;
   max-width: 70%;
   min-width: 840px;
@@ -42,13 +45,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   min-width: 840px;
   margin: 90px auto 20px;
   background: #ffffff;
-
-  .mp-ingredient-measure {
-    background-color: #f4f7f9;
-    &:nth-child(odd) {
-      background-color: #FFFFFF;
-    }
-  }
 }
 
 .mp-action-button {

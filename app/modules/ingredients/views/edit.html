@@ -6,104 +6,55 @@
         <md-icon>arrow_back</md-icon>
       </md-button>
       <h2>
-        <span ng-if="ctrl.isEdit == true">Edit Ingredient</span>
-        <span ng-if="ctrl.isEdit == false">Create New Ingredient</span>
+        <span ng-if="::ctrl.isEdit == true">Edit Ingredient &laquo;{{::ctrl.ingredient.name}}&raquo;</span>
+        <span ng-if="::ctrl.isEdit == false">Create New Ingredient</span>
       </h2>
     </div>
+    <md-progress-linear md-mode="indeterminate" ng-show="ctrl.isLoading"></md-progress-linear>
   </md-toolbar>
 
   <div class="mp-content md-whiteframe-z1">
     <md-content class="md-padding">
-      <div>
-        <label>Food group</label>
-        <md-select required ng-model="ctrl.ingredient.group" aria-label="Food group">
-          <md-option ng-value="group.title" ng-repeat="group in ctrl.foodGroups | orderBy:'title'">
-            {{::group.title}}
-          </md-option>
-        </md-select>
-      </div>
-      <md-input-container>
-        <label>Short Name</label>
-        <input ng-model="ctrl.ingredient.short_name">
-      </md-input-container>
-      <md-input-container>
-        <label>Full Name</label>
-        <input ng-model="ctrl.ingredient.name" required>
-      </md-input-container>
-    </md-content>
-
-    <md-content class="md-padding mp-ingredient-measure" layout="column"
-                ng-repeat="(measureIndex, measure) in ctrl.ingredient.measures">
-      <p class="md-subhead">
-        <md-button type="button" ng-click="ctrl.removeMeasure(measureIndex)"
-                   ng-show="ctrl.ingredient.measures.length > 1"
-                   md-no-ink class="mp-action-button"
-                   aria-label="Remove Measure">
-          <md-icon>remove_circle</md-icon>
-        </md-button>
-        Measure {{measure.qty}} {{measure.label}}
-      <span ng-show="measure.eqv > 0 && measure.label != 'g'">
-        (≈ {{measure.eqv}} gram)
-      </span>
-      </p>
-      <div layout="row" layout-wrap>
-        <div flex="20" layout="row">
-          <md-input-container flex="25">
-            <label>Qty</label>
-            <input type="float" ng-model="measure.qty" required>
-          </md-input-container>
-          <md-input-container flex="25">
-            <label>Label</label>
-            <input type="text" ng-model="measure.label" required>
-          </md-input-container>
-          <md-input-container ng-show="measure.label != 'g'" flex="50">
-            <label>Equivalent</label>
-            <input type="float" ng-model="measure.eqv" required>
-          </md-input-container>
-        </div>
-        <md-input-container flex="20" ng-repeat="nutrient in measure.nutrients.items">
-          <label>{{::nutrient.label}} ({{::nutrient.unit}})</label>
-          <input type="float" ng-model="nutrient.value" required>
+      <div layout="row">
+        <md-input-container flex="20">
+          <label>Food group</label>
+          <md-select required ng-model="ctrl.ingredient.group" aria-label="Food group">
+            <md-option ng-value="group.title" ng-repeat="group in ctrl.foodGroups | orderBy:'title'">
+              {{::group.title}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container flex="30">
+          <label>Name</label>
+          <input ng-model="ctrl.ingredient.name" required>
+        </md-input-container>
+        <md-input-container flex="50">
+          <label>Short Description (brand, packaging etc.)</label>
+          <input ng-model="ctrl.ingredient.description">
         </md-input-container>
       </div>
     </md-content>
 
-    <md-content class="md-padding" layout="row" layout-align="space-between">
-      <md-button type="button" class="md-raised md-primary md-hue-3" ng-click="ctrl.addMeasure()">
-        Add Measure
-      </md-button>
-      <div ng-show="ctrl.isNutrientSelectorShown">
-        <md-select class="mp-no-margins" flex ng-model="selectedNutrient" placeholder="Select a nutrient">
-          <md-optgroup label="{{::group}}" ng-repeat="group in ['Main Nutrients', 'Minerals', 'Vitamins', 'Other']">
-            <md-option ng-value="nutrient.code"
-                       ng-repeat="nutrient in ctrl.availableNutrients | filter: {group: group}">
-              {{::nutrient.label}}
-            </md-option>
-          </md-optgroup>
-        </md-select>
-        <md-button type="button"
-                   class="md-raised md-primary"
-                   ng-click="ctrl.addNutrient(selectedNutrient);ctrl.isNutrientSelectorShown=false;selectedNutrient=null;">
-          Add
+    <h4 class="md-ingredient-edit-nutrients-header">Nutrients in:</h4>
+    <mp-ingredient-edit-measure ingredient="ctrl.ingredient"></mp-ingredient-edit-measure>
+    <mp-ingredient-add-measure ingredient="ctrl.ingredient"></mp-ingredient-add-measure>
+
+    <md-content class="md-padding">
+      <div layout="row" layout-align="end center">
+        <md-checkbox
+          ng-model="ctrl.ingredient.generic"
+          aria-label="Generic Ingredient">
+          Generic ingredient?
+        </md-checkbox>
+      </div>
+      <div layout="row" layout-align="space-between">
+        <md-button type="button" class="md-button-wide" ng-disabled="ctrl.isLoading" ui-sref="ingredientsList">
+          go back
+        </md-button>
+        <md-button class="md-raised md-primary md-button-wide" ng-disabled="ctrl.isLoading">
+          save
         </md-button>
       </div>
-      <md-button type="button"
-                 class="md-raised md-primary md-hue-3"
-                 ng-hide="ctrl.isNutrientSelectorShown || ctrl.availableNutrients.length == 0"
-                 ng-click="ctrl.isNutrientSelectorShown=true">
-        Add Nutrient
-      </md-button>
-    </md-content>
-
-    <md-content class="md-padding" layout="row" layout-align="space-between">
-      <md-progress-linear md-mode="indeterminate" ng-show="ctrl.isLoading"></md-progress-linear>
-      <md-button type="button" class="md-button-wide" ng-hide="ctrl.isLoading"
-                 ui-sref="ingredientsList">
-        go back
-      </md-button>
-      <md-button class="md-raised md-primary md-button-wide" ng-hide="ctrl.isLoading">
-        save
-      </md-button>
     </md-content>
   </div>
 </form>

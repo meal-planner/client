@@ -32,7 +32,7 @@
           code: 'energy',
           unit: 'kcal',
           group: 'Main Nutrients',
-          sort: 0
+          sort: 1
         },
         {
           label: 'Total Fat',
@@ -127,7 +127,7 @@
           sort: 55
         },
         {
-          label: 'Vitamin A, IU',
+          label: 'Vitamin A',
           code: 'vitamin_a_iu',
           unit: 'IU',
           group: 'Vitamins',

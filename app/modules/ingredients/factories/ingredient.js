@@ -59,6 +59,8 @@
      * {
      *  id: 'string',
      *  name: 'string',
+     *  description: 'string',
+     *  generic: 'boolean',
      *  group: 'string',
      *  measures: [
      *    {
@@ -81,9 +83,13 @@
     function fromJson(data) {
       var ingredient = build();
       ingredient.id = data.id;
+      if (data.ndbno) {
+        ingredient.ndbno = data.ndbno;
+      }
       ingredient.name = data.name;
-      ingredient.short_name = data.short_name;
+      ingredient.description = data.description;
       ingredient.group = data.group;
+      ingredient.generic = data.generic;
       ingredient.measures = data.measures;
       ingredient.selectedMeasure = 0;
       var measure = ingredient.measures[ingredient.selectedMeasure];
@@ -96,15 +102,16 @@
     /**
      * Convert ingredient to JSON.
      *
-     * @returns {{id: *, name: *, short_name: *, group: *, measures: *}}
+     * @returns {{id: *, name: *, description: *, group: *, generic: *, measures: *}}
      */
     function toJson() {
       /*jshint validthis:true */
       var json = {
         id: this.id,
         name: this.name,
-        short_name: this.short_name,
+        description: this.description,
         group: this.group,
+        generic: this.generic,
         measures: this.measures.map(function (measure) {
           return {
             label: measure.label,
