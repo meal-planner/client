@@ -5,13 +5,13 @@
                  ng-click="openMenu()"
                  ng-show="isMenuButtonVisible"
                  class="md-icon-button">
-        <md-icon>menu</md-icon>
+        <md-icon>&#xE5D2;</md-icon>
       </md-button>
       <md-button aria-label="Hide search"
                  ng-click="closeSearch()"
                  ng-show="isSearchInputVisible"
                  class="md-icon-button">
-        <md-icon>arrow_back</md-icon>
+        <md-icon>&#xE5C4;</md-icon>
       </md-button>
       <input aria-label="Search query" flex
              placeholder="Search"
@@ -25,7 +25,7 @@
                  ng-click="openSearch()"
                  ng-show="isSearchButtonVisible"
                  class="md-icon-button">
-        <md-icon>search</md-icon>
+        <md-icon>&#xE8B6;</md-icon>
       </md-button>
     </div>
     <md-progress-linear ng-show="mpIsLoading" md-mode="indeterminate"></md-progress-linear>
@@ -37,7 +37,7 @@
         <md-button aria-label="Close menu"
                    ng-click="closeMenu()"
                    class="md-icon-button">
-          <md-icon>arrow_back</md-icon>
+          <md-icon>&#xE5C4;</md-icon>
         </md-button>
         <h2>
           <a href="#" ui-sref="planner">
@@ -49,7 +49,7 @@
     <md-content layout-padding>
       <md-list>
         <md-list-item ng-repeat="link in links" ng-click="go(link.state)">
-          <md-icon>chevron_right</md-icon>
+          <md-icon>&#xE5CC;</md-icon>
           <p>{{::link.label}}</p>
         </md-list-item>
       </md-list>
