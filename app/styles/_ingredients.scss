@@ -7,7 +7,22 @@
     padding: 0;
   }
 }
+
 .md-ingredient-edit-nutrients-header {
   padding: 0 0 0 16px;
   margin: 0 0 4px 0;
 }
+.ingredients {
+  .nutrient {
+    .label {
+      display: block;
+      float: left;
+    }
+    .value {
+      display: block;
+      float: right;
+      margin-left: 5px;
+    }
+  }
+}
+

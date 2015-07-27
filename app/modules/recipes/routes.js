@@ -44,7 +44,7 @@
         cuisines: resolveCuisines,
         keyIngredients: resolveKeyIngredients,
         diets: resolveDiets,
-        recipe: resolveRecipe
+        recipe: resolveRecipeWithIngredients
       }
     }).state('viewRecipe', {
       url: '/recipes/view/:recipeId',
@@ -56,26 +56,79 @@
       }
     });
 
+    /**
+     * Build empty recipe model for create new recipe form.
+     *
+     * @param RecipeFactory
+     * @returns {Recipe}
+     */
     function resolveEmptyRecipe(RecipeFactory) {
       return RecipeFactory.build();
     }
 
+    /**
+     * Load recipe model for view page.
+     *
+     * @param $stateParams
+     * @param RecipeService
+     * @returns {Recipe|*}
+     */
     function resolveRecipe($stateParams, RecipeService) {
       return RecipeService.getRecipe($stateParams.recipeId);
     }
 
+    /**
+     * Load recipe model and then load all ingredients models for edit page.
+     *
+     * @param $stateParams
+     * @param RecipeService
+     * @returns {*}
+     */
+    function resolveRecipeWithIngredients($stateParams, RecipeService) {
+      return RecipeService.getRecipe($stateParams.recipeId)
+        .then(function (recipe) {
+          recipe.loadIngredients();
+
+          return recipe;
+        });
+    }
+
+    /**
+     * Fetch dish types.
+     *
+     * @param RecipeGroupService
+     * @returns {*}
+     */
     function resolveDishTypes(RecipeGroupService) {
       return RecipeGroupService.getDishTypes();
     }
 
+    /**
+     * Fetch cuisines.
+     *
+     * @param RecipeGroupService
+     * @returns {*}
+     */
     function resolveCuisines(RecipeGroupService) {
       return RecipeGroupService.getCuisines();
     }
 
+    /**
+     * Fetch key ingredients.
+     *
+     * @param RecipeGroupService
+     * @returns {*}
+     */
     function resolveKeyIngredients(RecipeGroupService) {
       return RecipeGroupService.getKeyIngredients();
     }
 
+    /**
+     * Fetch diets.
+     *
+     * @param RecipeGroupService
+     * @returns {*}
+     */
     function resolveDiets(RecipeGroupService) {
       return RecipeGroupService.getDiets();
     }

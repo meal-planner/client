@@ -91,75 +91,23 @@
       </div>
 
       <h4>Ingredients</h4>
-      <md-autocomplete
-        md-delay="300"
-        md-selected-item="ctrl.selectedItem"
-        md-selected-item-change="ctrl.addIngredient(item)"
-        md-search-text="ctrl.searchText"
-        md-items="item in ctrl.querySearch(ctrl.searchText)"
-        md-item-text="item.name"
-        placeholder="Type in the name of ingredient you want to add to this recipe">
-        <span md-highlight-text="ctrl.searchText">{{::item.name}}</span>
-      </md-autocomplete>
-      <md-list>
-        <md-list-item class="md-3-line" ng-repeat="ingredient in ctrl.recipe.ingredients track by $index">
-          <img src="images/ingredient-icon.png" class="md-avatar">
-
-          <div class="md-list-item-text" layout="row" layout-align="space-between start">
-            <div flex>
-              <h3 layout="row" layout-align="space-between">
-                {{::ingredient.name}}
-              </h3>
-
-              <p class="ingredients">
-                <mp-ingredient-nutrient ingredient="ingredient" code="energy"></mp-ingredient-nutrient>
-                <mp-ingredient-nutrient ingredient="ingredient" code="fat"></mp-ingredient-nutrient>
-                <mp-ingredient-nutrient ingredient="ingredient" code="protein"></mp-ingredient-nutrient>
-                <mp-ingredient-nutrient ingredient="ingredient" code="carbohydrate"></mp-ingredient-nutrient>
-              </p>
-
-              <mp-measure-selector ingredient="ingredient"></mp-measure-selector>
-            </div>
-            <md-button type="button" ng-click="ctrl.removeIngredient($index)"
-                       md-no-ink class="mp-action-button"
-                       aria-label="Remove Ingredient">
-              <md-icon>remove_circle</md-icon>
-              <md-tooltip>Remove ingredient</md-tooltip>
-            </md-button>
-          </div>
-        </md-list-item>
-      </md-list>
+      <mp-recipe-ingredient-picker recipe="ctrl.recipe"></mp-recipe-ingredient-picker>
+      <mp-recipe-ingredient-list recipe="ctrl.recipe"></mp-recipe-ingredient-list>
 
       <h4>Cooking steps</h4>
+      <mp-recipe-steps recipe="ctrl.recipe"></mp-recipe-steps>
 
-      <div ng-repeat="step in ctrl.recipe.steps track by $index" layout="row">
-        <md-input-container flex>
-          <input ng-model="ctrl.recipe.steps[$index]" aria-label="Cooking step" required>
-        </md-input-container>
-        <md-button type="button" ng-click="ctrl.removeCookingStep($index)"
-                   ng-show="ctrl.recipe.steps.length > 1"
-                   md-no-ink class="mp-action-button"
-                   aria-label="Remove Step">
-          <md-icon>remove_circle</md-icon>
-          <md-tooltip>Remove step</md-tooltip>
-        </md-button>
-      </div>
-      <div layout="row" layout-align="end">
-        <md-button type="button" class="md-raised" ng-click="ctrl.addCookingStep()">
-          add step
-        </md-button>
-      </div>
-      <br/>
-
-      <div layout="row" layout-align="space-between">
-        <md-button type="button" class="md-button-wide" ng-hide="ctrl.isLoading"
-                   ui-sref="recipesGroups">
-          go back
-        </md-button>
-        <md-button class="md-raised md-primary md-button-wide" ng-hide="ctrl.isLoading">
-          save
-        </md-button>
-      </div>
+      <p>
+        <div layout="row" layout-align="space-between">
+          <md-button type="button" class="md-button-wide" ng-hide="ctrl.isLoading"
+                     ui-sref="recipesGroups">
+            go back
+          </md-button>
+          <md-button class="md-raised md-primary md-button-wide" ng-hide="ctrl.isLoading">
+            save
+          </md-button>
+        </div>
+      </p>
     </md-content>
   </div>
 </form>
