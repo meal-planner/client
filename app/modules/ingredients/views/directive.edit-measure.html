@@ -6,7 +6,7 @@
       <div layout="row" layout-wrap>
         <md-input-container flex="20" ng-repeat="nutrient in measure.nutrients.items | orderBy:'sortOrder'">
           <label>{{::nutrient.label}} ({{::nutrient.unit}})</label>
-          <input type="number" ng-model="nutrient.value" required>
+          <input type="number" ng-model="nutrient.value" step="any" min="0" required>
         </md-input-container>
       </div>
       <div layout="row" layout-align="space-between center">

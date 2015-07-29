@@ -1,7 +1,7 @@
 <div layout="row">
   <md-input-container style="width: 75px;">
     <label>Amount</label>
-    <input type="number" ng-model="ingredient.selectedAmount" ng-change="ingredient.updateNutritionValues()">
+    <input type="number" step="any" min="0" ng-model="ingredient.selectedAmount" ng-change="ingredient.updateNutritionValues()">
   </md-input-container>
   <md-input-container>
     <label>Measure</label>
