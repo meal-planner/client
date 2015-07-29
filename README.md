@@ -1,4 +1,6 @@
-# Meal Planner Client [![Build Status](https://travis-ci.org/meal-planner/client.svg?branch=master)](https://travis-ci.org/meal-planner/client)
+# Meal Planner Client 
+[![Build Status](https://travis-ci.org/meal-planner/client.svg?branch=master)](https://travis-ci.org/meal-planner/client)
+[![Code Climate](https://codeclimate.com/github/meal-planner/client/badges/gpa.svg)](https://codeclimate.com/github/meal-planner/client)
 
 Meal Planner is an open source recipe recommendation and nutrition balancing service.
 The project is currently in active development and not very stable :blush:
