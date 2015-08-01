@@ -17,11 +17,13 @@
    *
    * @ngInject
    */
-  function IngredientsEditController($state, $mdToast, IngredientService, ingredient, foodGroups) {
+  function IngredientsEditController($state, $mdToast, NavigationService, IngredientService, ingredient, foodGroups) {
     var self = this;
 
-    self.isLoading = false;
-    self.isEdit = ingredient.id !== undefined;
+    if (ingredient.id) {
+      NavigationService.navigationBar.title = ingredient.name;
+    }
+    NavigationService.navigationBar.showGoBack = true;
     self.ingredient = ingredient;
     self.foodGroups = foodGroups;
     self.saveIngredient = saveIngredient;
@@ -30,7 +32,8 @@
      * Persist ingredient in the backend.
      */
     function saveIngredient() {
-      self.isLoading = true;
+      NavigationService.navigationBar.isLoading = true;
+      self.saveButtonDisabled = true;
 
       IngredientService.saveIngredient(self.ingredient.id, self.ingredient.toJson())
         .then(function () {

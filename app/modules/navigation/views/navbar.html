@@ -3,32 +3,32 @@
     <div class="md-toolbar-tools">
       <md-button aria-label="Open menu"
                  ng-click="openMenu()"
-                 ng-show="isMenuButtonVisible"
+                 ng-if="navigationBar.showGoBack === false"
                  class="md-icon-button">
         <md-icon>&#xE5D2;</md-icon>
       </md-button>
-      <md-button aria-label="Hide search"
-                 ng-click="closeSearch()"
-                 ng-show="isSearchInputVisible"
+      <md-button aria-label="Go Back"
+                 ng-click="isSearchInputVisible ? closeSearch() : goBack()"
+                 ng-if="navigationBar.showGoBack === true || isSearchInputVisible"
                  class="md-icon-button">
         <md-icon>&#xE5C4;</md-icon>
       </md-button>
       <input aria-label="Search query" flex
              placeholder="Search"
              ng-show="isSearchInputVisible"
-             ng-model="mpSearchQuery"
-             ng-change="mpSearch(mpSearchQuery)"
+             ng-model="searchQuery"
+             ng-change="navigationBar.searchCallback(searchQuery)"
              ng-model-options="{debounce: 500}"
              class="search-input"/>
-      <span ng-hide="isSearchInputVisible" flex>{{::mpTitle}}</span>
+      <span ng-hide="isSearchInputVisible" flex>{{navigationBar.title}}</span>
       <md-button aria-label="Search"
                  ng-click="openSearch()"
-                 ng-show="isSearchButtonVisible"
+                 ng-show="navigationBar.searchCallback !== null"
                  class="md-icon-button">
         <md-icon>&#xE8B6;</md-icon>
       </md-button>
     </div>
-    <md-progress-linear ng-show="mpIsLoading" md-mode="indeterminate"></md-progress-linear>
+    <md-progress-linear ng-show="navigationBar.isLoading" md-mode="indeterminate"></md-progress-linear>
   </md-toolbar>
 
   <md-sidenav class="md-sidenav-left md-whiteframe-z2 mp-fixed-top" md-component-id="menu">
@@ -40,7 +40,7 @@
           <md-icon>&#xE5C4;</md-icon>
         </md-button>
         <h2>
-          <a href="#" ui-sref="planner">
+          <a href="#" ng-click="go('planner')">
             <img src="images/logo.png"/>
           </a>
         </h2>

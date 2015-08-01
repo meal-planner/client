@@ -8,7 +8,8 @@
         url: '/',
         templateUrl: 'modules/planner/views/planner.html',
         controller: 'PlannerController',
-        controllerAs: 'ctrl'
+        controllerAs: 'ctrl',
+        pageTitle: 'Meal Plan'
       });
     });
 })();

@@ -9,5 +9,22 @@
    *
    * Navigation module.
    */
-  angular.module('mealPlanner.navigation', []);
+  angular.module('mealPlanner.navigation', [])
+    .run(runNavigation);
+
+  /* @ngInject */
+  function runNavigation($rootScope, $state, NavigationService) {
+    $rootScope.$on('$stateChangeStart', function () {
+      NavigationService.navigationBar.isLoading = true;
+    });
+
+    $rootScope.$on('$stateChangeSuccess', function () {
+      if ($state.current.pageTitle) {
+        NavigationService.navigationBar.title = $state.current.pageTitle;
+      }
+      NavigationService.navigationBar.isLoading = false;
+      NavigationService.navigationBar.showGoBack = false;
+      NavigationService.navigationBar.searchCallback = null;
+    });
+  }
 })();

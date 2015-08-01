@@ -16,6 +16,7 @@
   function RecipeEditController($state,
                                 $mdToast,
                                 $mdDialog,
+                                NavigationService,
                                 RecipeService,
                                 recipe,
                                 dishTypes,
@@ -24,8 +25,11 @@
                                 diets) {
     var self = this;
 
+    if (recipe.id) {
+      NavigationService.navigationBar.title = recipe.name;
+    }
+    NavigationService.navigationBar.showGoBack = true;
     self.recipe = recipe;
-    self.isEdit = self.recipe.id !== undefined;
     self.dishTypes = dishTypes;
     self.cuisines = cuisines;
     self.keyIngredients = keyIngredients;
@@ -46,7 +50,8 @@
             .ok('OK')
         );
       } else {
-        self.isLoading = true;
+        self.saveButtonDisabled = true;
+        NavigationService.navigationBar.isLoading = true;
         RecipeService.saveRecipe(self.recipe.id, self.recipe.toJson()).then(function () {
           $state.go('recipesGroups');
           $mdToast.show({

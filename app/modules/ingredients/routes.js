@@ -12,6 +12,7 @@
       templateUrl: 'modules/ingredients/views/groups.html',
       controller: 'IngredientsGroupsController',
       controllerAs: 'ctrl',
+      pageTitle: 'Ingredients',
       resolve: {
         groups: resolveFoodGroups
       }
@@ -19,12 +20,16 @@
       url: '/ingredients/:group',
       templateUrl: 'modules/ingredients/views/list.html',
       controller: 'IngredientsListController',
-      controllerAs: 'ctrl'
+      controllerAs: 'ctrl',
+      resolve: {
+        ingredients: resolveIngredientsList
+      }
     }).state('createIngredient', {
       url: '/ingredients/create/',
       templateUrl: 'modules/ingredients/views/edit.html',
       controller: 'IngredientsEditController as ctrl',
       controllerAs: 'ctrl',
+      pageTitle: 'Create New Ingredient',
       resolve: {
         foodGroups: resolveFoodGroups,
         ingredient: resolveEmptyIngredient
@@ -47,6 +52,17 @@
         ingredient: resolveIngredient
       }
     });
+
+    /**
+     * Load list of ingredients in given group.
+     *
+     * @param $stateParams
+     * @param IngredientService
+     * @returns {{Ingredient}[]|*}
+     */
+    function resolveIngredientsList($stateParams, IngredientService) {
+      return IngredientService.getIngredients($stateParams.group);
+    }
 
     /**
      * Create empty ingredient model and set default measure (100 g) with default nutrients.

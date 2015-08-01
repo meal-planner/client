@@ -1,17 +1,4 @@
 <form name="recipeForm" ng-submit="ctrl.saveRecipe()">
-  <md-toolbar class="md-hue-2 md-whiteframe-z2 mp-fixed-top">
-    <div class="md-toolbar-tools">
-      <md-button ui-sref="recipesGroups" class="md-icon-button" aria-label="Close">
-        <md-icon>&#xE5C4;</md-icon>
-      </md-button>
-      <h2>
-        <span ng-if="::ctrl.isEdit == true">Edit Recipe &laquo;{{::ctrl.recipe.name}}&raquo;</span>
-        <span ng-if="::ctrl.isEdit == false">Create New Recipe</span>
-      </h2>
-    </div>
-    <md-progress-linear md-mode="indeterminate" ng-show="ctrl.isLoading"></md-progress-linear>
-  </md-toolbar>
-
   <div class="mp-content md-whiteframe-z1 mp-recipe-edit-form">
     <md-content class="md-padding">
       <div layout="column">
@@ -62,17 +49,17 @@
         </div>
 
         <p>
-          <fieldset class="standard">
-            <legend>Key Ingredient</legend>
-            <div layout="row" layout-wrap>
-              <div ng-repeat="keyIngredient in ctrl.keyIngredients | orderBy:'title'" flex="25">
-                <md-checkbox ng-model="ctrl.recipe.key_ingredient[keyIngredient.title]"
-                             aria-label="Key Ingredient: {{::keyIngredient.title}}">
-                  {{::keyIngredient.title}}
-                </md-checkbox>
-              </div>
+        <fieldset class="standard">
+          <legend>Key Ingredient</legend>
+          <div layout="row" layout-wrap>
+            <div ng-repeat="keyIngredient in ctrl.keyIngredients | orderBy:'title'" flex="25">
+              <md-checkbox ng-model="ctrl.recipe.key_ingredient[keyIngredient.title]"
+                           aria-label="Key Ingredient: {{::keyIngredient.title}}">
+                {{::keyIngredient.title}}
+              </md-checkbox>
             </div>
-          </fieldset>
+          </div>
+        </fieldset>
         </p>
 
         <div>
@@ -98,15 +85,14 @@
       <mp-recipe-steps recipe="ctrl.recipe"></mp-recipe-steps>
 
       <p>
-        <div layout="row" layout-align="space-between">
-          <md-button type="button" class="md-button-wide" ng-hide="ctrl.isLoading"
-                     ui-sref="recipesGroups">
-            go back
-          </md-button>
-          <md-button class="md-raised md-primary md-button-wide" ng-hide="ctrl.isLoading">
-            save
-          </md-button>
-        </div>
+
+      <div layout="row" layout-align="center center">
+        <md-button class="md-raised md-primary md-button-wide"
+                   aria-label="Save Recipe"
+                   ng-disabled="ctrl.saveButtonDisabled">
+          save
+        </md-button>
+      </div>
       </p>
     </md-content>
   </div>

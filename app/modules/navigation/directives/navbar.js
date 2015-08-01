@@ -6,35 +6,20 @@
     .directive('mpNavbar', mpNavbar);
 
   /* @ngInject */
-  function mpNavbar($state, $mdSidenav) {
+  function mpNavbar($window, $state, $mdSidenav, NavigationService) {
     return {
       restrict: 'E',
       templateUrl: 'modules/navigation/views/navbar.html',
-      link: navbarLink,
-      scope: {
-        mpTitle: '@',
-        mpIsLoading: '=',
-        mpSearch: '=',
-        mpSearchQuery: '=',
-      }
+      link: navbarLink
     };
 
     function navbarLink(scope) {
-      scope.links = [{
-        label: 'Meal Plan',
-        state: 'planner'
-      }, {
-        label: 'Recipes',
-        state: 'recipesGroups'
-      }, {
-        label: 'Ingredients',
-        state: 'ingredientsGroups'
-      }];
+      scope.navigationBar = NavigationService.navigationBar;
+      scope.links = NavigationService.links;
 
       scope.isMenuButtonVisible = true;
-      scope.isSearchButtonVisible = scope.mpSearchQuery !== undefined;
-      scope.isSearchInputVisible = false;
       scope.go = go;
+      scope.goBack = goBack;
       scope.openMenu = openMenu;
       scope.closeMenu = closeMenu;
       scope.openSearch = openSearch;
@@ -46,7 +31,15 @@
        * @param link
        */
       function go(link) {
+        $mdSidenav('menu').close();
         $state.go(link);
+      }
+
+      /**
+       * Go back to previous page.
+       */
+      function goBack() {
+        $window.history.back();
       }
 
       /**

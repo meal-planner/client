@@ -14,45 +14,14 @@
     .controller('IngredientsListController', IngredientsListController);
 
   /* @ngInject */
-  function IngredientsListController($stateParams, IngredientService) {
+  function IngredientsListController($stateParams, NavigationService, IngredientService, ingredients) {
     var self = this;
 
-    self.items = [];
-    self.searchText = '';
+    self.items = ingredients;
     self.searchIngredients = searchIngredients;
-
-    /**
-     * Set initial state.
-     * Pre-load list of latest ingredients.
-     */
-    return activate();
-
-    function activate() {
-      self.isLoading = true;
-
-      getIngredients().then(
-        function () {
-          self.isLoading = false;
-        },
-        function () {
-          self.isLoading = false;
-          self.isError = true;
-        }
-      );
-
-      /**
-       * Load ingredients from service.
-       *
-       * @returns {*}
-       */
-      function getIngredients() {
-        return IngredientService.getIngredients($stateParams.group)
-          .then(function (data) {
-            self.items = data;
-            return self.items;
-          });
-      }
-    }
+    NavigationService.navigationBar.title = 'Ingredients › ' +  $stateParams.group;
+    NavigationService.navigationBar.searchCallback = searchIngredients;
+    NavigationService.navigationBar.showGoBack = true;
 
     /**
      * Search ingredients by given text query.

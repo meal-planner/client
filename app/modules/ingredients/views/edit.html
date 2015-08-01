@@ -1,18 +1,4 @@
 <form name="ingredientForm" ng-submit="ctrl.saveIngredient()">
-  <md-toolbar class="md-hue-2 md-whiteframe-z2 mp-fixed-top">
-    <div class="md-toolbar-tools">
-      <md-button ui-sref="ingredientsList"
-                 class="md-icon-button" aria-label="Close">
-        <md-icon>&#xE5C4;</md-icon>
-      </md-button>
-      <h2>
-        <span ng-if="::ctrl.isEdit == true">Edit Ingredient &laquo;{{::ctrl.ingredient.name}}&raquo;</span>
-        <span ng-if="::ctrl.isEdit == false">Create New Ingredient</span>
-      </h2>
-    </div>
-    <md-progress-linear md-mode="indeterminate" ng-show="ctrl.isLoading"></md-progress-linear>
-  </md-toolbar>
-
   <div class="mp-content md-whiteframe-z1">
     <md-content class="md-padding">
       <div layout="row">
@@ -47,11 +33,8 @@
           Generic ingredient?
         </md-checkbox>
       </div>
-      <div layout="row" layout-align="space-between">
-        <md-button type="button" class="md-button-wide" ng-disabled="ctrl.isLoading" ui-sref="ingredientsList">
-          go back
-        </md-button>
-        <md-button class="md-raised md-primary md-button-wide" ng-disabled="ctrl.isLoading">
+      <div layout="row" layout-align="center center">
+        <md-button class="md-raised md-primary md-button-wide" ng-disabled="ctrl.saveButtonDisabled">
           save
         </md-button>
       </div>

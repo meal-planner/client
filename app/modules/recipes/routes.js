@@ -11,6 +11,7 @@
       templateUrl: 'modules/recipes/views/groups.html',
       controller: 'RecipesGroupsController',
       controllerAs: 'ctrl',
+      pageTitle: 'Recipes',
       resolve: {
         dishTypes: resolveDishTypes,
         cuisines: resolveCuisines,
@@ -21,12 +22,16 @@
       url: '/recipes/list/:filterName/:filterValue',
       templateUrl: 'modules/recipes/views/list.html',
       controller: 'RecipesListController',
-      controllerAs: 'ctrl'
+      controllerAs: 'ctrl',
+      resolve: {
+        recipes: resolveRecipesList
+      }
     }).state('createRecipe', {
       url: '/recipes/create',
       templateUrl: 'modules/recipes/views/edit.html',
       controller: 'RecipeEditController',
       controllerAs: 'ctrl',
+      pageTitle: 'Create New Recipe',
       resolve: {
         dishTypes: resolveDishTypes,
         cuisines: resolveCuisines,
@@ -55,6 +60,17 @@
         recipe: resolveRecipe
       }
     });
+
+    /**
+     * Load list of recipes with given filters.
+     *
+     * @param $stateParams
+     * @param RecipeService
+     * @returns {{Recipe}[]|*}
+     */
+    function resolveRecipesList($stateParams, RecipeService) {
+      return RecipeService.getRecipes($stateParams.filterName, $stateParams.filterValue);
+    }
 
     /**
      * Build empty recipe model for create new recipe form.

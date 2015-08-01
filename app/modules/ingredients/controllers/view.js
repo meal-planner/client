@@ -13,9 +13,11 @@
     .controller('IngredientViewController', IngredientViewController);
 
   /* @ngInject */
-  function IngredientViewController(ingredient) {
+  function IngredientViewController(NavigationService, ingredient) {
     var self = this;
 
     self.ingredient = ingredient;
+    NavigationService.navigationBar.title = ingredient.name;
+    NavigationService.navigationBar.showGoBack = true;
   }
 })();

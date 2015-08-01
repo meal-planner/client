@@ -14,40 +14,16 @@
     .controller('RecipesListController', RecipesListController);
 
   /* @ngInject */
-  function RecipesListController($state, $stateParams, RecipeService) {
+  function RecipesListController($state, $stateParams, NavigationService, RecipeService, recipes) {
     var self = this;
-    self.items = [];
-    self.searchText = null;
+
+    self.items = recipes;
     self.searchRecipes = searchRecipes;
     self.openRecipe = openRecipe;
 
-    /**
-     * Set initial state.
-     * Pre-load list of latest recipes.
-     */
-    return activate();
-
-    function activate() {
-      self.isLoading = true;
-      self.filterValue = $stateParams.filterValue;
-      getRecipes().then(
-        function () {
-          self.isLoading = false;
-        },
-        function () {
-          self.isLoading = false;
-          self.isError = true;
-        }
-      );
-
-      function getRecipes() {
-        return RecipeService.getRecipes($stateParams.filterName, $stateParams.filterValue)
-          .then(function (data) {
-            self.items = data;
-            return self.items;
-          });
-      }
-    }
+    NavigationService.navigationBar.title = 'Recipes › ' +  $stateParams.filterValue;
+    NavigationService.navigationBar.searchCallback = searchRecipes;
+    NavigationService.navigationBar.showGoBack = true;
 
     /**
      * Search recipes by given text query.
@@ -55,11 +31,11 @@
      * @returns {*}
      */
     function searchRecipes(query) {
-      self.isLoading = true;
+      NavigationService.navigationBar.isLoading = true;
 
       RecipeService.searchRecipes(query)
         .then(function (data) {
-          self.isLoading = false;
+          NavigationService.navigationBar.isLoading = false;
           self.items = data;
         }
       );
