@@ -116,7 +116,7 @@
       recipe.cuisine = {
         American: true,
         British: false
-      }
+      };
 
       var recipeJson = recipe.toJson();
       expect(recipeJson.cuisine).toContain('American');
