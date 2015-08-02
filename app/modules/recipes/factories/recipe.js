@@ -125,9 +125,9 @@
         name: self.name,
         time_to_cook: self.time_to_cook,
         dish_type: self.dish_type,
-        cuisine: Object.keys(self.cuisine),
-        key_ingredient: Object.keys(self.key_ingredient),
-        diet: Object.keys(self.diet),
+        cuisine: getCheckboxes(self.cuisine),
+        key_ingredient: getCheckboxes(self.key_ingredient),
+        diet: getCheckboxes(self.diet),
         servings: self.servings,
         steps: self.steps,
         ingredients: []
@@ -147,6 +147,28 @@
       json.nutrients = self.nutrients.toJson();
 
       return json;
+
+      /**
+       * Get checked checkboxes.
+       * Checkboxes are stored in object has in following way:
+       * {
+       *   CheckboxA: true,
+        *  CheckboxB: false
+       * }
+       *
+       * @param object
+       * @returns {Array}
+       */
+      function getCheckboxes(object) {
+        var checkboxes = [];
+        for (var checkbox in object) {
+          if (object.hasOwnProperty(checkbox) && object[checkbox] === true) {
+            checkboxes.push(checkbox);
+          }
+        }
+
+        return checkboxes;
+      }
     }
 
     /**

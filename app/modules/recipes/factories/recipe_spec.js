@@ -110,6 +110,18 @@
       expect(recipeJson.ingredients[0].measure_amount).toEqual(2);
       expect(recipeJson.nutrients.energy).toEqual(200);// 2 cups (150kcal) + 200g (50kcal)
     });
+
+    it('saves only selected cuisine', function () {
+      var recipe = recipeFactory.build();
+      recipe.cuisine = {
+        American: true,
+        British: false
+      }
+
+      var recipeJson = recipe.toJson();
+      expect(recipeJson.cuisine).toContain('American');
+      expect(recipeJson.cuisine).not.toContain('British');
+    });
   });
 
 })();
