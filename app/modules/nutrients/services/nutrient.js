@@ -143,7 +143,7 @@
         {
           label: 'Vitamin B-12',
           code: 'vitamin_b12',
-          unit: 'µg',
+          unit: '\u00B5g',
           group: 'Vitamins',
           sort: 110
         },
@@ -172,7 +172,7 @@
         {
           label: 'Vitamin K',
           code: 'vitamin_k',
-          unit: 'µg',
+          unit: '\u00B5g',
           group: 'Vitamins',
           sort: 130
         },
@@ -202,7 +202,7 @@
         {
           label: 'Folate',
           code: 'folate_dfe',
-          unit: 'µg',
+          unit: '\u00B5g',
           group: 'Vitamins',
           sort: 150
         },
@@ -252,13 +252,13 @@
         {
           label: 'Iodine, I',
           code: 'iodine',
-          unit: 'µg',
+          unit: '\u00B5g',
           group: 'Minerals'
         },
         {
           label: 'Selenium, Se',
           code: 'selenium',
-          unit: 'µg',
+          unit: '\u00B5g',
           group: 'Minerals'
         },
         {
@@ -276,19 +276,19 @@
         {
           label: 'Chromium, Cr',
           code: 'chromium',
-          unit: 'µg',
+          unit: '\u00B5g',
           group: 'Minerals'
         },
         {
           label: 'Molybdenum, Mo',
           code: 'molybdenum',
-          unit: 'µg',
+          unit: '\u00B5g',
           group: 'Minerals'
         },
         {
           label: 'Chloride, Cl',
           code: 'chloride',
-          unit: 'µg',
+          unit: '\u00B5g',
           group: 'Minerals'
         },
         {

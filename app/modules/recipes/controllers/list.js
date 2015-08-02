@@ -21,7 +21,7 @@
     self.searchRecipes = searchRecipes;
     self.openRecipe = openRecipe;
 
-    NavigationService.navigationBar.title = 'Recipes › ' +  $stateParams.filterValue;
+    NavigationService.navigationBar.title = 'Recipes \u203A ' +  $stateParams.filterValue;
     NavigationService.navigationBar.searchCallback = searchRecipes;
     NavigationService.navigationBar.showGoBack = true;
 

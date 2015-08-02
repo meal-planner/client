@@ -19,7 +19,7 @@
 
     self.items = ingredients;
     self.searchIngredients = searchIngredients;
-    NavigationService.navigationBar.title = 'Ingredients › ' +  $stateParams.group;
+    NavigationService.navigationBar.title = 'Ingredients \u203A ' +  $stateParams.group;
     NavigationService.navigationBar.searchCallback = searchIngredients;
     NavigationService.navigationBar.showGoBack = true;
 
