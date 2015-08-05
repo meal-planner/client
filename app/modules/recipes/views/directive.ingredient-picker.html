@@ -1,4 +1,8 @@
 <div layout="row" layout-align="space-between center">
+  <md-button type="button" aria-label="Ingredient Browser" class="md-icon-button" ng-click="openIngredientBrowser($event)">
+    <md-icon>&#xE5C3;</md-icon>
+    <md-tooltip>Ingredient Browser</md-tooltip>
+  </md-button>
   <md-autocomplete
     md-delay="300"
     md-selected-item="selectedItem"
@@ -10,8 +14,4 @@
     flex>
     <span md-highlight-text="searchText">{{::item.name}} {{::item.description}}</span>
   </md-autocomplete>
-  <md-button type="button" aria-label="Ingredient Browser" class="md-icon-button">
-    <md-icon>&#xE5C3;</md-icon>
-    <md-tooltip>Ingredient Browser</md-tooltip>
-  </md-button>
 </div>

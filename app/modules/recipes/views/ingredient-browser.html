@@ -1,0 +1,65 @@
+<md-dialog class="recipe-selector" aria-label="Nutrient Selector">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2 ng-if="!ctrl.chosenGroup">Choose Food Group</h2>
+      <md-button aria-label="Go Back"
+                 ng-if="ctrl.chosenGroup"
+                 ng-click="ctrl.chosenGroup = null"
+                 class="md-icon-button">
+        <md-icon>&#xE5C4;</md-icon>
+      </md-button>
+      <h2 ng-if="ctrl.chosenGroup">
+        {{ctrl.chosenGroup}}
+      </h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="ctrl.cancelDialog()">
+        <md-icon aria-label="Close dialog">&#xE5CD;</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content class="sticky-container" style="height:600px;width: 910px;padding-top:10px;">
+    <md-grid-list class="mp-tiles"
+                  ng-if="!ctrl.chosenGroup"
+                  md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
+                  md-row-height-gt-md="1:1" md-row-height="4:3"
+                  md-gutter="8px" md-gutter-gt-sm="10px">
+      <md-grid-tile ng-repeat="group in ctrl.groups"
+                    md-rowspan="{{::group.tile.row}}"
+                    md-colspan="{{::group.tile.col}}"
+                    md-colspan-sm="1"
+                    md-ink-ripple
+                    ng-click="ctrl.showIngredientGroup(group.title);">
+        <img ng-src="{{::group.background}}" alt="{{::group.title}}"/>
+        <md-grid-tile-footer><h3>{{::group.title}}</h3></md-grid-tile-footer>
+      </md-grid-tile>
+    </md-grid-list>
+
+    <md-list ng-if="ctrl.chosenGroup" class="ingredients">
+      <md-list-item class="md-3-line"
+                    ng-repeat="ingredient in ctrl.ingredients track by ingredient.id"
+                    ng-click="ctrl.addIngredient(ingredient)">
+        <img src="images/ingredient-icon.png" class="md-avatar" title="{{::ingredient.group}}">
+
+        <div class="md-list-item-text">
+          <div>
+            <div class="mp-ingredient-item-name">
+              {{::ingredient.name}}
+              <span class="mp-ingredient-item-description">
+                {{::ingredient.description}}
+              </span>
+            </div>
+
+            <p class="mp-ingredient-item-nutrients" layout="row" layout-align="space-between">
+              <mp-ingredient-nutrient ingredient="ingredient" code="energy"></mp-ingredient-nutrient>
+              <mp-ingredient-nutrient ingredient="ingredient" code="fat"></mp-ingredient-nutrient>
+              <mp-ingredient-nutrient ingredient="ingredient" code="protein"></mp-ingredient-nutrient>
+              <mp-ingredient-nutrient ingredient="ingredient" code="carbohydrate"></mp-ingredient-nutrient>
+            </p>
+          </div>
+        </div>
+        <md-divider ng-if="$last"></md-divider>
+      </md-list-item>
+    </md-list>
+  </md-dialog-content>
+</md-dialog>

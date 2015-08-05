@@ -13,7 +13,7 @@
     .directive('mpRecipeIngredientPicker', mpRecipeIngredientPicker);
 
   /* @ngInject */
-  function mpRecipeIngredientPicker(IngredientService) {
+  function mpRecipeIngredientPicker($mdDialog, IngredientService) {
     return {
       templateUrl: 'modules/recipes/views/directive.ingredient-picker.html',
       link: ingredientPickerLink,
@@ -26,6 +26,7 @@
       scope.searchText = null;
       scope.querySearch = querySearch;
       scope.addIngredient = addIngredient;
+      scope.openIngredientBrowser = openIngredientBrowser;
 
       /**
        * Perform ingredients search.
@@ -44,6 +45,24 @@
       function addIngredient(ingredient) {
         scope.searchText = '';
         scope.recipe.addIngredient(ingredient);
+      }
+
+      /**
+       * Open ingredient browser popup.
+       *
+       * @param event
+       */
+      function openIngredientBrowser(event) {
+        $mdDialog.show({
+          controller: 'IngredientBrowserController',
+          controllerAs: 'ctrl',
+          bindToController: true,
+          templateUrl: 'modules/recipes/views/ingredient-browser.html',
+          targetEvent: event,
+          locals: {
+            recipe: scope.recipe
+          }
+        });
       }
     }
   }
