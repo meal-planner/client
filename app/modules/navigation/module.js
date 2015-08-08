@@ -23,7 +23,6 @@
         NavigationService.navigationBar.title = $state.current.pageTitle;
       }
       NavigationService.navigationBar.isLoading = false;
-      NavigationService.navigationBar.showGoBack = false;
       NavigationService.navigationBar.searchCallback = null;
     });
   }

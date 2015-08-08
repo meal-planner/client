@@ -3,13 +3,13 @@
     <div class="md-toolbar-tools">
       <md-button aria-label="Open menu"
                  ng-click="openMenu()"
-                 ng-if="navigationBar.showGoBack === false"
+                 ng-if="!isSearchInputVisible"
                  class="md-icon-button">
         <md-icon>&#xE5D2;</md-icon>
       </md-button>
       <md-button aria-label="Go Back"
-                 ng-click="isSearchInputVisible ? closeSearch() : goBack()"
-                 ng-if="navigationBar.showGoBack === true || isSearchInputVisible"
+                 ng-click="closeSearch()"
+                 ng-if="isSearchInputVisible"
                  class="md-icon-button">
         <md-icon>&#xE5C4;</md-icon>
       </md-button>

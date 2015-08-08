@@ -18,6 +18,5 @@
 
     self.recipe = recipe;
     NavigationService.navigationBar.title = recipe.name;
-    NavigationService.navigationBar.showGoBack = true;
   }
 })();

@@ -23,7 +23,6 @@
 
     NavigationService.navigationBar.title = 'Recipes \u203A ' +  $stateParams.filterValue;
     NavigationService.navigationBar.searchCallback = searchRecipes;
-    NavigationService.navigationBar.showGoBack = true;
 
     /**
      * Search recipes by given text query.

@@ -23,7 +23,6 @@
     if (ingredient.id) {
       NavigationService.navigationBar.title = ingredient.name;
     }
-    NavigationService.navigationBar.showGoBack = true;
     self.ingredient = ingredient;
     self.foodGroups = foodGroups;
     self.saveIngredient = saveIngredient;

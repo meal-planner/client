@@ -18,8 +18,7 @@
       navigationBar: {
         title: '',
         searchCallback: null,
-        isLoading: false,
-        showGoBack: false
+        isLoading: false
       },
       links: [{
         label: 'Meal Plan',

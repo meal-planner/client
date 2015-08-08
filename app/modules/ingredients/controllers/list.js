@@ -21,7 +21,6 @@
     self.searchIngredients = searchIngredients;
     NavigationService.navigationBar.title = 'Ingredients \u203A ' +  $stateParams.group;
     NavigationService.navigationBar.searchCallback = searchIngredients;
-    NavigationService.navigationBar.showGoBack = true;
 
     /**
      * Search ingredients by given text query.

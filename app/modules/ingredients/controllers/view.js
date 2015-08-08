@@ -18,6 +18,5 @@
 
     self.ingredient = ingredient;
     NavigationService.navigationBar.title = ingredient.name;
-    NavigationService.navigationBar.showGoBack = true;
   }
 })();

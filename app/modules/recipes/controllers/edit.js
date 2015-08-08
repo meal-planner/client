@@ -28,7 +28,6 @@
     if (recipe.id) {
       NavigationService.navigationBar.title = recipe.name;
     }
-    NavigationService.navigationBar.showGoBack = true;
     self.recipe = recipe;
     self.dishTypes = dishTypes;
     self.cuisines = cuisines;
