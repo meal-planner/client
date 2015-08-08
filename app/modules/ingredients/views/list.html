@@ -11,7 +11,7 @@
       Could not load ingredients list. Please, check network connection.
     </div>
 
-    <md-list ng-hide="ctrl.isLoading" class="ingredients">
+    <md-list ng-hide="ctrl.isLoading" class="mp-ingredients">
       <mp-ingredient-item ingredient="ingredient"
                           last="$last"
                           ng-repeat="ingredient in ctrl.items track by ingredient.id">

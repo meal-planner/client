@@ -18,9 +18,12 @@
     var self = this;
 
     self.cancelDialog = cancelDialog;
-    self.showIngredientGroup = showIngredientGroup;
+    self.loadIngredients = loadIngredients;
     self.addIngredient = addIngredient;
     self.groups = [];
+    self.ingredients = [];
+    self.pageSize = 25;
+    self.currentPosition = 0;
 
     return activate();
 
@@ -34,15 +37,18 @@
     }
 
     /**
-     * Load selected group ingredients.
-     *
-     * @param {String} group
+     * Load ingredients in chosen group.
+     * Save energy value to ingredient property for quick access.
      */
-    function showIngredientGroup(group) {
-      self.chosenGroup = group;
-      IngredientService.getIngredients(group).then(function (data) {
-        self.ingredients = data;
-      });
+    function loadIngredients() {
+      IngredientService.getIngredients(self.chosenGroup, self.currentPosition, self.pageSize)
+        .then(function (ingredients) {
+          ingredients.forEach(function (ingredient) {
+            ingredient.energy = ingredient.nutrients.find('energy').value;
+            self.ingredients.push(ingredient);
+          });
+          self.currentPosition += self.pageSize;
+        });
     }
 
     /**

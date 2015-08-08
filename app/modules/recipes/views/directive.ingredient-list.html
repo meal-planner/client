@@ -1,4 +1,4 @@
-<md-list>
+<md-list class="mp-ingredients-list">
   <md-list-item class="md-3-line" ng-repeat="ingredient in recipe.ingredients track by $index">
     <img src="images/ingredient-icon.png" class="md-avatar">
 
@@ -13,7 +13,7 @@
         <mp-measure-selector ingredient="ingredient"></mp-measure-selector>
       </div>
       <div flex="15">
-        <p class="ingredients mp-no-top-margin">
+        <p class="mp-ingredients mp-no-top-margin">
           <mp-ingredient-nutrient ingredient="ingredient" code="energy"></mp-ingredient-nutrient>
           <mp-ingredient-nutrient ingredient="ingredient" code="fat"></mp-ingredient-nutrient>
           <mp-ingredient-nutrient ingredient="ingredient" code="protein"></mp-ingredient-nutrient>

@@ -2,6 +2,27 @@
   fieldset.standard {
     border: solid 1px #cdcdcd;
   }
+
+  .mp-ingredients-list {
+    padding-left: 10px;
+  }
+}
+
+.mp-ingredient-browser-popup {
+  height:610px;
+  width: 910px;
+
+  .mp-food-groups {
+    padding-top: 10px;
+  }
+
+  .mp-ingredients {
+    padding: 0;
+  }
+
+  .mp-virtual-repeat-container {
+    height: 610px;
+  }
 }
 
 

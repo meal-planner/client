@@ -3,6 +3,11 @@
     <md-content class="md-padding">
       <div layout="column">
 
+        <md-input-container>
+          <label>Name</label>
+          <input type="text" ng-model="ctrl.recipe.name" required>
+        </md-input-container>
+
         <div layout="row">
           <md-input-container flex="20">
             <label>Dish Type</label>
@@ -12,14 +17,6 @@
               </md-option>
             </md-select>
           </md-input-container>
-
-          <md-input-container flex="80">
-            <label>Name</label>
-            <input type="text" ng-model="ctrl.recipe.name" required>
-          </md-input-container>
-        </div>
-
-        <div layout="row">
           <md-input-container flex="20">
             <label>Yields servings</label>
             <md-select ng-model="ctrl.recipe.servings" placeholder="Please, select">

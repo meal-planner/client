@@ -28,7 +28,7 @@
      * Load single ingredient by ElasticSearch document id.
      * Build and return Ingredient object when complete.
      *
-     * @param {Number} ingredientId
+     * @param {String} ingredientId
      * @returns {Ingredient}
      */
     function getIngredient(ingredientId) {
@@ -42,16 +42,19 @@
     /**
      * Load list of ingredients from REST backend.
      *
+     * @param {String} group - filter ingredients by food group
+     * @param {Number} start - from position
+     * @param {Number} size - number of items in response
      * @returns [{Ingredient}]
      */
-    function getIngredients(group) {
-      return ingredient.query({group: group}).$promise.then(getIngredientsListComplete);
+    function getIngredients(group, start, size) {
+      return ingredient.query({group: group, start: start, size: size}).$promise.then(getIngredientsListComplete);
     }
 
     /**
      * Search ingredients by given query text.
      *
-     * @param searchText
+     * @param {String} searchText
      * @returns [{Ingredient}]
      */
     function searchIngredients(searchText) {
@@ -76,7 +79,7 @@
     /**
      * Create or update ingredient in REST backend.
      *
-     * @param ingredientId
+     * @param {String} ingredientId
      * @param data
      * @returns {*|Function|promise|F|n}
      */
@@ -88,7 +91,7 @@
     /**
      * Delete ingredient by ElasticSearch document id.
      *
-     * @param ingredientId
+     * @param {String} ingredientId
      * @returns {*|Function|promise|F|n}
      */
     function deleteIngredient(ingredientId) {
