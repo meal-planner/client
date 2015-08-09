@@ -25,6 +25,6 @@
         .catch(function (response) {
           console.log(response.data ? response.data.message : response);
         });
-    };
+    }
   }
 })();

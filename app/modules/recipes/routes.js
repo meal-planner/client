@@ -33,7 +33,7 @@
       controllerAs: 'ctrl',
       pageTitle: 'Create New Recipe',
       resolve: {
-        authenticated: function (UserService) {return UserService.isAuthenticated()},
+        authenticated: function (UserService) {return UserService.isAuthenticated();},
         dishTypes: resolveDishTypes,
         cuisines: resolveCuisines,
         keyIngredients: resolveKeyIngredients,
@@ -46,7 +46,7 @@
       controller: 'RecipeEditController',
       controllerAs: 'ctrl',
       resolve: {
-        authenticated: function (UserService) {return UserService.isAuthenticated()},
+        authenticated: function (UserService) {return UserService.isAuthenticated();},
         dishTypes: resolveDishTypes,
         cuisines: resolveCuisines,
         keyIngredients: resolveKeyIngredients,

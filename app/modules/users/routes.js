@@ -19,7 +19,7 @@
       controllerAs: 'ctrl',
       pageTitle: 'Profile',
       resolve: {
-        authenticated: function (UserService) {return UserService.isAuthenticated()}
+        authenticated: function (UserService) {return UserService.isAuthenticated();}
       }
     });
   }

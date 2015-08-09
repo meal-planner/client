@@ -14,7 +14,6 @@
 
   /* @ngInject */
   function UserService($http, $q, $location, $auth, NavigationService, ENV) {
-    var profile;
     return {
       isAuthenticated: isAuthenticated,
       setAvatar: setAvatar,
