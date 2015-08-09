@@ -27,6 +27,9 @@
                  class="md-icon-button">
         <md-icon>&#xE8B6;</md-icon>
       </md-button>
+      <md-button aria-label="Profile" ui-sref="profile" class="md-icon-button">
+        <img ng-src="{{navigationBar.avatar}}" class="mp-avatar"/>
+      </md-button>
     </div>
     <md-progress-linear ng-show="navigationBar.isLoading" md-mode="indeterminate"></md-progress-linear>
   </md-toolbar>

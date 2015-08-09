@@ -18,7 +18,8 @@
       navigationBar: {
         title: '',
         searchCallback: null,
-        isLoading: false
+        isLoading: false,
+        avatar: 'images/icons/avatar-default.png'
       },
       links: [{
         label: 'Meal Plan',

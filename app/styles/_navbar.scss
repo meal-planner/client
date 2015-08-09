@@ -26,4 +26,12 @@ mp-navbar {
     background: rgb(250,250,250);
     border-radius: 2px;
   }
+
+  .mp-avatar {
+    width: 36px;
+    height: 36px;
+    margin-top: 6px;
+    border-radius: 50%;
+    box-sizing: content-box;
+  }
 }

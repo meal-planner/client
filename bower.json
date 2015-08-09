@@ -9,7 +9,8 @@
     "angular-local-storage": "latest",
     "json3": "^3.3.0",
     "es5-shim": "^4.0.0",
-    "tc-angular-chartjs": "latest"
+    "tc-angular-chartjs": "latest",
+    "satellizer": "0.11.3"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0",

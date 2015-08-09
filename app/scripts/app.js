@@ -15,6 +15,7 @@
       'ngMaterial',
       'ui.router',
       'mealPlanner.environment',
+      'mealPlanner.users',
       'mealPlanner.navigation',
       'mealPlanner.nutrients',
       'mealPlanner.ingredients',
