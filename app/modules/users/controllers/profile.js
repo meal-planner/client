@@ -13,11 +13,32 @@
     .controller('ProfileController', ProfileController);
 
   /* @ngInject */
-  function ProfileController(UserService) {
+  function ProfileController($auth, UserService) {
     var self = this;
 
-    UserService.getProfile().success(function (profile) {
-      self.profile = profile;
-    });
+    self.logout = logout;
+
+    return activate();
+
+    /**
+     * Set user avatar from profile.
+     */
+    function activate() {
+      if ($auth.isAuthenticated()) {
+        UserService.getProfile().success(function (profile) {
+          self.profile = profile;
+        });
+      }
+    }
+
+    /**
+     * Log user out.
+     */
+    function logout() {
+      if (!$auth.isAuthenticated()) {
+        return;
+      }
+      $auth.logout();
+    }
   }
 })();

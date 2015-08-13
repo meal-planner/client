@@ -1,5 +1,65 @@
+.mp-login-page {
+  padding: 12px 22px;
+  width: 900px;
+}
+
+.mp-account-benefits {
+  li {
+    line-height: 56px;
+    font-size: 18px;
+  }
+}
+
+.mp-login-box {
+  a {
+    color: #000000;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      color: #428bca;
+    }
+  }
+
+  .mp-login-sign-up {
+    margin-top: 0;
+    font-size: 85%;
+    color: #90939a;
+  }
+
+  .mp-login-sub-text {
+    font-size: 85%;
+    color: #90939a;
+  }
+}
+
+.mp-login-button {
+  width: 95%;
+}
+
+.mp-login-separator {
+  position: relative;
+  height: 34px;
+  text-align: center;
+  margin-top: 4px;
+  margin-bottom: 18px;
+
+  h5 {
+    display: inline-block;
+    padding: 8px;
+    margin: 0;
+    background-color: white;
+  }
+
+  hr {
+    width: 95%;
+    margin: -15px auto 10px auto;
+    border-top: solid 1px #878787;
+    border-bottom: 0;
+  }
+}
+
 .mp-social-login {
-  width: 25%;
+  margin-bottom: 18px;
   a {
     display: block;
     height: 64px;

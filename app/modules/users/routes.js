@@ -11,7 +11,21 @@
       templateUrl: 'modules/users/views/login.html',
       controller: 'UserLoginController',
       controllerAs: 'ctrl',
-      pageTitle: 'Log In'
+      pageTitle: ' '
+    }).state('signup', {
+      parent: 'login',
+      url: '^/signup',
+      templateUrl: 'modules/users/views/signup.html',
+      controller: 'UserSignUpController',
+      controllerAs: 'ctrl',
+      pageTitle: ' '
+    }).state('forgot-password', {
+      parent: 'login',
+      url: '^/forgot-password',
+      templateUrl: 'modules/users/views/forgot-password.html',
+      controller: 'UserForgotPasswordController',
+      controllerAs: 'ctrl',
+      pageTitle: ' '
     }).state('profile', {
       url: '/profile',
       templateUrl: 'modules/users/views/profile.html',

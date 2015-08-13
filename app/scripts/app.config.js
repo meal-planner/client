@@ -20,5 +20,6 @@
     $mdThemingProvider.theme('dark')
       .primaryPalette('lime')
       .accentPalette('pink');
+    $mdThemingProvider.theme('error-toast');
   }
 })();
