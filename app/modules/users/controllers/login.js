@@ -51,15 +51,17 @@
     function handleError(response) {
       NavigationService.navigationBar.isLoading = false;
       self.loginButtonLocked = false;
-      var message = response.data && response.data.error ? response.data.error : 'Error during request.';
-      $mdDialog.show(
-        $mdDialog.alert()
-          .clickOutsideToClose(true)
-          .title('Log in error')
-          .content(message)
-          .ariaLabel('Could not log in')
-          .ok('OK')
-      );
+      if (response.status) {
+        var message = response.data && response.data.error ? response.data.error : 'Error during request.';
+        $mdDialog.show(
+          $mdDialog.alert()
+            .clickOutsideToClose(true)
+            .title('Log in error')
+            .content(message)
+            .ariaLabel('Could not log in')
+            .ok('OK')
+        );
+      }
     }
   }
 })();
