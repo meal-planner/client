@@ -1,0 +1,17 @@
+<md-dialog class="recipe-selector" aria-label="{{::ctrl.popupTitle}}">
+  <md-toolbar>
+    <div class="md-toolbar-tools md-whiteframe-z2">
+      <h2>
+        {{::ctrl.popupTitle}}
+      </h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="ctrl.cancelDialog()">
+        <md-icon aria-label="Close dialog">&#xE5CD;</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content class="sticky-container md-padding" style="padding: 16px;">
+    <ng-include src="ctrl.popupTemplateFile"></ng-include>
+  </md-dialog-content>
+</md-dialog>

@@ -15,6 +15,11 @@
       <input ng-model="ctrl.user.password" type="password" placeholder="Password" ng-required="true">
     </md-input-container>
     <div layout="column" layout-align="center center">
+      <p class="mp-login-sub-text" style="text-align: center">
+        By clicking on Sign up, you agree to our
+        <a href="terms-of-use.html" ng-click="ctrl.showTermsOfUse($event)">Terms of Use</a> and
+        <a href="privacy-policy.html" ng-click="ctrl.showPrivacyPolicy($event)">Privacy Policy</a>
+      </p>
       <md-button class="md-raised md-primary md-hue-2 mp-login-button"
                  aria-label="Sign Up"
                  ng-disabled="ctrl.signUpButtonLocked">
