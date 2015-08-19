@@ -12,8 +12,8 @@
       </ul>
     </div>
     <div flex="5"></div>
-    <div ui-view flex layout="column">
-      <div class="mp-login-box">
+    <div ui-view flex layout="column" class="mp-login-box">
+      <div>
         <form method="post" ng-submit="ctrl.login()" name="loginForm">
           <h2 class="md-headline">Log In</h2>
           <md-input-container>
@@ -53,6 +53,12 @@
           <md-tooltip>Sign in with Google</md-tooltip>
         </a>
       </div>
+      <p class="mp-login-sub-text" style="text-align: center">
+        By singing in with social provider above, you agree to our
+        <mp-popup-link link-url="terms-of-use.html" link-title="Terms of Use"></mp-popup-link>
+         and
+        <mp-popup-link link-url="privacy-policy.html" link-title="Privacy Policy"></mp-popup-link>
+      </p>
     </div>
   </div>
 </div>

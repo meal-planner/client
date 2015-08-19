@@ -3,17 +3,17 @@
 
   /**
    * @ngdoc function
-   * @name mealPlanner.users.controller:LegalPopupController
+   * @name mealPlanner.navigation.controller:PopupLinkController
    * @description
-   * # LegalPopupController
-   * User sign up legal popup controller
+   * # PopupLinkController
+   * Link popup controller
    */
   angular
-    .module('mealPlanner.users')
-    .controller('LegalPopupController', LegalPopupController);
+    .module('mealPlanner.navigation')
+    .controller('PopupLinkController', PopupLinkController);
 
   /* @ngInject */
-  function LegalPopupController($mdDialog, title, template) {
+  function PopupLinkController($mdDialog, title, template) {
     var self = this;
 
     self.popupTitle = title;

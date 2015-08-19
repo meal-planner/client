@@ -1,4 +1,4 @@
-<div class="mp-login-box">
+<div>
   <h2 class="md-headline">Sign Up</h2>
 
   <form method="post" ng-submit="ctrl.signUp()" name="signupForm">
@@ -17,8 +17,9 @@
     <div layout="column" layout-align="center center">
       <p class="mp-login-sub-text" style="text-align: center">
         By clicking on Sign up, you agree to our
-        <a href="terms-of-use.html" ng-click="ctrl.showTermsOfUse($event)">Terms of Use</a> and
-        <a href="privacy-policy.html" ng-click="ctrl.showPrivacyPolicy($event)">Privacy Policy</a>
+        <mp-popup-link link-url="terms-of-use.html" link-title="Terms of Use"></mp-popup-link>
+        and
+        <mp-popup-link link-url="privacy-policy.html" link-title="Privacy Policy"></mp-popup-link>
       </p>
       <md-button class="md-raised md-primary md-hue-2 mp-login-button"
                  aria-label="Sign Up"
