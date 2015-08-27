@@ -17,7 +17,9 @@
     return {
       isAuthenticated: isAuthenticated,
       setAvatar: setAvatar,
-      getProfile: getProfile
+      getProfile: getProfile,
+      requestPasswordReset: requestPasswordReset,
+      resetPassword: resetPassword
     };
 
     /**
@@ -55,6 +57,27 @@
      */
     function getProfile() {
       return $http.get(ENV.apiEndpoint + 'user/profile');
+    }
+
+    /**
+     * Request password reset for given email.
+     *
+     * @param {String} email
+     * @returns {HttpPromise}
+     */
+    function requestPasswordReset(email) {
+      return $http.post(ENV.apiEndpoint + 'user/password_reset_request', {email: email});
+    }
+
+    /**
+     * Reset user password with token from email link.
+     *
+     * @param {String} token
+     * @param {String} newPassword
+     * @returns {HttpPromise}
+     */
+    function resetPassword(token, newPassword) {
+      return $http.post(ENV.apiEndpoint + 'user/reset_password', {token: token, new_password: newPassword});
     }
   }
 })();

@@ -26,6 +26,12 @@
       controller: 'UserForgotPasswordController',
       controllerAs: 'ctrl',
       pageTitle: ' '
+    }).state('reset-password', {
+      url: '/reset-password/:token',
+      templateUrl: 'modules/users/views/reset-password.html',
+      controller: 'UserResetPasswordController',
+      controllerAs: 'ctrl',
+      pageTitle: 'Reset Password'
     }).state('profile', {
       url: '/profile',
       templateUrl: 'modules/users/views/profile.html',
