@@ -35,6 +35,7 @@
     };
 
     function handleError(message) {
+      /*jshint validthis:true */
       this.navigationBar.isLoading = false;
       message = message || 'Sorry, the request could not be performed.';
       $mdToast.show(
