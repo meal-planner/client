@@ -11,7 +11,7 @@
         <div layout="row">
           <md-input-container flex="20">
             <label>Dish Type</label>
-            <md-select ng-model="ctrl.recipe.dish_type" placeholder="Please, select">
+            <md-select ng-model="ctrl.recipe.dish_type" placeholder="Dish Type">
               <md-option value="{{::dishType.title}}" ng-repeat="dishType in ctrl.dishTypes | orderBy:'title'">
                 {{::dishType.title}}
               </md-option>
@@ -19,7 +19,7 @@
           </md-input-container>
           <md-input-container flex="20">
             <label>Yields servings</label>
-            <md-select ng-model="ctrl.recipe.servings" placeholder="Please, select">
+            <md-select ng-model="ctrl.recipe.servings" placeholder="Yields servings">
               <md-option ng-value="servings" ng-repeat="servings in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
                 {{::servings}}
               </md-option>
