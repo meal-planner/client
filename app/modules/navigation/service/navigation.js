@@ -13,7 +13,7 @@
     .service('NavigationService', NavigationService);
 
   /* @ngInject */
-  function NavigationService() {
+  function NavigationService($mdToast) {
     return {
       navigationBar: {
         title: '',
@@ -30,7 +30,20 @@
       }, {
         label: 'Ingredients',
         state: 'ingredientsGroups'
-      }]
+      }],
+      handleError: handleError
     };
+
+    function handleError(message) {
+      this.navigationBar.isLoading = false;
+      message = message || 'Sorry, the request could not be performed.';
+      $mdToast.show(
+        $mdToast.simple()
+          .content(message)
+          .position('bottom left')
+          .hideDelay(5000)
+          .theme('error-toast')
+      );
+    }
   }
 })();

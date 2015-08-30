@@ -42,6 +42,9 @@
             position: 'bottom left',
             hideDelay: 3000
           });
+        }, function (response) {
+          self.saveButtonDisabled = false;
+          NavigationService.handleError(response.data.error);
         });
     }
   }

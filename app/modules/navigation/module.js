@@ -13,7 +13,7 @@
     .run(runNavigation);
 
   /* @ngInject */
-  function runNavigation($rootScope, $state, $mdToast, NavigationService) {
+  function runNavigation($rootScope, $state, NavigationService) {
     $rootScope.$on('$stateChangeStart', function () {
       NavigationService.navigationBar.isLoading = true;
     });
@@ -28,14 +28,7 @@
 
     $rootScope.$on('$stateChangeError', function (event) {
       event.preventDefault();
-      NavigationService.navigationBar.isLoading = false;
-      $mdToast.show(
-        $mdToast.simple()
-          .content('Sorry, the request could not be performed.')
-          .position('bottom left')
-          .hideDelay(5000)
-          .theme('error-toast')
-      );
+      NavigationService.handleError();
     });
   }
 })();

@@ -13,11 +13,13 @@
     .controller('UserResetPasswordController', UserResetPasswordController);
 
   /* @ngInject */
-  function UserResetPasswordController($stateParams, $mdToast, $auth, UserService) {
+  function UserResetPasswordController($stateParams, $mdToast, $auth, UserService, NavigationService) {
     var self = this;
     self.requestPasswordReset = resetPassword;
 
     function resetPassword() {
+      NavigationService.navigationBar.isLoading = true;
+      self.submitButtonDisabled = true;
       UserService.resetPassword($stateParams.token, self.password)
         .then(function (response) {
           $auth.setToken(response);
@@ -29,13 +31,8 @@
           });
         })
         .catch(function () {
-          $mdToast.show(
-            $mdToast.simple()
-              .content('Could not update the password')
-              .position('bottom left')
-              .hideDelay(5000)
-              .theme('error-toast')
-          );
+          self.submitButtonDisabled = false;
+          NavigationService.handleError('Could not update the password');
         });
     }
   }

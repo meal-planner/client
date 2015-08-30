@@ -51,14 +51,18 @@
       } else {
         self.saveButtonDisabled = true;
         NavigationService.navigationBar.isLoading = true;
-        RecipeService.saveRecipe(self.recipe.id, self.recipe.toJson()).then(function () {
-          $state.go('recipesGroups');
-          $mdToast.show({
-            template: '<md-toast>Recipe was saved!</md-toast>',
-            position: 'bottom left',
-            hideDelay: 3000
+        RecipeService.saveRecipe(self.recipe.id, self.recipe.toJson())
+          .then(function () {
+            $state.go('recipesGroups');
+            $mdToast.show({
+              template: '<md-toast>Recipe was saved!</md-toast>',
+              position: 'bottom left',
+              hideDelay: 3000
+            });
+          }, function (response) {
+            self.saveButtonDisabled = false;
+            NavigationService.handleError(response.data.error);
           });
-        });
       }
     }
   }
