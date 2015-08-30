@@ -18,6 +18,6 @@
   },
   "appPath": "app",
   "resolutions": {
-    "angular": "1.4.4"
+    "angular": "1.4.5"
   }
 }
