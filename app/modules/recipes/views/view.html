@@ -31,7 +31,9 @@
       </div>
 
       <div layout="row" layout-align="space-between">
-        <md-button class="md-button-wide" ui-sref="editRecipe({recipeId:ctrl.recipe.id})">
+        <md-button ng-if="::ctrl.recipe.can_edit"
+                   class="md-button-wide"
+                   ui-sref="editRecipe({recipeId:ctrl.recipe.id})">
           edit
         </md-button>
       </div>

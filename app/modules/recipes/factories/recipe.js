@@ -78,21 +78,22 @@
      * @param data
      * @returns {Recipe}
      */
-    function fromJson(object) {
+    function fromJson(data) {
       var recipe = build();
 
-      recipe.id = object.id;
-      recipe.name = object.name;
-      recipe.time_to_cook = object.time_to_cook;
-      recipe.dish_type = object.dish_type;
-      recipe.cuisine = arrayToObject(object.cuisine);
-      recipe.key_ingredient = arrayToObject(object.key_ingredient);
-      recipe.diet = arrayToObject(object.diet);
-      recipe.servings = object.servings || 1;
-      recipe.ingredients = object.ingredients;
-      recipe.nutrients = NutrientCollectionFactory.fromJson(object.nutrients);
+      recipe.id = data.id;
+      recipe.can_edit = data.can_edit;
+      recipe.name = data.name;
+      recipe.time_to_cook = data.time_to_cook;
+      recipe.dish_type = data.dish_type;
+      recipe.cuisine = arrayToObject(data.cuisine);
+      recipe.key_ingredient = arrayToObject(data.key_ingredient);
+      recipe.diet = arrayToObject(data.diet);
+      recipe.servings = data.servings || 1;
+      recipe.ingredients = data.ingredients;
+      recipe.nutrients = NutrientCollectionFactory.fromJson(data.nutrients);
       recipe.setServings(1);
-      recipe.steps = object.steps;
+      recipe.steps = data.steps;
 
       return recipe;
 

@@ -83,6 +83,7 @@
     function fromJson(data) {
       var ingredient = build();
       ingredient.id = data.id;
+      ingredient.can_edit = data.can_edit;
       if (data.ndbno) {
         ingredient.ndbno = data.ndbno;
       }
