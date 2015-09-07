@@ -34,4 +34,11 @@ mp-navbar {
     border-radius: 50%;
     box-sizing: content-box;
   }
+
+  .mp-logo {
+    padding-top: 4px;
+    a {
+      outline: none;
+    }
+  }
 }
