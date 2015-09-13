@@ -18,8 +18,8 @@
 
     return {
       getRecipe: getRecipe,
-      getRecipes: getRecipes,
       searchRecipes: searchRecipes,
+      searchRecipesFiltered: searchRecipesFiltered,
       saveRecipe: saveRecipe,
       deleteRecipe: deleteRecipe
     };
@@ -40,19 +40,31 @@
     }
 
     /**
-     * Load list of recipes from REST backend.
+     * Search recipes by given query text using given filters.
      *
+     * @param {String} filterName
+     * @param {String} filterValue
+     * @param {String} searchText
+     * @param {Number} limit
      * @returns [{Recipe}]
      */
-    function getRecipes(filterName, filterValue) {
-      return recipe.query({filter_by: filterName, filter_value: filterValue}).$promise.then(getRecipesListComplete);
+    function searchRecipesFiltered(filterName, filterValue, searchText, limit) {
+      return recipe.query({
+        filter_by: filterName,
+        filter_value: filterValue,
+        query: searchText,
+        limit: limit
+      }).$promise
+        .then(getRecipesListComplete);
     }
 
     /**
      * Search recipes by given query text.
      *
-     * @param searchText
-     * @param limit
+     * @param {String} filterName
+     * @param {String} filterValue
+     * @param {String} searchText
+     * @param {Number} limit
      * @returns [{Recipe}]
      */
     function searchRecipes(searchText, limit) {

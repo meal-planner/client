@@ -33,7 +33,7 @@
       self.mealTypes = PlanService.mealTypes;
       self.mealType = PlanService.mealTypes[0];
 
-      RecipeService.getRecipes().then(function (recipes) {
+      RecipeService.searchRecipes().then(function (recipes) {
         self.recipes = recipes;
       });
     }
