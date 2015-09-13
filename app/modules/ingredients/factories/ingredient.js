@@ -59,7 +59,6 @@
      * {
      *  id: 'string',
      *  name: 'string',
-     *  description: 'string',
      *  generic: 'boolean',
      *  group: 'string',
      *  measures: [
@@ -88,7 +87,6 @@
         ingredient.ndbno = data.ndbno;
       }
       ingredient.name = data.name;
-      ingredient.description = data.description;
       ingredient.group = data.group;
       ingredient.generic = data.generic;
       ingredient.measures = data.measures;
@@ -103,14 +101,13 @@
     /**
      * Convert ingredient to JSON.
      *
-     * @returns {{id: *, name: *, description: *, group: *, generic: *, measures: *}}
+     * @returns {{id: *, name: *, group: *, generic: *, measures: *}}
      */
     function toJson() {
       /*jshint validthis:true */
       var json = {
         id: this.id,
         name: this.name,
-        description: this.description,
         group: this.group,
         generic: this.generic,
         measures: this.measures.map(function (measure) {
