@@ -31,7 +31,7 @@
     function searchIngredients(query) {
       self.isLoading = true;
 
-      IngredientService.searchIngredients(query)
+      IngredientService.searchIngredients(query, $stateParams.group)
         .then(function (data) {
           self.isLoading = false;
           self.items = data;

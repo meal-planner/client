@@ -11,6 +11,10 @@
       Could not load ingredients list. Please, check network connection.
     </div>
 
+    <div class="mp-centered" ng-if="!ctrl.items.length">
+      No ingredients found.
+    </div>
+
     <md-list ng-hide="ctrl.isLoading" class="mp-ingredients">
       <mp-ingredient-item ingredient="ingredient"
                           last="$last"

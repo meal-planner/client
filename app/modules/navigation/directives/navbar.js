@@ -72,6 +72,8 @@
         scope.isSearchInputVisible = false;
         scope.isSearchButtonVisible = true;
         scope.isMenuButtonVisible = true;
+        scope.searchQuery = '';
+        scope.navigationBar.searchCallback('');
       }
     }
   }

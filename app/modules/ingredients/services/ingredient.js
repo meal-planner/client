@@ -55,10 +55,11 @@
      * Search ingredients by given query text.
      *
      * @param {String} searchText
+     * @param {String} group
      * @returns [{Ingredient}]
      */
-    function searchIngredients(searchText) {
-      return ingredient.query({query: searchText}).$promise.then(getIngredientsListComplete);
+    function searchIngredients(searchText, group) {
+      return ingredient.query({query: searchText, group: group}).$promise.then(getIngredientsListComplete);
     }
 
     /**
