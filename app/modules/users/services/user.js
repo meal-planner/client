@@ -46,7 +46,6 @@
      * Activate Intercom messenger.
      */
     function afterLogin() {
-      console.log('after login');
       getProfile().success(function (profile) {
         NavigationService.navigationBar.avatar = profile.avatar;
         window.Intercom('boot', {
