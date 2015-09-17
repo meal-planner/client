@@ -16,7 +16,7 @@
   function UserService($http, $q, $location, $auth, NavigationService, ENV) {
     return {
       isAuthenticated: isAuthenticated,
-      setAvatar: setAvatar,
+      afterLogin: afterLogin,
       getProfile: getProfile,
       requestPasswordReset: requestPasswordReset,
       resetPassword: resetPassword
@@ -43,10 +43,18 @@
 
     /**
      * Set navigation bar avatar from user profile.
+     * Activate Intercom messenger.
      */
-    function setAvatar() {
+    function afterLogin() {
+      console.log('after login');
       getProfile().success(function (profile) {
         NavigationService.navigationBar.avatar = profile.avatar;
+        window.Intercom('boot', {
+          app_id: "b7cghyas",
+          name: profile.display_name,
+          email: profile.email,
+          created_at: profile.created_at
+        });
       });
     }
 

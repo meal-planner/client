@@ -38,7 +38,7 @@
     function authenticate(provider) {
       $auth.authenticate(provider)
         .then(function () {
-          UserService.setAvatar();
+          UserService.afterLogin();
         })
         .catch(handleError);
     }

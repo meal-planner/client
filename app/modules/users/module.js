@@ -13,7 +13,7 @@
 
   function runUsers($auth, UserService) {
     if ($auth.isAuthenticated()) {
-      UserService.setAvatar();
+      UserService.afterLogin();
     }
   }
 })();
