@@ -39,6 +39,7 @@
         return;
       }
       $auth.logout();
+      window.Intercom('shutdown');
       NavigationService.navigationBar.avatar = 'images/icons/avatar-default.png';
     }
   }

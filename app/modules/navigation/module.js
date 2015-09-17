@@ -24,6 +24,7 @@
       }
       NavigationService.navigationBar.isLoading = false;
       NavigationService.navigationBar.searchCallback = null;
+      window.Intercom('update');
     });
 
     $rootScope.$on('$stateChangeError', function (event) {
