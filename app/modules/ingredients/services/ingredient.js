@@ -48,7 +48,13 @@
      * @returns [{Ingredient}]
      */
     function getIngredients(group, start, size) {
-      return ingredient.query({group: group, start: start, size: size}).$promise.then(getIngredientsListComplete);
+      return ingredient.query({
+        filter_by: 'group',
+        filter_value: group,
+        start: start,
+        size: size
+      }).$promise
+        .then(getIngredientsListComplete);
     }
 
     /**
@@ -59,7 +65,12 @@
      * @returns [{Ingredient}]
      */
     function searchIngredients(searchText, group) {
-      return ingredient.query({query: searchText, group: group}).$promise.then(getIngredientsListComplete);
+      return ingredient.query({
+        filter_by: 'group',
+        filter_value: group,
+        query: searchText
+      }).$promise
+        .then(getIngredientsListComplete);
     }
 
     /**
