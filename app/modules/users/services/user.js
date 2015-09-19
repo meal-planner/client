@@ -47,12 +47,12 @@
      */
     function afterLogin() {
       getProfile().success(function (profile) {
-        NavigationService.navigationBar.avatar = profile.avatar;
+        NavigationService.navigationBar.avatar = profile['avatar'];
         window.Intercom('boot', {
-          app_id: "b7cghyas",
-          name: profile.display_name,
-          email: profile.email,
-          created_at: profile.created_at
+          app_id: 'b7cghyas',
+          name: profile['display_name'],
+          email: profile['email'],
+          created_at: profile['created_at']
         });
       });
     }
