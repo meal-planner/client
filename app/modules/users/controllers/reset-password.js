@@ -23,7 +23,7 @@
       UserService.resetPassword($stateParams.token, self.password)
         .then(function (response) {
           $auth.setToken(response);
-          UserService.setAvatar();
+          UserService.afterLogin();
           $mdToast.show({
             template: '<md-toast>Your password was updated</md-toast>',
             position: 'bottom left',
