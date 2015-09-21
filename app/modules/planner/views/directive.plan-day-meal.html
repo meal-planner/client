@@ -5,5 +5,5 @@
     <md-icon>&#xE15C;</md-icon>
     <md-tooltip>Remove from plan</md-tooltip>
   </md-button>
-  {{::meal.name}} ({{::meal.servings}} servings)
+  <a ui-sref="viewRecipe({recipeId:meal.recipe_id})">{{::meal.name}}</a>
 </div>
