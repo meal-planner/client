@@ -13,7 +13,7 @@
     .factory('IngredientFactory', IngredientFactory);
 
   /* @ngInject */
-  function IngredientFactory(NutrientCollectionFactory) {
+  function IngredientFactory(ENV, NutrientCollectionFactory) {
     /**
      * Ingredient constructor.
      *
@@ -60,6 +60,7 @@
      *  id: 'string',
      *  name: 'string',
      *  generic: 'boolean',
+     *  image_url: 'string',
      *  group: 'string',
      *  measures: [
      *    {
@@ -89,11 +90,14 @@
       ingredient.name = data.name;
       ingredient.group = data.group;
       ingredient.generic = data.generic;
+      var imageUrl = data.image_url || 'ingredient/image/default-icon.png';
+      ingredient.imageUrl = ENV.contentEndpoint + imageUrl;
       ingredient.measures = data.measures;
       ingredient.selectedMeasure = 0;
       var measure = ingredient.measures[ingredient.selectedMeasure];
       ingredient.selectedAmount = measure.qty;
       ingredient.nutrients = NutrientCollectionFactory.fromJson(measure.nutrients);
+      ingredient.imageCrop = '';
 
       return ingredient;
     }
@@ -110,6 +114,7 @@
         name: this.name,
         group: this.group,
         generic: this.generic,
+        image_crop: this.imageCrop,
         measures: this.measures.map(function (measure) {
           return {
             label: measure.label,

@@ -59,7 +59,8 @@
      *  ingredients: [
      *    {
      *      id: 'string',
-     *      name: 'name',
+     *      name: 'string',
+     *      image_url: 'string',
      *      measure: 'string',
      *      measure_amount: 'integer'
      *    },
@@ -140,6 +141,7 @@
         var recipeIngredient = {
           id: ingredient.id,
           name: ingredient.name,
+          image_url: ingredient.imageUrl,
           measure: ingredient.measures[ingredient.selectedMeasure].label,
           measure_amount: ingredient.selectedAmount
         };

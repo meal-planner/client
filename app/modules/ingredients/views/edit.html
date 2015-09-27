@@ -15,6 +15,22 @@
           <input ng-model="ctrl.ingredient.name" required>
         </md-input-container>
       </div>
+      <md-button type="button" class="md-raised md-primary md-hue-2 mp-file-button" aria-label="Upload image">
+        Browse image&hellip;
+        <input type="file" mp-file-select="ctrl.image">
+      </md-button>
+      <div ng-if="ctrl.image.src" layout="row" layout-align="space-between center">
+        <div class="mp-image-preview" flex="40" layout="row" layout-align="center center">
+          <img ng-src="{{ctrl.ingredient.imageCrop}}" />
+        </div>
+        <div class="mp-crop-area" flex="60">
+          <img-crop image="ctrl.image.src"
+                    result-image="ctrl.ingredient.imageCrop"
+                    result-image-format="image/jpeg"
+                    result-image-quality="0.9">
+          </img-crop>
+        </div>
+      </div>
     </md-content>
 
     <h4 class="md-ingredient-edit-nutrients-header">Nutrients in:</h4>

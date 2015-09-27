@@ -53,7 +53,7 @@
         NavigationService.navigationBar.isLoading = true;
         RecipeService.saveRecipe(self.recipe.id, self.recipe.toJson())
           .then(function () {
-            $state.go('recipesGroups');
+            $state.go('viewRecipe', {recipeId: self.recipe.id});
             $mdToast.show({
               template: '<md-toast>Recipe was saved!</md-toast>',
               position: 'bottom left',

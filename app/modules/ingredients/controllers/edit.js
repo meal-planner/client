@@ -25,6 +25,7 @@
     }
     self.ingredient = ingredient;
     self.foodGroups = foodGroups;
+    self.image = {src: ''};
     self.saveIngredient = saveIngredient;
 
     /**
@@ -36,7 +37,7 @@
 
       IngredientService.saveIngredient(self.ingredient.id, self.ingredient.toJson())
         .then(function () {
-          $state.go('ingredientsList');
+          $state.go('viewIngredient', {ingredientId: self.ingredient.id});
           $mdToast.show({
             template: '<md-toast>Ingredient was saved!</md-toast>',
             position: 'bottom left',

@@ -1,9 +1,15 @@
 <div>
   <div class="mp-content md-whiteframe-z1">
     <md-content class="md-padding">
-      <mp-measure-selector ingredient="ctrl.ingredient"></mp-measure-selector>
-
-      <mp-nutrition-label nutrients="ctrl.ingredient.nutrients"></mp-nutrition-label>
+      <div layout="row" layout-align="space-between">
+        <div class="mp-image-view">
+          <img ng-src="{{ctrl.ingredient.imageUrl}}" />
+        </div>
+        <div>
+          <mp-measure-selector ingredient="ctrl.ingredient"></mp-measure-selector>
+          <mp-nutrition-label nutrients="ctrl.ingredient.nutrients"></mp-nutrition-label>
+        </div>
+      </div>
 
       <div layout="row" layout-align="space-between">
         <md-button ng-if="::ctrl.ingredient.can_edit"

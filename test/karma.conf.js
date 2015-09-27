@@ -30,6 +30,7 @@ module.exports = function(config) {
       'bower_components/Chart.js/Chart.min.js',
       'bower_components/tc-angular-chartjs/dist/tc-angular-chartjs.min.js',
       'bower_components/satellizer/satellizer.min.js',
+      'bower_components/ngImgCrop/compile/unminified/ng-img-crop.js',
       'app/scripts/app.js',
       'app/scripts/app.config.js',
       '.tmp/scripts/app.env.js',
