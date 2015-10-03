@@ -25,10 +25,12 @@
 
 .mp-image-preview {
   img {
-    &.round {
+    @include border-shadow-deep;
+  }
+  &.round {
+    img{
       border-radius: 50%;
     }
-    @include border-shadow-deep;
   }
 }
 
