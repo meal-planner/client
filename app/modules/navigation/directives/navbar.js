@@ -61,6 +61,7 @@
        */
       function openSearch() {
         scope.navigationBar.isSearchInputVisible = true;
+        scope.searchQuery = '';
         $timeout(function() {
           document.getElementById('search-field').focus();
         });
