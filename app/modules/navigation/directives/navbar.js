@@ -60,9 +60,7 @@
        * Show search input text.
        */
       function openSearch() {
-        scope.isSearchButtonVisible = false;
-        scope.isMenuButtonVisible = false;
-        scope.isSearchInputVisible = true;
+        scope.navigationBar.isSearchInputVisible = true;
         $timeout(function() {
           document.getElementById('search-field').focus();
         });
@@ -72,10 +70,8 @@
        * Hide search input text.
        */
       function closeSearch() {
-        scope.isSearchInputVisible = false;
-        scope.isSearchButtonVisible = true;
-        scope.isMenuButtonVisible = true;
         scope.searchQuery = '';
+        scope.navigationBar.isSearchInputVisible = false;
         scope.navigationBar.searchCallback('');
       }
     }

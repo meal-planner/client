@@ -24,6 +24,7 @@
       }
       NavigationService.navigationBar.isLoading = false;
       NavigationService.navigationBar.searchCallback = null;
+      NavigationService.navigationBar.isSearchInputVisible = false;
       window.Intercom('update');
     });
 

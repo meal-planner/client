@@ -18,6 +18,7 @@
       navigationBar: {
         title: '',
         searchCallback: null,
+        isSearchInputVisible: false,
         isLoading: false,
         avatar: 'images/icons/avatar-default.png'
       },

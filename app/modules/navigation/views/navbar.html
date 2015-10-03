@@ -3,24 +3,24 @@
     <div class="md-toolbar-tools">
       <md-button aria-label="Open menu"
                  ng-click="openMenu()"
-                 ng-if="!isSearchInputVisible"
+                 ng-if="!navigationBar.isSearchInputVisible"
                  class="md-icon-button">
         <md-icon>&#xE5D2;</md-icon>
       </md-button>
       <md-button aria-label="Go Back"
                  ng-click="closeSearch()"
-                 ng-if="isSearchInputVisible"
+                 ng-if="navigationBar.isSearchInputVisible"
                  class="md-icon-button">
         <md-icon>&#xE5C4;</md-icon>
       </md-button>
       <input id="search-field" aria-label="Search query" flex
              placeholder="Search"
-             ng-show="isSearchInputVisible"
+             ng-show="navigationBar.isSearchInputVisible"
              ng-model="searchQuery"
              ng-change="navigationBar.searchCallback(searchQuery)"
              ng-model-options="{debounce: 500}"
              class="search-input"/>
-      <span ng-hide="isSearchInputVisible" flex>{{navigationBar.title}}</span>
+      <span ng-hide="navigationBar.isSearchInputVisible" flex>{{navigationBar.title}}</span>
       <md-button aria-label="Search"
                  ng-click="openSearch()"
                  ng-show="navigationBar.searchCallback !== null"
