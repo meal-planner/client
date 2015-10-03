@@ -1,0 +1,47 @@
+
+.mp-file-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.mp-file-button input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  cursor: inherit;
+  display: block;
+}
+
+.mp-crop-area {
+  height: 400px;
+  width: 600px;
+}
+
+.mp-image-preview {
+  img {
+    &.round {
+      border-radius: 50%;
+    }
+    @include border-shadow-deep;
+  }
+}
+
+.mp-image-view {
+  &.round {
+    img {
+      border-radius: 50%;
+    }
+  }
+}
+
+.mp-image-icon {
+  border-radius: 50%;
+  width: 64px;
+  margin-right: 12px;
+}

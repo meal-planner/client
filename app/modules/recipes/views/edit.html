@@ -3,6 +3,26 @@
     <md-content class="md-padding">
       <div layout="column">
 
+        <md-content>
+          <md-button type="button" class="md-raised md-primary md-hue-2 mp-file-button" aria-label="Upload image">
+            Browse image&hellip;
+            <input type="file" mp-file-select="ctrl.image">
+          </md-button>
+          <div ng-if="ctrl.image.src" layout="row" layout-align="space-between center">
+            <div class="mp-image-preview" flex="40" layout="row" layout-align="center center">
+              <img ng-src="{{ctrl.recipe.imageCrop}}" />
+            </div>
+            <div class="mp-crop-area" flex="60">
+              <img-crop image="ctrl.image.src"
+                        area-type="square"
+                        result-image="ctrl.recipe.imageCrop"
+                        result-image-format="image/jpeg"
+                        result-image-quality="0.9">
+              </img-crop>
+            </div>
+          </div>
+        </md-content>
+
         <md-input-container>
           <label>Name</label>
           <input type="text" ng-model="ctrl.recipe.name" required>

@@ -10,6 +10,7 @@
 @import 'tiles';
 @import 'users';
 @import 'planner';
+@import 'images';
 
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
@@ -90,48 +91,4 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 md-toast.md-error-toast-theme {
   background-color: rgba(229, 57, 53, 0.95);
-}
-
-.mp-file-button {
-  position: relative;
-  overflow: hidden;
-}
-
-.mp-file-button input[type=file] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  min-width: 100%;
-  min-height: 100%;
-  font-size: 100px;
-  text-align: right;
-  filter: alpha(opacity=0);
-  opacity: 0;
-  cursor: inherit;
-  display: block;
-}
-
-.mp-crop-area {
-  height: 400px;
-  width: 600px;
-}
-
-.mp-image-preview {
-  img {
-    border-radius: 50%;
-    @include border-shadow-deep;
-  }
-}
-
-.mp-image-view {
-  img {
-    border-radius: 50%;
-    width: 128px;
-  }
-}
-
-.mp-image-icon {
-  border-radius: 50%;
-  width: 64px;
-  margin-right: 12px;
 }

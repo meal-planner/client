@@ -3,13 +3,13 @@
 
   /**
    * @ngdoc function
-   * @name mealPlanner.ingredients.directive:mpFileSelect
+   * @name mealPlanner.images.directive:mpFileSelect
    * @description
    * # mpFileSelect
    * File select directive.
    */
   angular
-    .module('mealPlanner.ingredients')
+    .module('mealPlanner.images')
     .directive('mpFileSelect', mpFileSelect);
 
   /* @ngInject */
@@ -31,9 +31,9 @@
         reader.readAsDataURL(file);
       }
 
-      function onFileLoad(evt) {
+      function onFileLoad(event) {
         scope.$apply(function ($scope) {
-          $scope.mpFileSelect.src = evt.target.result;
+          $scope.mpFileSelect.src = event.target.result;
         });
       }
     }

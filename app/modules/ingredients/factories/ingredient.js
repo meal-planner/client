@@ -23,6 +23,7 @@
       var self = this;
 
       self.measures = [];
+      self.imageCrop = '';
     }
 
     Ingredient.prototype.updateNutritionValues = updateNutritionValues;
@@ -97,7 +98,6 @@
       var measure = ingredient.measures[ingredient.selectedMeasure];
       ingredient.selectedAmount = measure.qty;
       ingredient.nutrients = NutrientCollectionFactory.fromJson(measure.nutrients);
-      ingredient.imageCrop = '';
 
       return ingredient;
     }

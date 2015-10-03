@@ -33,6 +33,7 @@
     self.cuisines = cuisines;
     self.keyIngredients = keyIngredients;
     self.diets = diets;
+    self.image = {src: ''};
     self.saveRecipe = saveRecipe;
 
     /**

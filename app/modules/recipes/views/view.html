@@ -3,6 +3,9 @@
     <md-content class="md-padding">
       <div layout="row" layout-align="space-between start">
         <div>
+          <div class="mp-image-view">
+            <img ng-src="{{ctrl.recipe.imageUrl}}" />
+          </div>
           <h4>Time to cook: {{::ctrl.recipe.time_to_cook}} min.</h4>
           <h4>Ingredients:</h4>
           <md-list>

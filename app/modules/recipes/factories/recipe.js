@@ -13,7 +13,7 @@
     .factory('RecipeFactory', RecipeFactory);
 
   /* @ngInject */
-  function RecipeFactory(NutrientCollectionFactory, IngredientService) {
+  function RecipeFactory(ENV, NutrientCollectionFactory, IngredientService) {
     /**
      * Recipe constructor.
      *
@@ -28,6 +28,7 @@
       self.ingredients = [];
       self.steps = [''];
       self.nutrients = NutrientCollectionFactory.build();
+      self.imageCrop = '';
     }
 
     Recipe.prototype.loadIngredients = loadIngredients;
@@ -54,6 +55,7 @@
      * {
      *  id: 'string',
      *  name: 'string',
+     *  image_url: 'string',
      *  time_to_cook: 'integer',
      *  servings: 'integer',
      *  ingredients: [
@@ -85,6 +87,8 @@
       recipe.id = data.id;
       recipe.can_edit = data.can_edit;
       recipe.name = data.name;
+      var imageUrl = data.image_url || 'recipe/image/default-icon.png';
+      recipe.imageUrl = ENV.contentEndpoint + imageUrl;
       recipe.time_to_cook = data.time_to_cook;
       recipe.dish_type = data.dish_type;
       recipe.cuisine = arrayToObject(data.cuisine);
@@ -125,6 +129,7 @@
       var json = {
         id: self.id,
         name: self.name,
+        image_crop: this.imageCrop,
         time_to_cook: self.time_to_cook,
         dish_type: self.dish_type,
         cuisine: getCheckboxes(self.cuisine),

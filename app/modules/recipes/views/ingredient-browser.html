@@ -40,7 +40,7 @@
         <md-list-item class="md-3-line"
                       md-virtual-repeat="ingredient in ctrl.ingredients"
                       ng-click="ctrl.addIngredient(ingredient)">
-          <img src="{{ingredient.imageUrl}}" class="md-avatar" title="{{::ingredient.group}}">
+          <img ng-src="{{ingredient.imageUrl}}" class="md-avatar" title="{{::ingredient.group}}">
 
           <div class="md-list-item-text">
             <div>

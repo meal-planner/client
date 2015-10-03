@@ -9,5 +9,5 @@
    *
    * Ingredients module.
    */
-  angular.module('mealPlanner.ingredients', ['ngResource', 'ngImgCrop']);
+  angular.module('mealPlanner.ingredients', ['ngResource', 'mealPlanner.images']);
 })();
