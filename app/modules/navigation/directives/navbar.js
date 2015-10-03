@@ -6,7 +6,7 @@
     .directive('mpNavbar', mpNavbar);
 
   /* @ngInject */
-  function mpNavbar($window, $state, $mdSidenav, NavigationService) {
+  function mpNavbar($window, $timeout, $state, $mdSidenav, NavigationService) {
     return {
       restrict: 'E',
       templateUrl: 'modules/navigation/views/navbar.html',
@@ -63,6 +63,9 @@
         scope.isSearchButtonVisible = false;
         scope.isMenuButtonVisible = false;
         scope.isSearchInputVisible = true;
+        $timeout(function() {
+          document.getElementById('search-field').focus();
+        });
       }
 
       /**
