@@ -20,6 +20,7 @@
     self.cancelDialog = cancelDialog;
     self.loadIngredients = loadIngredients;
     self.addIngredient = addIngredient;
+    self.backToGroups = backToGroups;
     self.groups = [];
     self.ingredients = [];
     self.pageSize = 25;
@@ -66,6 +67,15 @@
      */
     function cancelDialog() {
       $mdDialog.cancel();
+    }
+
+    /**
+     * Go back to groups page and reset loaded ingredients.
+     */
+    function backToGroups() {
+      self.chosenGroup = null;
+      self.ingredients = [];
+      self.currentPosition = 0;
     }
   }
 })();

@@ -4,7 +4,7 @@
       <h2 ng-if="!ctrl.chosenGroup">Choose Food Group</h2>
       <md-button aria-label="Go Back"
                  ng-if="ctrl.chosenGroup"
-                 ng-click="ctrl.chosenGroup = null;ctrl.ingredients = [];"
+                 ng-click="ctrl.backToGroups()"
                  class="md-icon-button">
         <md-icon>&#xE5C4;</md-icon>
       </md-button>
