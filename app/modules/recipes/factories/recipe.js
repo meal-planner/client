@@ -118,6 +118,44 @@
       }
     }
 
+
+    /**
+     * This method loads full ingredients models from ingredient backend API.
+     * Ingredients are stored in recipe in following format:
+     * Recipe {
+     *   ingredients: [
+     *     {
+     *       id: 'string',
+     *       name: 'string',
+     *       measure: 'string', <- selected measure of the ingredient for this recipe
+     *       measure_amount: 'number' <- selected amount of the ingredient for this recipe
+     *     }
+     *   ]
+     * }
+     */
+    function loadIngredients() {
+      /*jshint validthis:true */
+      var ingredients = [];
+      this.ingredients.forEach(function (recipeIngredient) {
+        IngredientService.getIngredient(recipeIngredient.id).then(function (ingredient) {
+          var selectedMeasure = 0;
+          ingredient.measures.some(function (measure, index) {
+            if (measure.label === recipeIngredient.measure) {
+              selectedMeasure = index;
+              return true;
+            }
+          });
+          ingredient.selectedMeasure = selectedMeasure;
+          ingredient.selectedMeasureLabel = recipeIngredient.measure;
+          ingredient.selectedAmount = recipeIngredient.measure_amount;
+          ingredient.updateNutritionValues();
+          ingredients.push(ingredient);
+        });
+      });
+
+      this.ingredients = ingredients;
+    }
+
     /**
      * Convert recipe model to JSON for storage in backend.
      *
@@ -145,8 +183,6 @@
         self.nutrients.sum(ingredient.nutrients);
         var recipeIngredient = {
           id: ingredient.id,
-          name: ingredient.name,
-          image_url: ingredient.imageUrl,
           measure: ingredient.measures[ingredient.selectedMeasure].label,
           measure_amount: ingredient.selectedAmount
         };
@@ -177,42 +213,6 @@
 
         return checkboxes;
       }
-    }
-
-    /**
-     * This method loads full ingredients models from ingredient backend API.
-     * Ingredients are stored in recipe in following format:
-     * Recipe {
-     *   ingredients: [
-     *     {
-     *       id: 'string',
-     *       name: 'string',
-     *       measure: 'string', <- selected measure of the ingredient for this recipe
-     *       measure_amount: 'number' <- selected amount of the ingredient for this recipe
-     *     }
-     *   ]
-     * }
-     */
-    function loadIngredients() {
-      /*jshint validthis:true */
-      var ingredients = [];
-      this.ingredients.forEach(function (recipeIngredient) {
-        IngredientService.getIngredient(recipeIngredient.id).then(function (ingredient) {
-          var selectedMeasure = 0;
-          ingredient.measures.some(function (measure, index) {
-            if (measure.label === recipeIngredient.measure) {
-              selectedMeasure = index;
-              return true;
-            }
-          });
-          ingredient.selectedMeasure = selectedMeasure;
-          ingredient.selectedAmount = recipeIngredient.measure_amount;
-          ingredient.updateNutritionValues();
-          ingredients.push(ingredient);
-        });
-      });
-
-      this.ingredients = ingredients;
     }
 
     /**

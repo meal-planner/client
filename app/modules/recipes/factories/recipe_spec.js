@@ -105,7 +105,6 @@
 
       var recipeJson = recipe.toJson();
       expect(recipeJson.ingredients[0].id).toEqual(ingredientA.id);
-      expect(recipeJson.ingredients[0].name).toEqual(ingredientA.name);
       expect(recipeJson.ingredients[0].measure).toEqual('cup');
       expect(recipeJson.ingredients[0].measure_amount).toEqual(2);
       expect(recipeJson.nutrients.energy).toEqual(200);// 2 cups (150kcal) + 200g (50kcal)

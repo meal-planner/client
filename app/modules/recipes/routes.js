@@ -51,7 +51,7 @@
         cuisines: resolveCuisines,
         keyIngredients: resolveKeyIngredients,
         diets: resolveDiets,
-        recipe: resolveRecipeWithIngredients
+        recipe: resolveRecipe
       }
     }).state('viewRecipe', {
       url: '/recipes/view/:recipeId',
@@ -85,24 +85,13 @@
     }
 
     /**
-     * Load recipe model for view page.
-     *
-     * @param $stateParams
-     * @param RecipeService
-     * @returns {Recipe|*}
-     */
-    function resolveRecipe($stateParams, RecipeService) {
-      return RecipeService.getRecipe($stateParams.recipeId);
-    }
-
-    /**
      * Load recipe model and then load all ingredients models for edit page.
      *
      * @param $stateParams
      * @param RecipeService
      * @returns {*}
      */
-    function resolveRecipeWithIngredients($stateParams, RecipeService) {
+    function resolveRecipe($stateParams, RecipeService) {
       return RecipeService.getRecipe($stateParams.recipeId)
         .then(function (recipe) {
           recipe.loadIngredients();
