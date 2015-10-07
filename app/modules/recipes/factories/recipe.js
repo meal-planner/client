@@ -13,7 +13,7 @@
     .factory('RecipeFactory', RecipeFactory);
 
   /* @ngInject */
-  function RecipeFactory(ENV, NutrientCollectionFactory, IngredientService) {
+  function RecipeFactory(ENV, NutrientCollectionFactory, IngredientFactory) {
     /**
      * Recipe constructor.
      *
@@ -95,7 +95,7 @@
       recipe.key_ingredient = arrayToObject(data.key_ingredient);
       recipe.diet = arrayToObject(data.diet);
       recipe.servings = data.servings || 1;
-      recipe.ingredients = data.ingredients;
+      recipe.ingredients = loadIngredients(data.ingredients);
       recipe.nutrients = NutrientCollectionFactory.fromJson(data.nutrients);
       recipe.setServings(1);
       recipe.steps = data.steps;
@@ -120,40 +120,18 @@
 
 
     /**
-     * This method loads full ingredients models from ingredient backend API.
-     * Ingredients are stored in recipe in following format:
-     * Recipe {
-     *   ingredients: [
-     *     {
-     *       id: 'string',
-     *       name: 'string',
-     *       measure: 'string', <- selected measure of the ingredient for this recipe
-     *       measure_amount: 'number' <- selected amount of the ingredient for this recipe
-     *     }
-     *   ]
-     * }
+     * Convert ingredients JSON list to
      */
-    function loadIngredients() {
+    function loadIngredients(jsonList) {
       /*jshint validthis:true */
       var ingredients = [];
-      this.ingredients.forEach(function (recipeIngredient) {
-        IngredientService.getIngredient(recipeIngredient.id).then(function (ingredient) {
-          var selectedMeasure = 0;
-          ingredient.measures.some(function (measure, index) {
-            if (measure.label === recipeIngredient.measure) {
-              selectedMeasure = index;
-              return true;
-            }
-          });
-          ingredient.selectedMeasure = selectedMeasure;
-          ingredient.selectedMeasureLabel = recipeIngredient.measure;
-          ingredient.selectedAmount = recipeIngredient.measure_amount;
-          ingredient.updateNutritionValues();
-          ingredients.push(ingredient);
+      if (jsonList !== undefined && jsonList.length > 0) {
+        jsonList.forEach(function (jsonItem) {
+          ingredients.push(IngredientFactory.fromJson(jsonItem));
         });
-      });
+      }
 
-      this.ingredients = ingredients;
+      return ingredients;
     }
 
     /**

@@ -92,12 +92,7 @@
      * @returns {*}
      */
     function resolveRecipe($stateParams, RecipeService) {
-      return RecipeService.getRecipe($stateParams.recipeId)
-        .then(function (recipe) {
-          recipe.loadIngredients();
-
-          return recipe;
-        });
+      return RecipeService.getRecipe($stateParams.recipeId);
     }
 
     /**

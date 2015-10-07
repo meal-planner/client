@@ -10,14 +10,14 @@
           <h4>Ingredients:</h4>
           <md-list>
             <md-list-item class="md-2-line" ng-repeat="ingredient in ctrl.recipe.ingredients">
-              <img src="{{::ingredient.imageUrl}}" class="mp-image-icon">
+              <img ng-src="{{::ingredient.imageUrl}}" class="mp-image-icon">
 
               <div class="md-list-item-text" layout="row" layout-align="space-between">
                 <div>
                   <h3>{{::ingredient.name}}</h3>
 
                   <p>
-                    {{::ingredient.selectedAmount}} {{::ingredient.selectedMeasureLabel}}
+                    {{::ingredient.selectedAmount}} {{::ingredient.measures[ingredient.selectedMeasure].label}}
                   </p>
                 </div>
               </div>
