@@ -95,7 +95,7 @@
       recipe.key_ingredient = arrayToObject(data.key_ingredient);
       recipe.diet = arrayToObject(data.diet);
       recipe.servings = data.servings || 1;
-      recipe.ingredients = loadIngredients(data.ingredients);
+      recipe.ingredients = data.ingredients;
       recipe.nutrients = NutrientCollectionFactory.fromJson(data.nutrients);
       recipe.setServings(1);
       recipe.steps = data.steps;
@@ -122,16 +122,14 @@
     /**
      * Convert ingredients JSON list to
      */
-    function loadIngredients(jsonList) {
+    function loadIngredients() {
       /*jshint validthis:true */
       var ingredients = [];
-      if (jsonList !== undefined && jsonList.length > 0) {
-        jsonList.forEach(function (jsonItem) {
-          ingredients.push(IngredientFactory.fromJson(jsonItem));
-        });
-      }
+      this.ingredients.forEach(function (ingredientJson) {
+        ingredients.push(IngredientFactory.fromJson(ingredientJson));
+      });
 
-      return ingredients;
+      this.ingredients = ingredients;
     }
 
     /**
