@@ -14,8 +14,24 @@
 
   /* @ngInject */
   function IngredientGroupService($http, ENV) {
+    var groupsIcon = {
+      'Meat': 'ingredient/meat-group.png',
+      'Fish & Seafood': 'ingredient/fish-group.png',
+      'Poultry': 'ingredient/poultry-group.png',
+      'Nuts & Seeds': 'ingredient/nuts-group.png',
+      'Legumes': 'ingredient/legumes-group.png',
+      'Dairy & Eggs': 'ingredient/dairy-group.png',
+      'Vegetables': 'ingredient/vegetables-group.png',
+      'Grains': 'ingredient/grains-group.png',
+      'Fruits': 'ingredient/fruits-group.png',
+      'Beverages': 'ingredient/beverages-group.png',
+      'Sweets & Deserts': 'ingredient/sweets-group.png',
+      'Other': 'ingredient/other-group.png',
+    };
+
     return {
-      getGroups: getGroups
+      getGroups: getGroups,
+      getGroupIcon: getGroupIcon
     };
 
     /**
@@ -35,6 +51,20 @@
           return group;
         });
       }
+    }
+
+    /**
+     * Get group icon image URL.
+     *
+     * @param {String} group
+     * @returns {String}
+     */
+    function getGroupIcon(group) {
+      if (groupsIcon.hasOwnProperty(group)) {
+        return groupsIcon[group];
+      }
+
+      return 'ingredient/image/default-icon.png';
     }
   }
 })();

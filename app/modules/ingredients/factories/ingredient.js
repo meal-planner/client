@@ -13,7 +13,7 @@
     .factory('IngredientFactory', IngredientFactory);
 
   /* @ngInject */
-  function IngredientFactory(ENV, NutrientCollectionFactory) {
+  function IngredientFactory(ENV, NutrientCollectionFactory, IngredientGroupService) {
     /**
      * Ingredient constructor.
      *
@@ -91,7 +91,7 @@
       ingredient.name = data.name;
       ingredient.group = data.group;
       ingredient.generic = data.generic;
-      var imageUrl = data.image_url || defaultIcon(ingredient.group);
+      var imageUrl = data.image_url || IngredientGroupService.getGroupIcon(ingredient.group);
       ingredient.imageUrl = ENV.contentEndpoint + imageUrl;
       ingredient.measures = data.measures;
       ingredient.selectedMeasure = 0;
@@ -100,43 +100,6 @@
       ingredient.nutrients = NutrientCollectionFactory.fromJson(measure.nutrients);
 
       return ingredient;
-    }
-
-    /**
-     * Get default icon for given ingredient group.
-     *
-     * @param {String} group
-     * @returns {*}
-     */
-    function defaultIcon(group) {
-      switch(group) {
-        case 'Meat':
-          return 'ingredient/meat-group.png';
-        case 'Poultry':
-          return 'ingredient/poultry-group.png';
-        case 'Fish & Seafood':
-          return 'ingredient/fish-group.png';
-        case 'Nuts & Seeds':
-          return 'ingredient/nuts-group.png';
-        case 'Legumes':
-          return 'ingredient/legumes-group.png';
-        case 'Dairy & Eggs':
-          return 'ingredient/dairy-group.png';
-        case 'Vegetables':
-          return 'ingredient/vegetables-group.png';
-        case 'Grains':
-          return 'ingredient/grains-group.png';
-        case 'Fruits':
-          return 'ingredient/fruits-group.png';
-        case 'Beverages':
-          return 'ingredient/beverages-group.png';
-        case 'Sweets & Deserts':
-          return 'ingredient/sweets-group.png';
-        case 'Other':
-          return 'ingredient/other-group.png';
-        default:
-          return 'ingredient/image/default-icon.png';
-      }
     }
 
     /**
