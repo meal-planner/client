@@ -36,8 +36,8 @@
       self.saveButtonDisabled = true;
 
       IngredientService.saveIngredient(self.ingredient.id, self.ingredient.toJson())
-        .then(function () {
-          $state.go('viewIngredient', {ingredientId: self.ingredient.id});
+        .then(function (response) {
+          $state.go('viewIngredient', {ingredientId: response.id});
           $mdToast.show({
             template: '<md-toast>Ingredient was saved!</md-toast>',
             position: 'bottom left',
