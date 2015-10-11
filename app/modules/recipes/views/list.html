@@ -19,7 +19,7 @@
       <md-list-item class="md-3-line"
                     ng-repeat="recipe in ctrl.items track by recipe.id"
                     ng-click="ctrl.openRecipe(recipe.id)">
-        <img src="{{::recipe.imageUrl}}" class="mp-image-icon">
+        <img ng-src="{{::recipe.imageUrl}}" class="mp-image-icon">
 
         <div class="md-list-item-text" layout="row" layout-align="space-between">
           <div>

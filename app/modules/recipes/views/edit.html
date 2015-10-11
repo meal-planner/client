@@ -32,7 +32,7 @@
           <md-input-container flex="20">
             <label>Dish Type</label>
             <md-select ng-model="ctrl.recipe.dish_type" placeholder="Dish Type">
-              <md-option value="{{::dishType.title}}" ng-repeat="dishType in ctrl.dishTypes | orderBy:'title'">
+              <md-option value="{{::dishType.title}}" ng-repeat="dishType in ctrl.groups.dishTypes | orderBy:'title'">
                 {{::dishType.title}}
               </md-option>
             </md-select>
@@ -55,7 +55,7 @@
           <fieldset class="standard">
             <legend>Cuisine</legend>
             <div layout="row" layout-wrap>
-              <div ng-repeat="cuisine in ctrl.cuisines | orderBy:'title'" flex="25">
+              <div ng-repeat="cuisine in ctrl.groups.cuisines | orderBy:'title'" flex="25">
                 <md-checkbox ng-model="ctrl.recipe.cuisine[cuisine.title]"
                              aria-label="{{::cuisine.title}} Cuisine">
                   {{::cuisine.title}}
@@ -69,7 +69,7 @@
         <fieldset class="standard">
           <legend>Key Ingredient</legend>
           <div layout="row" layout-wrap>
-            <div ng-repeat="keyIngredient in ctrl.keyIngredients | orderBy:'title'" flex="25">
+            <div ng-repeat="keyIngredient in ctrl.groups.keyIngredients | orderBy:'title'" flex="25">
               <md-checkbox ng-model="ctrl.recipe.key_ingredient[keyIngredient.title]"
                            aria-label="Key Ingredient: {{::keyIngredient.title}}">
                 {{::keyIngredient.title}}
@@ -83,7 +83,7 @@
           <fieldset class="standard">
             <legend>Diet</legend>
             <div layout="row" layout-wrap>
-              <div ng-repeat="diet in ctrl.diets | orderBy:'title'" flex="25">
+              <div ng-repeat="diet in ctrl.groups.diets | orderBy:'title'" flex="25">
                 <md-checkbox ng-model="ctrl.recipe.diet[diet.title]"
                              aria-label="{{::diet.title}} Diet">
                   {{::diet.title}}
