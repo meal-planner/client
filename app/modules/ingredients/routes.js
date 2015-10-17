@@ -45,6 +45,16 @@
         foodGroups: resolveFoodGroups,
         ingredient: resolveIngredientWithMeasures
       }
+    }).state('forkIngredient', {
+      url: '/ingredients/fork/:ingredientId',
+      templateUrl: 'modules/ingredients/views/edit.html',
+      controller: 'IngredientsEditController',
+      controllerAs: 'ctrl',
+      resolve: {
+        authenticated: function (UserService) {return UserService.isAuthenticated();},
+        foodGroups: resolveFoodGroups,
+        ingredient: resolveForkedIngredient
+      }
     }).state('viewIngredient', {
       url: '/ingredients/view/:ingredientId',
       templateUrl: 'modules/ingredients/views/view.html',
@@ -104,6 +114,24 @@
           ingredient.measures.forEach(function (measure, index) {
             ingredient.measures[index].nutrients = NutrientCollectionFactory.fromJson(measure.nutrients);
           });
+
+          return ingredient;
+        });
+    }
+
+    /**
+     * Prepare forked ingredient.
+     *
+     * @param $stateParams
+     * @param IngredientService
+     * @returns {Ingredient}
+     */
+    function resolveForkedIngredient($stateParams, IngredientService, NutrientCollectionFactory) {
+      return resolveIngredientWithMeasures($stateParams, IngredientService, NutrientCollectionFactory)
+        .then(function (ingredient) {
+          ingredient.forked_from = ingredient.id;
+          ingredient.name = 'Fork: ' + ingredient.name;
+          ingredient.id = null;
 
           return ingredient;
         });

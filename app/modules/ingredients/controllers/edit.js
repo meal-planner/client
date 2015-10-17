@@ -20,7 +20,7 @@
   function IngredientsEditController($state, $mdToast, NavigationService, IngredientService, ingredient, foodGroups) {
     var self = this;
 
-    if (ingredient.id) {
+    if (ingredient.id || ingredient.forked_from) {
       NavigationService.navigationBar.title = ingredient.name;
     }
     self.ingredient = ingredient;

@@ -12,11 +12,18 @@
       </div>
 
       <div layout="row" layout-align="space-between">
-        <md-button ng-if="::ctrl.ingredient.can_edit"
-                   class="md-button-wide"
-                   ui-sref="editIngredient({ingredientId:ctrl.ingredient.id})">
-          edit
-        </md-button>
+        <div>
+          <md-button ng-if="::ctrl.ingredient.can_edit"
+                     class="md-button-wide"
+                     ui-sref="editIngredient({ingredientId:ctrl.ingredient.id})">
+            edit
+          </md-button>
+          <md-button class="md-button-wide"
+                     ui-sref="forkIngredient({ingredientId:ctrl.ingredient.id})">
+            fork
+            <md-tooltip>Create a copy of this ingredient</md-tooltip>
+          </md-button>
+        </div>
         <span></span>
         <md-button ng-if="::ctrl.ingredient.ndbno" class="md-button-wide"
                    href="http://ndb.nal.usda.gov/ndb/search/list?qlookup={{::ctrl.ingredient.ndbno}}" target="_blank">

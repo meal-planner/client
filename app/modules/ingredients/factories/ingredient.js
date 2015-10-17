@@ -84,6 +84,7 @@
     function fromJson(data) {
       var ingredient = build();
       ingredient.id = data.id;
+      ingredient.forked_from = data.forked_from;
       ingredient.can_edit = data.can_edit;
       if (data.ndbno) {
         ingredient.ndbno = data.ndbno;
@@ -111,6 +112,7 @@
       /*jshint validthis:true */
       var json = {
         id: this.id,
+        forked_from: this.forked_from,
         name: this.name,
         group: this.group,
         generic: this.generic,
