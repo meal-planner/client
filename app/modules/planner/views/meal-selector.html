@@ -37,7 +37,7 @@
       <md-radio-group ng-model="ctrl.mealType" layout="row" layout-align="space-between">
         <div ng-repeat='mealType in ctrl.mealTypes'>
           <md-radio-button flex ng-value="mealType" class="md-primary">
-            {{::mealType}}
+            <strong>{{::mealType}}</strong>
           </md-radio-button>
         </div>
       </md-radio-group>
@@ -70,6 +70,9 @@
       </div>
       <!-- Recipe list view -->
       <div ng-if="!ctrl.groupsVisible">
+        <div ng-if="ctrl.recipes.length == 0" class="md-padding">
+          No meals found.
+        </div>
         <md-list>
           <md-list-item class="md-3-line"
                         ng-repeat="recipe in ctrl.recipes track by recipe.id"
