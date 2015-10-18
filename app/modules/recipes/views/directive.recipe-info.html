@@ -1,0 +1,11 @@
+<div class="md-list-item-text" layout="row" layout-align="space-between">
+  <div>
+    <h3>{{::recipe.name}}</h3>
+
+    <p>
+      Time to cook: {{::recipe.time_to_cook}} min<br/>
+      Calories: <strong>{{::recipe.nutrients.find('energy').value | number: 0}}</strong>
+      ({{::recipe.servings || 1}} serving{{::recipe.servings > 1 ? 's' : ''}})
+    </p>
+  </div>
+</div>

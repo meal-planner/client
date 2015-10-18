@@ -24,7 +24,7 @@
 
     function planDayLink(scope) {
       scope.mealTypes = PlanService.mealTypes;
-      scope.showRecipeSelector = showRecipeSelector;
+      scope.showMealSelector = showMealSelector;
       scope.removeMeal = removeMeal;
       scope.isFullNutrientInfoShown = false;
 
@@ -34,27 +34,28 @@
        * @param event
        * @param day
        */
-      function showRecipeSelector(event) {
+      function showMealSelector(event) {
         $mdDialog.show({
-          controller: 'RecipeSelectorController',
+          controller: 'MealSelectorController',
           controllerAs: 'ctrl',
           bindToController: true,
-          templateUrl: 'modules/planner/views/recipe-selector.html',
+          templateUrl: 'modules/planner/views/meal-selector.html',
           targetEvent: event
-        }).then(receiveRecipeFromSelector);
+        }).then(receiveMealFromSelector);
       }
 
-      function receiveRecipeFromSelector(meal) {
-        /**
-         * Receive recipe from selector and add it to the plan as a meal.
-         */
+      /**
+       * Receive recipe from selector and add it to the plan as a meal.
+       *
+       * @param meal
+       */
+      function receiveMealFromSelector(meal) {
         scope.day.addMeal(meal.recipe, meal.type);
       }
 
       /**
        * Remove given meal from the plan.
        *
-       * @param day
        * @param meal
        */
       function removeMeal(meal) {

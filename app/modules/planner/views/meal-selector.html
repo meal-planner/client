@@ -1,0 +1,85 @@
+<md-dialog class="meal-selector" aria-label="Meal Selector">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-button ng-click="ctrl.showGroups()"
+                   ng-if="ctrl.searchVisible || ctrl.selectedGroup"
+                   aria-label="Back to groups"
+                   class="md-icon-button">
+          <md-icon>&#xE5C4;</md-icon>
+        </md-button>
+        <h2 ng-hide="ctrl.searchVisible || ctrl.selectedGroup">Meal Selector</h2>
+        <h2 ng-show="!ctrl.searchVisible && ctrl.selectedGroup">{{ctrl.selectedGroup}}</h2>
+        <span ng-if="!ctrl.searchVisible" flex></span>
+        <input id="meal-search-field" aria-label="Search query" flex
+               placeholder="Search"
+               ng-show="ctrl.searchVisible"
+               ng-model="ctrl.searchText"
+               ng-change="ctrl.searchRecipes()"
+               ng-model-options="{debounce: 500}"
+               class="search-input"/>
+        <md-button ng-click="ctrl.showSearch()"
+                   ng-if="!ctrl.searchVisible"
+                   aria-label="Search"
+                   class="md-icon-button">
+          <md-icon>&#xE8B6;</md-icon>
+          <md-tooltip>Search meals</md-tooltip>
+        </md-button>
+        <md-button class="md-icon-button"
+                   ng-click="ctrl.cancelDialog()"
+                   ng-if="!ctrl.searchVisible">
+          <md-icon aria-label="Close dialog">&#xE5CD;</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <!-- Meal type radio selector -->
+    <div class="mp-header">
+      <md-radio-group ng-model="ctrl.mealType" layout="row" layout-align="space-between">
+        <div ng-repeat='mealType in ctrl.mealTypes'>
+          <md-radio-button flex ng-value="mealType" class="md-primary">
+            {{::mealType}}
+          </md-radio-button>
+        </div>
+      </md-radio-group>
+      <md-progress-linear ng-show="ctrl.isLoading" md-mode="indeterminate"></md-progress-linear>
+    </div>
+
+    <md-dialog-content class="mp-meal-selector-content">
+      <!-- Groups view -->
+      <div ng-if="ctrl.groupsVisible">
+        <md-tabs md-selected="selectedIndex" md-border-bottom md-dynamic-height>
+          <md-tab ng-repeat="group in ctrl.recipeGroups" label="{{::group.title}}">
+            <md-content>
+              <md-grid-list class="mp-tiles"
+                            md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
+                            md-row-height-gt-md="1:1" md-row-height="4:3"
+                            md-gutter="8px" md-gutter-gt-sm="10px">
+                <md-grid-tile ng-repeat="tile in group.tiles"
+                              md-rowspan="{{::tile.span.row}}"
+                              md-colspan="{{::tile.span.col}}"
+                              md-colspan-sm="1"
+                              md-ink-ripple
+                              ng-click="ctrl.showGroup(group.paramKey, tile.title)">
+                  <img ng-src="{{::tile.background}}" alt="{{::tile.title}}"/>
+                  <md-grid-tile-footer><h3>{{::tile.title}}</h3></md-grid-tile-footer>
+                </md-grid-tile>
+              </md-grid-list>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+      </div>
+      <!-- Recipe list view -->
+      <div ng-if="!ctrl.groupsVisible">
+        <md-list>
+          <md-list-item class="md-3-line"
+                        ng-repeat="recipe in ctrl.recipes track by recipe.id"
+                        ng-click="ctrl.addRecipe(recipe)">
+            <img ng-src="{{::recipe.imageUrl}}" class="mp-image-icon">
+            <mp-recipe-info recipe="recipe"></mp-recipe-info>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-list-item>
+        </md-list>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

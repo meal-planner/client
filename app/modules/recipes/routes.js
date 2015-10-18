@@ -62,7 +62,7 @@
      * @returns {{Recipe}[]|*}
      */
     function resolveRecipesList($stateParams, RecipeService) {
-      return RecipeService.searchRecipesFiltered($stateParams.filterName, $stateParams.filterValue);
+      return RecipeService.searchRecipes($stateParams.filterName, $stateParams.filterValue);
     }
 
     /**

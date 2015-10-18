@@ -19,7 +19,6 @@
     return {
       getRecipe: getRecipe,
       searchRecipes: searchRecipes,
-      searchRecipesFiltered: searchRecipesFiltered,
       saveRecipe: saveRecipe,
       deleteRecipe: deleteRecipe
     };
@@ -48,7 +47,7 @@
      * @param {Number} limit
      * @returns [{Recipe}]
      */
-    function searchRecipesFiltered(filterName, filterValue, searchText, limit) {
+    function searchRecipes(filterName, filterValue, searchText, limit) {
       return recipe.query({
         filter_by: filterName,
         filter_value: filterValue,
@@ -56,19 +55,6 @@
         limit: limit
       }).$promise
         .then(getRecipesListComplete);
-    }
-
-    /**
-     * Search recipes by given query text.
-     *
-     * @param {String} filterName
-     * @param {String} filterValue
-     * @param {String} searchText
-     * @param {Number} limit
-     * @returns [{Recipe}]
-     */
-    function searchRecipes(searchText, limit) {
-      return recipe.query({query: searchText, limit: limit}).$promise.then(getRecipesListComplete);
     }
 
     /**
