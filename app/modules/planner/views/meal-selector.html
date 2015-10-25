@@ -77,7 +77,7 @@
           <md-list-item class="md-3-line"
                         ng-repeat="recipe in ctrl.recipes track by recipe.id"
                         ng-click="ctrl.addRecipe(recipe)">
-            <img ng-src="{{::recipe.imageUrl}}" class="mp-image-icon">
+            <img ng-src="{{::recipe.imageUrl}}" class="mp-image-icon square">
             <mp-recipe-info recipe="recipe"></mp-recipe-info>
             <md-divider ng-if="!$last"></md-divider>
           </md-list-item>
