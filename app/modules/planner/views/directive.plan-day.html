@@ -15,7 +15,7 @@
           <md-divider></md-divider>
           <md-list-item class="md-3-line" ng-repeat="meal in day.meals | filter: {type: mealType}"
                         ng-click="viewMeal(meal)">
-            <img ng-src="{{meal.imageUrl}}" class="mp-image-icon">
+            <img ng-src="{{meal.imageUrl}}" class="mp-image-icon square">
 
             <div class="md-list-item-text" layout="row" layout-align="space-between center">
               <div flex>
