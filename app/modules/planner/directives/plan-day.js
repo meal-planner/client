@@ -13,7 +13,7 @@
     .directive('mpPlanDay', mpPlanDay);
 
   /* @ngInject */
-  function mpPlanDay($mdDialog, PlanService) {
+  function mpPlanDay($state, PlanService) {
     return {
       templateUrl: 'modules/planner/views/directive.plan-day.html',
       link: planDayLink,
@@ -24,33 +24,16 @@
 
     function planDayLink(scope) {
       scope.mealTypes = PlanService.mealTypes;
-      scope.showMealSelector = showMealSelector;
       scope.removeMeal = removeMeal;
-      scope.isFullNutrientInfoShown = false;
+      scope.viewMeal = viewMeal;
 
       /**
-       * Show recipe selector popup.
-       *
-       * @param event
-       * @param day
-       */
-      function showMealSelector(event) {
-        $mdDialog.show({
-          controller: 'MealSelectorController',
-          controllerAs: 'ctrl',
-          bindToController: true,
-          templateUrl: 'modules/planner/views/meal-selector.html',
-          targetEvent: event
-        }).then(receiveMealFromSelector);
-      }
-
-      /**
-       * Receive recipe from selector and add it to the plan as a meal.
+       * Open meal(recipe) view page.
        *
        * @param meal
        */
-      function receiveMealFromSelector(meal) {
-        scope.day.addMeal(meal.recipe, meal.type);
+      function viewMeal(meal) {
+        $state.go('viewRecipe', {recipeId: meal.recipe_id});
       }
 
       /**

@@ -55,6 +55,7 @@
     function fromRecipe(recipe, type) {
       var meal = build();
       meal.recipe_id = recipe.id;
+      meal.imageUrl = recipe.imageUrl;
       meal.name = recipe.name;
       meal.type = type;
       meal.servings = recipe.servings;
@@ -84,6 +85,7 @@
     function fromJson(json) {
       var meal = build();
       meal.recipe_id = json.recipe_id;
+      meal.imageUrl = json.imageUrl;
       meal.name = json.name;
       meal.type = json.type;
       meal.servings = json.servings;
@@ -101,6 +103,7 @@
       /*jshint validthis:true */
       var json = {
         recipe_id: this.recipe_id,
+        imageUrl: this.imageUrl,
         name: this.name,
         type: this.type,
         servings: this.servings,

@@ -1,7 +1,16 @@
+<md-button class="md-fab md-button md-accent md-default-theme mp-fab-bottom-right"
+           aria-label="Add meal"
+           ng-click="ctrl.showMealSelector($event)">
+  <md-icon>&#xE145;</md-icon>
+  <md-tooltip>Add meal</md-tooltip>
+</md-button>
+
 <div>
   <div class="mp-content md-whiteframe-z1 mp-planner-tabs">
     <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect md-dynamic-height>
-      <md-tab ng-repeat="day in ctrl.plan.days" label="{{::day.name}}">
+      <md-tab ng-repeat="day in ctrl.plan.days"
+              label="{{::day.name}}"
+              md-on-select="ctrl.activeDay = day">
         <mp-plan-day day="day"></mp-plan-day>
       </md-tab>
       <md-tab label="Weekly Summary">

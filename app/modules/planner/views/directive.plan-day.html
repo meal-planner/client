@@ -1,32 +1,47 @@
-<md-content class="md-padding">
-  <div layout="row" layout-align="space-between">
-    <div flex>
-      <p class="md-body-1 mp-no-margins" ng-if="day.meals.length == 0">
-        You have not selected any meals for {{::day.name}} yet.<br/>
-        Click "Add Meal" button bellow to find the recipes you would like to have in your plan.
-      </p>
+<md-content>
+  <div layout="column">
+    <p class="md-body-1 md-padding" ng-if="day.meals.length == 0">
+      You have not selected any meals for {{::day.name}} yet.<br/>
+      Click "Add Meal" button bellow to find the recipes you would like to have in your plan.
+    </p>
 
-      <div ng-repeat="mealType in mealTypes"
-           ng-if="(day.meals | filter: {type: mealType}).length > 0">
-        <h4>{{::mealType}}</h4>
-        <mp-plan-day-meal meal="meal" day="day" ng-repeat="meal in day.meals | filter: {type: mealType}"/>
-      </div>
-    </div>
+    <md-content>
+      <md-list>
+        <div ng-repeat="mealType in mealTypes"
+             ng-if="(day.meals | filter: {type: mealType}).length > 0">
+          <md-subheader>
+            <h3>{{::mealType}}</h3>
+          </md-subheader>
+          <md-divider></md-divider>
+          <md-list-item class="md-3-line" ng-repeat="meal in day.meals | filter: {type: mealType}"
+                        ng-click="viewMeal(meal)">
+            <img ng-src="{{meal.imageUrl}}" class="mp-image-icon">
 
-    <div layout="column" layout-align="start center" ng-if="day.meals.length > 0">
-      <mp-energy-chart ng-hide="isFullNutrientInfoShown" nutrients="day.nutrients"></mp-energy-chart>
-      <mp-nutrition-label ng-show="isFullNutrientInfoShown" nutrients="day.nutrients"></mp-nutrition-label>
-      <md-button type="button" ng-click="isFullNutrientInfoShown = !isFullNutrientInfoShown">
-        <span ng-hide="isFullNutrientInfoShown">show nutrition</span>
-        <span ng-show="isFullNutrientInfoShown">show energy chart</span>
-      </md-button>
-    </div>
-  </div>
-  <div class="mp-centered" layout="row" layout-align="center">
-    <md-button type="button" ng-click="showMealSelector($event)"
-               class="md-raised"
-               aria-label="Add Meal">
-      Add Meal
-    </md-button>
+            <div class="md-list-item-text" layout="row" layout-align="space-between center">
+              <div flex>
+                <h3>{{meal.name}}</h3>
+              </div>
+              <md-button type="button" ng-click="removeMeal(meal)"
+                         class="md-icon-button"
+                         aria-label="Remove Ingredient">
+                <md-icon>&#xE15C;</md-icon>
+                <md-tooltip>Remove meal</md-tooltip>
+              </md-button>
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+        </div>
+        <div ng-if="day.meals.length > 0">
+          <md-subheader>
+            <h3>Summary</h3>
+          </md-subheader>
+          <md-divider></md-divider>
+          <md-content class="md-padding" layout="row" layout-align="space-between start">
+            <mp-nutrition-label nutrients="day.nutrients"></mp-nutrition-label>
+            <mp-energy-chart nutrients="day.nutrients"></mp-energy-chart>
+          </md-content>
+        </div>
+      </md-list>
+    </md-content>
   </div>
 </md-content>
