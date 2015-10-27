@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/meal-planner/client.svg?branch=master)](https://travis-ci.org/meal-planner/client)
 [![Code Climate](https://codeclimate.com/github/meal-planner/client/badges/gpa.svg)](https://codeclimate.com/github/meal-planner/client)
 [![Codacy Badge](https://api.codacy.com/project/badge/02fb63e9d2e848a7b0263b6af19e4881)](https://www.codacy.com/app/anatoliy-yastreb/client)
-[![Join the chat at https://gitter.im/meal-planner/public](https://gitter.im/meal-planner/public?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/meal-planner/public](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/meal-planner/public?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Meal Planner is an open source recipe recommendation and nutrition balancing service.
 The project is currently in active development and not very stable :blush:
