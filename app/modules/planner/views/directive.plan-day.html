@@ -20,7 +20,12 @@
             <img ng-src="{{meal.imageUrl}}" class="mp-image-icon square">
 
             <div class="md-list-item-text" layout="row" layout-align="space-between center">
-              <h3>{{meal.name}}</h3>
+              <div>
+                <h3>{{meal.name}}</h3>
+                <p>
+                  {{meal.nutrients.find('energy').value | number:0}} kcal
+                </p>
+              </div>
 
               <md-button type="button" ng-click="removeMeal(meal)"
                          class="md-icon-button"
