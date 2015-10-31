@@ -1,26 +1,27 @@
 <md-content>
   <div layout="column">
-    <p class="md-body-1 md-padding" ng-if="day.meals.length == 0">
-      You have not selected any meals for {{::day.name}} yet.<br/>
-      Click "Add Meal" button bellow to find the recipes you would like to have in your plan.
-    </p>
-
     <md-content>
       <md-list>
-        <div ng-repeat="mealType in mealTypes"
-             ng-if="(day.meals | filter: {type: mealType}).length > 0">
+        <div ng-repeat="mealType in mealTypes">
           <md-subheader>
-            <h3>{{::mealType}}</h3>
+            <div layout="row" layout-align="space-between">
+              <h3>{{::mealType}}</h3>
+              <md-button class="md-icon-button"
+                         aria-label="Add {{::mealType}}"
+                         ng-click="showMealSelector($event, mealType)">
+                <md-icon>&#xE147;</md-icon>
+                <md-tooltip>Add <span class="mp-lowercase">{{::mealType}}</span></md-tooltip>
+              </md-button>
+            </div>
           </md-subheader>
-          <md-divider></md-divider>
+          <md-divider ng-if="!$last"></md-divider>
           <md-list-item class="md-3-line" ng-repeat="meal in day.meals | filter: {type: mealType}"
                         ng-click="viewMeal(meal)">
             <img ng-src="{{meal.imageUrl}}" class="mp-image-icon square">
 
             <div class="md-list-item-text" layout="row" layout-align="space-between center">
-              <div flex>
-                <h3>{{meal.name}}</h3>
-              </div>
+              <h3>{{meal.name}}</h3>
+
               <md-button type="button" ng-click="removeMeal(meal)"
                          class="md-icon-button"
                          aria-label="Remove Ingredient">
@@ -32,6 +33,7 @@
           </md-list-item>
         </div>
         <div ng-if="day.meals.length > 0">
+          <md-divider></md-divider>
           <md-subheader>
             <h3>Summary</h3>
           </md-subheader>

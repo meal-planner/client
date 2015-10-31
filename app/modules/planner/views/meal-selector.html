@@ -32,17 +32,6 @@
         </md-button>
       </div>
     </md-toolbar>
-    <!-- Meal type radio selector -->
-    <div class="mp-header">
-      <md-radio-group ng-model="ctrl.mealType" layout="row" layout-align="space-between">
-        <div ng-repeat='mealType in ctrl.mealTypes'>
-          <md-radio-button flex ng-value="mealType" class="md-primary">
-            <strong>For {{::mealType}}</strong>
-          </md-radio-button>
-        </div>
-      </md-radio-group>
-      <md-progress-linear ng-show="ctrl.isLoading" md-mode="indeterminate"></md-progress-linear>
-    </div>
 
     <md-dialog-content class="mp-meal-selector-content">
       <!-- Groups view -->

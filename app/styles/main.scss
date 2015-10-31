@@ -92,3 +92,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 md-toast.md-error-toast-theme {
   background-color: rgba(229, 57, 53, 0.95);
 }
+
+.mp-lowercase {
+  text-transform: lowercase;
+}

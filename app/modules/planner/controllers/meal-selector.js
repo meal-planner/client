@@ -13,7 +13,7 @@
     .controller('MealSelectorController', MealSelectorController);
 
   /* @ngInject */
-  function MealSelectorController($mdDialog, $timeout, RecipeService, RecipeGroupService, PlanService) {
+  function MealSelectorController($mdDialog, $timeout, RecipeService, RecipeGroupService) {
     var RECIPE_SEARCH_LIMIT = 25;
     var self = this;
 
@@ -37,8 +37,6 @@
     return activate();
 
     function activate() {
-      self.mealTypes = PlanService.mealTypes;
-      self.mealType = PlanService.mealTypes[0];
       self.recipeGroups = [];
       RecipeGroupService.getDishTypes().then(function (dishTypes) {
         self.recipeGroups.push({
@@ -136,7 +134,7 @@
      * @param recipe
      */
     function addRecipe(recipe) {
-      $mdDialog.hide({recipe: recipe, type: self.mealType});
+      $mdDialog.hide(recipe);
     }
 
     /**
