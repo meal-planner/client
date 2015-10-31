@@ -154,6 +154,8 @@
       });
 
       this.ingredients = ingredients;
+
+      return this;
     }
 
     /**

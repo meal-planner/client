@@ -30,7 +30,9 @@
       controllerAs: 'ctrl',
       pageTitle: 'Create New Recipe',
       resolve: {
-        authenticated: function (UserService) {return UserService.isAuthenticated();},
+        authenticated: function (UserService) {
+          return UserService.isAuthenticated();
+        },
         groups: resolveGroups,
         recipe: resolveEmptyRecipe
       }
@@ -40,7 +42,9 @@
       controller: 'RecipeEditController',
       controllerAs: 'ctrl',
       resolve: {
-        authenticated: function (UserService) {return UserService.isAuthenticated();},
+        authenticated: function (UserService) {
+          return UserService.isAuthenticated();
+        },
         groups: resolveGroups,
         recipe: resolveRecipe
       }
@@ -85,9 +89,7 @@
     function resolveRecipe($stateParams, RecipeService) {
       return RecipeService.getRecipe($stateParams.recipeId)
         .then(function (recipe) {
-          recipe.loadIngredients();
-
-          return recipe;
+          return recipe.loadIngredients();
         });
     }
 

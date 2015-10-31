@@ -31,7 +31,9 @@
       controllerAs: 'ctrl',
       pageTitle: 'Create New Ingredient',
       resolve: {
-        authenticated: function (UserService) {return UserService.isAuthenticated();},
+        authenticated: function (UserService) {
+          return UserService.isAuthenticated();
+        },
         foodGroups: resolveFoodGroups,
         ingredient: resolveEmptyIngredient
       }
@@ -41,7 +43,9 @@
       controller: 'IngredientsEditController',
       controllerAs: 'ctrl',
       resolve: {
-        authenticated: function (UserService) {return UserService.isAuthenticated();},
+        authenticated: function (UserService) {
+          return UserService.isAuthenticated();
+        },
         foodGroups: resolveFoodGroups,
         ingredient: resolveIngredientWithMeasures
       }
@@ -51,7 +55,9 @@
       controller: 'IngredientsEditController',
       controllerAs: 'ctrl',
       resolve: {
-        authenticated: function (UserService) {return UserService.isAuthenticated();},
+        authenticated: function (UserService) {
+          return UserService.isAuthenticated();
+        },
         foodGroups: resolveFoodGroups,
         ingredient: resolveForkedIngredient
       }
