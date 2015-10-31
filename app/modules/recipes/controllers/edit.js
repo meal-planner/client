@@ -19,14 +19,20 @@
                                 NavigationService,
                                 RecipeService,
                                 recipe,
-                                groups) {
+                                dishTypes,
+                                cuisines,
+                                keyIngredients,
+                                diets) {
     var self = this;
 
     if (recipe.id) {
       NavigationService.navigationBar.title = recipe.name;
     }
     self.recipe = recipe;
-    self.groups = groups;
+    self.dishTypes = dishTypes;
+    self.cuisines = cuisines;
+    self.keyIngredients = keyIngredients;
+    self.diets = diets;
     self.image = {src: ''};
     self.saveRecipe = saveRecipe;
 
