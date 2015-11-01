@@ -1,4 +1,4 @@
-<md-dialog class="meal-selector" aria-label="Meal Selector">
+<md-dialog class="mp-popup meal-selector" aria-label="Meal Selector">
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
@@ -42,11 +42,12 @@
             <md-content>
               <md-grid-list class="mp-tiles"
                             md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
-                            md-row-height-gt-md="1:1" md-row-height="4:3"
-                            md-gutter="8px" md-gutter-gt-sm="10px">
+                            md-row-height="1:1"
+                            md-gutter="8px" md-gutter-sm="10px">
                 <md-grid-tile ng-repeat="tile in group.tiles"
                               md-rowspan="{{::tile.span.row}}"
                               md-colspan="{{::tile.span.col}}"
+                              md-rowspan-sm="1"
                               md-colspan-sm="1"
                               md-ink-ripple
                               ng-click="ctrl.showGroup(group.paramKey, tile.title)">
