@@ -1,15 +1,21 @@
 <div>
   <div class="mp-content md-whiteframe-z1">
     <md-content class="md-padding">
-      <div layout="row" layout-align="space-between start">
-        <div>
+      <div layout="row"
+           layout-align="space-between start"
+           layout-sm="column"
+           layout-align-sm="center center">
+        <div class="mp-recipe-info">
           <div class="mp-image-view square">
             <img ng-src="{{ctrl.recipe.imageUrl}}" />
           </div>
           <h4>Time to cook: {{::ctrl.recipe.time_to_cook}} min.</h4>
           <h4>Ingredients:</h4>
           <md-list>
-            <md-list-item class="md-2-line" ng-repeat="ingredient in ctrl.recipe.ingredients">
+            <md-list-item class="md-3-line"
+                          ng-repeat="ingredient in ctrl.recipe.ingredients"
+                          ng-click="null"
+                          md-no-ink>
               <img ng-src="{{::ingredient.imageUrl}}" class="mp-image-icon">
 
               <div class="md-list-item-text" layout="row" layout-align="space-between">

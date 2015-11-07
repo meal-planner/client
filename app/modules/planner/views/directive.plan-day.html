@@ -14,9 +14,11 @@
               </md-button>
             </div>
           </md-subheader>
-          <md-divider ng-if="!$last"></md-divider>
-          <md-list-item class="md-3-line" ng-repeat="meal in day.meals | filter: {type: mealType}"
-                        ng-click="viewMeal(meal)">
+          <md-divider></md-divider>
+          <md-list-item class="md-3-line"
+                        ng-repeat="meal in day.meals | filter: {type: mealType}"
+                        ng-click="viewMeal(meal)"
+                        md-no-ink>
             <img ng-src="{{meal.imageUrl}}" class="mp-image-icon square">
 
             <div class="md-list-item-text" layout="row" layout-align="space-between center">
@@ -38,7 +40,6 @@
           </md-list-item>
         </div>
         <div ng-if="day.meals.length > 0">
-          <md-divider></md-divider>
           <md-subheader>
             <h3>Summary</h3>
           </md-subheader>
