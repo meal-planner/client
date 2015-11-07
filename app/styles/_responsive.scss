@@ -37,5 +37,8 @@
   .mp-recipe-info {
     width: 100%;
     max-width: 100%;
+    .mp-image-view img {
+      width: 100%;
+    }
   }
 }
