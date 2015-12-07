@@ -21,7 +21,7 @@
       </md-button>
       <div ng-if="ctrl.image.src" layout="row" layout-align="space-between center">
         <div class="mp-image-preview round" flex="40" layout="row" layout-align="center center">
-          <img ng-src="{{ctrl.ingredient.imageCrop}}" />
+          <img ng-src="{{ctrl.ingredient.imageCrop}}"/>
         </div>
         <div class="mp-crop-area" flex="60">
           <img-crop image="ctrl.image.src"
@@ -46,7 +46,10 @@
         </md-checkbox>
       </div>
       <div layout="row" layout-align="center center">
-        <md-button class="md-raised md-primary md-button-wide" ng-disabled="ctrl.saveButtonDisabled">
+        <md-button type="submit"
+                   class="md-raised md-primary md-button-wide"
+                   aria-label="Save ingredient"
+                   ng-disabled="ctrl.saveButtonDisabled">
           save
         </md-button>
       </div>
