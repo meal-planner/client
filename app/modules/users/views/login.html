@@ -13,8 +13,8 @@
     </div>
     <div flex="5"></div>
     <div ui-view flex layout="column" class="mp-login-box">
-      <div>
-        <form method="post" ng-submit="ctrl.login()" name="loginForm">
+      <form method="post" ng-submit="ctrl.login()" name="loginForm">
+        <div layout="column">
           <h2 class="md-headline">Log In</h2>
           <md-input-container>
             <md-icon md-svg-icon="images/icons/email.svg"></md-icon>
@@ -25,16 +25,19 @@
             <input ng-model="ctrl.password" type="password" placeholder="Password" ng-required="true">
           </md-input-container>
           <div layout="column" layout-align="center center">
-            <md-button class="md-raised md-primary md-hue-2 mp-login-button" ng-disabled="ctrl.loginButtonLocked">Log in</md-button>
+            <md-button type="submit" class="md-raised md-primary md-hue-2 mp-login-button"
+                       ng-disabled="ctrl.loginButtonLocked">Log in
+            </md-button>
             <p>
               <a ui-sref="forgot-password">Forgot your password?</a>
             </p>
+
             <p class="mp-login-sign-up">
               Don't have an account yet? <a ui-sref="signup">Sign up</a>
             </p>
           </div>
-        </form>
-      </div>
+        </div><!-- column -->
+      </form>
       <div class="mp-login-separator">
         <h5>or</h5>
         <hr>
@@ -56,7 +59,7 @@
       <p class="mp-login-sub-text" style="text-align: center">
         By singing in with social provider above, you agree to our
         <mp-popup-link link-url="terms-of-use.html" link-title="Terms of Use"></mp-popup-link>
-         and
+        and
         <mp-popup-link link-url="privacy-policy.html" link-title="Privacy Policy"></mp-popup-link>
       </p>
     </div>

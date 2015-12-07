@@ -1,7 +1,7 @@
-<div>
-  <h2 class="md-headline">Sign Up</h2>
+<form method="post" ng-submit="ctrl.signUp()" name="signupForm">
+  <div layout="column">
+    <h2 class="md-headline">Sign Up</h2>
 
-  <form method="post" ng-submit="ctrl.signUp()" name="signupForm">
     <md-input-container>
       <md-icon>&#xE7FD;</md-icon>
       <input ng-model="ctrl.user.display_name" type="text" placeholder="Display Name" ng-required="true">
@@ -21,7 +21,8 @@
         and
         <mp-popup-link link-url="privacy-policy.html" link-title="Privacy Policy"></mp-popup-link>
       </p>
-      <md-button class="md-raised md-primary md-hue-2 mp-login-button"
+      <md-button type="submit"
+                 class="md-raised md-primary md-hue-2 mp-login-button"
                  aria-label="Sign Up"
                  ng-disabled="ctrl.signUpButtonLocked">
         Sign Up
@@ -30,5 +31,5 @@
         Already have an account? <a ui-sref="login">Log in now</a>
       </p>
     </div>
-  </form>
-</div>
+  </div>
+</form>
