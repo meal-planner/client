@@ -390,6 +390,12 @@ module.exports = function (grunt) {
           branch: 'master'
         }
       },
+      pages: {
+        options: {
+          remote: 'git@github.com:meal-planner/client.git',
+          branch: 'gh-pages'
+        }
+      },
       local: {
         options: {
           remote: '../',
