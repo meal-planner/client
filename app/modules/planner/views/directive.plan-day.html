@@ -14,7 +14,7 @@
               </md-button>
             </div>
           </md-subheader>
-          <md-divider></md-divider>
+          <md-divider ng-if="!$last || day.meals.length > 0"></md-divider>
           <md-list-item class="md-3-line"
                         ng-repeat="meal in day.meals | filter: {type: mealType}"
                         ng-click="viewMeal(meal)"
