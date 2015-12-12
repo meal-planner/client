@@ -1,0 +1,35 @@
+<form method="post" ng-submit="ctrl.signUp()" name="signupForm">
+  <div layout="column">
+    <h2 class="md-headline">Sign Up</h2>
+
+    <md-input-container>
+      <md-icon>&#xE7FD;</md-icon>
+      <input ng-model="ctrl.user.display_name" type="text" placeholder="Display Name" ng-required="true">
+    </md-input-container>
+    <md-input-container>
+      <md-icon md-svg-icon="images/icons/email.svg"></md-icon>
+      <input ng-model="ctrl.user.email" type="email" placeholder="Email" ng-required="true">
+    </md-input-container>
+    <md-input-container>
+      <md-icon>&#xE899;</md-icon>
+      <input ng-model="ctrl.user.password" type="password" placeholder="Password" ng-required="true">
+    </md-input-container>
+    <div layout="column" layout-align="center center">
+      <p class="mp-login-sub-text" style="text-align: center">
+        By clicking on Sign up, you agree to our
+        <mp-popup-link link-url="terms-of-use.html" link-title="Terms of Use"></mp-popup-link>
+        and
+        <mp-popup-link link-url="privacy-policy.html" link-title="Privacy Policy"></mp-popup-link>
+      </p>
+      <md-button type="submit"
+                 class="md-raised md-primary md-hue-2 mp-login-button"
+                 aria-label="Sign Up"
+                 ng-disabled="ctrl.signUpButtonLocked">
+        Sign Up
+      </md-button>
+      <p class="mp-login-sub-text">
+        Already have an account? <a ui-sref="login">Log in now</a>
+      </p>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,118 @@
+<form name="recipeForm" ng-submit="ctrl.saveRecipe()">
+  <div class="mp-content md-whiteframe-z1 mp-recipe-edit-form">
+    <md-content class="md-padding">
+      <div layout="column">
+
+        <md-content>
+          <md-button type="button" class="md-raised md-primary md-hue-2 mp-file-button" aria-label="Upload image">
+            Browse image&hellip;
+            <input type="file" mp-file-select="ctrl.image">
+          </md-button>
+          <div ng-if="ctrl.image.src" layout="row" layout-align="space-between center">
+            <div class="mp-image-preview" flex="40" layout="row" layout-align="center center">
+              <img ng-src="{{ctrl.recipe.imageCrop}}" />
+            </div>
+            <div class="mp-crop-area" flex="60">
+              <img-crop image="ctrl.image.src"
+                        area-type="square"
+                        result-image="ctrl.recipe.imageCrop"
+                        result-image-size="300"
+                        result-image-format="image/jpeg"
+                        result-image-quality="0.8">
+              </img-crop>
+            </div>
+          </div>
+        </md-content>
+
+        <md-input-container>
+          <label>Name</label>
+          <input type="text" ng-model="ctrl.recipe.name" required>
+        </md-input-container>
+
+        <div layout="row">
+          <md-input-container flex="20">
+            <label>Dish Type</label>
+            <md-select ng-model="ctrl.recipe.dish_type" placeholder="Dish Type">
+              <md-option value="{{::dishType.title}}" ng-repeat="dishType in ctrl.dishTypes | orderBy:'title'">
+                {{::dishType.title}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container flex="20">
+            <label>Yields servings</label>
+            <md-select ng-model="ctrl.recipe.servings" placeholder="Yields servings">
+              <md-option ng-value="servings" ng-repeat="servings in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+                {{::servings}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container flex="20">
+            <label>Time to cook (minutes)</label>
+            <input type="text" ng-model="ctrl.recipe.time_to_cook" required>
+          </md-input-container>
+        </div>
+
+        <div>
+          <fieldset class="standard">
+            <legend>Cuisine</legend>
+            <div layout="row" layout-wrap>
+              <div ng-repeat="cuisine in ctrl.cuisines | orderBy:'title'" flex="25">
+                <md-checkbox ng-model="ctrl.recipe.cuisine[cuisine.title]"
+                             aria-label="{{::cuisine.title}} Cuisine">
+                  {{::cuisine.title}}
+                </md-checkbox>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <p>
+        <fieldset class="standard">
+          <legend>Key Ingredient</legend>
+          <div layout="row" layout-wrap>
+            <div ng-repeat="keyIngredient in ctrl.keyIngredients | orderBy:'title'" flex="25">
+              <md-checkbox ng-model="ctrl.recipe.key_ingredient[keyIngredient.title]"
+                           aria-label="Key Ingredient: {{::keyIngredient.title}}">
+                {{::keyIngredient.title}}
+              </md-checkbox>
+            </div>
+          </div>
+        </fieldset>
+        </p>
+
+        <div>
+          <fieldset class="standard">
+            <legend>Diet</legend>
+            <div layout="row" layout-wrap>
+              <div ng-repeat="diet in ctrl.diets | orderBy:'title'" flex="25">
+                <md-checkbox ng-model="ctrl.recipe.diet[diet.title]"
+                             aria-label="{{::diet.title}} Diet">
+                  {{::diet.title}}
+                </md-checkbox>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <h4>Ingredients</h4>
+      <mp-recipe-ingredient-picker recipe="ctrl.recipe"></mp-recipe-ingredient-picker>
+      <mp-recipe-ingredient-list recipe="ctrl.recipe"></mp-recipe-ingredient-list>
+
+      <h4>Cooking steps</h4>
+      <mp-recipe-steps recipe="ctrl.recipe"></mp-recipe-steps>
+
+      <p>
+
+      <div layout="row" layout-align="center center">
+        <md-button type="submit"
+                   class="md-raised md-primary md-button-wide"
+                   aria-label="Save recipe"
+                   ng-disabled="ctrl.saveButtonDisabled">
+          save
+        </md-button>
+      </div>
+      </p>
+    </md-content>
+  </div>
+</form>

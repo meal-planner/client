@@ -1,0 +1,98 @@
+[
+  {
+    "title": "Meat",
+    "background": "ingredient/group/meat.jpg",
+    "tile": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Fish & Seafood",
+    "background": "ingredient/group/fish.jpg",
+    "tile": {
+      "row": 2,
+      "col": 3
+    }
+  },
+  {
+    "title": "Legumes",
+    "background": "ingredient/group/legumes.jpg",
+    "tile": {
+      "row": 1,
+      "col": 1
+    }
+  },
+  {
+    "title": "Nuts & Seeds",
+    "background": "ingredient/group/nuts.jpg",
+    "tile": {
+      "row": 1,
+      "col": 1
+    }
+  },
+  {
+    "title": "Poultry",
+    "background": "ingredient/group/poultry.jpg",
+    "tile": {
+      "row": 2,
+      "col": 3
+    }
+  },
+  {
+    "title": "Dairy & Eggs",
+    "background": "ingredient/group/dairy.jpg",
+    "tile": {
+      "row": 2,
+      "col": 3
+    }
+  },
+  {
+    "title": "Vegetables",
+    "background": "ingredient/group/vegetables.jpg",
+    "tile": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Grains",
+    "background": "ingredient/group/grains.jpg",
+    "tile": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Fruits",
+    "background": "ingredient/group/fruits.jpg",
+    "tile": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Beverages",
+    "background": "ingredient/group/beverages.jpg",
+    "tile": {
+      "row": 2,
+      "col": 3
+    }
+  },
+  {
+    "title": "Sweets & Deserts",
+    "background": "ingredient/group/sweets.jpg",
+    "tile": {
+      "row": 2,
+      "col": 2
+    }
+  },
+  {
+    "title": "Other",
+    "background": "ingredient/group/other.jpg",
+    "tile": {
+      "row": 2,
+      "col": 1
+    }
+  }
+]

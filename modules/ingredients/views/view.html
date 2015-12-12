@@ -1,0 +1,35 @@
+<div>
+  <div class="mp-content md-whiteframe-z1">
+    <md-content class="md-padding">
+      <div layout="row" layout-align="space-between">
+        <div class="mp-image-view round">
+          <img ng-src="{{ctrl.ingredient.imageUrl}}" />
+        </div>
+        <div>
+          <mp-measure-selector ingredient="ctrl.ingredient"></mp-measure-selector>
+          <mp-nutrition-label nutrients="ctrl.ingredient.nutrients"></mp-nutrition-label>
+        </div>
+      </div>
+
+      <div layout="row" layout-align="space-between">
+        <div>
+          <md-button ng-if="::ctrl.ingredient.can_edit"
+                     class="md-button-wide"
+                     ui-sref="editIngredient({ingredientId:ctrl.ingredient.id})">
+            edit
+          </md-button>
+          <md-button class="md-button-wide"
+                     ui-sref="forkIngredient({ingredientId:ctrl.ingredient.id})">
+            fork
+            <md-tooltip>Create a copy of this ingredient</md-tooltip>
+          </md-button>
+        </div>
+        <span></span>
+        <md-button ng-if="::ctrl.ingredient.ndbno" class="md-button-wide"
+                   href="http://ndb.nal.usda.gov/ndb/search/list?qlookup={{::ctrl.ingredient.ndbno}}" target="_blank">
+          Source: USDA
+        </md-button>
+      </div>
+    </md-content>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div layout="row" layout-align="space-between center">
+  <md-button type="button" aria-label="Ingredient Browser" class="md-icon-button" ng-click="openIngredientBrowser($event)">
+    <md-icon>&#xE5C3;</md-icon>
+    <md-tooltip>Ingredient Browser</md-tooltip>
+  </md-button>
+  <md-autocomplete
+    md-delay="300"
+    md-selected-item="selectedItem"
+    md-selected-item-change="addIngredient(item)"
+    md-search-text="searchText"
+    md-items="item in querySearch(searchText)"
+    md-item-text="item.name"
+    placeholder="Type in the name of ingredient you want to add to this recipe"
+    flex>
+    <span md-highlight-text="searchText">{{::item.name}} {{::item.description}}</span>
+  </md-autocomplete>
+</div>

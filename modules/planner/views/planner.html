@@ -1,0 +1,14 @@
+<div>
+  <div class="mp-content md-whiteframe-z1 mp-planner-tabs">
+    <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect md-dynamic-height>
+      <md-tab ng-repeat="day in ctrl.plan.days" label="{{::day.name}}">
+        <mp-plan-day day="day"></mp-plan-day>
+      </md-tab>
+      <md-tab label="Weekly Summary">
+        <md-content class="md-padding">
+          Your weekly meals summary
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </div>
+</div>

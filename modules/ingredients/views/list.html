@@ -1,0 +1,25 @@
+<div>
+  <md-button class="md-fab md-button md-accent md-default-theme mp-fab-bottom-right"
+             aria-label="Create new ingredient"
+             ui-sref="createIngredient">
+    <md-icon>&#xE150;</md-icon>
+    <md-tooltip>Create new</md-tooltip>
+  </md-button>
+
+  <md-content class="mp-content md-whiteframe-z1">
+    <div class="mp-centered" ng-if="ctrl.isError">
+      Could not load ingredients list. Please, check network connection.
+    </div>
+
+    <div class="mp-centered" ng-if="!ctrl.items.length">
+      No ingredients found.
+    </div>
+
+    <md-list ng-hide="ctrl.isLoading" class="mp-ingredients">
+      <mp-ingredient-item ingredient="ingredient"
+                          last="$last"
+                          ng-repeat="ingredient in ctrl.items track by ingredient.id">
+      </mp-ingredient-item>
+    </md-list>
+  </md-content>
+</div>

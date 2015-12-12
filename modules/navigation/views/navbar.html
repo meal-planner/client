@@ -1,0 +1,61 @@
+<div>
+  <md-toolbar class="md-hue-2 md-whiteframe-z2 mp-fixed-top">
+    <div class="md-toolbar-tools">
+      <md-button aria-label="Open menu"
+                 ng-click="openMenu()"
+                 ng-if="!navigationBar.isSearchInputVisible"
+                 class="md-icon-button">
+        <md-icon>&#xE5D2;</md-icon>
+      </md-button>
+      <md-button aria-label="Go Back"
+                 ng-click="closeSearch()"
+                 ng-if="navigationBar.isSearchInputVisible"
+                 class="md-icon-button">
+        <md-icon>&#xE5C4;</md-icon>
+      </md-button>
+      <input id="search-field" aria-label="Search query" flex
+             placeholder="Search"
+             ng-show="navigationBar.isSearchInputVisible"
+             ng-model="searchQuery"
+             ng-change="navigationBar.searchCallback(searchQuery)"
+             ng-model-options="{debounce: 500}"
+             class="search-input"/>
+      <span ng-hide="navigationBar.isSearchInputVisible" flex>{{navigationBar.title}}</span>
+      <md-button aria-label="Search"
+                 ng-click="openSearch()"
+                 ng-show="navigationBar.searchCallback !== null"
+                 class="md-icon-button">
+        <md-icon>&#xE8B6;</md-icon>
+      </md-button>
+      <md-button aria-label="Profile" ui-sref="profile" class="md-icon-button">
+        <img ng-src="{{navigationBar.avatar}}" class="mp-avatar"/>
+      </md-button>
+    </div>
+    <md-progress-linear ng-show="navigationBar.isLoading" md-mode="indeterminate"></md-progress-linear>
+  </md-toolbar>
+
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2 mp-fixed-top" md-component-id="menu">
+    <md-toolbar class="md-hue-1">
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Close menu"
+                   ng-click="closeMenu()"
+                   class="md-icon-button">
+          <md-icon>&#xE5C4;</md-icon>
+        </md-button>
+        <h2 class="mp-logo">
+          <a href="#" ng-click="go('planner')">
+            <img src="images/logo.24ff7612.png" width="190" alt="Meal Planner"/>
+          </a>
+        </h2>
+      </div>
+    </md-toolbar>
+    <md-content layout-padding>
+      <md-list>
+        <md-list-item ng-repeat="link in links" ng-click="go(link.state)">
+          <md-icon>&#xE5CC;</md-icon>
+          <p>{{::link.label}}</p>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </md-sidenav>
+</div>

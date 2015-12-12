@@ -1,0 +1,17 @@
+<div ng-repeat="step in recipe.steps track by $index" layout="row">
+  <md-input-container flex>
+    <input ng-model="recipe.steps[$index]" aria-label="Cooking step" required>
+  </md-input-container>
+  <md-button type="button" ng-click="removeCookingStep($index)"
+             ng-show="recipe.steps.length > 1"
+             class="md-icon-button"
+             aria-label="Remove Step">
+    <md-icon>&#xE15C;</md-icon>
+    <md-tooltip>Remove step</md-tooltip>
+  </md-button>
+</div>
+<div layout="row" layout-align="end">
+  <md-button type="button" class="md-raised" ng-click="addCookingStep()">
+    add step
+  </md-button>
+</div>

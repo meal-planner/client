@@ -1,0 +1,32 @@
+<md-list class="mp-ingredients-list">
+  <md-list-item class="md-3-line" ng-repeat="ingredient in recipe.ingredients track by $index">
+    <img ng-src="{{ingredient.imageUrl}}" class="mp-image-icon">
+
+    <div class="md-list-item-text" layout="row" layout-align="space-between center">
+      <div flex>
+        <div class="mp-ingredient-item-name">
+          {{ingredient.name}}
+          <span class="mp-ingredient-item-description">
+            {{ingredient.description}}
+          </span>
+        </div>
+        <mp-measure-selector ingredient="ingredient"></mp-measure-selector>
+      </div>
+      <div flex="15">
+        <p class="mp-ingredients mp-no-top-margin">
+          <mp-ingredient-nutrient ingredient="ingredient" code="energy"></mp-ingredient-nutrient>
+          <mp-ingredient-nutrient ingredient="ingredient" code="fat"></mp-ingredient-nutrient>
+          <mp-ingredient-nutrient ingredient="ingredient" code="protein"></mp-ingredient-nutrient>
+          <mp-ingredient-nutrient ingredient="ingredient" code="carbohydrate"></mp-ingredient-nutrient>
+        </p>
+      </div>
+      <md-button type="button" ng-click="removeIngredient($index)"
+                 class="md-icon-button"
+                 aria-label="Remove Ingredient">
+        <md-icon>&#xE15C;</md-icon>
+        <md-tooltip>Remove ingredient</md-tooltip>
+      </md-button>
+    </div>
+    <md-divider></md-divider>
+  </md-list-item>
+</md-list>

@@ -1,0 +1,45 @@
+<div class="nutrition-label">
+  <h1>Nutrition Facts</h1>
+  <div ng-if="::servings > 0">
+    <hr size="3"/>
+    <h3>Recipe yields {{::servings}} serving{{::servings > 1 ? 's' : ''}}</h3>
+  </div>
+  <hr size="12"/>
+  <div layout="row" layout-align="space-between end">
+    <div>
+      <strong ng-if="::servings > 0">Amount Per Serving</strong>
+      <h2>Calories</h2>
+    </div>
+    <div>
+      <span class="calories">{{nutrients.find('energy').value | number: 0}}</span>
+    </div>
+  </div>
+  <hr size="8"/>
+  <strong>% DV*</strong>
+
+  <mp-nutrient-table nutrients="nutrients" filter-group="Main Nutrients"></mp-nutrient-table>
+  <div ng-if="showMicroNutrients == true">
+    <hr size="12" class="no-margin"/>
+    <mp-nutrient-table nutrients="nutrients" filter-group="Vitamins" no-margin="true"></mp-nutrient-table>
+    <mp-nutrient-table nutrients="nutrients" filter-group="Minerals" no-margin="true"></mp-nutrient-table>
+  </div>
+  <hr size="8" class="no-margin"/>
+
+  <div class="foot-note" layout="row" layout-align="start">
+    <span class="asterisk">*</span>
+    <span>
+      Daily values are calculated according to U.S. Food and Drug Administration
+      <a href="http://www.fda.gov/Food/GuidanceRegulation/GuidanceDocumentsRegulatoryInformation/LabelingNutrition/ucm064928.htm"
+        target="_blank">recommendations</a>.
+    </span>
+  </div>
+
+  <div ng-hide="showMicroNutrients" flex layout="row" layout-align="center">
+    <md-button type="button" ng-click="showMicroNutrients = true"
+               md-no-ink class="mp-action-button mp-no-top-margin"
+               aria-label="Show vitamins & minerals">
+      <md-icon>&#xE5CF;</md-icon>
+      <md-tooltip>Show vitamins & minerals</md-tooltip>
+    </md-button>
+  </div>
+</div>

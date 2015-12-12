@@ -1,0 +1,70 @@
+<md-dialog aria-label="Nutrient Selector">
+  <md-toolbar>
+    <div class="md-toolbar-tools md-whiteframe-z2">
+      <h2 ng-if="!ctrl.chosenGroup">Choose Food Group</h2>
+      <md-button aria-label="Go Back"
+                 ng-if="ctrl.chosenGroup"
+                 ng-click="ctrl.backToGroups()"
+                 class="md-icon-button">
+        <md-icon>&#xE5C4;</md-icon>
+      </md-button>
+      <h2 ng-if="ctrl.chosenGroup">
+        {{ctrl.chosenGroup}}
+      </h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="ctrl.cancelDialog()">
+        <md-icon aria-label="Close dialog">&#xE5CD;</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content class="sticky-container mp-ingredient-browser-popup">
+    <md-grid-list class="mp-tiles mp-food-groups"
+                  ng-if="!ctrl.chosenGroup"
+                  md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
+                  md-row-height-gt-md="1:1" md-row-height="4:3"
+                  md-gutter="8px" md-gutter-gt-sm="10px">
+      <md-grid-tile ng-repeat="group in ctrl.groups"
+                    md-rowspan="{{::group.tile.row}}"
+                    md-colspan="{{::group.tile.col}}"
+                    md-colspan-sm="1"
+                    md-ink-ripple
+                    ng-click="ctrl.chosenGroup = group.title;ctrl.loadIngredients()">
+        <img ng-src="{{::group.background}}" alt="{{::group.title}}"/>
+        <md-grid-tile-footer><h3>{{::group.title}}</h3></md-grid-tile-footer>
+      </md-grid-tile>
+    </md-grid-list>
+
+    <md-list ng-if="ctrl.chosenGroup" class="mp-ingredients">
+      <md-virtual-repeat-container class="mp-virtual-repeat-container">
+        <md-list-item class="md-3-line"
+                      md-virtual-repeat="ingredient in ctrl.ingredients"
+                      ng-click="ctrl.addIngredient(ingredient)">
+          <img ng-src="{{ingredient.imageUrl}}" class="md-avatar" title="{{::ingredient.group}}">
+
+          <div class="md-list-item-text">
+            <div>
+              <div class="mp-ingredient-item-name">
+                {{ingredient.name}}
+                <span class="mp-ingredient-item-description">
+                  {{ingredient.description}}
+                </span>
+              </div>
+
+              <p>
+                {{ingredient.energy}} kcal / 100g
+              </p>
+            </div>
+          </div>
+          <md-divider></md-divider>
+        </md-list-item>
+
+        <div layout="row" layout-align="center center">
+          <md-button ng-click="ctrl.loadIngredients()">
+            show more
+          </md-button>
+        </div>
+      </md-virtual-repeat-container>
+    </md-list>
+  </md-dialog-content>
+</md-dialog>

@@ -1,0 +1,25 @@
+<md-content class="md-padding" style="background-color: #f4f7f9;">
+  <div layout="row" layout-align="space-between center">
+    <h4 flex>Add a new measure:</h4>
+    <div layout="row">
+      <md-input-container>
+        <label>Qty</label>
+        <input type="float" ng-model="measureQty">
+      </md-input-container>
+      <md-input-container>
+        <label>Label</label>
+        <input type="text" ng-model="measureLabel">
+      </md-input-container>
+      <md-input-container>
+        <label>Equivalent (in grams)</label>
+        <input type="float" ng-model="measureEqv">
+      </md-input-container>
+    </div>
+    <md-button type="button"
+               class="md-raised md-primary md-hue-1"
+               ng-disabled="!measureQty || !measureLabel || !measureEqv"
+               ng-click="addMeasure()">
+      Add Measure
+    </md-button>
+  </div>
+</md-content>

@@ -1,0 +1,58 @@
+<form name="ingredientForm" ng-submit="ctrl.saveIngredient()">
+  <div class="mp-content md-whiteframe-z1">
+    <md-content class="md-padding">
+      <div layout="row">
+        <md-input-container flex="20">
+          <label>Food group</label>
+          <md-select required ng-model="ctrl.ingredient.group" aria-label="Food group">
+            <md-option ng-value="group.title" ng-repeat="group in ctrl.foodGroups | orderBy:'title'">
+              {{::group.title}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container flex="80">
+          <label>Name</label>
+          <input ng-model="ctrl.ingredient.name" required>
+        </md-input-container>
+      </div>
+      <md-button type="button" class="md-raised md-primary md-hue-2 mp-file-button" aria-label="Upload image">
+        Browse image&hellip;
+        <input type="file" mp-file-select="ctrl.image">
+      </md-button>
+      <div ng-if="ctrl.image.src" layout="row" layout-align="space-between center">
+        <div class="mp-image-preview round" flex="40" layout="row" layout-align="center center">
+          <img ng-src="{{ctrl.ingredient.imageCrop}}"/>
+        </div>
+        <div class="mp-crop-area" flex="60">
+          <img-crop image="ctrl.image.src"
+                    result-image="ctrl.ingredient.imageCrop"
+                    result-image-format="image/jpeg"
+                    result-image-quality="0.9">
+          </img-crop>
+        </div>
+      </div>
+    </md-content>
+
+    <h4 class="md-ingredient-edit-nutrients-header">Nutrients in:</h4>
+    <mp-ingredient-edit-measure ingredient="ctrl.ingredient"></mp-ingredient-edit-measure>
+    <mp-ingredient-add-measure ingredient="ctrl.ingredient"></mp-ingredient-add-measure>
+
+    <md-content class="md-padding">
+      <div layout="row" layout-align="end center">
+        <md-checkbox
+          ng-model="ctrl.ingredient.generic"
+          aria-label="Generic Ingredient">
+          Generic ingredient?
+        </md-checkbox>
+      </div>
+      <div layout="row" layout-align="center center">
+        <md-button type="submit"
+                   class="md-raised md-primary md-button-wide"
+                   aria-label="Save ingredient"
+                   ng-disabled="ctrl.saveButtonDisabled">
+          save
+        </md-button>
+      </div>
+    </md-content>
+  </div>
+</form>
