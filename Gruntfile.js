@@ -318,7 +318,8 @@ module.exports = function (grunt) {
             'modules/**/views/{,*/}*.html',
             'modules/**/data/{,*/}*.json',
             'images/{,*/}*.{webp}',
-            'fonts/{,*/}*.*'
+            'fonts/{,*/}*.*',
+            'CNAME'
           ]
         }, {
           expand: true,
@@ -363,17 +364,41 @@ module.exports = function (grunt) {
       }
     },
 
-    favicons: {
-      production: {
+    realFavicon: {
+      myIcon: {
+        src: '<%= yeoman.app %>/images/icon.png',
+        dest: '<%= yeoman.dist %>/',
         options: {
-          html: 'dist/index.html',
-          windowsTile: true,
-          trueColor: true,
-          tileBlackWhite: true,
-          tileColor: '#FFFFFF'
+          html: ['<%= yeoman.dist %>/index.html'],
+          design: {
+            desktop_browser: {},
+            ios: {
+              picture_aspect: 'background_and_margin',
+              background_color: '#ffffff',
+              margin: 2
+            },
+            // WindowsPhone options
+            windows: {
+              picture_aspect: 'no_change',
+              background_color: '#ffffff'
+            },
+            // Android Chrome options
+            android_chrome: {
+              picture_aspect: 'shadow',
+              manifest: {
+                name: 'Meal-Planner.org',
+                display: 'standalone',
+                orientation: 'portrait',
+                start_url: '/index.html'
+              },
+              theme_color: '#42bd41'
+            },
+          },
         },
-        src: 'dist/images/icon.png',
-        dest: 'dist/'
+        settings: {
+          compression: 5,
+          scaling_algorithm: 'NearestNeighbor'
+        }
       }
     },
 
@@ -382,15 +407,9 @@ module.exports = function (grunt) {
         dir: 'dist',
         commit: true,
         push: true,
-        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+        message: 'Built Meal-Planner.org client from commit %sourceCommit% on branch %sourceBranch%'
       },
-      production: {
-        options: {
-          remote: 'git@5apps.com:ayastreb_meal-planner.git',
-          branch: 'master'
-        }
-      },
-      pages: {
+      github: {
         options: {
           remote: 'git@github.com:meal-planner/client.git',
           branch: 'gh-pages'
@@ -480,7 +499,7 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
-    'favicons',
+    'realFavicon',
     'filerev',
     'usemin'
   ]);
