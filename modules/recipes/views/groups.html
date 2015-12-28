@@ -11,12 +11,12 @@
       <md-tab ng-repeat="group in ctrl.groups" label="{{::group.title}}">
         <md-content>
           <md-grid-list class="mp-tiles"
-                        md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
+                        md-cols-gt-sm="6" md-cols="1"
                         md-row-height="1:1"
                         md-gutter="8px" md-gutter-sm="10px">
             <md-grid-tile ng-repeat="tile in group.tiles"
-                          md-rowspan="{{::tile.span.row}}"
-                          md-colspan="{{::tile.span.col}}"
+                          md-rowspan-gt-sm="{{::tile.span.row}}"
+                          md-colspan-gt-sm="{{::tile.span.col}}"
                           md-colspan-sm="1"
                           md-rowspan-sm="1"
                           md-ink-ripple
