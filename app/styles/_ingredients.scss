@@ -1,4 +1,9 @@
 .mp-ingredient-item-name {
+  &.with-margin {
+    display: block;
+    margin-top: 14px;
+  }
+
   .mp-ingredient-item-description {
     //display: block;
     color: rgba(0,0,0,0.54);
