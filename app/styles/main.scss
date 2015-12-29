@@ -88,7 +88,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   text-align: center;
 }
 
-md-toast.md-error-toast-theme {
+md-toast.md-error-toast-theme .md-toast-content {
   background-color: rgba(229, 57, 53, 0.95);
 }
 
