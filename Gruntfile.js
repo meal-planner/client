@@ -436,7 +436,7 @@ module.exports = function (grunt) {
         },
         constants: {
           ENV: {
-            apiEndpoint: '//localhost/api/',
+            apiEndpoint: 'http://localhost/api/',
             contentEndpoint: '//content.meal-planner.org/'
           }
         }
