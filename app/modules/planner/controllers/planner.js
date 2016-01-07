@@ -19,6 +19,15 @@
 
     $scope.$watch('ctrl.plan.days', saveLocalPlan, true);
 
+    return activate();
+
+    function activate() {
+      var date = new Date();
+      self.today = date.getDay();
+      date.setDate(date.getDate() + 1);
+      self.tomorrow = date.getDay();
+    }
+
     /**
      * Persist plan in local storage.
      *

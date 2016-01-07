@@ -45,16 +45,9 @@
           paramKey: 'dish_type'
         });
       });
-      RecipeGroupService.getCuisines().then(function (cuisines) {
-        self.recipeGroups.push({
-          title: 'Cuisine',
-          tiles: cuisines,
-          paramKey: 'cuisine'
-        });
-      });
       RecipeGroupService.getKeyIngredients().then(function (keyIngredients) {
         self.recipeGroups.push({
-          title: 'Key Ingredient',
+          title: 'Ingredient',
           tiles: keyIngredients,
           paramKey: 'key_ingredient'
         });

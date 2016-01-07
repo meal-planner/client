@@ -16,13 +16,13 @@
   /* @ngInject */
   function PlanFactory(NutrientCollectionFactory, PlanDayFactory) {
     var week = [
+      'Sunday',
       'Monday',
       'Tuesday',
       'Wednesday',
       'Thursday',
       'Friday',
-      'Saturday',
-      'Sunday'
+      'Saturday'
     ];
 
     /**
