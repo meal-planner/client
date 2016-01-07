@@ -1,12 +1,34 @@
 <div>
   <div class="mp-content md-whiteframe-z1 mp-planner-tabs">
-    <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect md-dynamic-height>
-      <md-tab ng-repeat="day in ctrl.plan.days" label="{{::day.name}}">
-        <mp-plan-day day="day"></mp-plan-day>
+    <md-tabs md-selected="selectedIndex"
+             md-border-bottom
+             md-autoselect
+             md-dynamic-height
+             md-stretch-tabs="always">
+      <md-tab label="Today">
+        <mp-plan-day day="ctrl.plan.days[ctrl.today]"></mp-plan-day>
       </md-tab>
-      <md-tab label="Weekly Summary">
-        <md-content class="md-padding">
-          Your weekly meals summary
+      <md-tab label="Tomorrow">
+        <mp-plan-day day="ctrl.plan.days[ctrl.tomorrow]"></mp-plan-day>
+      </md-tab>
+      <md-tab label="Week">
+        <md-content>
+          <md-list>
+
+            <div ng-repeat="day in ctrl.plan.days">
+              <md-subheader>
+                <div layout="row" layout-align="space-between">
+                  <h3>{{::day.name}}</h3>
+                  <md-button class="md-icon-button"
+                             aria-label="Show plan for {{::day.name}}"
+                             ng-click="null">
+                    <md-icon>&#xE315;</md-icon>
+                  </md-button>
+                </div>
+              </md-subheader>
+              <md-divider ng-if="!$last"></md-divider>
+            </div>
+          </md-list>
         </md-content>
       </md-tab>
     </md-tabs>

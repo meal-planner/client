@@ -37,7 +37,7 @@
     <md-dialog-content class="mp-meal-selector-content">
       <!-- Groups view -->
       <div ng-if="ctrl.groupsVisible">
-        <md-tabs md-selected="selectedIndex" md-border-bottom md-dynamic-height>
+        <md-tabs md-selected="selectedIndex" md-border-bottom md-dynamic-height md-stretch-tabs="always">
           <md-tab ng-repeat="group in ctrl.recipeGroups" label="{{::group.title}}">
             <md-content>
               <md-grid-list class="mp-tiles"
