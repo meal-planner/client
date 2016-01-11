@@ -15,20 +15,28 @@
              md-no-pagination
              md-stretch-tabs="always">
       <md-tab label="Info">
-        <div class="mp-image-view">
-          <img ng-src="{{::ctrl.recipe.imageUrl}}"/>
-        </div>
-        <md-divider></md-divider>
-        <md-list-item class="md-2-line"
-                      ng-repeat="step in ctrl.recipe.steps"
-                      md-no-ink>
-          <div class="md-list-item-text" layout="row" layout-align="space-between">
-            <p>
-              {{::step}}
-            </p>
+        <md-content layout="column"
+                    layout-align="start"
+                    layout-gt-sm="row"
+                    layout-align-gt-sm="start start">
+          <div class="mp-image-view">
+            <img ng-src="{{::ctrl.recipe.imageUrl}}"/>
+            <md-divider hide-gt-sm></md-divider>
           </div>
-          <md-divider ng-if="!$last"></md-divider>
-        </md-list-item>
+
+          <md-list class="mp-cooking-steps" flex>
+            <md-list-item class="md-2-line"
+                          ng-repeat="step in ctrl.recipe.steps"
+                          md-no-ink>
+              <div class="md-list-item-text" layout="row" layout-align="space-between">
+                <p>
+                  {{::step}}
+                </p>
+              </div>
+              <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+          </md-list>
+        </md-content>
       </md-tab>
 
       <md-tab label="Ingredients">
