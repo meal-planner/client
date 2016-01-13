@@ -15,7 +15,9 @@
   /* @ngInject */
   function PlannerController($scope, PlanService) {
     var self = this;
+    self.activeWeekDay = null;
     self.plan = PlanService.getPlan();
+    self.toggleDayPlanInWeek = toggleDayPlanInWeek;
 
     $scope.$watch('ctrl.plan.days', saveLocalPlan, true);
 
@@ -37,6 +39,24 @@
     function saveLocalPlan(oldValue, newValue) {
       if (oldValue !== newValue) {
         PlanService.saveLocalPlan(self.plan);
+      }
+    }
+
+    /**
+     * Toggle display of a day on week view.
+     *
+     * @param day
+     */
+    function toggleDayPlanInWeek(day) {
+      if (self.activeWeekDay) {
+        self.activeWeekDay.isVisibleInWeek = false;
+      }
+
+      if (self.activeWeekDay != day) {
+        day.isVisibleInWeek = true;
+        self.activeWeekDay = day;
+      } else {
+        self.activeWeekDay = null;
       }
     }
   }

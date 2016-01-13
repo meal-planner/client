@@ -18,7 +18,8 @@
       templateUrl: 'modules/planner/views/directive.plan-day.html',
       link: planDayLink,
       scope: {
-        day: '='
+        day: '=',
+        showSummary: '='
       }
     };
 
