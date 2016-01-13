@@ -6,27 +6,30 @@
              md-dynamic-height
              md-stretch-tabs="always">
       <md-tab label="Today">
-        <mp-plan-day day="ctrl.plan.days[ctrl.today]"></mp-plan-day>
+        <mp-plan-day day="ctrl.plan.days[ctrl.today]" show-summary="1"></mp-plan-day>
       </md-tab>
       <md-tab label="Tomorrow">
-        <mp-plan-day day="ctrl.plan.days[ctrl.tomorrow]"></mp-plan-day>
+        <mp-plan-day day="ctrl.plan.days[ctrl.tomorrow]" show-summary="1"></mp-plan-day>
       </md-tab>
       <md-tab label="Week">
         <md-content>
           <md-list>
-
             <div ng-repeat="day in ctrl.plan.days">
               <md-subheader>
                 <div layout="row" layout-align="space-between">
                   <h3>{{::day.name}}</h3>
                   <md-button class="md-icon-button"
                              aria-label="Show plan for {{::day.name}}"
-                             ng-click="null">
+                             ng-click="ctrl.toggleDayPlanInWeek(day)">
                     <md-icon>&#xE315;</md-icon>
                   </md-button>
                 </div>
               </md-subheader>
               <md-divider ng-if="!$last"></md-divider>
+              <div style="border-left: solid 12px #DCDCDC;">
+                <md-divider ng-show="day.isVisibleInWeek"></md-divider>
+                <mp-plan-day day="day" show-summary="0" ng-show="day.isVisibleInWeek"></mp-plan-day>
+              </div>
             </div>
           </md-list>
         </md-content>

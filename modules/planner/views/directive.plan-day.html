@@ -1,7 +1,7 @@
 <md-content>
   <div layout="column">
     <md-content>
-      <md-list>
+      <md-list style="padding-bottom: 0;">
         <div ng-repeat="mealType in mealTypes">
           <md-subheader>
             <div layout="row" layout-align="space-between">
@@ -13,7 +13,7 @@
               </md-button>
             </div>
           </md-subheader>
-          <md-divider ng-if="!$last || day.meals.length > 0"></md-divider>
+          <md-divider></md-divider>
           <md-list-item class="md-3-line"
                         ng-repeat="meal in day.meals | filter: {type: mealType}"
                         ng-click="viewMeal(meal)"
@@ -37,7 +37,7 @@
             <md-divider></md-divider>
           </md-list-item>
         </div>
-        <div ng-if="day.meals.length > 0">
+        <div ng-if="day.meals.length > 0 && showSummary">
           <md-subheader>
             <h3>Summary</h3>
           </md-subheader>
