@@ -2,14 +2,12 @@
   'use strict';
 
   describe('Factory: RecipeFactory', function () {
-    var scope,
-      httpBackend,
+    var httpBackend,
       recipeFactory,
       ingredientFactory;
 
     beforeEach(module('mealPlanner'));
-    beforeEach(inject(function ($rootScope, $httpBackend, RecipeFactory, IngredientFactory) {
-      scope = $rootScope;
+    beforeEach(inject(function ($httpBackend, RecipeFactory, IngredientFactory) {
       httpBackend = $httpBackend;
       recipeFactory = RecipeFactory;
       ingredientFactory = IngredientFactory;

@@ -52,7 +52,7 @@
         self.activeWeekDay.isVisibleInWeek = false;
       }
 
-      if (self.activeWeekDay != day) {
+      if (self.activeWeekDay !== day) {
         day.isVisibleInWeek = true;
         self.activeWeekDay = day;
       } else {

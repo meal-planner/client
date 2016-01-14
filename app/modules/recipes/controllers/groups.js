@@ -14,27 +14,27 @@
     .controller('RecipesGroupsController', RecipesGroupsController);
 
   /* @ngInject */
-  function RecipesGroupsController(dishTypes, cuisines, keyIngredients, diets) {
+  function RecipesGroupsController(groups) {
     var self = this;
     self.groups = [
       {
         title: 'Dish Type',
-        tiles: dishTypes,
+        tiles: groups.dishTypes,
         paramKey: 'dish_type'
       },
       {
         title: 'Cuisine',
-        tiles: cuisines,
+        tiles: groups.cuisines,
         paramKey: 'cuisine'
       },
       {
         title: 'Key Ingredient',
-        tiles: keyIngredients,
+        tiles: groups.keyIngredients,
         paramKey: 'key_ingredient'
       },
       {
         title: 'Diet',
-        tiles: diets,
+        tiles: groups.diets,
         paramKey: 'diet'
       }
     ];

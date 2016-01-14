@@ -3,13 +3,11 @@
 
   describe('Factory: PlanFactory', function () {
     var planFactory,
-      planDayFactory,
       recipeFactory;
 
     beforeEach(module('mealPlanner'));
-    beforeEach(inject(function (PlanFactory, PlanDayFactory, RecipeFactory) {
+    beforeEach(inject(function (PlanFactory, RecipeFactory) {
       planFactory = PlanFactory;
-      planDayFactory = PlanDayFactory;
       recipeFactory = RecipeFactory;
     }));
 

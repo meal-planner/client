@@ -13,10 +13,7 @@
       controllerAs: 'ctrl',
       pageTitle: 'Recipes',
       resolve: {
-        dishTypes: resolveDishTypes,
-        cuisines: resolveCuisines,
-        keyIngredients: resolveKeyIngredients,
-        diets: resolveDiets
+        groups: resolveGroups
       }
     }).state('recipesList', {
       url: '/recipes/list/:filterName/:filterValue',
@@ -36,10 +33,7 @@
         authenticated: function (UserService) {
           return UserService.isAuthenticated();
         },
-        dishTypes: resolveDishTypes,
-        cuisines: resolveCuisines,
-        keyIngredients: resolveKeyIngredients,
-        diets: resolveDiets,
+        groups: resolveGroups,
         recipe: resolveEmptyRecipe
       }
     }).state('editRecipe', {
@@ -51,10 +45,7 @@
         authenticated: function (UserService) {
           return UserService.isAuthenticated();
         },
-        dishTypes: resolveDishTypes,
-        cuisines: resolveCuisines,
-        keyIngredients: resolveKeyIngredients,
-        diets: resolveDiets,
+        groups: resolveGroups,
         recipe: resolveRecipe
       }
     }).state('viewRecipe', {
@@ -102,44 +93,23 @@
         });
     }
 
-    /**
-     * Fetch dish types.
-     *
-     * @param RecipeGroupService
-     * @returns {*}
-     */
-    function resolveDishTypes(RecipeGroupService) {
-      return RecipeGroupService.getDishTypes();
-    }
+    function resolveGroups(RecipeGroupService) {
+      var groups = {};
 
-    /**
-     * Fetch cuisines.
-     *
-     * @param RecipeGroupService
-     * @returns {*}
-     */
-    function resolveCuisines(RecipeGroupService) {
-      return RecipeGroupService.getCuisines();
-    }
+      RecipeGroupService.getDishTypes().then(function (dishTypes) {
+        groups.dishTypes = dishTypes;
+      });
+      RecipeGroupService.getCuisines().then(function (cuisines) {
+        groups.cuisines = cuisines;
+      });
+      RecipeGroupService.getKeyIngredients().then(function (keyIngredients) {
+        groups.keyIngredients = keyIngredients;
+      });
+      RecipeGroupService.getDiets().then(function (diets) {
+        groups.diets = diets;
+      });
 
-    /**
-     * Fetch key ingredients.
-     *
-     * @param RecipeGroupService
-     * @returns {*}
-     */
-    function resolveKeyIngredients(RecipeGroupService) {
-      return RecipeGroupService.getKeyIngredients();
-    }
-
-    /**
-     * Fetch diets.
-     *
-     * @param RecipeGroupService
-     * @returns {*}
-     */
-    function resolveDiets(RecipeGroupService) {
-      return RecipeGroupService.getDiets();
+      return groups;
     }
   }
 })();
