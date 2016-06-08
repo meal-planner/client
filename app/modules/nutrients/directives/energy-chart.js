@@ -26,12 +26,24 @@
       scope.chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
-        segmentShowStroke: true,
-        segmentStrokeColor: '#fff',
-        segmentStrokeWidth: 2,
-        percentageInnerCutout: 60,
-        animateRotate: false,
-        tooltipTemplate: '<%if (label){%><%=label%>: <%}%><%= value %>%'
+        cutoutPercentage: 60,
+        animation: {
+          animateRotate: false
+        },
+        tooltips: {
+          enabled: true,
+          callbacks: {
+            label: function (item, data) {
+              var index = item.index,
+                label = data.labels[index],
+                value = data.datasets[item.datasetIndex].data[index];
+              return label + ': ' + value + '%';
+            }
+          }
+        },
+        legend: {
+          display: false
+        }
       };
 
       scope.$watch('nutrients.items', updateChartData, true);
@@ -46,7 +58,7 @@
       /**
        * Calculate macro nutrients shares in total energy.
        *
-       * @returns {*[]}
+       * @returns {*{}}
        */
       function getChartData() {
         scope.energy = scope.nutrients.find('energy');
@@ -57,11 +69,17 @@
         var energyFromProtein = Math.round(scope.protein.value * 4 / scope.energy.value * 100);
         var energyFromCarbs = 100 - energyFromFat - energyFromProtein;
 
-        return [
-          {label: 'Protein', value: energyFromProtein, color: '#1E88E5'},
-          {label: 'Carbs', value: energyFromCarbs, color: '#FB8C00'},
-          {label: 'Fat', value: energyFromFat, color: '#43A047'}
-        ];
+        return {
+          labels:['Protein', 'Carbs', 'Fat'],
+          datasets: [
+            {
+              data: [energyFromProtein, energyFromCarbs, energyFromFat],
+              backgroundColor: ['#1E88E5', '#FB8C00', '#43A047'],
+              borderColor: '#FFFFFF',
+              hoverBorderColor: '#FFFFFF'
+            }
+          ]
+        };
       }
     }
   }
