@@ -14,12 +14,11 @@
     .controller('RecipesListController', RecipesListController);
 
   /* @ngInject */
-  function RecipesListController($state, $stateParams, NavigationService, RecipeService, recipes) {
+  function RecipesListController($stateParams, NavigationService, RecipeService, recipes) {
     var self = this;
 
     self.items = recipes;
     self.searchRecipes = searchRecipes;
-    self.openRecipe = openRecipe;
 
     NavigationService.navigationBar.title = 'Recipes \u203A ' +  $stateParams.filterValue;
     NavigationService.navigationBar.searchCallback = searchRecipes;
@@ -38,15 +37,6 @@
           self.items = data;
         }
       );
-    }
-
-    /**
-     * Go to recipe view.
-     *
-     * @param recipeId
-     */
-    function openRecipe(recipeId) {
-      $state.go('viewRecipe', {recipeId: recipeId});
     }
   }
 })();
