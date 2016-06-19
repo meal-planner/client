@@ -41,13 +41,13 @@
     /**
      * Search recipes by given query text using given filters.
      *
+     * @param {String} searchText
      * @param {String} filterName
      * @param {String} filterValue
-     * @param {String} searchText
      * @param {Number} limit
      * @returns [{Recipe}]
      */
-    function searchRecipes(filterName, filterValue, searchText, limit) {
+    function searchRecipes(searchText, filterName, filterValue, limit) {
       return recipe.query({
         filter_by: filterName,
         filter_value: filterValue,

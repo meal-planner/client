@@ -14,7 +14,7 @@
     .controller('RecipesGroupsController', RecipesGroupsController);
 
   /* @ngInject */
-  function RecipesGroupsController(groups) {
+  function RecipesGroupsController(NavigationService, RecipeService, groups) {
     var self = this;
     self.groups = [
       {
@@ -38,5 +38,27 @@
         paramKey: 'diet'
       }
     ];
+    self.searchRecipes = searchRecipes;
+
+    NavigationService.navigationBar.searchCallback = searchRecipes;
+
+    /**
+     * Search recipes by given text query.
+     *
+     * @returns {*}
+     */
+    function searchRecipes(query) {
+      if (query.length > 0) {
+        NavigationService.navigationBar.isLoading = true;
+        RecipeService.searchRecipes(query)
+          .then(function (data) {
+              NavigationService.navigationBar.isLoading = false;
+              self.items = data;
+            }
+          );
+      } else {
+        self.items = null;
+      }
+    }
   }
 })();

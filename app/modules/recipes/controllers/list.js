@@ -32,7 +32,7 @@
     function searchRecipes(query) {
       NavigationService.navigationBar.isLoading = true;
 
-      RecipeService.searchRecipes($stateParams.filterName, $stateParams.filterValue, query)
+      RecipeService.searchRecipes(query, $stateParams.filterName, $stateParams.filterValue)
         .then(function (data) {
           NavigationService.navigationBar.isLoading = false;
           self.items = data;

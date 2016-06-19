@@ -110,9 +110,9 @@
       if (self.searchText || self.selectedFilter) {
         self.isLoading = true;
         RecipeService.searchRecipes(
+          self.searchText,
           self.selectedFilter,
           self.selectedGroup,
-          self.searchText,
           RECIPE_SEARCH_LIMIT
         ).then(function (recipes) {
           self.isLoading = false;
