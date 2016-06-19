@@ -16,13 +16,10 @@
       Be the first one to contribute, <a ui-sref="createRecipe">create recipe!</a>
     </div>
     <md-list ng-hide="ctrl.isLoading">
-      <md-list-item class="md-3-line"
-                    ng-repeat="recipe in ctrl.items track by recipe.id"
-                    ng-click="ctrl.openRecipe(recipe.id)">
-        <img ng-src="{{::recipe.imageUrl}}" class="mp-image-icon square">
-        <mp-recipe-info recipe="recipe"></mp-recipe-info>
-        <md-divider ng-if="!$last"></md-divider>
-      </md-list-item>
+      <mp-recipe-item recipe="recipe"
+                      last="$last"
+                      ng-repeat="recipe in ctrl.items track by recipe.id">
+      </mp-recipe-item>
     </md-list>
   </md-content>
 </div>
