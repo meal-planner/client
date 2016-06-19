@@ -43,6 +43,10 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   }
 }
 
+md-content {
+  background: rgb(255, 255, 255);
+}
+
 .mp-content {
   max-width: 1000px;
   min-width: 840px;
@@ -84,7 +88,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 }
 
 .mp-centered {
-  padding-top: 14px;
+  padding: 14px 0 14px 0;
   text-align: center;
 }
 
@@ -94,6 +98,10 @@ md-toast.md-error-toast-theme .md-toast-content {
 
 .mp-lowercase {
   text-transform: lowercase;
+}
+
+md-list {
+  padding: 0;
 }
 
 md-list-item.md-3-line {
