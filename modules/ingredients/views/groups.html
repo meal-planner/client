@@ -7,7 +7,7 @@
   </md-button>
 
   <md-content class="mp-content md-whiteframe-z1">
-    <md-grid-list class="mp-tiles"
+    <md-grid-list ng-if="!ctrl.items" class="mp-tiles"
                   md-cols-gt-sm="6" md-cols="1"
                   md-row-height="1:1"
                   md-gutter="8px" md-gutter-sm="10px">
@@ -22,5 +22,16 @@
         <md-grid-tile-footer><h3>{{::group.title}}</h3></md-grid-tile-footer>
       </md-grid-tile>
     </md-grid-list>
+
+    <div class="mp-centered" ng-if="ctrl.items && !ctrl.items.length">
+      No ingredients found.
+    </div>
+
+    <md-list ng-if="ctrl.items" class="mp-ingredients">
+      <mp-ingredient-item ingredient="ingredient"
+                          last="$last"
+                          ng-repeat="ingredient in ctrl.items track by ingredient.id">
+      </mp-ingredient-item>
+    </md-list>
   </md-content>
 </div>
