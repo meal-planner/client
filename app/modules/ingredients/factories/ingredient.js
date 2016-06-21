@@ -61,6 +61,7 @@
      *  id: 'string',
      *  name: 'string',
      *  generic: 'boolean',
+     *  ready_to_eat: 'boolean',
      *  image_url: 'string',
      *  group: 'string',
      *  measures: [
@@ -92,6 +93,7 @@
       ingredient.name = data.name;
       ingredient.group = data.group;
       ingredient.generic = data.generic;
+      ingredient.ready_to_eat = data.ready_to_eat;
       var imageUrl = data.image_url || IngredientGroupService.getGroupIcon(ingredient.group);
       ingredient.imageUrl = ENV.contentEndpoint + imageUrl;
       ingredient.measures = data.measures;
@@ -116,6 +118,7 @@
         name: this.name,
         group: this.group,
         generic: this.generic,
+        ready_to_eat: this.ready_to_eat,
         image_crop: this.imageCrop,
         measures: this.measures.map(function (measure) {
           return {
