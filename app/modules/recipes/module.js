@@ -9,5 +9,5 @@
    *
    * Recipes module.
    */
-  angular.module('mealPlanner.recipes', ['ngResource', 'mealPlanner.images']);
+  angular.module('mealPlanner.recipes', ['ngResource', 'mealPlanner.images', angularDragula(angular)]);
 })();

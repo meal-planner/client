@@ -1,5 +1,6 @@
-<md-list class="mp-ingredients-list">
-  <md-list-item class="md-3-line" ng-repeat="ingredient in recipe.ingredients track by $index">
+<md-list class="mp-ingredients-list" dragula="ingredients" dragula-model="recipe.ingredients">
+  <md-list-item ng-repeat="ingredient in recipe.ingredients track by $index"
+                class="md-3-line draggable">
     <img ng-src="{{ingredient.imageUrl}}" class="mp-image-icon">
 
     <div class="md-list-item-text" layout="row" layout-align="space-between center">

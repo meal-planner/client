@@ -108,4 +108,14 @@ md-list-item.md-3-line {
   align-items: center;
 }
 
+.draggable {
+  .handle {
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+    margin-right: 12px;
+  }
+}
+
 @import 'responsive';
