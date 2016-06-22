@@ -64,7 +64,8 @@
      *      name: 'string',
      *      image_url: 'string',
      *      measure: 'string',
-     *      measure_amount: 'integer'
+     *      measure_amount: 'integer',
+     *      position: 'integer'
      *    },
      *    ...
      *  ]
@@ -149,7 +150,7 @@
           ingredient.selectedMeasureLabel = recipeIngredient.measure;
           ingredient.selectedAmount = recipeIngredient.measure_amount;
           ingredient.updateNutritionValues();
-          ingredients.push(ingredient);
+          ingredients[recipeIngredient.position] = ingredient;
         });
       });
 
@@ -179,6 +180,7 @@
         steps: self.steps,
         ingredients: []
       };
+      var ingredientPosition = 0;
 
       self.nutrients = NutrientCollectionFactory.build();
       self.ingredients.forEach(function (ingredient) {
@@ -186,7 +188,8 @@
         var recipeIngredient = {
           id: ingredient.id,
           measure: ingredient.measures[ingredient.selectedMeasure].label,
-          measure_amount: ingredient.selectedAmount
+          measure_amount: ingredient.selectedAmount,
+          position: ingredientPosition++
         };
         json.ingredients.push(recipeIngredient);
       });
