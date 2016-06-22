@@ -150,7 +150,11 @@
           ingredient.selectedMeasureLabel = recipeIngredient.measure;
           ingredient.selectedAmount = recipeIngredient.measure_amount;
           ingredient.updateNutritionValues();
-          ingredients[recipeIngredient.position] = ingredient;
+          if (recipeIngredient.position) {
+            ingredients[recipeIngredient.position] = ingredient;
+          } else {
+            ingredients.push(ingredient);
+          }
         });
       });
 
