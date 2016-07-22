@@ -136,10 +136,15 @@
      */
     function loadIngredients() {
       /*jshint validthis:true */
-      var ingredients = [];
-      this.ingredients.forEach(function (recipeIngredient) {
-        IngredientService.getIngredient(recipeIngredient.id).then(function (ingredient) {
-          var selectedMeasure = 0;
+      var recipeIngredients = this.ingredients,
+        ingredients = [],
+        ids = recipeIngredients.map(function (ingredient) {
+          return ingredient.id;
+        });
+      IngredientService.getIngredientsById(ids).then(function (loadedIngredients) {
+        recipeIngredients.forEach(function (recipeIngredient) {
+          var ingredient = loadedIngredients[recipeIngredient.id],
+            selectedMeasure = 0;
           ingredient.measures.some(function (measure, index) {
             if (measure.label === recipeIngredient.measure) {
               selectedMeasure = index;

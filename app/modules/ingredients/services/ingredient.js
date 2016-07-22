@@ -19,6 +19,7 @@
     return {
       getIngredient: getIngredient,
       getIngredients: getIngredients,
+      getIngredientsById: getIngredientsById,
       searchIngredients: searchIngredients,
       saveIngredient: saveIngredient,
       deleteIngredient: deleteIngredient,
@@ -37,6 +38,16 @@
       function getIngredientComplete(apiResponse) {
         return IngredientFactory.fromJson(apiResponse);
       }
+    }
+
+    /**
+     * Load multiple ingredients with single API request.
+     *
+     * @param {Array} ids
+     * @returns {*}
+     */
+    function getIngredientsById(ids) {
+      return ingredient.query({id: ids}).$promise.then(getIngredientsHashComplete);
     }
 
     /**
@@ -74,7 +85,7 @@
     }
 
     /**
-     * Walk through the list of ingredients and build Ingredient instances.
+     * Walk through the list of ingredients and build Ingredient instances array.
      *
      * @param response
      * @returns [{Ingredient}]
@@ -83,6 +94,21 @@
       var ingredients = [];
       response.forEach(function (apiResponse) {
         ingredients.push(IngredientFactory.fromJson(apiResponse));
+      });
+
+      return ingredients;
+    }
+
+    /**
+     * Walk through the list of ingredients and build Ingredient instances hash.
+     *
+     * @param response
+     * @returns [{Ingredient}]
+     */
+    function getIngredientsHashComplete(response) {
+      var ingredients = {};
+      response.forEach(function (apiResponse) {
+        ingredients[apiResponse.id] =IngredientFactory.fromJson(apiResponse);
       });
 
       return ingredients;
