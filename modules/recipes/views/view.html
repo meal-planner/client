@@ -42,7 +42,7 @@
       <md-tab label="Ingredients">
         <md-list>
           <md-list-item class="md-3-line"
-                        ng-repeat="ingredient in ctrl.recipe.ingredients"
+                        ng-repeat="ingredient in ctrl.recipe.ingredients track by $index"
                         md-no-ink>
             <img ng-src="{{::ingredient.imageUrl}}" class="mp-image-icon">
 
