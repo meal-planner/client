@@ -502,7 +502,6 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'ngconstant:development',
-    'babel',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
@@ -512,7 +511,6 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'ngconstant:production',
-    'babel',
     'wiredep',
     'includeSource:dist',
     'useminPrepare',
