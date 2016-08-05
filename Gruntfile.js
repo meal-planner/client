@@ -475,7 +475,24 @@ module.exports = function (grunt) {
           dest: '.tmp/styles/'
         }]
       }
-    }
+    },
+
+    'sw-precache': {
+      options: {
+        cacheId: 'meal-planner',
+        workerFileName: 'sw.js',
+        verbose: true,
+      },
+      'default': {
+        staticFileGlobs: [
+          'index.html',
+          'styles/**/*.css',
+          'images/**/*.{gif,png,jpg,svg}',
+          'scripts/**/*.js',
+          'modules/**/*.html'
+        ],
+      }
+    },
   });
 
 
@@ -491,6 +508,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'postcss',
+      'sw-precache',
       'connect:livereload',
       'watch'
     ]);
@@ -521,12 +539,12 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cdnify',
     'cssmin',
     'uglify',
     'realFavicon',
     'filerev',
-    'usemin'
+    'usemin',
+    'sw-precache'
   ]);
 
   grunt.registerTask('default', [
@@ -544,4 +562,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-build-control');
   grunt.loadNpmTasks('grunt-include-source');
   grunt.loadNpmTasks('grunt-postcss');
+  grunt.loadNpmTasks('grunt-sw-precache');
 };

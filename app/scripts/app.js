@@ -26,6 +26,10 @@
 
   /* @ngInject */
   function runMealPlanner($state) {
+    if (navigator.serviceWorker) {
+      navigator.serviceWorker.register('sw.js');
+    }
+
     $state.go('planner');
   }
 })();
