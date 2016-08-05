@@ -378,6 +378,7 @@ module.exports = function (grunt) {
               picture_aspect: 'shadow',
               manifest: {
                 name: 'Meal-Planner.org',
+                short_name: 'Meal Planner',
                 display: 'standalone',
                 orientation: 'portrait',
                 start_url: '/index.html'
