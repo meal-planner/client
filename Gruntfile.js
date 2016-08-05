@@ -480,14 +480,14 @@ module.exports = function (grunt) {
     },
 
     githash: {
-      main: {
+      build: {
         options: {},
       }
     },
 
     'sw-precache': {
       options: {
-        cacheId: '<%= pkg.name %>-<%= githash.main.short %>',
+        cacheId: '<%= pkg.name %>-<%= githash.build.short %>',
         workerFileName: 'sw.js',
         verbose: true,
       },
@@ -553,6 +553,7 @@ module.exports = function (grunt) {
     'realFavicon',
     'filerev',
     'usemin',
+    'githash',
     'sw-precache'
   ]);
 
