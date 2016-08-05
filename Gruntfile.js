@@ -46,7 +46,7 @@ module.exports = function (grunt) {
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
+        tasks: ['compass:server', 'postcss']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -148,21 +148,6 @@ module.exports = function (grunt) {
         }]
       },
       server: '.tmp'
-    },
-
-    // Add vendor prefixed styles
-    autoprefixer: {
-      options: {
-        browsers: ['last 1 version']
-      },
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
-        }]
-      }
     },
 
     // Automatically inject Bower components into the app
@@ -473,6 +458,23 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/index.html': '<%= yeoman.app %>/index.html'
         }
       }
+    },
+
+    postcss: {
+      options: {
+        map: true, // inline sourcemaps
+        processors: [
+          require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
+        ]
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '.tmp/styles/',
+          src: '{,*/}*.css',
+          dest: '.tmp/styles/'
+        }]
+      }
     }
   });
 
@@ -488,7 +490,7 @@ module.exports = function (grunt) {
       'ngconstant:development',
       'wiredep',
       'concurrent:server',
-      'autoprefixer',
+      'postcss',
       'connect:livereload',
       'watch'
     ]);
@@ -503,7 +505,7 @@ module.exports = function (grunt) {
     'clean:server',
     'ngconstant:development',
     'concurrent:test',
-    'autoprefixer',
+    'postcss',
     'connect:test',
     'karma'
   ]);
@@ -515,7 +517,7 @@ module.exports = function (grunt) {
     'includeSource:dist',
     'useminPrepare',
     'concurrent:dist',
-    'autoprefixer',
+    'postcss',
     'concat',
     'ngAnnotate',
     'copy:dist',
@@ -541,4 +543,5 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-build-control');
   grunt.loadNpmTasks('grunt-include-source');
+  grunt.loadNpmTasks('grunt-postcss');
 };
