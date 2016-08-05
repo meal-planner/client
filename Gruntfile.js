@@ -21,6 +21,8 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  var serveStatic = require('serve-static');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -82,12 +84,9 @@ module.exports = function (grunt) {
           open: false,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
+              serveStatic('.tmp'),
+              connect().use('/bower_components', serveStatic('./bower_components')),
+              serveStatic(appConfig.app)
             ];
           }
         }
@@ -97,13 +96,10 @@ module.exports = function (grunt) {
           port: 9001,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
-              connect.static('test'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
+              serveStatic('.tmp'),
+              serveStatic('test'),
+              connect().use('/bower_components', serveStatic('./bower_components')),
+              serveStatic(appConfig.app)
             ];
           }
         }
