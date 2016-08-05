@@ -377,8 +377,7 @@ module.exports = function (grunt) {
             android_chrome: {
               picture_aspect: 'shadow',
               manifest: {
-                name: 'Meal-Planner.org',
-                short_name: 'Meal Planner',
+                name: 'Meal Planner',
                 display: 'standalone',
                 orientation: 'portrait',
                 start_url: '/index.html'
