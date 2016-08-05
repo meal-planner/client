@@ -24,6 +24,8 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    pkg: grunt.file.readJSON('package.json'),
+
     // Project settings
     yeoman: appConfig,
 
@@ -477,9 +479,15 @@ module.exports = function (grunt) {
       }
     },
 
+    githash: {
+      main: {
+        options: {},
+      }
+    },
+
     'sw-precache': {
       options: {
-        cacheId: 'meal-planner',
+        cacheId: '<%= pkg.name %>-<%= githash.main.short %>',
         workerFileName: 'sw.js',
         verbose: true,
       },
@@ -564,4 +572,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-include-source');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-sw-precache');
+  grunt.loadNpmTasks('grunt-githash');
 };
