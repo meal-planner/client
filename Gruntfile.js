@@ -488,8 +488,9 @@ module.exports = function (grunt) {
           'index.html',
           'styles/**/*.css',
           'images/**/*.{gif,png,jpg,svg}',
+          'fonts/**/*.{eot,ttf,woff,woff2}',
           'scripts/**/*.js',
-          'modules/**/*.html'
+          'modules/**/*.{html,json}'
         ],
       }
     },
