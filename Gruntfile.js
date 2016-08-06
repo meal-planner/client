@@ -195,7 +195,7 @@ module.exports = function (grunt) {
         src: [
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
-          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= yeoman.dist %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
           '!<%= yeoman.dist %>/images/icons/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '<%= yeoman.dist %>/styles/fonts/*'
         ]
@@ -235,7 +235,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          src: '**/*.{png,jpg,jpeg,gif}',
           dest: '<%= yeoman.dist %>/images'
         }]
       }
@@ -246,7 +246,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.svg',
+          src: '**/*.svg',
           dest: '<%= yeoman.dist %>/images'
         }]
       }
@@ -304,7 +304,7 @@ module.exports = function (grunt) {
             '*.html',
             'modules/**/views/{,*/}*.html',
             'modules/**/data/{,*/}*.json',
-            'images/{,*/}*.{webp}',
+            'images/**/*.{jpg,jpeg,png,svg}',
             'fonts/{,*/}*.*',
             'CNAME'
           ]
@@ -491,7 +491,7 @@ module.exports = function (grunt) {
         staticFileGlobs: [
           'index.html',
           'styles/**/*.css',
-          'images/**/*.{gif,png,jpg,svg}',
+          'images/**/*.{gif,png,jpg,jpeg,svg}',
           'fonts/**/*.{eot,ttf,woff,woff2}',
           'scripts/**/*.js',
           'modules/**/*.{html,json}'
