@@ -1,0 +1,402 @@
+{
+  "dishTypes": [
+    {
+      "title": "Main Dishes",
+      "background": "/images/recipe/group/dish-type/main-dishes.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Side Dishes",
+      "background": "/images/recipe/group/dish-type/side-dishes.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Breakfast & Brunch",
+      "background": "/images/recipe/group/dish-type/breakfast.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Sandwiches",
+      "background": "/images/recipe/group/dish-type/sandwiches.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Appetizers",
+      "background": "/images/recipe/group/dish-type/appetizers.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Casseroles",
+      "background": "/images/recipe/group/dish-type/casseroles.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Roasts",
+      "background": "/images/recipe/group/dish-type/roasts.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Pasta & Risotto",
+      "background": "/images/recipe/group/dish-type/pasta.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Salads",
+      "background": "/images/recipe/group/dish-type/salads.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Pizzas",
+      "background": "/images/recipe/group/dish-type/pizzas.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Cakes & Pastry",
+      "background": "/images/recipe/group/dish-type/cakes.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Snacks",
+      "background": "/images/recipe/group/dish-type/snacks.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Drinks",
+      "background": "/images/recipe/group/dish-type/drinks.jpg",
+      "span": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "title": "Soups & Stews",
+      "background": "/images/recipe/group/dish-type/soups.jpg",
+      "span": {
+        "row": 1,
+        "col": 1
+      }
+    }
+  ],
+  "cuisines": [
+    {
+      "title": "American",
+      "background": "/images/recipe/group/cuisine/american.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "British",
+      "background": "/images/recipe/group/cuisine/british.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "African",
+      "background": "/images/recipe/group/cuisine/african.jpg",
+      "span": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "title": "East European",
+      "background": "/images/recipe/group/cuisine/east-european.jpg",
+      "span": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "title": "Chinese",
+      "background": "/images/recipe/group/cuisine/chinese.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Indian",
+      "background": "/images/recipe/group/cuisine/indian.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Japanese",
+      "background": "/images/recipe/group/cuisine/japanese.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Italian",
+      "background": "/images/recipe/group/cuisine/italian.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Mediterranean",
+      "background": "/images/recipe/group/cuisine/mediterranean.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Irish",
+      "background": "/images/recipe/group/cuisine/irish.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Mexican",
+      "background": "/images/recipe/group/cuisine/mexican.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Russian",
+      "background": "/images/recipe/group/cuisine/russian.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Thai & South-Asian",
+      "background": "/images/recipe/group/cuisine/south-asian.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Western",
+      "background": "/images/recipe/group/cuisine/western.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    }
+  ],
+  "keyIngredients": [
+    {
+      "title": "Beef",
+      "background": "/images/recipe/group/ingredient/beef.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Pork",
+      "background": "/images/recipe/group/ingredient/pork.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Lamb",
+      "background": "/images/recipe/group/ingredient/lamb.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Fish",
+      "background": "/images/recipe/group/ingredient/fish.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Seafood",
+      "background": "/images/recipe/group/ingredient/seafood.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Pasta",
+      "background": "/images/recipe/group/ingredient/pasta.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Eggs",
+      "background": "/images/recipe/group/ingredient/eggs.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Rice",
+      "background": "/images/recipe/group/ingredient/rice.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Vegetables",
+      "background": "/images/recipe/group/ingredient/vegetables.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Fruits",
+      "background": "/images/recipe/group/ingredient/fruits.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Chicken",
+      "background": "/images/recipe/group/ingredient/chicken.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Duck",
+      "background": "/images/recipe/group/ingredient/duck.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Turkey",
+      "background": "/images/recipe/group/ingredient/turkey.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Bread",
+      "background": "/images/recipe/group/ingredient/bread.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Chocolate",
+      "background": "/images/recipe/group/ingredient/chocolate.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    }
+  ],
+  "diets": [
+    {
+      "title": "Mediterranean",
+      "background": "/images/recipe/group/diet/mediterranean.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Vegetarian",
+      "background": "/images/recipe/group/diet/vegetarian.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Dairy Free",
+      "background": "/images/recipe/group/diet/dairy-free.jpg",
+      "span": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "title": "Raw Food",
+      "background": "/images/recipe/group/diet/raw-food.jpg",
+      "span": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "title": "Vegan",
+      "background": "/images/recipe/group/diet/vegan.jpg",
+      "span": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "title": "Gluten Free",
+      "background": "/images/recipe/group/diet/gluten-free.jpg",
+      "span": {
+        "row": 1,
+        "col": 1
+      }
+    }
+  ]
+}
