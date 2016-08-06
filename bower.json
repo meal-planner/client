@@ -12,7 +12,8 @@
     "satellizer": "^0.14.0",
     "ngImgCrop": "0.3.2",
     "angular-dragula": "^1.2.7",
-    "tc-angular-chartjs": "^2.0.0"
+    "tc-angular-chartjs": "^2.0.0",
+    "picturefill": "^3.0.2"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.0",

@@ -40,7 +40,7 @@
      * @returns {*}
      */
     function getGroups() {
-      return $http.get('modules/ingredients/data/group.json', {cache: true})
+      return $http.get('modules/ingredients/data/groups.json', {cache: true})
         .then(function (groups) {
           return groups.data;
         });

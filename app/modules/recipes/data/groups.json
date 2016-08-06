@@ -2,7 +2,8 @@
   "dishTypes": [
     {
       "title": "Main Dishes",
-      "background": "/images/recipe/group/dish-type/main-dishes.jpg",
+      "background": "/images/recipe/group/dish-type/main-dishes-sm.jpg",
+      "background_gt": "/images/recipe/group/dish-type/main-dishes.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -10,7 +11,8 @@
     },
     {
       "title": "Side Dishes",
-      "background": "/images/recipe/group/dish-type/side-dishes.jpg",
+      "background": "/images/recipe/group/dish-type/side-dishes-sm.jpg",
+      "background_gt": "/images/recipe/group/dish-type/side-dishes.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -42,7 +44,8 @@
     },
     {
       "title": "Casseroles",
-      "background": "/images/recipe/group/dish-type/casseroles.jpg",
+      "background": "/images/recipe/group/dish-type/casseroles-sm.jpg",
+      "background_gt": "/images/recipe/group/dish-type/casseroles.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -50,7 +53,8 @@
     },
     {
       "title": "Roasts",
-      "background": "/images/recipe/group/dish-type/roasts.jpg",
+      "background": "/images/recipe/group/dish-type/roasts-sm.jpg",
+      "background_gt": "/images/recipe/group/dish-type/roasts.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -82,7 +86,8 @@
     },
     {
       "title": "Cakes & Pastry",
-      "background": "/images/recipe/group/dish-type/cakes.jpg",
+      "background": "/images/recipe/group/dish-type/cakes-sm.jpg",
+      "background_gt": "/images/recipe/group/dish-type/cakes.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -116,7 +121,8 @@
   "cuisines": [
     {
       "title": "American",
-      "background": "/images/recipe/group/cuisine/american.jpg",
+      "background": "/images/recipe/group/cuisine/american-sm.jpg",
+      "background_gt": "/images/recipe/group/cuisine/american.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -172,7 +178,8 @@
     },
     {
       "title": "Italian",
-      "background": "/images/recipe/group/cuisine/italian.jpg",
+      "background": "/images/recipe/group/cuisine/italian-sm.jpg",
+      "background_gt": "/images/recipe/group/cuisine/italian.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -180,7 +187,8 @@
     },
     {
       "title": "Mediterranean",
-      "background": "/images/recipe/group/cuisine/mediterranean.jpg",
+      "background": "/images/recipe/group/cuisine/mediterranean-sm.jpg",
+      "background_gt": "/images/recipe/group/cuisine/mediterranean.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -212,7 +220,8 @@
     },
     {
       "title": "Thai & South-Asian",
-      "background": "/images/recipe/group/cuisine/south-asian.jpg",
+      "background": "/images/recipe/group/cuisine/south-asian-sm.jpg",
+      "background_gt": "/images/recipe/group/cuisine/south-asian.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -220,7 +229,8 @@
     },
     {
       "title": "Western",
-      "background": "/images/recipe/group/cuisine/western.jpg",
+      "background": "/images/recipe/group/cuisine/western-sm.jpg",
+      "background_gt": "/images/recipe/group/cuisine/western.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -254,7 +264,8 @@
     },
     {
       "title": "Fish",
-      "background": "/images/recipe/group/ingredient/fish.jpg",
+      "background": "/images/recipe/group/ingredient/fish-sm.jpg",
+      "background_gt": "/images/recipe/group/ingredient/fish.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -262,7 +273,8 @@
     },
     {
       "title": "Seafood",
-      "background": "/images/recipe/group/ingredient/seafood.jpg",
+      "background": "/images/recipe/group/ingredient/seafood-sm.jpg",
+      "background_gt": "/images/recipe/group/ingredient/seafood.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -294,7 +306,8 @@
     },
     {
       "title": "Vegetables",
-      "background": "/images/recipe/group/ingredient/vegetables.jpg",
+      "background": "/images/recipe/group/ingredient/vegetables-sm.jpg",
+      "background_gt": "/images/recipe/group/ingredient/vegetables.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -302,7 +315,8 @@
     },
     {
       "title": "Fruits",
-      "background": "/images/recipe/group/ingredient/fruits.jpg",
+      "background": "/images/recipe/group/ingredient/fruits-sm.jpg",
+      "background_gt": "/images/recipe/group/ingredient/fruits.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -334,7 +348,8 @@
     },
     {
       "title": "Bread",
-      "background": "/images/recipe/group/ingredient/bread.jpg",
+      "background": "/images/recipe/group/ingredient/bread-sm.jpg",
+      "background_gt": "/images/recipe/group/ingredient/bread.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -342,7 +357,8 @@
     },
     {
       "title": "Chocolate",
-      "background": "/images/recipe/group/ingredient/chocolate.jpg",
+      "background": "/images/recipe/group/ingredient/chocolate-sm.jpg",
+      "background_gt": "/images/recipe/group/ingredient/chocolate.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -352,7 +368,8 @@
   "diets": [
     {
       "title": "Mediterranean",
-      "background": "/images/recipe/group/diet/mediterranean.jpg",
+      "background": "/images/recipe/group/diet/mediterranean-sm.jpg",
+      "background_gt": "/images/recipe/group/diet/mediterranean.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -360,7 +377,8 @@
     },
     {
       "title": "Vegetarian",
-      "background": "/images/recipe/group/diet/vegetarian.jpg",
+      "background": "/images/recipe/group/diet/vegetarian-sm.jpg",
+      "background_gt": "/images/recipe/group/diet/vegetarian.jpg",
       "span": {
         "row": 2,
         "col": 3
@@ -376,7 +394,8 @@
     },
     {
       "title": "Raw Food",
-      "background": "/images/recipe/group/diet/raw-food.jpg",
+      "background": "/images/recipe/group/diet/raw-food-sm.jpg",
+      "background_gt": "/images/recipe/group/diet/raw-food.jpg",
       "span": {
         "row": 2,
         "col": 3

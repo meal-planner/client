@@ -51,7 +51,10 @@
                               md-colspan-sm="1"
                               md-ink-ripple
                               ng-click="ctrl.showGroup(group.paramKey, tile.title)">
-                  <img ng-src="{{::tile.background}}" alt="{{::tile.title}}"/>
+                  <picture>
+                    <source ng-srcset="{{::tile.background_gt}}" media="(min-width: 768px)" ng-if="tile.background_gt"/>
+                    <img ng-srcset="{{::tile.background}}" alt="{{::tile.title}}"/>
+                  </picture>
                   <md-grid-tile-footer><h3>{{::tile.title}}</h3></md-grid-tile-footer>
                 </md-grid-tile>
               </md-grid-list>
