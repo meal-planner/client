@@ -13,73 +13,21 @@
     .service('RecipeGroupService', RecipeGroupService);
 
   /* @ngInject */
-  function RecipeGroupService($http, ENV) {
+  function RecipeGroupService($http) {
     return {
-      getDishTypes: getDishTypes,
-      getCuisines: getCuisines,
-      getKeyIngredients: getKeyIngredients,
-      getDiets: getDiets
+      getGroups: getGroups
     };
 
     /**
-     * Load recipe dish types.
+     * Load recipes groups.
      *
      * @returns {*}
      */
-    function getDishTypes() {
-      return $http.get('modules/recipes/data/dish_type.json', {cache: true})
-        .then(function (dishTypes) {
-          return setImageUrl(dishTypes.data);
+    function getGroups() {
+      return $http.get('modules/recipes/data/groups.json', {cache: true})
+        .then(function (groups) {
+          return groups.data;
         });
-    }
-
-    /**
-     * Load recipe cuisines.
-     *
-     * @returns {*}
-     */
-    function getCuisines() {
-      return $http.get('modules/recipes/data/cuisine.json', {cache: true})
-        .then(function (cuisines) {
-          return setImageUrl(cuisines.data);
-        });
-    }
-
-    /**
-     * Load key recipe ingredients.
-     *
-     * @returns {*}
-     */
-    function getKeyIngredients() {
-      return $http.get('modules/recipes/data/key_ingredient.json', {cache: true})
-        .then(function (keyIngredients) {
-          return setImageUrl(keyIngredients.data);
-        });
-    }
-
-    /**
-     * Load recipe diets.
-     *
-     * @returns {*}
-     */
-    function getDiets() {
-      return $http.get('modules/recipes/data/diet.json', {cache: true})
-        .then(function (diets) {
-          return setImageUrl(diets.data);
-        });
-    }
-
-    /**
-     * Walk through given groups and set correct image URL.
-     *
-     * @param groups
-     * @returns {*}
-     */
-    function setImageUrl(groups) {
-      return groups.map(function (group) {
-        group.background = ENV.contentEndpoint + group.background;
-        return group;
-      });
     }
   }
 })();

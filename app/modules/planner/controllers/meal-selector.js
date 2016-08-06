@@ -38,26 +38,24 @@
 
     function activate() {
       self.recipeGroups = [];
-      RecipeGroupService.getDishTypes().then(function (dishTypes) {
-        self.recipeGroups.push({
-          title: 'Dish Type',
-          tiles: dishTypes,
-          paramKey: 'dish_type'
-        });
-      });
-      RecipeGroupService.getKeyIngredients().then(function (keyIngredients) {
-        self.recipeGroups.push({
-          title: 'Ingredient',
-          tiles: keyIngredients,
-          paramKey: 'key_ingredient'
-        });
-      });
-      RecipeGroupService.getDiets().then(function (diets) {
-        self.recipeGroups.push({
-          title: 'Diet',
-          tiles: diets,
-          paramKey: 'diet'
-        });
+      RecipeGroupService.getGroups().then(function (groups) {
+        self.recipeGroups = [
+          {
+            title: 'Dish Type',
+            tiles: groups.dishTypes,
+            paramKey: 'dish_type'
+          },
+          {
+            title: 'Ingredient',
+            tiles: groups.keyIngredients,
+            paramKey: 'key_ingredient'
+          },
+          {
+            title: 'Diet',
+            tiles: groups.diets,
+            paramKey: 'diet'
+          }
+        ]
       });
     }
 

@@ -94,22 +94,7 @@
     }
 
     function resolveGroups(RecipeGroupService) {
-      var groups = {};
-
-      RecipeGroupService.getDishTypes().then(function (dishTypes) {
-        groups.dishTypes = dishTypes;
-      });
-      RecipeGroupService.getCuisines().then(function (cuisines) {
-        groups.cuisines = cuisines;
-      });
-      RecipeGroupService.getKeyIngredients().then(function (keyIngredients) {
-        groups.keyIngredients = keyIngredients;
-      });
-      RecipeGroupService.getDiets().then(function (diets) {
-        groups.diets = diets;
-      });
-
-      return groups;
+      return RecipeGroupService.getGroups();
     }
   }
 })();
