@@ -18,7 +18,10 @@
                     md-rowspan-sm="1"
                     md-ink-ripple
                     ui-sref="ingredientsList({group: group.title})">
-        <img ng-src="{{::group.background}}" alt="{{::group.title}}"/>
+        <picture>
+          <source ng-srcset="{{::group.background_gt}}" media="(min-width: 768px)" ng-if="group.background_gt"/>
+          <img ng-srcset="{{::group.background}}" alt="{{::group.title}}"/>
+        </picture>
         <md-grid-tile-footer><h3>{{::group.title}}</h3></md-grid-tile-footer>
       </md-grid-tile>
     </md-grid-list>

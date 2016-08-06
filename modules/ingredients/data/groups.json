@@ -9,7 +9,8 @@
   },
   {
     "title": "Fish & Seafood",
-    "background": "/images/ingredient/group/fish.jpg",
+    "background": "/images/ingredient/group/fish-sm.jpg",
+    "background_gt": "/images/ingredient/group/fish.jpg",
     "tile": {
       "row": 2,
       "col": 3
@@ -17,7 +18,8 @@
   },
   {
     "title": "Legumes",
-    "background": "/images/ingredient/group/legumes.jpg",
+    "background": "/images/ingredient/group/legumes-sm.jpg",
+    "background_gt": "/images/ingredient/group/legumes.jpg",
     "tile": {
       "row": 1,
       "col": 1
@@ -25,7 +27,8 @@
   },
   {
     "title": "Nuts & Seeds",
-    "background": "/images/ingredient/group/nuts.jpg",
+    "background": "/images/ingredient/group/nuts-sm.jpg",
+    "background_gt": "/images/ingredient/group/nuts.jpg",
     "tile": {
       "row": 1,
       "col": 1
@@ -33,7 +36,8 @@
   },
   {
     "title": "Poultry",
-    "background": "/images/ingredient/group/poultry.jpg",
+    "background": "/images/ingredient/group/poultry-sm.jpg",
+    "background_gt": "/images/ingredient/group/poultry.jpg",
     "tile": {
       "row": 2,
       "col": 3
@@ -41,7 +45,8 @@
   },
   {
     "title": "Dairy & Eggs",
-    "background": "/images/ingredient/group/dairy.jpg",
+    "background": "/images/ingredient/group/dairy-sm.jpg",
+    "background_gt": "/images/ingredient/group/dairy.jpg",
     "tile": {
       "row": 2,
       "col": 3
@@ -73,7 +78,8 @@
   },
   {
     "title": "Beverages",
-    "background": "/images/ingredient/group/beverages.jpg",
+    "background": "/images/ingredient/group/beverages-sm.jpg",
+    "background_gt": "/images/ingredient/group/beverages.jpg",
     "tile": {
       "row": 2,
       "col": 3
@@ -89,7 +95,8 @@
   },
   {
     "title": "Other",
-    "background": "/images/ingredient/group/other.jpg",
+    "background": "/images/ingredient/group/other-sm.jpg",
+    "background_gt": "/images/ingredient/group/other.jpg",
     "tile": {
       "row": 2,
       "col": 1
