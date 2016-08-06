@@ -13,20 +13,20 @@
     .service('IngredientGroupService', IngredientGroupService);
 
   /* @ngInject */
-  function IngredientGroupService($http, ENV) {
+  function IngredientGroupService($http) {
     var groupsIcon = {
-      'Meat': 'ingredient/meat-group.png',
-      'Fish & Seafood': 'ingredient/fish-group.png',
-      'Poultry': 'ingredient/poultry-group.png',
-      'Nuts & Seeds': 'ingredient/nuts-group.png',
-      'Legumes': 'ingredient/legumes-group.png',
-      'Dairy & Eggs': 'ingredient/dairy-group.png',
-      'Vegetables': 'ingredient/vegetables-group.png',
-      'Grains': 'ingredient/grains-group.png',
-      'Fruits': 'ingredient/fruits-group.png',
-      'Beverages': 'ingredient/beverages-group.png',
-      'Sweets & Deserts': 'ingredient/sweets-group.png',
-      'Other': 'ingredient/other-group.png',
+      'Meat': '/images/ingredient/meat-group.png',
+      'Fish & Seafood': '/images/ingredient/fish-group.png',
+      'Poultry': '/images/ingredient/poultry-group.png',
+      'Nuts & Seeds': '/images/ingredient/nuts-group.png',
+      'Legumes': '/images/ingredient/legumes-group.png',
+      'Dairy & Eggs': '/images/ingredient/dairy-group.png',
+      'Vegetables': '/images/ingredient/vegetables-group.png',
+      'Grains': '/images/ingredient/grains-group.png',
+      'Fruits': '/images/ingredient/fruits-group.png',
+      'Beverages': '/images/ingredient/beverages-group.png',
+      'Sweets & Deserts': '/images/ingredient/sweets-group.png',
+      'Other': '/images/ingredient/other-group.png',
     };
 
     return {
@@ -42,15 +42,8 @@
     function getGroups() {
       return $http.get('modules/ingredients/data/group.json', {cache: true})
         .then(function (groups) {
-          return setImageUrl(groups.data);
+          return groups.data;
         });
-
-      function setImageUrl(groups) {
-        return groups.map(function (group) {
-          group.background = ENV.contentEndpoint + group.background;
-          return group;
-        });
-      }
     }
 
     /**
@@ -64,7 +57,7 @@
         return groupsIcon[group];
       }
 
-      return 'ingredient/image/default-icon.png';
+      return '/images/ingredient/image/default-icon.png';
     }
   }
 })();

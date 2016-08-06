@@ -94,8 +94,11 @@
       ingredient.group = data.group;
       ingredient.generic = data.generic;
       ingredient.ready_to_eat = data.ready_to_eat;
-      var imageUrl = data.image_url || IngredientGroupService.getGroupIcon(ingredient.group);
-      ingredient.imageUrl = ENV.contentEndpoint + imageUrl;
+      if (data.image_url) {
+        ingredient.imageUrl = ENV.contentEndpoint + data.image_url;
+      } else {
+        ingredient.imageUrl = IngredientGroupService.getGroupIcon(ingredient.group);
+      }
       ingredient.measures = data.measures;
       ingredient.selectedMeasure = 0;
       var measure = ingredient.measures[ingredient.selectedMeasure];
