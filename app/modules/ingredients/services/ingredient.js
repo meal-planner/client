@@ -54,7 +54,10 @@
      * @returns {*}
      */
     function getIngredientsById(ids) {
-      return ingredient.query({id: ids}).$promise.then(getIngredientsHashComplete);
+      return ingredient.query({
+        filter_by: 'id',
+        filter_value: ids.join(',')
+      }).$promise.then(getIngredientsHashComplete);
     }
 
     /**
@@ -110,12 +113,12 @@
      * Walk through the list of ingredients and build Ingredient instances hash.
      *
      * @param response
-     * @returns [{Ingredient}]
+     * @returns {*}
      */
     function getIngredientsHashComplete(response) {
       var ingredients = {};
-      response.forEach(function (apiResponse) {
-        ingredients[apiResponse.id] =IngredientFactory.fromJson(apiResponse);
+      response.items.forEach(function (apiResponse) {
+        ingredients[apiResponse.id] = IngredientFactory.fromJson(apiResponse);
       });
 
       return ingredients;
