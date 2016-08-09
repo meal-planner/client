@@ -14,7 +14,14 @@
 
   /* @ngInject */
   function RecipeService($resource, RecipeFactory, ENV) {
-    var recipe = $resource(ENV.apiEndpoint + 'recipes/:id', null, {'update': {method: 'PUT'}});
+    var recipe = $resource(
+      ENV.apiEndpoint + 'recipes/:id',
+      null,
+      {
+        'update': {method: 'PUT'},
+        'query': {method: 'GET', isArray: false}
+      }
+    );
 
     return {
       getRecipe: getRecipe,
@@ -65,7 +72,7 @@
      */
     function getRecipesListComplete(response) {
       var recipes = [];
-      response.forEach(function (apiResponse) {
+      response.items.forEach(function (apiResponse) {
         recipes.push(RecipeFactory.fromJson(apiResponse));
       });
 

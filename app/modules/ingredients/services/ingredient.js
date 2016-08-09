@@ -14,7 +14,14 @@
 
   /* @ngInject */
   function IngredientService($resource, IngredientFactory, ENV) {
-    var ingredient = $resource(ENV.apiEndpoint + 'ingredients/:id', null, {'update': {method: 'PUT'}});
+    var ingredient = $resource(
+      ENV.apiEndpoint + 'ingredients/:id',
+      null,
+      {
+        'update': {method: 'PUT'},
+        'query': {method: 'GET', isArray: false}
+      }
+    );
 
     return {
       getIngredient: getIngredient,
@@ -92,7 +99,7 @@
      */
     function getIngredientsListComplete(response) {
       var ingredients = [];
-      response.forEach(function (apiResponse) {
+      response.items.forEach(function (apiResponse) {
         ingredients.push(IngredientFactory.fromJson(apiResponse));
       });
 
