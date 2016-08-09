@@ -41,7 +41,7 @@
       message = message || 'Sorry, the request could not be performed.';
       $mdToast.show(
         $mdToast.simple()
-          .content(message)
+          .textContent(message)
           .position('bottom left')
           .hideDelay(5000)
           .theme('error-toast')

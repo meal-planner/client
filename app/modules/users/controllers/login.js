@@ -13,7 +13,7 @@
     .controller('UserLoginController', UserLoginController);
 
   /* @ngInject */
-  function UserLoginController($auth, $mdDialog, UserService, NavigationService) {
+  function UserLoginController($auth, $mdDialog, $state, UserService, NavigationService) {
     var self = this;
 
     self.loginButtonLocked = false;
@@ -27,6 +27,11 @@
       NavigationService.navigationBar.isLoading = true;
       self.loginButtonLocked = true;
       $auth.login({email: self.email, password: self.password})
+        .then(function() {
+          NavigationService.navigationBar.isLoading = false;
+          UserService.afterLogin();
+          $state.go('planner');
+        })
         .catch(handleError);
     }
 
@@ -39,6 +44,7 @@
       $auth.authenticate(provider)
         .then(function () {
           UserService.afterLogin();
+          $state.go('planner');
         })
         .catch(handleError);
     }

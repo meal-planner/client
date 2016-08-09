@@ -13,7 +13,7 @@
     .controller('UserSignUpController', UserSignUpController);
 
   /* @ngInject */
-  function UserSignUpController($auth, $mdDialog, NavigationService) {
+  function UserSignUpController($auth, $mdToast, $mdDialog, $state, NavigationService) {
     var self = this;
 
     self.user = {};
@@ -27,6 +27,16 @@
       self.signUpButtonLocked = true;
       NavigationService.navigationBar.isLoading = true;
       $auth.signup(self.user)
+        .then(function () {
+          NavigationService.navigationBar.isLoading = false;
+          $state.go('login');
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent('Your account has been created, you can log in now!')
+              .position('bottom left')
+              .hideDelay(5000)
+          );
+        })
         .catch(function (response) {
           self.signUpButtonLocked = false;
           NavigationService.navigationBar.isLoading = false;

@@ -52,11 +52,12 @@
         RecipeService.saveRecipe(self.recipe.id, self.recipe.toJson())
           .then(function (response) {
             $state.go('viewRecipe', {recipeId: response.id});
-            $mdToast.show({
-              template: '<md-toast>Recipe was saved!</md-toast>',
-              position: 'bottom left',
-              hideDelay: 3000
-            });
+            $mdToast.show(
+              $mdToast.simple()
+                .textContent('Recipe was saved!')
+                .position('bottom left')
+                .hideDelay(3000)
+            );
           }, function (response) {
             self.saveButtonDisabled = false;
             NavigationService.handleError(response.data.error);

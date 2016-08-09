@@ -13,7 +13,7 @@
     .controller('ProfileController', ProfileController);
 
   /* @ngInject */
-  function ProfileController($auth, UserService, NavigationService) {
+  function ProfileController($auth, $state, UserService, NavigationService) {
     var self = this;
 
     self.logout = logout;
@@ -40,6 +40,7 @@
       }
       $auth.logout();
       NavigationService.navigationBar.avatar = 'images/icons/avatar-default.png';
+      $state.go('planner');
     }
   }
 })();

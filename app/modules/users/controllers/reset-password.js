@@ -24,11 +24,12 @@
         .then(function (response) {
           $auth.setToken(response);
           UserService.afterLogin();
-          $mdToast.show({
-            template: '<md-toast>Your password was updated</md-toast>',
-            position: 'bottom left',
-            hideDelay: 3000
-          });
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent('Your password was updated.')
+              .position('bottom left')
+              .hideDelay(3000)
+            );
         })
         .catch(function () {
           self.submitButtonDisabled = false;

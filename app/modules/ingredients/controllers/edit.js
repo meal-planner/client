@@ -38,11 +38,12 @@
       IngredientService.saveIngredient(self.ingredient.id, self.ingredient.toJson())
         .then(function (response) {
           $state.go('viewIngredient', {ingredientId: response.id});
-          $mdToast.show({
-            template: '<md-toast>Ingredient was saved!</md-toast>',
-            position: 'bottom left',
-            hideDelay: 3000
-          });
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent('Ingredient was saved!')
+              .position('bottom left')
+              .hideDelay(3000)
+          );
         }, function (response) {
           self.saveButtonDisabled = false;
           NavigationService.handleError(response.data.error);
