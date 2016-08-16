@@ -6,24 +6,39 @@
 [![Join the chat at https://gitter.im/meal-planner/public](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/meal-planner/public?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Meal Planner is an open source recipe recommendation and nutrition balancing service.
-The project is currently in active development and not very stable :blush:
 
-Alpha version is hosted at http://meal-planner.org/
+Alpha version is hosted at https://meal-planner.org/
 
 This repository contains client app implementation.
 It is a Single Page Application (SPA) built with [AngularJS](https://github.com/angular/angular.js) and [Angular Material](https://github.com/angular/material)
 
-Install dependencies:
-```
-bower install
-```
+## Requirements
+This application requires NodeJS and Bower for development.
+
+Install development dependencies:
+
+  ```
+  npm install
+  ```
+
+Install fronted dependencies:
+  ```
+  bower install
+  ```
 
 Run client app locally:
-```
-grunt serve
-```
+  ```
+  grunt serve
+  ```
 
 Run tests:
-```
-grunt test
-```
+  ```
+  grunt test
+  ```
+
+## Deployment
+
+This client application is completely static and hosted at GitHub Pages.
+
+`grunt deploy` is used to deploy latest master to https://app.meal-planner.org
+ It builds the app with `grunt build` and pushes the changes to `gh-pages` branch automatically.
