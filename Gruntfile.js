@@ -433,7 +433,7 @@ module.exports = function (grunt) {
         },
         constants: {
           ENV: {
-            apiEndpoint: 'https://api.meal-planner.org/',
+            apiEndpoint: 'https://meal-planner-backend.herokuapp.com/',
             contentEndpoint: '//content.meal-planner.org/'
           }
         }
